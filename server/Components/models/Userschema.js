@@ -57,7 +57,8 @@ const freelancer_schema = new Schema({
         type: Schema.Types.Mixed
     },
     isVerified: {
-        type: Boolean
+        type: Boolean,
+        default:false
     },
     githubLink: {
         type: String
@@ -133,8 +134,15 @@ const freelancer_project = new Schema({
     projectType: {
         type: String,
         required: true
+    },
+    isVerified:{
+        type: Boolean,
+        default:false
     }
 }, { timestamps: true });
+
+
+
 
 const otpSchema = new Schema({
     email: {
@@ -196,7 +204,8 @@ const businessSchema = new Schema({
         type: Schema.Types.Mixed
     },
     isVerified: {
-        type: Boolean
+        type: Boolean,
+        default:false
     },
     Linkdin: {
         type: String

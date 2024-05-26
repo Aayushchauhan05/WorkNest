@@ -32,38 +32,42 @@ const {firstName,lastName,userName,Email,phone,Dob,professionalInfo,Skills,Educa
             return res.status(401).json({message:"Enter valid email"});
         }
         
-        const userexist= await Freelancer.find({Email});
-        const  Usernameexist= await Freelancer.find({userName});
+        const userexist= await Freelancer.findOne({Email});
+        const  Usernameexist= await Freelancer.findOne({userName});
      if (userexist) {
         return res.status(404).json({message:"User already exist"});
      }
      if (Usernameexist) {
         return res.status(404).json({message:"Username already exist"});
      }
-const hashpass= bcrypt.hash(password,process.env.SALT)
+const hashpass= await bcrypt.hash(password,14);
+console.log(hashpass)
     const user= await  Freelancer.create({firstName,lastName,userName,Email,phone,Dob,professionalInfo,Skills,Education,Role, project,Refer,verified,isVerified,githubLink,Linkdin,personalWebsite,perHourPrice,connects,Resume,InterviewedBy,workExperience,password:hashpass})
-   const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCase:false });
-    const otpexist=  await otp.Find({Email});
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      port: 587,
-      secure: false, 
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.APP_PASS,
-      },
-    });
-   await main(Email,otpgen,transporter).catch(console.error); 
+    await user.save();
+    console.log("user",user.password)
+   const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
+    const otpexist=  await otp.findOne({Email});
+   
 if (!otpexist) {
-    const userotp= await  otp.create({Email,phone,otpcode})
+    const userotp= await  otp.create({email:Email,phone,otp:otpcode})
      
 }
 else{
-const update= await otp.findOneAndUpdate({Email},{otp:otpcode},{new:true});
+const update= await otp.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
 }
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  port: 587,
+  secure: false, 
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.APP_PASS,
+  },
+});
+await main(Email,otpcode,transporter).catch(console.error); 
         return res.status(200).json({user})
     } catch (error) {
-        console.log(error);
+        console.log('registrationerror',error);
          return res.status(500).json({message:"Internal server error"})
     }
 
@@ -71,7 +75,7 @@ const update= await otp.findOneAndUpdate({Email},{otp:otpcode},{new:true});
   const otpgen= async(req,res)=>{
 try {
   const{otp,Email}=req.body;
-  const userexist= await otp.find({Email});
+  const userexist= await otp.findOne({Email});
   if (userexist && userexist.otp==otp) {
     return res.status(200).json({message:"login successfull"})
   }
@@ -82,25 +86,7 @@ return res.status(401).json({message:"Invalid otp"})
     return res.status(200).json({message:"Something went wrong"})
 }
   };
-  const project_reg= async (req,res)=>{
-try {
-  const {projectName,Description,verified,isVerified,githubLink,Start,End,Refer,TechUsed,Role,projectType}=req.body;
-  const id= req.user._id;
-  const userexist=await  Freelancer.findById(id);
-  if (!userexist) {
-    return res.status(404).json({message:"User not exist"})
-  }
-const New_project= await project.create({projectName,Description,verified,isVerified,githubLink,Start,End,Refer,TechUsed,Role,projectType});
-
-await Freelancer.findByIdAndUpdate({id},{$push:{project:Add_project._id}},{new:true});
-return res.status(200).json({New_project});
-
-  
-} catch (error) {
-  console.log(error);
-  return res.status(500).json({message:"Internal server error"})
-}
-  };
+ 
 
   const business_reg=async (req,res)=>{
 const {firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password}=req.body;
@@ -115,26 +101,26 @@ try {
   }
  const user= Business.create({firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password});
  const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
-    const otpexist=  await otp.Find({Email});
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      port: 587,
-      secure: false, 
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.APP_PASS,
-      },
-    });
-   await main(Email,otpgen,transporter).catch(console.error); 
+    const otpexist=  await otp.FindOne({Email});
+  
 if (!otpexist) {
-    const userotp= await otp.create({Email,phone,otpcode})
+    const userotp= await otp.create({email:Email,phone,otp:otpcode})
      
 }
 else{
-const update= await otp.findOneAndUpdate({Email},{otp:otpcode},{new:true});
+const update= await otp.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
 }
-
-return res.status(200).json({user});
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  port: 587,
+  secure: false, 
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.APP_PASS,
+  },
+});
+await main(Email,otpgen,transporter).catch(console.error); 
+return res.status(200).json({message:"Registration Succesfull"});
 } catch (error) {
   console.log(error)
   return res.status(500).json({message:"Internal server error"})
@@ -142,18 +128,31 @@ return res.status(200).json({user});
   };
   const login= async(req,res)=>{
 try {
-  const{email,password}= req.body;
-  const userexist= await  Business.find({email})|| await Freelancer.find({email});
-  if (!userexist) {
-    return res.status(404).json({message:"User not exist please login"})}
+  const{Email,password}= req.body;
+ 
+    
+    let userexist = await Business.findOne({Email });
+    if (!userexist) {
+      userexist = await Freelancer.findOne({ Email }).select("-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience ");
+console.log("test", userexist);
+
+      console.log("test",userexist)
+    }
+    
+    if (!userexist) {
+      return res.status(404).json({ message: "User not exist, please register" });
+    }
+    console.log("user",userexist)
     const userpass= userexist.password
-  const passcheck= await bcrypt.compare(userpass,password);
+    console.log(userpass)
+  const passcheck= await bcrypt.compare(password,userpass);
   if (!passcheck) {
     return res.status(401).json({message:" Invalid password Or Username"})
   }
-  const token= jwt.sign({userexist},process.env.SECRET_KEY,{expiresIn:"2d"});
+  const token= await jwt.sign({userexist},process.env.SECRET_KEY,{expiresIn:"2d"});
   console.log("token",token)
-return res.status(200).json({userexist,token})  
+// return res.status(200).json({userexist,token})  
+return res.cookie("token", token, { httpOnly: true, sameSite: 'none', secure: true }).status(200).json({userexist})
 } catch (error) {
   console.log(error);
   return  res.status(500).json({message:"Internal server error"})

@@ -1,10 +1,10 @@
 const { ProjectListByBusiness, Totalprojectlistedbybusiness } = require("../models/ProjectSchema");
-const{Freelancer}=require("../models/Userschema")
+const{Freelancer, Project}=require("../models/Userschema")
 const ListprojectBybusiness= async (req,res)=>{
     try {
-        const {projectName,Description,CompanyName,Start,End,SkillsRequired,Role,projectType}=req.body;
+        const {projectName,Description,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer}=req.body;
 const {Email}= req.user;
-const project= await ProjectListByBusiness.create({projectName,Description,Email,CompanyName,Start,End,SkillsRequired,Role,projectType})
+const project= await ProjectListByBusiness.create({projectName,Description,Email,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer})
 
 const{_id}=project;
 const projectexist= await Totalprojectlistedbybusiness.findOne({Email})
@@ -41,13 +41,16 @@ const project_reg= async (req,res)=>{
     try {
       const {projectName,Description,verified,isVerified,githubLink,Start,End,Refer,TechUsed,Role,projectType}=req.body;
       const id= req.user._id;
-      const userexist=await  Freelancer.findById(id);
+      console.log(id)
+      const userexist=await Freelancer.findById(id);
       if (!userexist) {
         return res.status(404).json({message:"User not exist"})
       }
-    const New_project= await project.create({projectName,Description,verified,isVerified,githubLink,Start,End,Refer,TechUsed,Role,projectType});
-    
-    await Freelancer.findByIdAndUpdate({id},{$push:{project:Add_project._id}},{new:true});
+    const New_project= await Project.create({projectName,Description,verified,isVerified,githubLink,Start,End,Refer,TechUsed,Role,projectType});
+    const {_id}=New_project
+    // console.log(._id);
+   const project= await Freelancer.findByIdAndUpdate(id,{$push:{project:_id}},{new:true});
+   console.log("project",project)
     return res.status(200).json({New_project});
     
       
@@ -56,5 +59,13 @@ const project_reg= async (req,res)=>{
       return res.status(500).json({message:"Internal server error"})
     }
       };
+  const dataForAllAndFilter= async(req,res)=>{
+try {
+    const data= await ProjectListByBusiness.Find();
+} catch (error) {
+    console.log(error);
+    return res.status(500).json({message:"Internal Server Error"})
+}
+}
 
-module.exports={ListprojectBybusiness,getprojectdata,project_reg};
+module.exports={ListprojectBybusiness,getprojectdata,project_reg,dataForAllAndFilter};
