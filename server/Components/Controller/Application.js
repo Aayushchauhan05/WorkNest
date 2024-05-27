@@ -1,5 +1,5 @@
-const { Business } = require("../models/Userschema");
-const{AppliedCandidates,ApplyForPosition}=require("../models/Apply")
+const { Business } = require("../models/Business/Businessreg");
+const{AppliedCandidates,ApplyForPosition}=require("../models/freelancer/Apply")
 const Applicationforwork= async (req,res)=>{
 try {
     const {Name,Email,phoneNumber,address,desiredSalary,experience,role,companyemail,companyName,status,projectId}=req.body;

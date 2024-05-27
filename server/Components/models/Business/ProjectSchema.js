@@ -39,6 +39,10 @@ const {Schema,model}= require("mongoose");
     projectType:{
         type:String,
         required:true
+    },
+    TotalNeedOffreelancer:{
+        type:String,
+        required:true
     }
     
  })

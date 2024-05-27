@@ -1,4 +1,6 @@
-const { Freelancer, Business } = require("../models/Userschema");
+const { Freelancer} = require("../models/freelancer/Freelancerreg");
+const{Business}= require("../models/Business/Businessreg")
+
 
 const freelancerprofile=async(req,res)=>{
 const {Email,isfreelancer}= req.user;

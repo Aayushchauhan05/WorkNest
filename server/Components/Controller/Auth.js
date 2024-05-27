@@ -1,4 +1,7 @@
-const {Freelancer,otp, project, Business} = require("../models/Userschema");
+const {Freelancer} = require("../models/freelancer/Freelancerreg");
+const {Business}= require("../models/Business/Businessreg");
+const {otp}= require("../models/Common/CommonSchema")
+
 const nodemailer = require("nodemailer");
 const bcrypt= require("bcrypt")
 const jwt= require("jsonwebtoken")

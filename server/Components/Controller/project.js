@@ -1,5 +1,7 @@
-const { ProjectListByBusiness, Totalprojectlistedbybusiness } = require("../models/ProjectSchema");
-const{Freelancer, Project}=require("../models/Userschema")
+const { ProjectListByBusiness, Totalprojectlistedbybusiness } = require("../models/Business/ProjectSchema");
+const{Freelancer}=require("../models/freelancer/Freelancerreg")
+const{Project}= require("../models/freelancer/projectSchema")
+
 const ListprojectBybusiness= async (req,res)=>{
     try {
         const {projectName,Description,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer}=req.body;

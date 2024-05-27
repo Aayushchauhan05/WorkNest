@@ -6,8 +6,6 @@ const Authroutes= require("./Components/Routes/Routes")
 require("dotenv").config()
 const app= express();
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 app.use(cookieParser());
 app.use(express.json())
 
