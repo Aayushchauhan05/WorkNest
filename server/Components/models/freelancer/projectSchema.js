@@ -1,4 +1,4 @@
-
+const { Schema, model } = require("mongoose")
 const freelancer_project = new Schema({
     projectName: {
         type: String,

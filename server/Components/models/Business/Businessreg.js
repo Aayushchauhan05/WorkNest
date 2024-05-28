@@ -1,4 +1,4 @@
-
+const { Schema, model } = require("mongoose")
 const businessSchema = new Schema({
     firstName: {
         type: String,
