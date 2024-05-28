@@ -1,54 +1,66 @@
-"use client"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-// import { Select } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { useFormik } from "formik"
+"use client";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useFormik } from "formik";
+import { useEffect } from "react";
 
 export default function Component() {
-  const initialValues={
-FirstName:"",
-LastName:"",
-Username:"",
-Email:"",
-Dob:"",
-Education:"",
-Role:"",
-Refer:"",
-professionalInfo:[{
-  previousCompany:"",
-  Role:"",
-}],
-Skills:"",
-Education:"",
-Role:"",
-githubLink:"",
-Linkdin:"",
-personalwebsite:"",
-PerHourPrice:"",
-WorkExperience:""
+  const initialValues = {
+    FirstName: "",
+    LastName: "",
+    Username: "",
+    Email: "",
+    Dob: "",
+    Education: "",
+    Role: "",
+    Refer: "",
+    professionalInfo: [
+      {
+        previousCompany: "",
+        Role: "",
+      },
+    ],
+    Skills: "",
+    githubLink: "",
+    Linkdin: "",
+    personalwebsite: "",
+    PerHourPrice: "",
+    WorkExperience: "",
+    certifications: "", // Added to match the input field for certifications
+  };
 
-  }
-const formik= useFormik({
-initialValues,
-onSubmit: async (values)=>{
-  try {
-    
-       const response = await fetch("http://localhost:6000/Api/Freelancer_Register",{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
-        },
-        body:JSON.stringify(values)
-       })
-  } catch (error) {
-    console.log(error)
-  }
-console.log(values);
-}
-})
-console.log(formik);
+  const formik = useFormik({
+    initialValues,
+    onSubmit: async (values) => {
+      try {
+        const response = await fetch(
+          "http://localhost:6000/Api/FreelancerRegister",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log("data",data);
+        }
+        else{
+         
+            throw new Error(`HTTP error! status: ${response.status}`);
+          
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(values);
+    },
+  });
+
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-950 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -56,32 +68,43 @@ console.log(formik);
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-[#00b8d4]">
             Register as a Freelancer
           </h2>
-          <p className="mt-2 text-sm text-center text-gray-400">Join our platform and start showcasing your skills</p>
+          <p className="mt-2 text-sm text-center text-gray-400">
+            Join our platform and start showcasing your skills
+          </p>
         </div>
-        <form action="#" className="space-y-6" method="POST">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="first-name">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="first-name"
+              >
                 First Name
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="first-name"
                 name="FirstName"
-                value={values.FirstName}
+                value={formik.values.FirstName}
+                onChange={formik.handleChange}
                 placeholder="Enter your first name"
                 required
                 type="text"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="last-name">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="last-name"
+              >
                 Last Name
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="last-name"
-                name="last-name"
+                name="LastName"
+                value={formik.values.LastName}
+                onChange={formik.handleChange}
                 placeholder="Enter your last name"
                 required
                 type="text"
@@ -89,13 +112,18 @@ console.log(formik);
             </div>
           </div>
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="username">
+            <Label
+              className="text-sm font-medium text-[#00b8d4]"
+              htmlFor="username"
+            >
               Username
             </Label>
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="username"
               name="Username"
+              value={formik.values.Username}
+              onChange={formik.handleChange}
               placeholder="Enter your username"
               required
               type="text"
@@ -109,6 +137,8 @@ console.log(formik);
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="email"
               name="Email"
+              value={formik.values.Email}
+              onChange={formik.handleChange}
               placeholder="Enter your email"
               required
               type="email"
@@ -116,19 +146,27 @@ console.log(formik);
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="date-of-birth">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="date-of-birth"
+              >
                 Date of Birth
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="date-of-birth"
                 name="Dob"
+                value={formik.values.Dob}
+                onChange={formik.handleChange}
                 required
                 type="date"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="years-of-experience">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="years-of-experience"
+              >
                 Years of Experience
               </Label>
               <Input
@@ -136,6 +174,8 @@ console.log(formik);
                 id="years-of-experience"
                 min="0"
                 name="WorkExperience"
+                value={formik.values.WorkExperience}
+                onChange={formik.handleChange}
                 placeholder="Enter your years of experience"
                 required
                 type="number"
@@ -150,32 +190,26 @@ console.log(formik);
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="skills"
               name="Skills"
+              value={formik.values.Skills}
+              onChange={formik.handleChange}
               placeholder="Enter your skills (separated by commas)"
               required
               rows="3"
             />
           </div>
-          {/* <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="portfolio-url">
-              Portfolio URL
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="portfolio-url"
-              name="portfolio-url"
-              placeholder="Enter your portfolio URL"
-              required
-              type="url"
-            />
-          </div> */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="highest-education">
+            <Label
+              className="text-sm font-medium text-[#00b8d4]"
+              htmlFor="highest-education"
+            >
               Highest Education
             </Label>
             <select
               className="block w-full rounded-md border border-[#00b8d4] bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4] cursor-pointer"
               id="highest-education"
-              name="highest-education"
+              name="Education"
+              value={formik.values.Education}
+              onChange={formik.handleChange}
               required
             >
               <option value="">Select your highest education</option>
@@ -186,13 +220,18 @@ console.log(formik);
             </select>
           </div>
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="certifications">
+            <Label
+              className="text-sm font-medium text-[#00b8d4]"
+              htmlFor="certifications"
+            >
               Certifications
             </Label>
             <Textarea
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="certifications"
               name="certifications"
+              value={formik.values.certifications}
+              onChange={formik.handleChange}
               placeholder="Enter your certifications (separated by commas)"
               required
               rows="3"
@@ -200,26 +239,36 @@ console.log(formik);
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-profile">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="linkedin-profile"
+              >
                 LinkedIn Profile
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="linkedin-profile"
-                name="linkedin-profile"
+                name="Linkdin"
+                value={formik.values.Linkdin}
+                onChange={formik.handleChange}
                 placeholder="Enter your LinkedIn profile URL"
                 required
                 type="url"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-profile">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="github-profile"
+              >
                 GitHub Profile
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="github-profile"
-                name="github-profile"
+                name="githubLink"
+                value={formik.values.githubLink}
+                onChange={formik.handleChange}
                 placeholder="Enter your GitHub profile URL"
                 required
                 type="url"
@@ -227,13 +276,33 @@ console.log(formik);
             </div>
           </div>
           <div className="space-y-2">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="github-profile"
+              >
+                Refer
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="github-profile"
+                name="Refer"
+                value={formik.values.Refer}
+                onChange={formik.handleChange}
+                placeholder="Enter your GitHub profile URL"
+                required
+                type="text"
+              />
+            </div>
+          <div className="space-y-2">
             <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role">
               Role
             </Label>
             <select
               className="block w-full rounded-md border border-[#00b8d4] bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4] cursor-pointer"
               id="role"
-              name="role"
+              name="Role"
+              value={formik.values.Role}
+              onChange={formik.handleChange}
               required
             >
               <option value="">Select your role</option>
@@ -243,6 +312,43 @@ console.log(formik);
               <option value="other">Other</option>
             </select>
           </div>
+          <h1 className="text-center text-[#00b8d4]">Professional Info</h1>
+          <div className="space-y-2">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="previouscompany"
+              >
+               Previous Company
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="previouscompany"
+                name="professionalInfo[0].previousCompany" // Corrected name attribute for nested object
+                value={formik.values.professionalInfo[0].previousCompany}
+                onChange={formik.handleChange}
+                placeholder="Enter your previous company"
+                required
+                type="text"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="role-in-company"
+              >
+              Your Role in Company
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="role-in-company"
+                name="professionalInfo[0].Role" // Corrected name attribute for nested object
+                value={formik.values.professionalInfo[0].Role}
+                onChange={formik.handleChange}
+                placeholder="Your role in company"
+                required
+                type="text" // Corrected type attribute from url to text
+              />
+            </div>
           <div>
             <Button
               className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
@@ -254,5 +360,5 @@ console.log(formik);
         </form>
       </div>
     </div>
-  )
+  );
 }
