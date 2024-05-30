@@ -4,24 +4,31 @@ import React from 'react'
 function page() {
   return (
    <>
-<div class="flex flex-col md:flex-row min-h-screen pt-14">
+<div class="flex flex-col md:flex-row min-h-screen">
   <div class="bg-cyan-700 text-white p-6 flex flex-col md:w-64">
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center fixed top-20 gap-4 mb-8">
       <div class="rounded-full bg-gray-400 w-10 h-10 flex items-center justify-center text-2xl font-bold">JD</div>
       <h1 class="text-xl font-bold">John Doe</h1>
     </div>
-    <nav class="flex flex-col justify-evenly space-y-4">
-      <Link class="hover:underline" href={"/freelancerDashboard"}>
-        Dashboard
-      </Link>
+    {/* <nav class="flex flex-col justify-evenly space-y-4">
      
-      <a class="hover:underline" href="#">
-        Clients
-      </a>
-      <Link class="hover:underline" href={"/freelancerDashboard/profile"}>
+     
+     
+    </nav> */}
+
+<nav className="flex flex-col gap-2 fixed top-36 w-auto h-screen">
+           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
+          
+             Dashboard
+           </Link>
+           
+           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
+        Applied
+      </Link>
+      <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
         profile
       </Link>
-    </nav>
+         </nav>
   </div>
   <div class="flex-1  bg-gray-900 p-6 md:p-8">
     <h2 class="text-2xl font-bold mb-6 text-cyan-600">Your Projects</h2>
