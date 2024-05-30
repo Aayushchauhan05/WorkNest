@@ -1,147 +1,192 @@
+import axios from "axios";
+import { useFormik } from "formik";
 
+function Page() {
+  const initialValues = {
+    projectName: "",
+    Description: "",
+    Email: "",
+    verified: false,
+    isVerified: "",
+    CompanyName: "",
+    Start: "",
+    End: "",
+    SkillsRequired: [],
+    Role: "",
+    projectType: "",
+    TotalNeedOffreelancer: ""
+  };
 
-function page() {
+  const formik = useFormik({
+    initialValues,
+    onSubmit: async (values) => {
+      const response = await axios
+        .post("http://localhost:5001/Api/Listprojectbusiness", values)
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+    }
+  });
+
   return (
-   <>
-
-<div class="flex flex-col items-center justify-center min-h-screen bg-[#000000] text-[#00FFFF]">
-  <div class="w-full max-w-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 rounded-lg shadow-lg font-sans">
-    <h1 class="text-3xl font-bold mb-6 sm:text-4xl md:text-5xl">Business Project Form</h1>
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="grid gap-2">
-        <label for="projectName" class="text-sm font-medium">
-          Project Name
-        </label>
-        <input
-          type="text"
-          id="projectName"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#000000] text-[#00FFFF]">
+      <div className="w-full max-w-2xl p-6 font-sans rounded-lg shadow-lg sm:p-8 md:p-10 lg:p-12 xl:p-14">
+        <h1 className="mb-6 text-3xl font-bold sm:text-4xl md:text-5xl">Business Project Form</h1>
+        <form className="grid grid-cols-1 gap-6 md:grid-cols-2" onSubmit={formik.handleSubmit}>
+          <div className="grid gap-2">
+            <label htmlFor="projectName" className="text-sm font-medium">
+              Project Name
+            </label>
+            <input
+              type="text"
+              id="projectName"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.projectName}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Description" className="text-sm font-medium">
+              Description
+            </label>
+            <textarea
+              id="Description"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF] resize-none h-12"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Description}
+            ></textarea>
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Email" className="text-sm font-medium">
+              Email
+            </label>
+            <input
+              type="email"
+              id="Email"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Email}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="CompanyName" className="text-sm font-medium">
+              Company Name
+            </label>
+            <input
+              type="text"
+              id="CompanyName"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.CompanyName}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Start" className="text-sm font-medium">
+              Start Date
+            </label>
+            <input
+              type="date"
+              id="Start"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Start}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="End" className="text-sm font-medium">
+              End Date
+            </label>
+            <input
+              type="date"
+              id="End"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.End}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="SkillsRequired" className="text-sm font-medium">
+              Required Skills
+            </label>
+            <input
+              type="text"
+              id="SkillsRequired"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.SkillsRequired}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Role" className="text-sm font-medium">
+              Role
+            </label>
+            <input
+              type="text"
+              id="Role"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Role}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="projectType" className="text-sm font-medium">
+              Project Type
+            </label>
+            <input
+              type="text"
+              id="projectType"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.projectType}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="TotalNeedOffreelancer" className="text-sm font-medium">
+              Freelancers Needed
+            </label>
+            <input
+              type="number"
+              id="TotalNeedOffreelancer"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.TotalNeedOffreelancer}
+            />
+          </div>
+          <div className="grid gap-2 md:col-span-2">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="verified"
+                className="bg-[#000000] border-2 border-[#00FFFF] rounded focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+                onChange={formik.handleChange}
+                value={formik.values.verified}
+              />
+              <label htmlFor="verified" className="text-sm font-medium">
+                Verified
+              </label>
+            </div>
+          </div>
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-[#00FFFF] text-[#000000] font-medium rounded-md px-4 py-2 hover:bg-[#00b8b8] focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-      <div class="grid gap-2">
-        <label for="description" class="text-sm font-medium">
-          Description
-        </label>
-        <textarea
-          id="description"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF] resize-none h-12"
-          required=""
-        ></textarea>
-      </div>
-      <div class="grid gap-2">
-        <label for="email" class="text-sm font-medium">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="companyName" class="text-sm font-medium">
-          Company Name
-        </label>
-        <input
-          type="text"
-          id="companyName"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="startDate" class="text-sm font-medium">
-          Start Date
-        </label>
-        <input
-          type="date"
-          id="startDate"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="endDate" class="text-sm font-medium">
-          End Date
-        </label>
-        <input
-          type="date"
-          id="endDate"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="requiredSkills" class="text-sm font-medium">
-          Required Skills
-        </label>
-        <input
-          type="text"
-          id="requiredSkills"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="role" class="text-sm font-medium">
-          Role
-        </label>
-        <input
-          type="text"
-          id="role"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="projectType" class="text-sm font-medium">
-          Project Type
-        </label>
-        <input
-          type="text"
-          id="projectType"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2">
-        <label for="freelancersNeeded" class="text-sm font-medium">
-          Freelancers Needed
-        </label>
-        <input
-          type="number"
-          id="freelancersNeeded"
-          class="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          required=""
-        />
-      </div>
-      <div class="grid gap-2 md:col-span-2">
-        <div class="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="verified"
-            class="bg-[#000000] border-2 border-[#00FFFF] rounded focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-          />
-          <label for="verified" class="text-sm font-medium">
-            Verified
-          </label>
-        </div>
-      </div>
-      <div class="md:col-span-2">
-        <button
-          type="submit"
-          class="w-full bg-[#00FFFF] text-[#000000] font-medium rounded-md px-4 py-2 hover:bg-[#00b8b8] focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-   </>
-  )
+    </div>
+  );
 }
 
-export default page
+export default Page;

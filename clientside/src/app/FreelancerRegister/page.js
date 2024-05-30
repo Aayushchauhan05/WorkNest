@@ -5,17 +5,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useFormik } from "formik";
 import { useEffect } from "react";
-
+import axios from "axios";
+import { useRouter } from 'next/navigation';
+import { useNavigation } from 'next/navigation';
+// import { Phone } from "lucide-react";
 export default function Component() {
+
+    const router=useRouter()
+ 
+
   const initialValues = {
-    FirstName: "",
-    LastName: "",
-    Username: "",
+    firstName: "",
+    lastName: "",
+    username: "",
     Email: "",
     Dob: "",
+    password:"",
     Education: "",
     Role: "",
     Refer: "",
+   phone:"123456789",
     professionalInfo: [
       {
         previousCompany: "",
@@ -26,38 +35,31 @@ export default function Component() {
     githubLink: "",
     Linkdin: "",
     personalwebsite: "",
-    PerHourPrice: "",
-    WorkExperience: "",
-    certifications: "", // Added to match the input field for certifications
+    perHourPrice: "10",
+    workExperience: "10",
+    certifications: "",
+    
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      try {
-        const response = await fetch(
-          "http://localhost:6000/Api/FreelancerRegister",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
+      console.log("console.log in onsubmit",values)
+      
+        
+        const response = await axios.post(`${process.env.BACKEND_HOST}/Api/FreelancerRegister`, {values})
+        .then(response => {
+router.push("/login")
+
+          console.log(response);
+        })
+        .catch(error => {
+          if (error.response && error.response.status === 400) {
+            console.error('Bad Request: ', error.message);
+          } else {
+            console.error('An unexpected error occurred: ', error.message);
           }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log("data",data);
-        }
-        else{
-         
-            throw new Error(`HTTP error! status: ${response.status}`);
-          
-        }
-      } catch (error) {
-        console.log(error);
-      }
-      console.log(values);
+        });
     },
   });
 
@@ -84,8 +86,8 @@ export default function Component() {
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="first-name"
-                name="FirstName"
-                value={formik.values.FirstName}
+                name="firstName"
+                value={formik.values.firstName}
                 onChange={formik.handleChange}
                 placeholder="Enter your first name"
                 required
@@ -102,8 +104,8 @@ export default function Component() {
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="last-name"
-                name="LastName"
-                value={formik.values.LastName}
+                name="lastName"
+                value={formik.values.lastName}
                 onChange={formik.handleChange}
                 placeholder="Enter your last name"
                 required
@@ -121,8 +123,8 @@ export default function Component() {
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="username"
-              name="Username"
-              value={formik.values.Username}
+              name="username"
+              value={formik.values.username}
               onChange={formik.handleChange}
               placeholder="Enter your username"
               required
@@ -173,8 +175,8 @@ export default function Component() {
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                 id="years-of-experience"
                 min="0"
-                name="WorkExperience"
-                value={formik.values.WorkExperience}
+                name="workExperience"
+                value={formik.values.workExperience}
                 onChange={formik.handleChange}
                 placeholder="Enter your years of experience"
                 required
@@ -259,6 +261,24 @@ export default function Component() {
             <div className="space-y-2">
               <Label
                 className="text-sm font-medium text-[#00b8d4]"
+                htmlFor="password"
+              >
+               Password
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="linkedin-profile"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                placeholder="Enter your password"
+                required
+                type="password"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label
+                className="text-sm font-medium text-[#00b8d4]"
                 htmlFor="github-profile"
               >
                 GitHub Profile
@@ -284,11 +304,11 @@ export default function Component() {
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="github-profile"
+                id="Refer"
                 name="Refer"
                 value={formik.values.Refer}
                 onChange={formik.handleChange}
-                placeholder="Enter your GitHub profile URL"
+                placeholder="Enter your Refer"
                 required
                 type="text"
               />

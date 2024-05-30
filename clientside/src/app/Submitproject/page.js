@@ -1,147 +1,188 @@
+import axios from "axios";
+import { useFormik } from "formik";
 
+function Page() {
+  const initialValues = {
+    projectName: "",
+    Description: "",
+    verified: "",
+    isVerified: false,
+    githubLink: "",
+    Start: "",
+    End: "",
+    Refer: "",
+    TechUsed: [],
+    Role: "",
+    projectType: ""
+  };
 
-function page() {
+  const formik = useFormik({
+    initialValues,
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post("http://localhost:5001/Api/Listproject", values);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+
   return (
- <>
-
-
-<div class="flex flex-col items-center justify-center min-h-screen bg-black text-[#00ffff]">
-  <div class="w-full max-w-4xl p-6 rounded-lg shadow-lg bg-gray-900 sm:px-8 md:px-10 lg:px-12">
-    <h1 class="text-2xl font-bold mb-4 sm:text-3xl md:text-4xl">Project Submission</h1>
-    <form class="space-y-4 sm:space-y-6 md:space-y-8">
-      <div>
-        <label for="name" class="block font-medium mb-1 sm:mb-2">
-          Project Name
-        </label>
-        <input
-          id="name"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          placeholder="Enter project name"
-          required=""
-          type="text"
-        />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#000000] text-[#00FFFF]">
+      <div className="w-full max-w-2xl p-6 font-sans rounded-lg shadow-lg sm:p-8 md:p-10 lg:p-12 xl:p-14">
+        <h1 className="mb-6 text-3xl font-bold sm:text-4xl md:text-5xl">Business Project Form</h1>
+        <form className="grid grid-cols-1 gap-6 md:grid-cols-2" onSubmit={formik.handleSubmit}>
+          <div className="grid gap-2">
+            <label htmlFor="projectName" className="text-sm font-medium">
+              Project Name
+            </label>
+            <input
+              type="text"
+              id="projectName"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.projectName}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Description" className="text-sm font-medium">
+              Description
+            </label>
+            <textarea
+              id="Description"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF] resize-none h-12"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Description}
+            ></textarea>
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="verified" className="text-sm font-medium">
+              Verified
+            </label>
+            <input
+              type="checkbox"
+              id="verified"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              onChange={formik.handleChange}
+              checked={formik.values.verified}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="isVerified" className="text-sm font-medium">
+              Is Verified
+            </label>
+            <input
+              type="checkbox"
+              id="isVerified"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              onChange={formik.handleChange}
+              checked={formik.values.isVerified}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="githubLink" className="text-sm font-medium">
+              GitHub Link
+            </label>
+            <input
+              type="url"
+              id="githubLink"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.githubLink}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Start" className="text-sm font-medium">
+              Start Date
+            </label>
+            <input
+              type="date"
+              id="Start"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              onChange={formik.handleChange}
+              value={formik.values.Start}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="End" className="text-sm font-medium">
+              End Date
+            </label>
+            <input
+              type="date"
+              id="End"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              onChange={formik.handleChange}
+              value={formik.values.End}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Refer" className="text-sm font-medium">
+              Refer
+            </label>
+            <input
+              type="text"
+              id="Refer"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Refer}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="TechUsed" className="text-sm font-medium">
+              Tech Used
+            </label>
+            <input
+              type="text"
+              id="TechUsed"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.TechUsed}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="Role" className="text-sm font-medium">
+              Role
+            </label>
+            <input
+              type="text"
+              id="Role"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.Role}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="projectType" className="text-sm font-medium">
+              Project Type
+            </label>
+            <input
+              type="text"
+              id="projectType"
+              className="bg-[#000000] border-2 border-[#00FFFF] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.projectType}
+            />
+          </div>
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-[#00FFFF] text-[#000000] font-medium rounded-md px-4 py-2 hover:bg-[#00b8b8] focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-      <div>
-        <label for="description" class="block font-medium mb-1 sm:mb-2">
-          Description
-        </label>
-        <textarea
-          id="description"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          rows="3"
-          placeholder="Enter project description"
-          required=""
-        ></textarea>
-      </div>
-      <div>
-        <label for="github" class="block font-medium mb-1 sm:mb-2">
-          GitHub Link
-        </label>
-        <input
-          id="github"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          placeholder="Enter GitHub link"
-          required=""
-          type="url"
-        />
-      </div>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:gap-8">
-        <div>
-          <label for="start-date" class="block font-medium mb-1 sm:mb-2">
-            Start Date
-          </label>
-          <input
-            id="start-date"
-            class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-            required=""
-            type="date"
-          />
-        </div>
-        <div>
-          <label for="end-date" class="block font-medium mb-1 sm:mb-2">
-            End Date
-          </label>
-          <input
-            id="end-date"
-            class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-            required=""
-            type="date"
-          />
-        </div>
-      </div>
-      <div>
-        <label for="referral" class="block font-medium mb-1 sm:mb-2">
-          Referral Source
-        </label>
-        <input
-          id="referral"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          placeholder="Enter referral source"
-          required=""
-          type="text"
-        />
-      </div>
-      <div>
-        <label for="technologies" class="block font-medium mb-1 sm:mb-2">
-          Technologies Used
-        </label>
-        <input
-          id="technologies"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          placeholder="Enter technologies used (comma-separated)"
-          required=""
-          type="text"
-        />
-      </div>
-      <div>
-        <label for="role" class="block font-medium mb-1 sm:mb-2">
-          Role
-        </label>
-        <input
-          id="role"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          placeholder="Enter your role"
-          required=""
-          type="text"
-        />
-      </div>
-      <div>
-        <label for="project-type" class="block font-medium mb-1 sm:mb-2">
-          Project Type
-        </label>
-        <select
-          id="project-type"
-          class="w-full px-3 py-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff] border-2 border-cyan-500 sm:px-4 sm:py-3 md:px-5 md:py-4"
-          required=""
-        >
-          <option value="">Select project type</option>
-          <option value="personal">Personal</option>
-          <option value="freelance">Freelance</option>
-          <option value="contract">Contract</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="flex items-center">
-        <input
-          id="verified"
-          class="mr-2 rounded-md bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00ffff]"
-          type="checkbox"
-        />
-        <label for="verified" class="font-medium">
-          Project is Verified
-        </label>
-      </div>
-      <button
-        type="submit"
-        class="w-full px-4 py-2 rounded-md bg-[#00ffff] text-black font-medium hover:bg-[#00d9d9] focus:outline-none focus:ring-2 focus:ring-[#00ffff] sm:px-6 sm:py-3 md:px-8 md:py-4"
-      >
-        Submit Project
-      </button>
-    </form>
-  </div>
-</div>
- </>
-  )
+    </div>
+  );
 }
 
-export default page
+export default Page;

@@ -1,6 +1,12 @@
+import Link from "next/link"
 
 function page() {
-  
+  // const initailVariables={
+  //   firstName:"",
+  //   lastName:"",
+  //   companyName:"",
+  //   companySize:"",
+  // }
   return (
     <>
     <div className="flex w-full min-h-screen">
@@ -53,7 +59,7 @@ function page() {
               </svg>
               Profile
             </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/viewfreelancer"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -70,7 +76,7 @@ function page() {
                 <rect width="20" height="14" x="2" y="6" rx="2"></rect>
               </svg>
               Employees
-            </a>
+            </Link>
             <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

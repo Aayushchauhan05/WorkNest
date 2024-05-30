@@ -9,7 +9,14 @@ const app= express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.json())
-
+// app.options('/Api/FreelancerRegister', (req, res) => {
+//     res.set({
+//       'Access-Control-Allow-Origin': process.env.ORIGIN,
+//       'Access-Control-Allow-Methods': 'POST',
+//       'Access-Control-Allow-Headers': 'Content-Type',
+//       'Access-Control-Max-Age': '86400', // 24 hours
+//     }).sendStatus(204); // No content
+//   });
 const corspermission={
     "origin":process.env.ORIGIN,
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",

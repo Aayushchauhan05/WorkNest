@@ -3,13 +3,34 @@
  * @see https://v0.dev/t/TMorSKlrRQ4
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CollapsibleTrigger, CollapsibleContent, Collapsible } from "@/components/ui/collapsible"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function Component() {
+//  const [count,setcount]= useState(0)
+//  useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const response = await axios.get("http://localhost:5001/Api/EmailToOracle");
+//       console.log(response.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   fetchData();
+
+//   return () => {
+//     // This is where you can perform cleanup, if necessary
+//     console.log("Cleanup function called");
+//   };
+// }, []);
   return (
     <div className="text-white bg-black">
       
@@ -17,6 +38,9 @@ export default function Component() {
         <div className="container max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-[#00ffff] sm:text-5xl md:text-6xl">
             Unlock Your Freelancing Potential
+            {/* <button className="bg-red-800 " onClick={()=>{
+              setcount(count+1)
+            }}>click</button> */}
           </h1>
           <p className="mt-4 text-lg text-white md:text-xl">
             Discover a world of opportunities and connect with talented freelancers to bring your projects to life.

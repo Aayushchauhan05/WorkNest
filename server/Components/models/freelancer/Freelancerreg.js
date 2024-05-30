@@ -22,7 +22,7 @@ const freelancer_schema = new Schema({
     },
     phone: {
         type: String,
-        required: true
+        // required: true
     },
     Dob: {
         type: String,

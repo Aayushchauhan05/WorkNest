@@ -1,0 +1,7 @@
+[
+  {
+    "route": "POST /login",
+    "parameters": "(firstName,lastName,userName,password,Email,phone,Dob,professionalInfo,Skills,Education,Role,Refer,verified,isVerified,githubLink,Linkdin,personalWebsite,perHourPrice,connects,Resume,InterviewedBy,workExperience,isfreelancer)",
+    "status": 200
+  }
+]

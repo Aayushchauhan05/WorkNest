@@ -1,0 +1,736 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/Api/login",
+        "request_method": "POST",
+        "headers": {
+          "Content-Length": "1117",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Accept": "*/*",
+          "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZXhpc3QiOnsiX2lkIjoiNjY1MzVlYzRmZDVjYmY1OWQ0M2VhNGIxIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwidXNlck5hbWUiOiJqb2hkc3Nkd3Nkc3h4ZW5uZGRiYmpzd3dzc3Nzc3NzZGFuLmRvZTEyMyIsInBhc3N3b3JkIjoiJDJiJDE0JHR2TllDWURMSkIvRW5ZTW9aeUN5VC5JZDdlZ29va3Bvc2NacXQ5dnROUFlNbWFyZE00RjltIiwiRW1haWwiOiJqb2huLnNzenp6c2RuZHd3d3dzc3Nkc3dzc3Nkb25uYmJzc2pzaHNzMTFlQGV4YW1wbGUuY29tIiwicGhvbmUiOiI5NTY4MDYzNzUxIiwiRG9iIjoiMTk5MC0wMS0wMSIsInByb2Zlc3Npb25hbEluZm8iOnsidGl0bGUiOiJGdWxsIFN0YWNrIERldmVsb3BlciIsImRlc2NyaXB0aW9uIjoiRXhwZXJpZW5jZWQgaW4gYnVpbGRpbmcgd2ViIGFwcGxpY2F0aW9ucyB1c2luZyBKYXZhU2NyaXB0LCBOb2RlLmpzLCBhbmQgUmVhY3QuIn0sIlNraWxscyI6IkphdmFTY3JpcHQsIE5vZGUuanMsIFJlYWN0LCBNb25nb0RCLCBFeHByZXNzIiwiRWR1Y2F0aW9uIjp7ImRlZ3JlZSI6IkJhY2hlbG9yIG9mIFNjaWVuY2UgaW4gQ29tcHV0ZXIgU2NpZW5jZSIsImluc3RpdHV0aW9uIjoiVW5pdmVyc2l0eSBvZiBUZWNobm9sb2d5IiwieWVhciI6MjAxMn0sIlJvbGUiOiJGcmVlbGFuY2VyIiwicHJvamVjdCI6W10sIlJlZmVyIjoiT25saW5lIHNlYXJjaCIsInZlcmlmaWVkIjp7ImVtYWlsIjp0cnVlLCJwaG9uZSI6dHJ1ZX0sImlzVmVyaWZpZWQiOnRydWUsImdpdGh1YkxpbmsiOiJodHRwczovL2dpdGh1Yi5jb20vam9obmRvZSIsIkxpbmtkaW4iOiJodHRwczovL2xpbmtlZGluLmNvbS9pbi9qb2huZG9lIiwicGVyc29uYWxXZWJzaXRlIjoiaHR0cHM6Ly9qb2huZG9lLmRldiIsInBlckhvdXJQcmljZSI6NTAsImNvbm5lY3RzIjoxMDAsIlJlc3VtZSI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6Wzg1LDY5LDExNSw3MCw2NiwxMDMsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjUsNjEsNjFdfSwiSW50ZXJ2aWV3ZWRCeSI6IkphbmUgU21pdGgiLCJ3b3JrRXhwZXJpZW5jZSI6IjUgeWVhcnMgYXMgYSBGdWxsIFN0YWNrIERldmVsb3BlciIsImlzZnJlZWxhbmNlciI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyNC0wNS0yNlQxNjowOTo0MC4yOTlaIiwidXBkYXRlZEF0IjoiMjAyNC0wNS0yNlQxNjowOTo0MC4yOTlaIiwiX192IjowfSwiaWF0IjoxNzE2NzM5OTU0LCJleHAiOjE3MTY5MTI3NTR9.8S2J8avRthJ9f9jl7Bi9ncqwurUwJCfK_4SLsOX_-hY",
+          "Host": "localhost:5001",
+          "Connection": "close"
+        },
+        "protocol": "HTTP/1.1",
+        "normalized_path_info": "/login"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "firstName",
+          "class": "String",
+          "value": "'John'"
+        },
+        {
+          "name": "lastName",
+          "class": "String",
+          "value": "'Doe'"
+        },
+        {
+          "name": "userName",
+          "class": "String",
+          "value": "'Aays1ssush'"
+        },
+        {
+          "name": "password",
+          "class": "String",
+          "value": "'123456'"
+        },
+        {
+          "name": "Email",
+          "class": "String",
+          "value": "'ayushcha1uhasans0508@gmail.com'"
+        },
+        {
+          "name": "phone",
+          "class": "String",
+          "value": "'9568063751'"
+        },
+        {
+          "name": "Dob",
+          "class": "String",
+          "value": "'1990-01-01'"
+        },
+        {
+          "name": "professionalInfo",
+          "class": "Object",
+          "properties": [
+            {
+              "name": "title",
+              "class": "String"
+            },
+            {
+              "name": "description",
+              "class": "String"
+            }
+          ],
+          "value": "{\n  title: 'Full Stack Developer',\n  description: 'Experienced in building web applications using JavaScript, Node.js, and React.'\n}",
+          "object_id": 16
+        },
+        {
+          "name": "Skills",
+          "class": "String",
+          "value": "'JavaScript, Node.js, React, MongoDB, Express'"
+        },
+        {
+          "name": "Education",
+          "class": "Object",
+          "properties": [
+            {
+              "name": "degree",
+              "class": "String"
+            },
+            {
+              "name": "institution",
+              "class": "String"
+            },
+            {
+              "name": "year",
+              "class": "Number"
+            }
+          ],
+          "value": "{\n  degree: 'Bachelor of Science in Computer Science',\n  institution: 'University of Technology',\n  year: 2012\n}",
+          "object_id": 17
+        },
+        {
+          "name": "Role",
+          "class": "String",
+          "value": "'Freelancer'"
+        },
+        {
+          "name": "Refer",
+          "class": "String",
+          "value": "'Online search'"
+        },
+        {
+          "name": "verified",
+          "class": "Object",
+          "properties": [
+            {
+              "name": "email",
+              "class": "Boolean"
+            },
+            {
+              "name": "phone",
+              "class": "Boolean"
+            }
+          ],
+          "value": "{ email: true, phone: true }",
+          "object_id": 18
+        },
+        {
+          "name": "isVerified",
+          "class": "Boolean",
+          "value": "false"
+        },
+        {
+          "name": "githubLink",
+          "class": "String",
+          "value": "'https://github.com/johndoe'"
+        },
+        {
+          "name": "Linkdin",
+          "class": "String",
+          "value": "'https://linkedin.com/in/johndoe'"
+        },
+        {
+          "name": "personalWebsite",
+          "class": "String",
+          "value": "'https://johndoe.dev'"
+        },
+        {
+          "name": "perHourPrice",
+          "class": "Number",
+          "value": "50"
+        },
+        {
+          "name": "connects",
+          "class": "Number",
+          "value": "100"
+        },
+        {
+          "name": "Resume",
+          "class": "String",
+          "value": "'UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA=='"
+        },
+        {
+          "name": "InterviewedBy",
+          "class": "String",
+          "value": "'Jane Smith'"
+        },
+        {
+          "name": "workExperience",
+          "class": "String",
+          "value": "'5 years as a Full Stack Developer'"
+        },
+        {
+          "name": "isfreelancer",
+          "class": "Boolean",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "login",
+      "static": true,
+      "parameters": [
+        {
+          "class": "IncomingMessage",
+          "value": "[IncomingMessage: POST /login]",
+          "object_id": 2,
+          "name": "req"
+        },
+        {
+          "class": "ServerResponse",
+          "value": "[ServerResponse: 200]",
+          "object_id": 3,
+          "name": "res"
+        },
+        {
+          "class": "Function",
+          "value": "[Function: next]"
+        }
+      ],
+      "defined_class": "Auth",
+      "path": "Components\\Controller\\Auth.js",
+      "lineno": 159
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 3,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<ServerResponse>",
+        "value": "Promise {\n  ServerResponse {\n    _events: [Object: null prototype],\n    _eventsCount: 1,\n    _maxListeners: undefined,\n    outputData: [],\n    outputSize: 0,\n    writable: true,\n    destroyed: false,\n    _last: true,\n    chunkedEncoding: false,\n    shouldKeepAlive: false,\n    maxRequestsOnConnectionReached: false,\n    _defaultKeepAlive: true,\n    useChunkedEncodingByDefault: true,\n    sendDate: true,\n    _removedConnection: false,\n    _removedContLen: false,\n    _removedTE: false,\n    strictContentLength: false,\n    _contentLength: '516',\n    _hasBody: true,\n    _trailer: '',\n    finished: true,\n    _headerSent: true,\n    _closed: false,\n    socket: [Socket],\n    _header: 'HTTP/1.1 200 OK\\r\\n' +\n      'X-Powered-By: Express\\r\\n' +\n      'Access-Control-Allow-Origin: http://localhost:3000\\r\\n' +\n      'Vary: Origin\\r\\n' +\n      'Set-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZXhpc3QiOnsiX2lkIjoiNjY1NmZlOWUyYTFkNWVmOGMyOGE5YTIxIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwidXNlck5hbWUiOiJBYXlzMXNzdXNoIiwicGFzc3dvcmQiOiIkMmIkMTQkemFrOUlyeXlWRXJ1ZlVydHVpTXouZUhleGhQR3NycFpGdTJBUFc1NktuYXhVLm9obDJWTmkiLCJFbWFpbCI6ImF5dXNoY2hhMXVoYXNhbnMwNTA4QGdtYWlsLmNvbSIsInBob25lIjoiOTU2ODA2Mzc1MSIsIkRvYiI6IjE5OTAtMDEtMDEiLCJwcm9mZXNzaW9uYWxJbmZvIjp7InRpdGxlIjoiRnVsbCBTdGFjayBEZXZlbG9wZXIiLCJkZXNjcmlwdGlvbiI6IkV4cGVyaWVuY2VkIGluIGJ1aWxkaW5nIHdlYiBhcHBsaWNhdGlvbnMgdXNpbmcgSmF2YVNjcmlwdCwgTm9kZS5qcywgYW5kIFJlYWN0LiJ9LCJpc2ZyZWVsYW5jZXIiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjQtMDUtMjlUMTA6MDg6MzAuNTA3WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDUtMjlUMTA6MDg6MzAuNTA3WiIsIl9fdiI6MH0sImlhdCI6MTcxNzA0MzI1MywiZXhwIjoxNzE3MjE2MDUzfQ.kGmXNfz3hUNjcutux0n4HX90oN2wR9SUDUR3OTybMo4; Path=/; HttpOnly; Secure; SameSite=None\\r\\n' +\n      'Content-Type: application/json; charset=utf-8\\r\\n' +\n      'Content-Length: 516\\r\\n' +\n      'ETag: W/\"204-oY0e6sWsw1qOcu+ZMxoDFYBe1pE\"\\r\\n' +\n      'Date: Thu, 30 May 2024 04:27:33 GMT\\r\\n' +\n      'Connection: close\\r\\n' +\n      '\\r\\n',\n    _keepAliveTimeout: 5000,\n    _onPendingData: [Function: bound updateOutgoingData],\n    req: [IncomingMessage],\n    _sent100: false,\n    _expect_continue: false,\n    _maxRequestsPerSocket: 0,\n    write: [Function (anonymous)],\n    end: [Function (anonymous)],\n    locals: [Object: null prototype] {},\n    statusCode: 200,\n    statusMessage: 'OK',\n    [Symbol(kCapture)]: false,\n    [Symbol(kBytesWritten)]: 0,\n    [Symbol(kNeedDrain)]: false,\n    [Symbol(corked)]: 0,\n    [Symbol(kOutHeaders)]: [Object: null prototype],\n    [Symbol(errored)]: null,\n    [Symbol(kHighWaterMark)]: 16384,\n    [Symbol(kRejectNonStandardBodyWrites)]: false,\n    [Symbol(kUniqueHeaders)]: null\n  }\n}",
+        "object_id": 4
+      },
+      "elapsed": 3.8522529999609105
+    },
+    {
+      "event": "call",
+      "id": 4,
+      "thread_id": 0,
+      "method_id": "findOne",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection business_datas]",
+        "object_id": 5
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "Email",
+              "class": "String"
+            }
+          ],
+          "value": "{ Email: 'ayushcha1uhasans0508@gmail.com' }",
+          "object_id": 6,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 7,
+          "name": "options"
+        }
+      ],
+      "defined_class": "business_datas",
+      "lineno": 1,
+      "path": "mongodb/business_datas"
+    },
+    {
+      "event": "call",
+      "id": 5,
+      "thread_id": 0,
+      "method_id": "find",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection business_datas]",
+        "object_id": 5
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "Email",
+              "class": "String"
+            }
+          ],
+          "value": "{ Email: 'ayushcha1uhasans0508@gmail.com' }",
+          "object_id": 6,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 7,
+          "name": "options"
+        }
+      ],
+      "defined_class": "business_datas",
+      "lineno": 2,
+      "path": "mongodb/business_datas"
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 6,
+      "parent_id": 5,
+      "return_value": {
+        "class": "FindCursor",
+        "value": "[FindCursor test.business_datas]",
+        "object_id": 8
+      },
+      "elapsed": 0.005260600009933114
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 7,
+      "parent_id": 4,
+      "return_value": {
+        "class": "Promise<object>",
+        "value": "Promise { null }",
+        "object_id": 9
+      },
+      "elapsed": 1.1250649000285193
+    },
+    {
+      "event": "call",
+      "id": 8,
+      "thread_id": 0,
+      "method_id": "findOne",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection freelancer_datas]",
+        "object_id": 10
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "Email",
+              "class": "String"
+            }
+          ],
+          "value": "{ Email: 'ayushcha1uhasans0508@gmail.com' }",
+          "object_id": 11,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "projection",
+              "class": "Object",
+              "properties": [
+                {
+                  "name": "Resume",
+                  "class": "Number"
+                },
+                {
+                  "name": "Skills",
+                  "class": "Number"
+                },
+                {
+                  "name": "Education",
+                  "class": "Number"
+                },
+                {
+                  "name": "Role",
+                  "class": "Number"
+                },
+                {
+                  "name": "project",
+                  "class": "Number"
+                },
+                {
+                  "name": "Refer",
+                  "class": "Number"
+                },
+                {
+                  "name": "verified",
+                  "class": "Number"
+                },
+                {
+                  "name": "isVerified",
+                  "class": "Number"
+                },
+                {
+                  "name": "githubLink",
+                  "class": "Number"
+                },
+                {
+                  "name": "Linkdin",
+                  "class": "Number"
+                },
+                {
+                  "name": "personalWebsite",
+                  "class": "Number"
+                },
+                {
+                  "name": "perHourPrice",
+                  "class": "Number"
+                },
+                {
+                  "name": "connects",
+                  "class": "Number"
+                },
+                {
+                  "name": "InterviewedBy",
+                  "class": "Number"
+                },
+                {
+                  "name": "workExperience",
+                  "class": "Number"
+                }
+              ]
+            }
+          ],
+          "value": "{\n  projection: {\n    Resume: 0,\n    Skills: 0,\n    Education: 0,\n    Role: 0,\n    project: 0,\n    Refer: 0,\n    verified: 0,\n    isVerified: 0,\n    githubLink: 0,\n    Linkdin: 0,\n    personalWebsite: 0,\n    perHourPrice: 0,\n    connects: 0,\n    InterviewedBy: 0,\n    workExperience: 0\n  }\n}",
+          "object_id": 12,
+          "name": "options"
+        }
+      ],
+      "defined_class": "freelancer_datas",
+      "lineno": 3,
+      "path": "mongodb/freelancer_datas"
+    },
+    {
+      "event": "call",
+      "id": 9,
+      "thread_id": 0,
+      "method_id": "find",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection freelancer_datas]",
+        "object_id": 10
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "Email",
+              "class": "String"
+            }
+          ],
+          "value": "{ Email: 'ayushcha1uhasans0508@gmail.com' }",
+          "object_id": 11,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "projection",
+              "class": "Object",
+              "properties": [
+                {
+                  "name": "Resume",
+                  "class": "Number"
+                },
+                {
+                  "name": "Skills",
+                  "class": "Number"
+                },
+                {
+                  "name": "Education",
+                  "class": "Number"
+                },
+                {
+                  "name": "Role",
+                  "class": "Number"
+                },
+                {
+                  "name": "project",
+                  "class": "Number"
+                },
+                {
+                  "name": "Refer",
+                  "class": "Number"
+                },
+                {
+                  "name": "verified",
+                  "class": "Number"
+                },
+                {
+                  "name": "isVerified",
+                  "class": "Number"
+                },
+                {
+                  "name": "githubLink",
+                  "class": "Number"
+                },
+                {
+                  "name": "Linkdin",
+                  "class": "Number"
+                },
+                {
+                  "name": "personalWebsite",
+                  "class": "Number"
+                },
+                {
+                  "name": "perHourPrice",
+                  "class": "Number"
+                },
+                {
+                  "name": "connects",
+                  "class": "Number"
+                },
+                {
+                  "name": "InterviewedBy",
+                  "class": "Number"
+                },
+                {
+                  "name": "workExperience",
+                  "class": "Number"
+                }
+              ]
+            }
+          ],
+          "value": "{\n  projection: {\n    Resume: 0,\n    Skills: 0,\n    Education: 0,\n    Role: 0,\n    project: 0,\n    Refer: 0,\n    verified: 0,\n    isVerified: 0,\n    githubLink: 0,\n    Linkdin: 0,\n    personalWebsite: 0,\n    perHourPrice: 0,\n    connects: 0,\n    InterviewedBy: 0,\n    workExperience: 0\n  }\n}",
+          "object_id": 12,
+          "name": "options"
+        }
+      ],
+      "defined_class": "freelancer_datas",
+      "lineno": 4,
+      "path": "mongodb/freelancer_datas"
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 10,
+      "parent_id": 9,
+      "return_value": {
+        "class": "FindCursor",
+        "value": "[FindCursor test.freelancer_datas]",
+        "object_id": 13
+      },
+      "elapsed": 0.00041039998177438974
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 11,
+      "parent_id": 8,
+      "return_value": {
+        "class": "Promise<Object>",
+        "value": "Promise {\n  {\n    _id: new ObjectId('6656fe9e2a1d5ef8c28a9a21'),\n    firstName: 'John',\n    lastName: 'Doe',\n    userName: 'Aays1ssush',\n    password: '$2b$14$zak9IryyVErufUrtuiMz.eHexhPGsrpZFu2APW56KnaxU.ohl2VNi',\n    Email: 'ayushcha1uhasans0508@gmail.com',\n    phone: '9568063751',\n    Dob: '1990-01-01',\n    professionalInfo: {\n      title: 'Full Stack Developer',\n      description: 'Experienced in building web applications using JavaScript, Node.js, and React.'\n    },\n    isfreelancer: true,\n    createdAt: 2024-05-29T10:08:30.507Z,\n    updatedAt: 2024-05-29T10:08:30.507Z,\n    __v: 0\n  }\n}",
+        "object_id": 14
+      },
+      "elapsed": 0.17419960000552237
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 200,
+        "headers": {
+          "X-Powered-By": "Express",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Vary": "Origin",
+          "Set-Cookie": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZXhpc3QiOnsiX2lkIjoiNjY1NmZlOWUyYTFkNWVmOGMyOGE5YTIxIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwidXNlck5hbWUiOiJBYXlzMXNzdXNoIiwicGFzc3dvcmQiOiIkMmIkMTQkemFrOUlyeXlWRXJ1ZlVydHVpTXouZUhleGhQR3NycFpGdTJBUFc1NktuYXhVLm9obDJWTmkiLCJFbWFpbCI6ImF5dXNoY2hhMXVoYXNhbnMwNTA4QGdtYWlsLmNvbSIsInBob25lIjoiOTU2ODA2Mzc1MSIsIkRvYiI6IjE5OTAtMDEtMDEiLCJwcm9mZXNzaW9uYWxJbmZvIjp7InRpdGxlIjoiRnVsbCBTdGFjayBEZXZlbG9wZXIiLCJkZXNjcmlwdGlvbiI6IkV4cGVyaWVuY2VkIGluIGJ1aWxkaW5nIHdlYiBhcHBsaWNhdGlvbnMgdXNpbmcgSmF2YVNjcmlwdCwgTm9kZS5qcywgYW5kIFJlYWN0LiJ9LCJpc2ZyZWVsYW5jZXIiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjQtMDUtMjlUMTA6MDg6MzAuNTA3WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDUtMjlUMTA6MDg6MzAuNTA3WiIsIl9fdiI6MH0sImlhdCI6MTcxNzA0MzI1MywiZXhwIjoxNzE3MjE2MDUzfQ.kGmXNfz3hUNjcutux0n4HX90oN2wR9SUDUR3OTybMo4; Path=/; HttpOnly; Secure; SameSite=None",
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Length": "516",
+          "Etag": "W/\"204-oY0e6sWsw1qOcu+ZMxoDFYBe1pE\""
+        },
+        "return_value": {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "userexist",
+              "class": "Object",
+              "properties": [
+                {
+                  "name": "_id",
+                  "class": "String"
+                },
+                {
+                  "name": "firstName",
+                  "class": "String"
+                },
+                {
+                  "name": "lastName",
+                  "class": "String"
+                },
+                {
+                  "name": "userName",
+                  "class": "String"
+                },
+                {
+                  "name": "password",
+                  "class": "String"
+                },
+                {
+                  "name": "Email",
+                  "class": "String"
+                },
+                {
+                  "name": "phone",
+                  "class": "String"
+                },
+                {
+                  "name": "Dob",
+                  "class": "String"
+                },
+                {
+                  "name": "professionalInfo",
+                  "class": "Object",
+                  "properties": [
+                    {
+                      "name": "title",
+                      "class": "String"
+                    },
+                    {
+                      "name": "description",
+                      "class": "String"
+                    }
+                  ]
+                },
+                {
+                  "name": "isfreelancer",
+                  "class": "Boolean"
+                },
+                {
+                  "name": "createdAt",
+                  "class": "String"
+                },
+                {
+                  "name": "updatedAt",
+                  "class": "String"
+                },
+                {
+                  "name": "__v",
+                  "class": "Number"
+                }
+              ]
+            }
+          ],
+          "value": "{\n  userexist: {\n    _id: '6656fe9e2a1d5ef8c28a9a21',\n    firstName: 'John',\n    lastName: 'Doe',\n    userName: 'Aays1ssush',\n    password: '$2b$14$zak9IryyVErufUrtuiMz.eHexhPGsrpZFu2APW56KnaxU.ohl2VNi',\n    Email: 'ayushcha1uhasans0508@gmail.com',\n    phone: '9568063751',\n    Dob: '1990-01-01',\n    professionalInfo: [Object],\n    isfreelancer: true,\n    createdAt: '2024-05-29T10:08:30.507Z',\n    updatedAt: '2024-05-29T10:08:30.507Z',\n    __v: 0\n  }\n}",
+          "object_id": 15
+        }
+      },
+      "id": 12,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 3.9405546999769285
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.23.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v18.17.1"
+    },
+    "app": "server",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "POST /Api/login (200) — 2024-05-30T04:27:29.148Z"
+  },
+  "classMap": [
+    {
+      "name": "Components",
+      "type": "package",
+      "children": [
+        {
+          "name": "Controller",
+          "type": "package",
+          "children": [
+            {
+              "type": "class",
+              "name": "Auth",
+              "children": [
+                {
+                  "type": "function",
+                  "name": "login",
+                  "static": true,
+                  "location": "Components\\Controller\\Auth.js:159"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mongodb",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "business_datas",
+          "children": [
+            {
+              "type": "function",
+              "name": "findOne",
+              "static": false,
+              "location": "mongodb/business_datas:1"
+            },
+            {
+              "type": "function",
+              "name": "find",
+              "static": false,
+              "location": "mongodb/business_datas:2"
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "name": "freelancer_datas",
+          "children": [
+            {
+              "type": "function",
+              "name": "findOne",
+              "static": false,
+              "location": "mongodb/freelancer_datas:3"
+            },
+            {
+              "type": "function",
+              "name": "find",
+              "static": false,
+              "location": "mongodb/freelancer_datas:4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "POST /login"
+        }
+      ]
+    }
+  ]
+}

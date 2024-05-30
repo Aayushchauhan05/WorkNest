@@ -11,11 +11,11 @@ const route= express.Router();
 
 
 // POST-Routes
-route.post("/Freelancer_Register",signupValidator,Freelancer_reg);
+route.post("/FreelancerRegister",Freelancer_reg);
+route.post("/Companyreg",business_reg)
 route.post("/otp_verify",otpgen);
-route.post("/List_project",Authmiddle,project_reg)
-route.post("/Company_reg",signupValidator,business_reg)
-route.post("/login",loginValidator,login);
+route.post("/Listproject",Authmiddle,project_reg)
+route.post("/login",login);// login
 route.post("/Applyforwork",Authmiddle,Applicationforwork) // place bide
 route.post("/Listprojectbusiness",Authmiddle,ListprojectBybusiness)  // product Listing by company  
 // GET-Routes

@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Components",
+    "type": "package",
+    "children": [
+      {
+        "name": "Controller",
+        "type": "package",
+        "children": [
+          {
+            "type": "class",
+            "name": "Auth",
+            "children": [
+              {
+                "type": "function",
+                "name": "login",
+                "static": true,
+                "location": "Components\\Controller\\Auth.js:159"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mongodb",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "business_datas",
+        "children": [
+          {
+            "type": "function",
+            "name": "findOne",
+            "static": false,
+            "location": "mongodb/business_datas:1"
+          },
+          {
+            "type": "function",
+            "name": "find",
+            "static": false,
+            "location": "mongodb/business_datas:2"
+          }
+        ]
+      },
+      {
+        "type": "class",
+        "name": "freelancer_datas",
+        "children": [
+          {
+            "type": "function",
+            "name": "findOne",
+            "static": false,
+            "location": "mongodb/freelancer_datas:3"
+          },
+          {
+            "type": "function",
+            "name": "find",
+            "static": false,
+            "location": "mongodb/freelancer_datas:4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "POST /login"
+      }
+    ]
+  }
+]

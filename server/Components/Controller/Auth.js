@@ -8,7 +8,7 @@ const jwt= require("jsonwebtoken")
 require("dotenv").config()
 const otpGenerator = require('otp-generator')
 async function main(useremail,otp,transporter) {
-  
+ 
   const info = await transporter.sendMail({
     from: process.env.EMAIL, 
     to: `${useremail}`, 
@@ -23,40 +23,67 @@ async function main(useremail,otp,transporter) {
 
 
  const Freelancer_reg= async  (req,res)=>{
-const {firstName,lastName,userName,Email,phone,Dob,professionalInfo,Skills,Education,Role, project,Refer,verified,isVerified,githubLink,Linkdin,personalWebsite,perHourPrice,connects,Resume,InterviewedBy,workExperience,password}=req.body;
+const data=req.body;
+console.log(data.values)
     try {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
        
-          const isValidEmail=emailRegex.test(Email);
+          const isValidEmail=emailRegex.test(data.values.Email);
       
         console.log("email",isValidEmail)
         if(!isValidEmail){
             return res.status(401).json({message:"Enter valid email"});
         }
         
-        const userexist= await Freelancer.findOne({Email});
-        const  Usernameexist= await Freelancer.findOne({userName});
+        const userexist= await Freelancer.findOne({Email:data.values.Email});
+        const  Usernameexist= await Freelancer.findOne({userName:data.values.userName});
      if (userexist) {
         return res.status(404).json({message:"User already exist"});
      }
      if (Usernameexist) {
         return res.status(404).json({message:"Username already exist"});
      }
+     const password= data.values.password;
+     console.log(password)
 const hashpass= await bcrypt.hash(password,14);
 console.log(hashpass)
-    const user= await  Freelancer.create({firstName,lastName,userName,Email,phone,Dob,professionalInfo,Skills,Education,Role, project,Refer,verified,isVerified,githubLink,Linkdin,personalWebsite,perHourPrice,connects,Resume,InterviewedBy,workExperience,password:hashpass})
-    await user.save();
-    console.log("user",user.password)
+// console.log(phone)
+    const user= new Freelancer({firstName: data.values.firstName,
+      lastName: data.values.lastName,
+      userName: "data.values.userName",
+      Email: data.values.Email,
+      phone: data.values.phone,
+      Dob: data.values.Dob,
+      professionalInfo: data.values.professionalInfo,
+      Skills: data.values.Skills,
+      Education: data.values.Education,
+      Role: data.values.Role,
+      project: data.values.project,
+      Refer: data.values.Refer,
+      verified: data.values.verified,
+      isVerified: data.values.isVerified,
+      githubLink: data.values.githubLink,
+      Linkdin: data.values.Linkdin,
+      personalWebsite: data.values.personalWebsite,
+      perHourPrice: "22",
+      connects: data.values.connects,
+      Resume: data.values.Resume,
+      InterviewedBy: data.values.InterviewedBy,
+      workExperience: 2,
+      phone: data.values.phone,
+      password: hashpass })
+    const response = await user.save();
+    console.log("here is the response",response)
    const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
-    const otpexist=  await otp.findOne({Email});
+    const otpexist=  await otp.findOne({Email:data.values.Email});
    
 if (!otpexist) {
-    const userotp= await  otp.create({email:Email,phone,otp:otpcode})
+    const userotp= await  otp.create({email:data.values.Email,phone:data.values.phone,otp:otpcode})
      
 }
 else{
-const update= await otp.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
+const update= await otp.findOneAndUpdate({email:data.values.Email},{otp:otpcode},{new:true});
 }
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -67,7 +94,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.APP_PASS,
   },
 });
-await main(Email,otpcode,transporter).catch(console.error); 
+await main(data.values.Email,otpcode,transporter).catch(console.error); 
         return res.status(200).json({user})
     } catch (error) {
         console.log('registrationerror',error);
@@ -134,7 +161,7 @@ try {
   const{Email,password}= req.body;
  
     
-    let userexist = await Business.findOne({Email });
+    let userexist = await Business.findOne({Email});
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select("-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience ");
 console.log("test", userexist);
@@ -155,7 +182,7 @@ console.log("test", userexist);
   const token= await jwt.sign({userexist},process.env.SECRET_KEY,{expiresIn:"2d"});
   console.log("token",token)
 // return res.status(200).json({userexist,token})  
-return res.cookie("token", token, { httpOnly: true, sameSite: 'none', secure: true }).status(200).json({userexist})
+return res.status(200).json({userexist,token})
 } catch (error) {
   console.log(error);
   return  res.status(500).json({message:"Internal server error"})
