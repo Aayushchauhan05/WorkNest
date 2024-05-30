@@ -1,19 +1,27 @@
 const { Business } = require("../models/Business/Businessreg");
-const{AppliedCandidates,ApplyForPosition}=require("../models/freelancer/Apply")
+const{ApplyForPosition}=require("../models/freelancer/Apply")
+const {AppliedCandidates}= require("../models/Business/ProjectSchema");
+const { projectsDetailsToFreelancer } = require("../models/freelancer/Assignprojectschema");
 const Applicationforwork= async (req,res)=>{
 try {
-    const {Name,Email,phoneNumber,address,desiredSalary,experience,role,companyemail,companyName,status,projectId}=req.body;
+    const {address,desiredSalary,experience,role,companyemail,companyName,status,projectId}=req.body;
+    const{firstName,Email,phone}=req.user;
 
-const companyExist= await Business.findOne({email:companyemail});
+const companyExist= await Business.findOne({Email:companyemail});
 
 if (!companyExist) {
     return res.status(404).json({message:"Company not exist"});
 
 }
-const Application= await ApplyForPosition.create({Name,Email,phoneNumber,address,desiredSalary,experience,role,companyemail,status,projectId})
+const Application= await ApplyForPosition.create({Name:firstName,Email,phoneNumber:phone,address,desiredSalary,experience,role,companyemail,status,projectId})
+const projectdetailstodashboardcheck= await projectsDetailsToFreelancer.findOne({Email})
+if (!projectdetailstodashboardcheck) {
+    await projectsDetailsToFreelancer.create({Email,pending:projectId})
+}
+await projectsDetailsToFreelancer.findOneAndUpdate({Email},{$push:{pending:projectId}})
 const {_id}=Application;
 console.log(_id);
-const prevcandidates= await AppliedCandidates.find({Email:companyemail});
+const prevcandidates= await AppliedCandidates.findOne({Email:companyemail});
 if (!prevcandidates) {
     await AppliedCandidates.create({companyName,email:companyemail,AppliedCandidates:_id})
 }
