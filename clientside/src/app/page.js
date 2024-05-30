@@ -6,7 +6,7 @@ import Herodiv from "../Pagecomponents/Herodiv";
 export default function Home() {
   return (
     <>
-    <Navbar/>
+    
 <Herodiv/>
 
     </>
