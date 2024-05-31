@@ -99,7 +99,8 @@ function page() {
                     </div>
                   </div>
                   <div className="p-6 bg-gray-100 border-t">
-                    <Link className="inline-flex items-center justify-center text-sm font-medium text-blue-500 rounded-md hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <Link  href={"companydashboard/projects/viewdetails"} 
+                    className="inline-flex items-center justify-center text-sm font-medium text-blue-500 rounded-md hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                       View Details
                     </Link>
                   </div>

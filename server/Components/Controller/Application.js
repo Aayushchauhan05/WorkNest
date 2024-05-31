@@ -2,6 +2,7 @@ const { Business } = require("../models/Business/Businessreg");
 const { ApplyForPosition } = require("../models/freelancer/Apply");
 const { AppliedCandidates } = require("../models/Business/ProjectSchema");
 const { projectsDetailsToFreelancer } = require("../models/freelancer/Assignprojectschema");
+const { Freelancer } = require("../models/freelancer/Freelancerreg");
 
 const Applicationforwork = async (req, res) => {
   try {
@@ -26,16 +27,18 @@ const Applicationforwork = async (req, res) => {
       projectId
     });
 
-    const projectDetailsToDashboardCheck = await projectsDetailsToFreelancer.findOne({ Email });
-    if (!projectDetailsToDashboardCheck) {
-      await projectsDetailsToFreelancer.create({ Email, pendingProject: [projectId] });
-    } else {
-      await projectsDetailsToFreelancer.findOneAndUpdate(
-        { Email },
-        { $push: { pendingProject: projectId } },
-        { new: true }
-      );
-    }
+    // const projectDetailsToDashboardCheck = await projectsDetailsToFreelancer.findOne({ Email });
+    // if (!projectDetailsToDashboardCheck) {
+    //   await projectsDetailsToFreelancer.create({ Email, pendingProject: [projectId] });
+    // } else {
+    //   await projectsDetailsToFreelancer.findOneAndUpdate(
+    //     { Email },
+    //     { $push: { pendingProject: projectId } },
+    //     { new: true }
+    //   );
+    // }
+    const user= await Freelancer.findOneAndUpdate({Email}, { $push: { pendingProject: projectId } },
+           { new: true })
 
     const { _id } = application;
     console.log(_id);

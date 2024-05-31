@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 function page() {
   return (
    <>
@@ -18,8 +18,8 @@ function page() {
         </div>
       </div>
       <nav class="flex flex-col gap-2">
-        <a
-          href="#"
+        <Link
+          href={"/personalinfo"}
           class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           <svg
@@ -38,9 +38,9 @@ function page() {
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           Personal Info
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          href={"/professionalinfo"}
           class="flex items-center gap-2 px-3 py-2 rounded-md bg-gray-200 dark:bg-gray-700 transition-colors"
         >
           <svg
@@ -59,9 +59,9 @@ function page() {
             <rect width="20" height="14" x="2" y="6" rx="2"></rect>
           </svg>
           Professional Info
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          href={"/viewfreelancer"}
           class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           <svg
@@ -81,8 +81,8 @@ function page() {
             <circle cx="4" cy="4" r="2"></circle>
           </svg>
           Freelancer
-        </a>
-        <a
+        </Link>
+        <Link
           class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           href="#"
         >
@@ -106,11 +106,11 @@ function page() {
             <path d="M16 16h2"></path>
           </svg>
           Projects
-        </a>
+        </Link>
       </nav>
     </div>
   </div>
-  <div class="flex-1 bg-gray-100/40 dark:bg-gray-800/40 p-4 md:p-10">
+  <div class="flex-1 justify-center items-center bg-gray-100/40 dark:bg-gray-800/40 p-4 md:p-10 ">
     <div class="container max-w-6xl grid gap-8">
       <section>
         <h2 class="text-lg font-semibold mb-4">Professional Info</h2>
