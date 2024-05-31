@@ -4,40 +4,15 @@ function page() {
   return (
    <>
    
-   <div className="flex w-full min-h-screen">
-     <div className="hidden p-6 bg-cyan-800 text-gray-50 md:block">
+   <div className="flex w-full h-screen ">
+     <div className="hidden p-6 bg-cyan-800 text-gray-50 w-[20%] md:block">
        <div className="flex flex-col gap-6">
-         <div className="flex items-center gap-4">
-           {/* <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
-             <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
-           </span> */}
-           {/* <div>
-             <h2 className="text-lg font-semibold">John Doe</h2>
-             <p className="text-gray-400">Freelance Designer</p>
-           </div> */}
-         </div>
-         <nav className="flex flex-col gap-2">
-           <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/">
-             <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="24"
-               height="24"
-               viewBox="0 0 24 24"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="2"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               className="w-5 h-5"
-             >
-               <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-               <polyline points="9 22 9 12 15 12 15 22"></polyline>
-             </svg>
-             Dashboard
-           </a>
-           
-           <Link href={"/freelancerDashboard/profile"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             <svg
+        
+
+         {/* leftside Navbar */}
+         <nav className="flex flex-col gap-2 fixed top-20 w-auto h-screen">
+           <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             {/* <svg
                xmlns="http://www.w3.org/2000/svg"
                width="24"
                height="24"
@@ -51,12 +26,23 @@ function page() {
              >
                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                <circle cx="12" cy="7" r="4"></circle>
-             </svg>
-             Profile
+             </svg> */}
+             Personal Info
+           </Link>
+
+           <Link href={"/freelancerDashboard/profectionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Profectional Info
+           </Link>
+
+           <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Skills And Projects
            </Link>
            
-           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/projects"}>
-             <svg
+           <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Projects
+           </Link>
+           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
+             {/* <svg
                xmlns="http://www.w3.org/2000/svg"
                width="24"
                height="24"
@@ -70,48 +56,20 @@ function page() {
              >
                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-             </svg>
-             Projects
+             </svg> */}
+            Interview
            </Link>
-           <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/">
-             <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="24"
-               height="24"
-               viewBox="0 0 24 24"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="2"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               className="w-5 h-5"
-             >
-               <line x1="12" x2="12" y1="2" y2="22"></line>
-               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-             </svg>
-             Earnings
-           </a>
-           <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/">
-             <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="24"
-               height="24"
-               viewBox="0 0 24 24"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="2"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               className="w-5 h-5"
-             >
-               <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-               <circle cx="12" cy="12" r="3"></circle>
-             </svg>
-             Settings
-           </a>
+
+           <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Oracle Verify
+           </Link>
+         
          </nav>
+
+        
        </div>
      </div>
+      {/* rightSide Main Container */}
      <div className="flex flex-col w-full">
        <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
          <div className="container flex items-center justify-between px-6 py-4 mx-auto">
@@ -183,15 +141,15 @@ function page() {
            </div>
          </div>
        </header>
-       <main className="container grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto bg-gray-950 md:grid-cols-2 lg:grid-cols-3">
-         <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+       <main className="container grid flex-1 grid-cols-1 gap-4 px-6 py-4 mx-auto bg-gray-950 md:grid-cols-2 lg:grid-cols-3">
+         <div className="border rounded-lg shadow-sm bg-card text-card-foreground h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Profile</h3>
-             <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
+             <Link className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 border rounded p-1 dark:hover:text-gray-50" href="/">
                Edit
-             </a>
+             </Link>
            </div>
-           <div className="grid gap-4 p-6">
+           <div className="grid gap-3 p-2">
              <div>
                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">John Doe</h3>
                <p className="text-gray-500 dark:text-gray-400">johndoe@example.com</p>
@@ -212,12 +170,12 @@ function page() {
              </div>
            </div>
          </div>
-         <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+         <div className="border rounded-lg shadow-sm bg-card text-card-foreground max-h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Pending Projects</h3>
-             <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
+             <Link className="text-sm text-gray-500 hover:text-gray-900 border rounded p-1 dark:text-gray-400 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
                View All
-             </a>
+             </Link>
            </div>
            <div className="grid gap-4 p-6">
              <div className="flex items-center justify-between">
@@ -247,12 +205,12 @@ function page() {
              </div>
            </div>
          </div>
-         <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+         <div className="border rounded-lg shadow-sm bg-card text-card-foreground max-h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Completed Projects</h3>
-             <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
+             <Link className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 border rounded p-1 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
                View All
-             </a>
+             </Link>
            </div>
            <div className="grid gap-4 p-6">
              <div className="flex items-center justify-between">
@@ -278,7 +236,7 @@ function page() {
              </div>
            </div>
          </div>
-         <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+         <div className="border rounded-lg shadow-sm bg-card text-card-foreground max-h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Earnings</h3>
              <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
@@ -310,7 +268,7 @@ function page() {
            </div>
          </div>
        </main>
-       <section className="shadow-sm bg-gray-950 dark:bg-gray-900">
+       {/* <section className="shadow-sm bg-gray-950 dark:bg-gray-900">
          <div className="container px-6 py-8 mx-auto">
            <h1 className="mb-6 text-2xl font-bold text-cyan-500 dark:text-gray-50">Pending Projects</h1>
            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -397,8 +355,8 @@ function page() {
              </div>
            </div>
          </div>
-       </section>
-       <section className="shadow-sm dark:bg-gray-900 bg-gray-950">
+       </section> */}
+       {/* <section className="shadow-sm dark:bg-gray-900 bg-gray-950">
          <div className="container px-6 py-8 mx-auto">
            <h2 className="mb-6 text-2xl font-bold text-cyan-500 dark:text-gray-50">Completed Projects</h2>
            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -454,7 +412,7 @@ function page() {
              </div>
            </div>
          </div>
-       </section>
+       </section> */}
      </div>
    </div></>
   )
