@@ -73,22 +73,8 @@ required:true
     }
    
 });
-const  AppliedcandidatesSchema= new Schema({
-    companyName:{
-        type:String,
-        required:true 
-    },
-    email:{
-        type:String,
-        required:true 
-    },
-    Appliedcandidates:[{
-type:Schema.Types.ObjectId,
-ref:"Applicationforwork"
-    }]
-})
-const AppliedCandidates= new model("Applied candidatesforbusiness",AppliedcandidatesSchema)
+
 const ApplyForPosition = new model("Applicationforwork",applyforpositionSchema);
- module.exports={ApplyForPosition,AppliedCandidates}
+ module.exports={ApplyForPosition}
 
 

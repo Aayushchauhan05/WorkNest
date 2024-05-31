@@ -49,6 +49,7 @@ console.log(data.values)
 const hashpass= await bcrypt.hash(password,14);
 console.log(hashpass)
 // console.log(phone)
+const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
     const user= new Freelancer({firstName: data.values.firstName,
       lastName: data.values.lastName,
       userName: "data.values.userName",
@@ -72,19 +73,20 @@ console.log(hashpass)
       InterviewedBy: data.values.InterviewedBy,
       workExperience: 2,
       phone: data.values.phone,
-      password: hashpass })
+      password: hashpass,
+    otp:otpcode })
     const response = await user.save();
     console.log("here is the response",response)
-   const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
-    const otpexist=  await otp.findOne({Email:data.values.Email});
    
-if (!otpexist) {
-    const userotp= await  otp.create({email:data.values.Email,phone:data.values.phone,otp:otpcode})
+//     const otpexist=  await otp.findOne({Email:data.values.Email});
+   
+// if (!otpexist) {
+//     const userotp= await  otp.create({email:data.values.Email,phone:data.values.phone,otp:otpcode})
      
-}
-else{
-const update= await otp.findOneAndUpdate({email:data.values.Email},{otp:otpcode},{new:true});
-}
+// }
+// else{
+// const update= await otp.findOneAndUpdate({email:data.values.Email},{otp:otpcode},{new:true});
+// }
 const transporter = nodemailer.createTransport({
   service: "gmail",
   port: 587,
@@ -105,7 +107,7 @@ await main(data.values.Email,otpcode,transporter).catch(console.error);
   const otpgen= async(req,res)=>{
 try {
   const{otp,Email}=req.body;
-  const userexist= await otp.findOne({Email});
+  const userexist= await Business.findOne({Email}) || Freelancer.findOne({Email});
   if (userexist && userexist.otp==otp) {
     return res.status(200).json({message:"login successfull"})
   }
@@ -121,25 +123,29 @@ return res.status(401).json({message:"Invalid otp"})
   const business_reg=async (req,res)=>{
 const {firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password}=req.body;
 try {
-
+console.log(req.body)
   const userexist= await Business.findOne({Email});
   if (userexist) {
     return res.status(401).json({message:"User already exist"})
   }
-  if (userexist.companyName==companyName) {
-    return res.status(401).json({message:"Company already exist"})
-  }
- const user= Business.create({firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password});
- const otpcode= otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
-    const otpexist=  await otp.FindOne({Email});
+  const companyExist = await Business.findOne({ companyName });
+    if (companyExist) {
+      return res.status(401).json({ message: "Company already exist" });
+    }
+
+    const hashpass= await bcrypt.hash(password,14)
+    const otpcode=  otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false,lowerCaseAlphabets:false });
+ const user= Business.create({firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password:hashpass,otp:otpcode});
+
+//     const otpexist=  await Business.findOne({Email});
   
-if (!otpexist) {
-    const userotp= await otp.create({email:Email,phone,otp:otpcode})
+// if (!otpexist) {
+//     const userotp= await otp.create({email:Email,phone,otp:otpcode})
      
-}
-else{
-const update= await otp.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
-}
+// }
+// else{
+// const update= await Business.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   port: 587,
@@ -149,7 +155,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.APP_PASS,
   },
 });
-await main(Email,otpgen,transporter).catch(console.error); 
+await main(Email,otpcode,transporter).catch(console.error); 
 return res.status(200).json({message:"Registration Succesfull"});
 } catch (error) {
   console.log(error)

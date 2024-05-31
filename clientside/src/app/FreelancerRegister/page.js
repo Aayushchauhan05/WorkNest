@@ -4,15 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useFormik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
-import { useNavigation } from 'next/navigation';
-// import { Phone } from "lucide-react";
+
 export default function Component() {
 
-    const router=useRouter()
- 
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     firstName: "",
@@ -20,15 +19,19 @@ export default function Component() {
     username: "",
     Email: "",
     Dob: "",
-    password:"",
+    password: "",
     Education: "",
     Role: "",
     Refer: "",
-   phone:"123456789",
+    phone: "123456789",
     professionalInfo: [
       {
         previousCompany: "",
         Role: "",
+        start: "",
+        end: "",
+        skills: "",
+        description: ""
       },
     ],
     Skills: "",
@@ -38,22 +41,23 @@ export default function Component() {
     perHourPrice: "10",
     workExperience: "10",
     certifications: "",
-    
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log("console.log in onsubmit",values)
-      
-        
-        const response = await axios.post(`${process.env.BACKEND_HOST}/Api/FreelancerRegister`, {values})
-        .then(response => {
-router.push("/login")
+      console.log("console.log in onsubmit", values);
 
+      setLoading(true);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, { values })
+        .then((response) => {
+          setLoading(false);
+          localStorage.setItem('email', formik.values.Email);
+          router.push("/otp");
           console.log(response);
         })
         .catch(error => {
+          setLoading(false);
           if (error.response && error.response.status === 400) {
             console.error('Bad Request: ', error.message);
           } else {
@@ -77,10 +81,7 @@ router.push("/login")
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="first-name"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="first-name">
                 First Name
               </Label>
               <Input
@@ -95,10 +96,7 @@ router.push("/login")
               />
             </div>
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="last-name"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="last-name">
                 Last Name
               </Label>
               <Input
@@ -114,10 +112,7 @@ router.push("/login")
             </div>
           </div>
           <div className="space-y-2">
-            <Label
-              className="text-sm font-medium text-[#00b8d4]"
-              htmlFor="username"
-            >
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="username">
               Username
             </Label>
             <Input
@@ -148,10 +143,7 @@ router.push("/login")
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="date-of-birth"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="date-of-birth">
                 Date of Birth
               </Label>
               <Input
@@ -165,10 +157,7 @@ router.push("/login")
               />
             </div>
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="years-of-experience"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="years-of-experience">
                 Years of Experience
               </Label>
               <Input
@@ -200,10 +189,7 @@ router.push("/login")
             />
           </div>
           <div className="space-y-2">
-            <Label
-              className="text-sm font-medium text-[#00b8d4]"
-              htmlFor="highest-education"
-            >
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="highest-education">
               Highest Education
             </Label>
             <select
@@ -222,10 +208,7 @@ router.push("/login")
             </select>
           </div>
           <div className="space-y-2">
-            <Label
-              className="text-sm font-medium text-[#00b8d4]"
-              htmlFor="certifications"
-            >
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="certifications">
               Certifications
             </Label>
             <Textarea
@@ -241,10 +224,7 @@ router.push("/login")
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="linkedin-profile"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-profile">
                 LinkedIn Profile
               </Label>
               <Input
@@ -259,15 +239,12 @@ router.push("/login")
               />
             </div>
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="password"
-              >
-               Password
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="password">
+                Password
               </Label>
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="linkedin-profile"
+                id="password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -277,10 +254,7 @@ router.push("/login")
               />
             </div>
             <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="github-profile"
-              >
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-profile">
                 GitHub Profile
               </Label>
               <Input
@@ -296,23 +270,20 @@ router.push("/login")
             </div>
           </div>
           <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="github-profile"
-              >
-                Refer
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="Refer"
-                name="Refer"
-                value={formik.values.Refer}
-                onChange={formik.handleChange}
-                placeholder="Enter your Refer"
-                required
-                type="text"
-              />
-            </div>
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="refer">
+              Refer
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="refer"
+              name="Refer"
+              value={formik.values.Refer}
+              onChange={formik.handleChange}
+              placeholder="Enter your refer"
+              required
+              type="text"
+            />
+          </div>
           <div className="space-y-2">
             <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role">
               Role
@@ -334,48 +305,140 @@ router.push("/login")
           </div>
           <h1 className="text-center text-[#00b8d4]">Professional Info</h1>
           <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="previouscompany"
-              >
-               Previous Company
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="previouscompany"
-                name="professionalInfo[0].previousCompany" // Corrected name attribute for nested object
-                value={formik.values.professionalInfo[0].previousCompany}
-                onChange={formik.handleChange}
-                placeholder="Enter your previous company"
-                required
-                type="text"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label
-                className="text-sm font-medium text-[#00b8d4]"
-                htmlFor="role-in-company"
-              >
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="previouscompany">
+              Previous Company
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="previouscompany"
+              name="professionalInfo[0].previousCompany" // Corrected name attribute for nested object
+              value={formik.values.professionalInfo[0].previousCompany}
+              onChange={formik.handleChange}
+              placeholder="Enter your previous company"
+              required
+              type="text"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role-in-company">
               Your Role in Company
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="role-in-company"
-                name="professionalInfo[0].Role" // Corrected name attribute for nested object
-                value={formik.values.professionalInfo[0].Role}
-                onChange={formik.handleChange}
-                placeholder="Your role in company"
-                required
-                type="text" // Corrected type attribute from url to text
-              />
-            </div>
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="role-in-company"
+              name="professionalInfo[0].Role" // Corrected name attribute for nested object
+              value={formik.values.professionalInfo[0].Role}
+              onChange={formik.handleChange}
+              placeholder="Your role in company"
+              required
+              type="text"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="start-date">
+              Start Date
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="start-date"
+              name="professionalInfo[0].start"
+              value={formik.values.professionalInfo[0].start}
+              onChange={formik.handleChange}
+              placeholder="Start date"
+              required
+              type="date"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="end-date">
+              End Date
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="end-date"
+              name="professionalInfo[0].end"
+              value={formik.values.professionalInfo[0].end}
+              onChange={formik.handleChange}
+              placeholder="End date"
+              required
+              type="date"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="skills-used">
+              Skills Used
+            </Label>
+            <Textarea
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="skills-used"
+              name="professionalInfo[0].skills"
+              value={formik.values.professionalInfo[0].skills}
+              onChange={formik.handleChange}
+              placeholder="Skills used"
+              required
+              rows="2"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="description">
+              Description
+            </Label>
+            <Textarea
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="description"
+              name="professionalInfo[0].description"
+              value={formik.values.professionalInfo[0].description}
+              onChange={formik.handleChange}
+              placeholder="Description"
+              required
+              rows="3"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="personal-website">
+              Personal Website
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="personal-website"
+              name="personalwebsite"
+              value={formik.values.personalwebsite}
+              onChange={formik.handleChange}
+              placeholder="Enter your personal website URL"
+              type="url"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="per-hour-price">
+              Per Hour Price
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="per-hour-price"
+              name="perHourPrice"
+              value={formik.values.perHourPrice}
+              onChange={formik.handleChange}
+              placeholder="Enter your per hour price"
+              type="number"
+              min="0"
+            />
+          </div>
           <div>
-            <Button
-              className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
-              type="submit"
-            >
-              Register
-            </Button>
+            {!loading ? (
+              <Button
+                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
+                type="submit"
+              >
+                Register
+              </Button>
+            ) : (
+              <Button
+                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
+                disabled
+              >
+                Loading...
+              </Button>
+            )}
           </div>
         </form>
       </div>

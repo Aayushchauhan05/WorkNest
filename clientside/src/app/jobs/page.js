@@ -170,6 +170,7 @@ function page() {
 
       <div className="">
 
+
         <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
           <div className="container flex items-center justify-between mx-auto">
             <h1 className="text-2xl font-bold">Freelance Jobs</h1>
@@ -211,6 +212,7 @@ function page() {
               role="none"
               className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
             ></div>
+
             <div className="grid gap-4">
               <h3 className="text-lg font-bold">Filters</h3>
               <div className="grid gap-4">

@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/3BVt5BeGlXo
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 "use client"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -10,7 +6,7 @@ import { Select } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useFormik } from "formik"
 import axios from "axios"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 export default function Component() {
   const initialValues = {
     firstName: "",
@@ -34,16 +30,21 @@ export default function Component() {
     initialValues,
     onSubmit: async (values) => {
       console.log(values)
+      
+      localStorage.clear()
       try {
-        const response= await fetch(`${process.env.BACKEND_HOST}/Api/Companyreg`,{
+        const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/Companyreg`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json"
           },
           body: JSON.stringify(values)
         })
+const data= await response.json();
+
         if(response.ok){
-          router.push("/")
+          localStorage.setItem("email",data.Data.Email)
+          router.push("/otp")
         }
         else{
           console.log("error")

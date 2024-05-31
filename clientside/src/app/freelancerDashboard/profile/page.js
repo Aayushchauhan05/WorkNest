@@ -1,7 +1,26 @@
+import { useAuth } from '@/context/context'
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 function page() {
+  const[useinfo,setuserinfo]=useState([])
+  const{token}=useAuth()
+const router= useRouter()
+  useEffect( async ()=>{
+try {
+  const response = await axios.get(`${NEXT_PUBLIC_BACKEND_HOST}/api/freelancerprofile`,{
+    headers:{
+      "Authorization":` Bearer ${token}`
+    }
+  })
+  setuserinfo(response)
+  console.log(response)
+} catch (error) {
+  console.log(error)
+}
+  },[router])
   return (
     <>
 <div class="flex min-h-[100dvh] dark:bg-gray-950 dark:text-white pt-7">
