@@ -168,15 +168,7 @@ function page() {
   return (
     <>
 
-      <div className="">
-
-
-        <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
-          <div className="container flex items-center justify-between mx-auto">
-            <h1 className="text-2xl font-bold">Freelance Jobs</h1>
-
-          </div>
-        </header>
+      <div>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
           <div className="sticky col-span-1 p-6 bg-cyan-800 rounded-lg shadow-md md:col-span-3 top-24 w-auto h-[50%]">
             <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
@@ -228,7 +220,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="job-type-web-dev"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -241,7 +233,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="job-type-graphic-design"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -254,7 +246,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="job-type-content-writing"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -267,7 +259,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="job-type-virtual-assistant"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -280,7 +272,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="job-type-marketing"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -351,7 +343,7 @@ function page() {
                         aria-checked="false"
                         data-state="unchecked"
                         value="low"
-                        className="w-4 h-4 border text-w rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="w-4 h-4 border rounded-full text-w aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="budget-low"
                         tabIndex="-1"
                         data-radix-collection-item=""
@@ -415,7 +407,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="experience-entry"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -428,7 +420,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="experience-intermediate"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -441,7 +433,7 @@ function page() {
                       <input
                         type="checkbox"
                         id="experience-expert"
-                        className="peer hidden"
+                        className="hidden peer"
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -456,8 +448,8 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="col-span-1 md:col-span-9 w-full">
-            <div className="p-6  rounded-lg shadow-md">
+          <div className="w-full col-span-1 md:col-span-9">
+            <div className="p-6 rounded-lg shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-bold">Available Jobs</h2>
                 <div className="flex items-center space-x-4 bg-gray-800">
@@ -471,9 +463,9 @@ function page() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {jobListings.map((job, index) => (
 
-                  <div key={index} className="rounded-lg overflow-hidden border bg-white text-black shadow-sm relative group">
+                  <div key={index} className="relative overflow-hidden text-black bg-white border rounded-lg shadow-sm group">
                     <div className="flex flex-col justify-between h-full">
-                      <div className="flex flex-col space-y-4 p-6">
+                      <div className="flex flex-col p-6 space-y-4">
                         <h3 className="text-lg font-bold text-center ">{job.title}</h3>
 
                         <div className="flex flex-col space-y-2">
@@ -482,12 +474,12 @@ function page() {
                             <span>{job.client}</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-gray-500 font-medium">Due Date:</span>
+                            <span className="font-medium text-gray-500">Due Date:</span>
                             <span>{job.dueDate}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="p-6 bg-gray-100 border-t flex gap-2">
+                      <div className="flex gap-2 p-6 bg-gray-100 border-t">
                         <div className="text-sm text-gray-600">Budget: {job.budget}</div>
                         <button className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}>
                           bid
@@ -495,7 +487,7 @@ function page() {
 
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                    <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
                   </div>
                 ))}
               </div>
