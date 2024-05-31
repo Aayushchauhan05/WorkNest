@@ -2,15 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-function UserCard({ user }) {
-  return (
-    <div className="user-card">
-      <h2>{user.name}</h2>
-      <p>Email: {user.email}</p>
-    </div>
-  );
-}
-
 function Page() {
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
@@ -18,10 +9,53 @@ function Page() {
   useEffect(() => {
     // Dummy user data
     const dummyUsers = [
-      { id: 1, name: 'User 1', email: 'user1@example.com' },
-      { id: 2, name: 'User 2', email: 'user2@example.com' },
-      { id: 3, name: 'User 3', email: 'user3@example.com' }
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        phone: '+1234567890',
+        github: 'https://github.com/johndoe',
+        location: 'New York, USA',
+        profileImage: 'https://via.placeholder.com/150'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        email: 'jane.smith@example.com',
+        phone: '+0987654321',
+        github: 'https://github.com/janesmith',
+        location: 'Los Angeles, USA',
+        profileImage: 'https://via.placeholder.com/150'
+      },
+      {
+        id: 3,
+        name: 'Alice Johnson',
+        email: 'alice.johnson@example.com',
+        phone: '+1122334455',
+        github: 'https://github.com/alicejohnson',
+        location: 'Chicago, USA',
+        profileImage: 'https://via.placeholder.com/150'
+      },
+      {
+        id: 4,
+        name: 'Bob Brown',
+        email: 'bob.brown@example.com',
+        phone: '+5566778899',
+        github: 'https://github.com/bobbrown',
+        location: 'Houston, USA',
+        profileImage: 'https://via.placeholder.com/150'
+      },
+      {
+        id: 5,
+        name: 'Charlie Davis',
+        email: 'charlie.davis@example.com',
+        phone: '+6677889900',
+        github: 'https://github.com/charliedavis',
+        location: 'Phoenix, USA',
+        profileImage: 'https://via.placeholder.com/150'
+      }
     ];
+
     setUsers(dummyUsers);
   }, []);
 
@@ -48,10 +82,8 @@ function Page() {
               Projects
             </Link>
             <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
-           
-            Interview
-           </Link>
-
+              Interview
+            </Link>
             <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
               Oracle Verify
             </Link>
@@ -60,22 +92,28 @@ function Page() {
       </div>
 
       {/* Right side Main Container */}
-      <main className="flex-grow container bg-gray-950 p-6 text-white">
+      <main className="flex-grow container bg-gray-950 p-6  w-[100%] text-white">
         <h1 className="text-3xl font-bold text-cyan-700 dark:text-gray-50 mt-2">Interviews</h1>
         <button
-             onClick={toggleShowUsers}
-              className="px-4 py-2 bg-cyan-700 text-white rounded-md hover:bg-cyan-800"
-            >
-            {showUsers ? "Hide Users" : "Show Users"}
-            </button>
+          onClick={toggleShowUsers}
+          className="px-4 py-2 bg-cyan-700 text-white rounded-md hover:bg-cyan-800"
+        >
+          {showUsers ? "Hide Users" : "Show Users"}
+        </button>
         {showUsers && (
           <div>
-            <h1>Users</h1>
-            <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h1 className="text-2xl font-semibold my-4">Users</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {users.map(user => (
-                <div key={user.id} className='bg-white rounded-lg text-black  h-auto flex items-center justify-center flex-col' >
-                    <h2>{user.name}</h2>
-                    <p>{user.email}</p>
+                <div key={user.id} className="bg-white rounded-lg shadow-md text-black p-4 flex flex-col items-center w-full">
+                  <img className="w-24 h-24 rounded-full mb-4" src={user.profileImage} alt={`${user.name}'s profile`} />
+                  <h2 className="text-xl font-semibold mb-2">{user.name}</h2>
+                  <p className="text-gray-600 mb-2">{user.email}</p>
+                  <p className="text-gray-600 mb-2">{user.phone}</p>
+                  <a className="text-blue-500 mb-2" href={user.github} target="_blank" rel="noopener noreferrer">
+                    GitHub Profile
+                  </a>
+                  <p className="text-gray-600">{user.location}</p>
                 </div>
               ))}
             </div>

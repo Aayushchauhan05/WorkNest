@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <>
-      <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between">
+      <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] z-50 bg-black justify-between">
         <h3 className="logo text-white text-2xl ">Dehix</h3>
         <div className="hidden md:flex h-auto text-white min-w-96 navlink justify-evenly first:bg-red-500">
           <Link href={"/"}>Home</Link>
