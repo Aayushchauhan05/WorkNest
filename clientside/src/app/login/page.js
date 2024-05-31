@@ -1,24 +1,25 @@
 // Import necessary dependencies
 "use client"
+import { useAuth } from '@/context/context';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function Page() {
         const router=useRouter()
-     
-    
-    
+     const [loading ,setloading]=useState(false)
+    const{authtoken,settoken,setfreelancer}= useAuth()    
 
     const formik = useFormik({
         initialValues: {
-            Email: "", // Change to lowercase to match input names
+            Email: "",
             password: ""
         },
         onSubmit: async (values) => {
             try {
-                const response = await fetch(`http://localhost:5001/Api/login`, {
+                setloading(true)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -26,10 +27,22 @@ function Page() {
                     body: JSON.stringify(values)
                 });
                 const Data = await response.json();
-console.log(Data.message)
+console.log(Data)
+setloading(false)
                 if (response.ok) {
+                    const token=Data.token
+                    const freelancercheck= Data.userexist.isfreelancer;
+                    console.log("check",freelancercheck);
+                    if (freelancercheck) {
+                        setfreelancer(true)
+                    }
+                    authtoken(token)
+                //    settoken(token)
                    
-                    router.push('/');
+                    setTimeout(()=>{
+                        router.push('/');
+                    },100)
+                    
                 } else {
                     router.push('/FreelancerRegister');
                     
@@ -88,12 +101,16 @@ console.log(Data.message)
                             </div>
                         </div>
                         <div>
-                            <button
+                           { loading?<button disabled
+                                className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                            >
+                                Loading
+                            </button>:<button
                                 type="submit"
                                 className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
                             >
                                 Sign in
-                            </button>
+                            </button>}
                         </div>
                     </form>
                 </div>

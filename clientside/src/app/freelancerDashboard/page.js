@@ -10,7 +10,7 @@ function page() {
         
 
          {/* leftside Navbar */}
-         <nav className="flex flex-col gap-2 fixed top-20 w-auto h-screen">
+         <nav className="fixed flex flex-col w-auto h-screen gap-2 top-20">
            <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
              {/* <svg
                xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +145,7 @@ function page() {
          <div className="border rounded-lg shadow-sm bg-card text-card-foreground h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Profile</h3>
-             <Link className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 border rounded p-1 dark:hover:text-gray-50" href="/">
+             <Link className="p-1 text-sm text-gray-500 border rounded hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
                Edit
              </Link>
            </div>
@@ -173,7 +173,7 @@ function page() {
          <div className="border rounded-lg shadow-sm bg-card text-card-foreground max-h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Pending Projects</h3>
-             <Link className="text-sm text-gray-500 hover:text-gray-900 border rounded p-1 dark:text-gray-400 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
+             <Link className="p-1 text-sm text-gray-500 border rounded hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
                View All
              </Link>
            </div>
@@ -208,7 +208,7 @@ function page() {
          <div className="border rounded-lg shadow-sm bg-card text-card-foreground max-h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Completed Projects</h3>
-             <Link className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 border rounded p-1 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
+             <Link className="p-1 text-sm text-gray-500 border rounded hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/freelancerDashboard/projects">
                View All
              </Link>
            </div>

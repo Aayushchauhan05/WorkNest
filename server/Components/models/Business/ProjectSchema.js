@@ -43,8 +43,11 @@ const {Schema,model}= require("mongoose");
     TotalNeedOffreelancer:{
         type:String,
         required:true
+    },
+    status:{
+        type:String,
+        default:"Not assigned"
     }
-    
  })
  const TotalprojectlistedbybusinessSchema= new Schema({
     Email:{
@@ -61,6 +64,21 @@ ref:"ProjectListByCompany"
     }]
 
  });
+ const  AppliedcandidatesSchema= new Schema({
+    companyName:{
+        type:String,
+        required:true 
+    },
+    email:{
+        type:String,
+        required:true 
+    },
+    Appliedcandidates:[{
+type:Schema.Types.ObjectId,
+ref:"Applicationforwork"
+    }]
+})
+const AppliedCandidates= new model("Applied candidatesforbusiness",AppliedcandidatesSchema)
 const Totalprojectlistedbybusiness= new model("Projectlistbusinesswise",TotalprojectlistedbybusinessSchema);
  const ProjectListByBusiness= new model("ProjectListByCompany",ProjectSchemaByBusiness);
-  module.exports={ProjectListByBusiness,Totalprojectlistedbybusiness};
+  module.exports={ProjectListByBusiness,Totalprojectlistedbybusiness,AppliedCandidates};
