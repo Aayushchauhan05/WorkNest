@@ -4,14 +4,15 @@ import { useState } from "react";
 import userIcon from '../../public/user.svg';
 
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/context";
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Assuming initially user is logged in
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const {isloggedin,isfreelancer} = useAuth() 
+  const [isMenuOpen,setIsMenuOpen] = useState(false); 
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  // const handleLogout = () => {
+  //   setIsLoggedIn(false);
+  // };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,14 +21,14 @@ function Navbar() {
   return (
     <>
       <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between">
-        <h3 className="logo text-white text-2xl ">Dehix</h3>
-        <div className="hidden md:flex h-auto text-white min-w-96 navlink justify-evenly first:bg-red-500">
+        <h3 className="text-2xl text-white logo ">Dehix</h3>
+        <div className="hidden h-auto text-white md:flex min-w-96 navlink justify-evenly first:bg-red-500">
           <Link href={"/"}>Home</Link>
           <Link href={"/jobs"} className="text-red-500 ">Jobs</Link>
-          <Link href={"/freelancerDashboard"}>Dashboard</Link>
+          {isloggedin && isfreelancer==true ?<Link href={"/freelancerDashboard"}>Dashboard</Link>:isloggedin && !isfreelancer?<Link href={"/companydashboard"}>Dashboard</Link>:<p>Login to acess dashboard</p>}
         </div>
-        <div className="flex Login_register justify-evenly w-36">
-          {isLoggedIn ? (
+        <div className="flex Login_register justify-evenly w-38 ">
+          {isloggedin ? (
             <>
                <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600" >
             <Link href="/freelancerDashboard/profile">
@@ -38,21 +39,24 @@ function Navbar() {
     
             </Link>
             </div>
-             <Button  onClick={handleLogout} className="ml-7 hidden md:block">
-             logout
+             <Button  className="hidden ml-7 md:block">
+             <Link href={"/logout"}>logout</Link>
            </Button></>
           ) : (
             <>
-              <Button asChild className="mx-4 hidden md:block">
+              <Button asChild className="hidden mx-2 md:block">
                 <Link href="/login" >Login</Link>
               </Button>
-              <Button asChild className="mx-4 hidden md:block">
-                <Link href="/logout">Register</Link>
+              <Button asChild className="hidden mx-2 md:block">
+                <Link href="/FreelancerRegister">Register As Freelancer</Link>
+              </Button>
+              <Button asChild className="hidden mx-2 md:block">
+                <Link href="/BusinessRegister">Register As Business</Link>
               </Button>
             </>
           )}
         </div>
-        <button className="md:hidden text-white" onClick={toggleMenu}>
+        <button className="text-white md:hidden" onClick={toggleMenu}>
           <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
@@ -60,10 +64,15 @@ function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black">
             <Link href={"/"} className="py-2">Home</Link>
-            <Link href={"/jobs"} className="text-red-500 py-2">Jobs</Link>
+            <Link href={"/jobs"} className="py-2 text-red-500">Jobs</Link>
             <Link href={"/freelancerDashboard"} className="py-2">Dashboard</Link>
-            {!isLoggedIn?<><Link href="/login" className=" py-2">Login</Link>
-            <Link href="/logout" className="py-2">Register</Link></>:<> <h2 onClick={handleLogout} className="py-2">Logout</h2></>}
+            {!isloggedin?<><Link href="/login" className="py-2 ">Login</Link>
+            <Button asChild className="hidden mx-2 md:block">
+                <Link href="/FreelancerRegister" className="text-white">Register As Freelancer</Link>
+              </Button>
+              <Button asChild className="hidden mx-2 text-white md:block ">
+                <Link href="/BusinessRegister" className="text-white">Register As Business</Link>
+              </Button></>:<> <h2 className="py-2 text-white "> <Link>Logout</Link> </h2></>}
           </div>
         )}
       </header>

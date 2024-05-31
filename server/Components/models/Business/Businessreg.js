@@ -61,6 +61,9 @@ const businessSchema = new Schema({
     connects: {
         type: Number,
         default: 0
+    },
+    otp:{
+type:String
     }
 }, { timestamps: true });
 const Business = model("Business_Data", businessSchema);

@@ -9,7 +9,7 @@ function page() {
 
 <div className="">
 
-      <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
+      {/* <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
         <div className="container flex items-center justify-between mx-auto">
           <h1 className="text-2xl font-bold">Freelance Jobs</h1>
           <nav className="flex items-center space-x-4">
@@ -18,7 +18,7 @@ function page() {
             <Link href={"/freelancerDashboard"}>Dashboard</Link>
           </nav>
         </div>
-      </header>
+      </header> */}
       <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
         <div className="sticky col-span-1 p-6 bg-gray-800 rounded-lg shadow-md md:col-span-3 top-24">
           <h2 className="mb-4 text-lg font-bold">Job Categories</h2>

@@ -1,7 +1,7 @@
 'use client'
-import Link from "next/link"
-import React, { useState } from 'react';
-
+import Link from "next/link";
+import { useAuth } from '@/context/context';
+import React, { useEffect, useState } from 'react';
 
 function Page() {
 
@@ -17,6 +17,39 @@ function Page() {
     deployedLink: '',
     githubLink: '',
   });
+  const [userinfo, setUserinfo] = useState({});
+  const { token } = useAuth();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancerprofile`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+        if (isMounted) {
+          console.log(data.Data.professionalInfo)
+          setUserinfo(data.Data);
+          setSkills(data.Data.Skills.split(','));
+          setProjects(data.Data.project || []);
+        }
+      } catch (error) {
+        console.log("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
 
   const handleSkillInputChange = (e) => {
     setNewSkill(e.target.value);
@@ -59,7 +92,6 @@ function Page() {
   const handleDeleteSkill = (index) => {
     setSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
   };
-  
 
   return (
     <>
@@ -67,142 +99,108 @@ function Page() {
         {/* Left side Navbar */}
         <div className="hidden p-6 bg-cyan-800 text-gray-50 w-[20%] md:block">
           <div className="flex flex-col gap-6">
-          <nav className="flex flex-col gap-2 fixed top-20 w-auto h-screen">
-           <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             {/* <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="24"
-               height="24"
-               viewBox="0 0 24 24"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="2"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               className="w-5 h-5"
-             >
-               <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-               <circle cx="12" cy="7" r="4"></circle>
-             </svg> */}
-             Personal Info
-           </Link>
+            <nav className="fixed flex flex-col w-auto h-screen gap-2 top-20">
+              <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+                Personal Info
+              </Link>
 
-           <Link href={"/freelancerDashboard/profectionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Profectional Info
-           </Link>
+              <Link href={"/freelancerDashboard/professionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+                Professional Info
+              </Link>
 
-           <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Skills And Projects
-           </Link>
-           
-           <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Projects
-           </Link>
-           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
-             {/* <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="24"
-               height="24"
-               viewBox="0 0 24 24"
-               fill="none"
-               stroke="currentColor"
-               stroke-width="2"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               className="w-5 h-5"
-             >
-               <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-               <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-             </svg> */}
-            Interview
-           </Link>
+              <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+                Skills And Projects
+              </Link>
 
-           <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Oracle Verify
-           </Link>
-         
-         </nav>
+              <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+                Projects
+              </Link>
+              <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
+                Interview
+              </Link>
+
+              <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+                Oracle Verify
+              </Link>
+            </nav>
           </div>
         </div>
 
         {/* Right side Main Container */}
-        <main className="flex-grow container bg-gray-950 p-6 text-white">
-          <h1 className="text-3xl font-bold text-cyan-700 dark:text-gray-50 mt-2">Skill And Projects</h1>
-
+        <main className="container flex-grow p-6 text-white bg-gray-950">
+          <h1 className="mt-2 text-3xl font-bold text-cyan-700 dark:text-gray-50">Skill And Projects</h1>
 
           <div className="container mx-auto mt-8">
-            <h1 className="text-3xl font-bold mb-4">Add Skills and Projects</h1>
+            <h1 className="mb-4 text-3xl font-bold">Add Skills and Projects</h1>
             <div className="mb-8">
-              <h2 className="text-xl font-bold mb-2">Add Skills:</h2>
+              <h2 className="mb-2 text-xl font-bold">Add Skills:</h2>
               <div className="flex text-black">
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-md px-4 py-2 mr-4"
+                  className="px-4 py-2 mr-4 border border-gray-300 rounded-md"
                   placeholder="Enter skill"
                   value={newSkill}
                   onChange={handleSkillInputChange}
                 />
                 <button
-                  className="px-4 py-2 bg-cyan-800 text-white rounded-md"
+                  className="px-4 py-2 text-white rounded-md bg-cyan-800"
                   onClick={handleAddSkill}
                 >
                   Add
                 </button>
               </div>
               <div className="mt-4">
-                <h3 className="text-lg font-bold mb-2">Skills Added:</h3>
-                <div className="flex gap-4 flex-wrap">
+                <h3 className="mb-2 text-lg font-bold">Skills Added:</h3>
+                <div className="flex flex-wrap gap-4">
                   {skills.map((skill, index) => (
-                    <div key={index} className="mb-2 rounded-full px-4 py-2 bg-gray-100 text-gray-800 flex items-center justify-between">
+                    <div key={index} className="flex items-center justify-between px-4 py-2 mb-2 text-gray-800 bg-gray-100 rounded-full">
                       <h2 className="text-sm">{skill}</h2>
                       <button onClick={() => handleDeleteSkill(index)} className="ml-2 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
                     </div>
                   ))}
                 </div>
-
               </div>
             </div>
             <div>
-              <h2 className="text-xl font-bold mb-2">Add Projects:</h2>
+              <h2 className="mb-2 text-xl font-bold">Add Projects:</h2>
               <button
-                className="px-4 py-2 bg-cyan-800 text-white rounded-md"
+                className="px-4 py-2 text-white rounded-md bg-cyan-800"
                 onClick={() => setIsProjectModalOpen(true)}
               >
                 Add Project
               </button>
               <div className="mt-4">
-                <h3 className="text-lg font-bold mb-2">Projects Added:</h3>
-                <div className="flex gap-2 flex-wrap" >
+                <h3 className="mb-2 text-lg font-bold">Projects Added:</h3>
+                <div className="flex flex-wrap gap-2">
                   {projects.map((project, index) => (
-                    <div key={index} className="p-4 border rounded-lg shadow-sm bg-card text-card-foreground w-64 h-56 relative">
-                      <h2 className="text-lg font-semibold mb-2">{project.projectName}</h2>
-                      <p className="text-sm mb-1">{project.techStack}</p>
-                      <p className="text-sm mb-1">Duration: {project.duration}</p>
-                      <p className="text-sm mb-1">Description: {project.description}</p>
-                      <p className="text-sm mb-1">Deployed Link: {project.deployedLink}</p>
-                      <p className="text-sm mb-1">GitHub Link: {project.githubLink}</p>
+                    <div key={index} className="relative w-64 h-56 p-4 border rounded-lg shadow-sm bg-card text-card-foreground">
+                      <h2 className="mb-2 text-lg font-semibold">{project.projectName}</h2>
+                      <p className="mb-1 text-sm">{project.techStack}</p>
+                      <p className="mb-1 text-sm">Duration: {project.duration}</p>
+                      <p className="mb-1 text-sm">Description: {project.description}</p>
+                      <p className="mb-1 text-sm">Deployed Link: {project.deployedLink}</p>
+                      <p className="mb-1 text-sm">GitHub Link: {project.githubLink}</p>
                       <button
                         onClick={() => handleDeleteProject(index)}
-                        className="w-full top-2 right-2 px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"
+                        className="w-full px-2 py-1 text-white bg-red-500 rounded-md top-2 right-2 hover:bg-red-600 focus:outline-none"
                       >
                         Delete
                       </button>
                     </div>
                   ))}
                 </div>
-
               </div>
             </div>
 
             {/* Project Modal */}
             {isProjectModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center text-black bg-gray-900 bg-opacity-50">
-                <div className="bg-white p-8 rounded-lg">
-                  <h2 className="text-xl font-bold mb-4">Add Project</h2>
+                <div className="p-8 bg-white rounded-lg">
+                  <h2 className="mb-4 text-xl font-bold">Add Project</h2>
                   <form>
                     <div className="mb-4">
                       <label htmlFor="projectName" className="block text-sm font-medium text-gray-700">
@@ -214,7 +212,7 @@ function Page() {
                         name="projectName"
                         value={projectFormData.projectName}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm  sm:text-sm"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm"
                         placeholder="Enter project name"
                         required
                       />
@@ -231,7 +229,8 @@ function Page() {
                         name="techStack"
                         value={projectFormData.techStack}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-fullrounded-md shadow-sm  sm " placeholder=" Enter tech stack"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm"
+                        placeholder="Enter tech stack"
                         required
                       />
                     </div>
@@ -246,7 +245,7 @@ function Page() {
                         name="duration"
                         value={projectFormData.duration}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm  sm:text-sm"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm"
                         placeholder="Enter duration"
                         required
                       />
@@ -261,7 +260,7 @@ function Page() {
                         name="description"
                         value={projectFormData.description}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         rows="3"
                         placeholder="Enter description"
                         required
@@ -278,7 +277,7 @@ function Page() {
                         name="deployedLink"
                         value={projectFormData.deployedLink}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm sm:text-sm"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm"
                         placeholder="Enter deployed link"
                         required
                       />
@@ -294,7 +293,7 @@ function Page() {
                         name="githubLink"
                         value={projectFormData.githubLink}
                         onChange={handleProjectInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm  sm:text-sm"
+                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm"
                         placeholder="Enter GitHub link"
                         required
                       />
@@ -303,14 +302,14 @@ function Page() {
                       <button
                         type="button"
                         onClick={() => setIsProjectModalOpen(false)}
-                        className="px-4 py-2 bg-red-500 text-white rounded-md mr-2"
+                        className="px-4 py-2 mr-2 text-white bg-red-500 rounded-md"
                       >
                         Cancel
                       </button>
                       <button
                         type="button"
                         onClick={handleAddProject}
-                        className="px-4 py-2 bg-cyan-800 text-white rounded-md"
+                        className="px-4 py-2 text-white rounded-md bg-cyan-800"
                       >
                         Add Project
                       </button>

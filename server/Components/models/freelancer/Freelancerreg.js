@@ -94,9 +94,11 @@ const freelancer_schema = new Schema({
     consultant:{
         type: Boolean,
         required: true,
-        default: false
-    }
-
+        default: false 
+    },
+otp:{
+    type:String
+}
 }, { timestamps: true });
 const Freelancer = model("freelancer_data", freelancer_schema);
 module.exports={Freelancer}

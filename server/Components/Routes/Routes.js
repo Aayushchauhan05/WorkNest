@@ -9,9 +9,6 @@ const projectsDetailsToFreelancerApi = require("../Controller/SendProjectstatust
 const ActionFromBusinessSide = require("../Controller/ActionsOnBid");
 const route= express.Router();
 
-
-
-
 // POST-Routes
 route.post("/FreelancerRegister",Freelancer_reg);// For Freelancer
 route.post("/Companyreg",business_reg)// For Business
@@ -24,7 +21,7 @@ route.post("/Listprojectbusiness",Authmiddle,ListprojectBybusiness)  // product 
 route.get("/Senddatatocompany",Authmiddle,SendDataTocompany) // Bid data send to company
 route.get("/Getprojectdata",Authmiddle,getprojectdata)// For Business
 route.get("/freelancerprofile",Authmiddle,freelancerprofile); // For Freelancer
-route.get("/Allproject",Authmiddle,dataForAllAndFilter); // For All
+// route.get("/Allproject",Authmiddle,dataForAllAndFilter); // For All
 route.get("/EmailToOracle",OracleUserverificationmail); // For Oracle
 route.get("/Projectstatus",Authmiddle,projectsDetailsToFreelancerApi);
 // PUT-routes

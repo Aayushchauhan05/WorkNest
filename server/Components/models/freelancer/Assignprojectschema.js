@@ -12,10 +12,10 @@ const projectsDetailsToFreelancerSchema= new Schema({
         type:Schema.Types.ObjectId,
         ref:"ProjectListByCompany"
     }],
-    acceptedProject:{
+    acceptedProject:[{
         type:Schema.Types.ObjectId,
         ref:"ProjectListByCompany"
-    }
+    }]
 })
 
 
