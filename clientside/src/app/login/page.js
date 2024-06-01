@@ -30,13 +30,16 @@ function Page() {
 console.log(Data)
 setloading(false)
                 if (response.ok) {
+
                     const token=Data.token
                     const freelancercheck= Data.userexist.isfreelancer;
+                  
                     console.log("check",freelancercheck);
                     if (freelancercheck) {
+                        
                         setfreelancer(true)
                     }
-                    authtoken(token)
+                    authtoken(token,freelancercheck)
                 //    settoken(token)
                    
                     setTimeout(()=>{
