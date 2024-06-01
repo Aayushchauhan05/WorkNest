@@ -49,13 +49,14 @@ setloading(false)
                     },100)
                     
                 } else {
-                    toast.error(`${Data.message}`)
+                    toast.error(`Check email id and password`)
                     router.push('/FreelancerRegister');
                     
                     // console.error('Login failed:', errorData);
                     
                 }
             } catch (error) {
+                toast.error(`Try again later`)
                 console.error('Login failed:', error);
                 // Handle error state, display error messages, etc.
             }
