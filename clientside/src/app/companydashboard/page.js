@@ -10,21 +10,22 @@ function page() {
   return (
     <>
     <div className="flex w-full min-h-screen">
-      <div className="hidden p-6 bg-gray-900 text-gray-50 md:block">
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-4">
+    <div className="hidden p-6 bg-cyan-800 text-gray-50 w-[20%] md:block">
+       <div className="flex flex-col gap-6">
+          
+          <nav className="fixed flex flex-col w-auto h-screen gap-2 top-20">
+          <div className="flex items-center gap-4 ">
             <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
               <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
             </span>
             <div>
             
               <h2 className="text-lg font-semibold">John Doe</h2>
-              <p className="text-gray-400">CEO, Acme Inc.</p>
+              <p className="text-gray-500">CEO, Acme Inc.</p>
             </div>
           </div>
-          <nav className="flex flex-col gap-2">
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
-              <svg
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800"href={"/companydashboard"}>
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -38,11 +39,11 @@ function page() {
               >
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
+              </svg> */}
               Dashboard
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
-              <svg
+            </Link>
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/profile"}>
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -56,11 +57,11 @@ function page() {
               >
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
-              </svg>
+              </svg> */}
               Profile
-            </a>
+            </Link>
             <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/viewfreelancer"}>
-              <svg
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -74,11 +75,11 @@ function page() {
               >
                 <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-              </svg>
+              </svg> */}
               Employees
             </Link>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
-              <svg
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/finance"}>
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -92,11 +93,11 @@ function page() {
               >
                 <line x1="12" x2="12" y1="2" y2="22"></line>
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg>
+              </svg> */}
               Finances
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="#">
-              <svg
+            </Link>
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/setting"}>
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -110,14 +111,14 @@ function page() {
               >
                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
-              </svg>
+              </svg> */}
               Settings
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
       <div className="flex flex-col w-full">
-        <header className="bg-white shadow-sm dark:bg-gray-900">
+        <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
           <div className="container flex items-center justify-between px-6 py-4 mx-auto">
             <div className="flex items-center gap-4">
               <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground md:hidden">
@@ -141,13 +142,13 @@ function page() {
               <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
                 <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
               </span>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-50">Acme Inc.</h1>
-                <p className="text-gray-500 dark:text-gray-400">Company Dashboard</p>
+              <div className="">
+                <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">Acme Inc.</h1>
+                <p className="text-cyan-500 dark:text-gray-400">Company Dashboard</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground">
+              <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:bg-red-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -158,7 +159,7 @@ function page() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="w-6 h-6 text-gray-500 dark:text-gray-400"
+                  className="w-6 h-6 text-white dark:text-gray-400"
                 >
                   <path d="M2 20h.01"></path>
                   <path d="M7 20v-4"></path>
@@ -167,7 +168,7 @@ function page() {
                   <path d="M22 4v16"></path>
                 </svg>
               </button>
-              <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground">
+              <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:bg-red-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -178,7 +179,7 @@ function page() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="w-6 h-6 text-gray-500 dark:text-gray-400"
+                  className="w-6 h-6 text-white dark:text-gray-400"
                 >
                   <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -238,7 +239,7 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+          <div className="border rounded-lg min-h-72 shadow-sm bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Completed Projects</h3>
               <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
@@ -269,7 +270,7 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
+          <div className="border rounded-lg min-h-72 shadow-sm bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Earnings</h3>
               <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
@@ -301,147 +302,262 @@ function page() {
             </div>
           </div>
         </main>
-        <section className="bg-white shadow-sm dark:bg-gray-900">
+        <section className=" shadow-sm dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
-            <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-50">Pending Projects</h2>
+            <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Pending Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
-                <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Project A</h3>
-                  <a
-                    className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+
+            <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project A</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                     href="#"
                   >
                     View
-                  </a>
-                </div>
-                <div className="grid gap-4 p-6">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Client: ABC Inc.</p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Due Date</h3>
-                      <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
                     </div>
-                    <div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
                       <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
                       <p className="text-yellow-500 dark:text-yellow-400">Pending</p>
                     </div>
                   </div>
                 </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
               </div>
-              <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
-                <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Project B</h3>
-                  <a
-                    className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+
+              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project B</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                     href="#"
                   >
                     View
-                  </a>
-                </div>
-                <div className="grid gap-4 p-6">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Develop Mobile App</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Client: XYZ Corp.</p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Due Date</h3>
-                      <p className="text-gray-500 dark:text-gray-400">June 15, 2023</p>
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
                     </div>
-                    <div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
+                      <p className="text-green-500 dark:text-yellow-400">Completed</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+              </div>
+
+              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project C</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                    href="#"
+                  >
+                    View
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
+                      <p className="text-red-500 dark:text-yellow-400">rejected</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+              </div>
+
+              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project A</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                    href="#"
+                  >
+                    View
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
                       <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
                       <p className="text-yellow-500 dark:text-yellow-400">Pending</p>
                     </div>
                   </div>
                 </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
               </div>
-              <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
-                <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Project C</h3>
-                  <a
-                    className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                    href="#"
-                  >
-                    View
-                  </a>
-                </div>
-                <div className="grid gap-4 p-6">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Branding Campaign</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Client: DEF Ltd.</p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Due Date</h3>
-                      <p className="text-gray-500 dark:text-gray-400">July 1, 2023</p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
-                      <p className="text-yellow-500 dark:text-yellow-400">Pending</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>
-        <section className="bg-white shadow-sm dark:bg-gray-900">
+        <section className=" shadow-sm dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
-            <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-50">Completed Projects</h2>
+            <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Completed Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
-                <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Project X</h3>
-                  <a
-                    className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project x</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                     href="#"
                   >
                     View
-                  </a>
-                </div>
-                <div className="grid gap-4 p-6">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Client: ABC Inc.</p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Completed Date</h3>
-                      <p className="text-gray-500 dark:text-gray-400">April 15, 2023</p>
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
                     </div>
-                    <div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
                       <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
-                      <p className="text-green-500 dark:text-green-400">Completed</p>
+                      <p className="text-yellow-500 dark:text-yellow-400">Pending</p>
                     </div>
                   </div>
                 </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
               </div>
-              <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
-                <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Project Y</h3>
-                  <a
-                    className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+
+              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project Y</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                     href="#"
                   >
                     View
-                  </a>
-                </div>
-                <div className="grid gap-4 p-6">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Develop Mobile App</h3>
-                    <p className="text-gray-500 dark:text-gray-400">Client: XYZ Corp.</p>
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Completed Date</h3>
-                      <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
+                      <p className="text-yellow-500 dark:text-yellow-400">Pending</p>
                     </div>
                   </div>
                 </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+              </div>
+
+
+              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+                <div className="flex flex-col justify-between h-full">
+                  <div className="flex flex-col space-y-4 p-6">
+                    <h3 className="text-lg font-bold text-center ">Project Z</h3>
+                    <Link
+                    className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                    href="#"
+                  >
+                    View
+                  </Link>
+                    <div className="flex flex-col space-y-2">
+                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Design Website</h3>
+                       
+                      </div>
+                      <div className="flex items-center justify-between">
+                      <span className="font-medium">Client:</span>
+                        <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
+                        </div>
+                        <div className="flex items-center justify-between">
+                        <span className=" font-medium">Due Date:</span>
+                        <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6 bg-gray-100 border-t">
+                  <div>
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Status</h3>
+                      <p className="text-green-500 dark:text-yellow-400">Completed</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
               </div>
             </div>
           </div>
