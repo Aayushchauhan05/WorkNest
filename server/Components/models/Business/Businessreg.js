@@ -64,7 +64,16 @@ const businessSchema = new Schema({
     },
     otp:{
 type:String
-    }
+    },
+    ProjectList:[{
+        type:Schema.Types.ObjectId,
+        ref:"ProjectListByCompany"
+            }],
+            Appliedcandidates:[{
+                type:Schema.Types.ObjectId,
+                ref:"Applicationforwork"
+                    }]
+
 }, { timestamps: true });
 const Business = model("Business_Data", businessSchema);
 module.exports={Business}
