@@ -1,4 +1,6 @@
-## http://localhost:5001/api/Listproject
+### Project
+
+## POST http://localhost:5001/api/Listproject
 
 
 Front-End data
@@ -44,42 +46,121 @@ Back_End data
   }
 }
 
-## http://localhost:5001/api/Companyreg
+### login
+## POST http://localhost:5001/api/login
+Front-End Data
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "companyName": "ABC Inc.",
+    "companySize": "Large",
+    "password": "securePassword123",
+    "Email": "john.doe@example.com",
+    "phone": "1234567890",
+    "Dob": "1990-01-01",
+    "Position": "CEO",
+    "Refer": "LinkedIn",
+    "verified": {
+        "status": "approved",
+        "by": "admin"
+    },
+    "isVerified": true,
+    "Linkdin": "https://www.linkedin.com/in/johndoe",
+    "personalWebsite": "https://www.example.com",
+    "isBusiness": true,
+    "connects": 20,
+    "otp": "123456",
+    "ProjectList": ["projectId1", "projectId2"],
+    "Appliedcandidates": ["candidateId1", "candidateId2"]
+}
 
-Status: 200 OK
-Size: 37 Bytes
-Time: 4.16 s
+Back-End Data
+{
+  "userexist": {
+    "_id": "665abe5602ca2bd43211479d",
+    "firstName": "John",
+    "lastName": "Doe",
+    "companyName": "Tech Solutions",
+    "companySize": "200-500",
+    "password": "$2b$14$vjATtMOyMTjwuUR8efNYuO0/Sy4a/oXxjPw0y7kao04JinIZUwWiu",
+    "Email": "john.doe@example.com",
+    "phone": "+1234567890",
+    "Dob": "1990-05-15",
+    "Position": "Senior Developer",
+    "Refer": "Jane Smith",
+    "verified": true,
+    "isVerified": true,
+    "Linkdin": "https://www.linkedin.com/in/johndoe",
+    "personalWebsite": "https://www.johndoe.com",
+    "isBusiness": true,
+    "connects": 150,
+    "otp": "347997",
+    "ProjectList": [],
+    "Appliedcandidates": [],
+    "createdAt": "2024-06-01T06:23:18.750Z",
+    "updatedAt": "2024-06-01T06:23:18.750Z",
+    "__v": 0
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyZXhpc3QiOnsiX2lkIjoiNjY1YWJlNTYwMmNhMmJkNDMyMTE0NzlkIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwiY29tcGFueU5hbWUiOiJUZWNoIFNvbHV0aW9ucyIsImNvbXBhbnlTaXplIjoiMjAwLTUwMCIsInBhc3N3b3JkIjoiJDJiJDE0JHZqQVR0TU95TVRqd3VVUjhlZk5ZdU8wL1N5NGEvb1h4alB3MHk3a2FvMDRKaW5JWlV3V2l1IiwiRW1haWwiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsInBob25lIjoiKzEyMzQ1Njc4OTAiLCJEb2IiOiIxOTkwLTA1LTE1IiwiUG9zaXRpb24iOiJTZW5pb3IgRGV2ZWxvcGVyIiwiUmVmZXIiOiJKYW5lIFNtaXRoIiwidmVyaWZpZWQiOnRydWUsImlzVmVyaWZpZWQiOnRydWUsIkxpbmtkaW4iOiJodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vam9obmRvZSIsInBlcnNvbmFsV2Vic2l0ZSI6Imh0dHBzOi8vd3d3LmpvaG5kb2UuY29tIiwiaXNCdXNpbmVzcyI6dHJ1ZSwiY29ubmVjdHMiOjE1MCwib3RwIjoiMzQ3OTk3IiwiUHJvamVjdExpc3QiOltdLCJBcHBsaWVkY2FuZGlkYXRlcyI6W10sImNyZWF0ZWRBdCI6IjIwMjQtMDYtMDFUMDY6MjM6MTguNzUwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDYtMDFUMDY6MjM6MTguNzUwWiIsIl9fdiI6MH0sImlhdCI6MTcxNzI1NDEwNiwiZXhwIjoxNzE3NDI2OTA2fQ.mecN19TJLfyu5-1ko8FMl3-OB9YWHG1Bn_77sIhXoSo"
+}
+
+### for business
+## POST http://localhost:5001/api/Companyreg
+
+
 
 Front-End data
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "companyName": "Tech Innovators Ltd.",
-  "companySize": "51-200",
-  "password": "securepassword123",
-  "Email": "john.doe@techinnovators.com",
-  "phone": "+1234567890",
-  "Dob": "1980-05-15",
-  "Position": "CEO",
-  "Refer": "LinkedIn",
-  "verified": "Pending",
-  "isVerified": false,
-  "Linkdin": "https://www.linkedin.com/in/johndoe",
-  "personalWebsite": "https://www.johndoe.com",
-  "isBusiness": true,
-  "connects": 10,
-  "otp": "123456",
-  "ProjectList": ["60d5ec49f10a9c5a5b1e9e1b", "60d5ec49f10a9c5a5b1e9e1c"],
-  "Appliedcandidates": ["60d5ec49f10a9c5a5b1e9e1d", "60d5ec49f10a9c5a5b1e9e1e"]
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "companyName": "Johnson Innovations",
+    "companySize": "Large",
+    "password": "securePassword!123",
+    "Email": "alice.johnson@example.com",
+    "phone": "555-1234-567",
+    "Dob": "1978-11-23",
+    "Position": "Founder",
+    "Refer": "Industry Event",
+    "verified": null,
+    "isVerified": false,
+    "Linkdin": "https://www.linkedin.com/in/alicejohnson",
+    "personalWebsite": "https://www.alicejohnson.com",
+    "isBusiness": true,
+    "connects": 20,
+    "otp": "789123",
+    "ProjectList": ["60d5ec49e1d45a37c0f9a6b7", "60d5ec49e1d45a37c0f9a6b8"],
+    "Appliedcandidates": ["60d5ec49e1d45a37c0f9a6c1", "60d5ec49e1d45a37c0f9a6c2"],
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
 }
 
+
+   
 Back-End data
 
- Successfull
+ {
+  "message": "Registration Succesfull"
+}
 
+## GET http://localhost:5001/api/Getprojectdata
 
-## http://localhost:5001/api/Applyforwork
+Back-End Data
+{
+  "data": {
+    "_id": "665adda4ffd056f865368a6b",
+    "Email": "ayushchauhan0507@gmail.com",
+    "CompanyName": "Tech Solutions Inc.",
+    "ProjectList": [
+      "665adda4ffd056f865368a68",
+      "665ade71ffd056f865368a6d"
+    ],
+    "__v": 0
+  }
+}
+
+### Place bide
+## POST http://localhost:5001/api/Applyforwork
  working and showing company doesn't exist
 
  Front-End data
@@ -122,6 +203,7 @@ Back-End data
   "message": "Company does not exist"
 }
 
+### Skills
 ## POST http://localhost:5001/api/skills/createSkill
 
 Front-End Data
@@ -244,6 +326,73 @@ Back_End Data
   "skills": "java script",
   "__v": 0
 }
+
+### Freelancer
+## GET http://localhost:5001/api/freelancerprofile
+Back-End Data
+{
+  "Data": {
+    "pendingProject": [],
+    "rejectedProject": [],
+    "acceptedProject": [],
+    "_id": "66594751178d775e52b8186c",
+    "firstName": "Aayush ",
+    "lastName": "Chauhan",
+    "userName": "data.values.userName",
+    "password": "$2b$14$HaCZrf5sgUaE9SU1Z/pEuurQ.vLuAdB3leKL9CnypqFWi32i7nMS6",
+    "Email": "ayushchauhan0507@gmail.com",
+    "phone": "123456789",
+    "Dob": "6363-03-06",
+    "professionalInfo": [
+      {
+        "previousCompany": "hsxhywsd",
+        "Role": "kjmsmnms"
+      }
+    ],
+    "Skills": [
+      "63363636b,smn,smsm"
+    ],
+    "Education": "high-school",
+    "Role": "designer",
+    "project": [
+      {
+        "_id": "665ad8e7ffd056f865368a65",
+        "projectName": "Website Redesign",
+        "Description": "Redesigned the company's e-commerce website to improve user experience and sales.",
+        "verified": true,
+        "isVerified": true,
+        "githubLink": "https://github.com/user/website-redesign",
+        "Start": "2023-01-15T00:00:00.000Z",
+        "End": "2023-03-30T00:00:00.000Z",
+        "Refer": "John Doe, CTO at Company X",
+        "TechUsed": [
+          "React",
+          "Node.js",
+          "Express",
+          "MongoDB"
+        ],
+        "Role": "Frontend Developer",
+        "projectType": "Full-time",
+        "createdAt": "2024-06-01T08:16:39.898Z",
+        "updatedAt": "2024-06-01T08:16:39.898Z",
+        "__v": 0
+      }
+    ],
+    "Refer": "asgas",
+    "isVerified": false,
+    "githubLink": "https://chatgpt.com/c/fdab44bb-758c-4e8d-a46d-94395e690c27",
+    "Linkdin": "https://chatgpt.com/c/fdab44bb-758c-4e8d-a46d-94395e690c27",
+    "perHourPrice": 22,
+    "connects": 0,
+    "workExperience": "2",
+    "isfreelancer": true,
+    "consultant": false,
+    "createdAt": "2024-05-31T03:43:13.351Z",
+    "updatedAt": "2024-06-01T08:16:39.953Z",
+    "__v": 0
+  }
+}
+
 
 
 
