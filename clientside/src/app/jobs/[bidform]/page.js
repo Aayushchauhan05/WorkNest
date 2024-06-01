@@ -28,7 +28,7 @@ const projectDetails = {
 const JobApplicationForm = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post('/api/apply', values);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/apply`, values);
       console.log('Success:', response.data);
       resetForm();
     } catch (error) {
