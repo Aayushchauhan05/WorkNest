@@ -262,25 +262,24 @@ function page() {
 
 
           <nav className="flex flex-col gap-2 fixed top-36 w-auto h-screen">
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
+  <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
+    Dashboard
+  </Link>
 
-              Dashboard
-            </Link>
+  <a className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-md cursor-pointer`} onClick={() => filterProjectsByStatus("Applied")}>
+    Applied
+  </a>
+  <a className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-md cursor-pointer `} onClick={() => filterProjectsByStatus("Rejected")}>
+    Rejected
+  </a>
+  <a className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-md cursor-pointer `} onClick={() => filterProjectsByStatus("Pending")}>
+    Ongoing
+  </a>
+  <a className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-md cursor-pointer `} onClick={() => filterProjectsByStatus("Complete")}>
+    Completed
+  </a>
+</nav>
 
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" onClick={() => filterProjectsByStatus("Applied")}>
-              Applied
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" onClick={() => filterProjectsByStatus("Rejected")}>
-              Rejected
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" onClick={() => filterProjectsByStatus("Pending")}>
-              Ongoing
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" onClick={() => filterProjectsByStatus("Complete")}>
-              Completed
-            </a>
-
-          </nav>
         </div>
         <div class="flex-1  bg-gray-900 p-6 md:p-8">
           <h2 class="text-2xl font-bold mb-6 text-cyan-600">Your Projects</h2>

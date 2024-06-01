@@ -95,6 +95,9 @@ function Page() {
               <Link href="/freelancerDashboard" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
                 Dashboard
               </Link>
+              <Link href="/freelancerDashboard/professionalInfo" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800">
+                Personal Info
+              </Link>
               <Link href="/freelancerDashboard/professionalInfo" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
                 Professional Info
               </Link>
