@@ -13,7 +13,7 @@ function page() {
     <>
   
   <div className="flex w-full h-screen ">
-   <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[50%] md:w-[20%]`}>
+   <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
        <div className="flex flex-col gap-6">
        <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
            
@@ -37,18 +37,18 @@ function page() {
             Profile
            </Link>
 
-           <Link href={"/companydashboard/employees"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+           <Link href={"/companydashboard/professionalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
              
-           Employee
+           professional info
            </Link>
 
-           <Link href={"/companydashboard/finance"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+           <Link href={"/companydashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
              
-            Finance
+            Projects
            </Link>
-           <Link href={"/companydashboard/finance"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+           <Link href={"/companydashboard/viewfreelancer"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
              
-             Setting
+             View Freelancer
             </Link>
              
               

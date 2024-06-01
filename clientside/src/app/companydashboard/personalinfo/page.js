@@ -41,55 +41,42 @@ function ProfilePage() {
               X
             </button>
 
-            <nav className="flex flex-col gap-2 h-screen">
-              <div className="flex items-center gap-4">
-                <span className="relative flex shrink-0 overflow-hidden rounded-full h-12 w-12 md:h-14 md:w-14">
-                  <span className="flex h-full w-full items-center justify-center rounded-full bg-muted">
-                    JP
-                  </span>
-                </span>
-                <div className="grid gap-1">
-                  <h1 className="text-xl font-semibold md:text-2xl">
-                    Jared Palmer
-                  </h1>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Software Engineer
-                  </p>
-                </div>
+            <nav class="flex flex-col gap-2 h-screen">
+            <div class="flex items-center gap-4">
+              <span class="relative flex shrink-0 overflow-hidden rounded-full h-12 w-12 md:h-14 md:w-14">
+                <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JP</span>
+              </span>
+              <div class="grid gap-1">
+                <h1 class="text-xl font-semibold md:text-2xl">Jared Palmer</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Software Engineer</p>
               </div>
-              <Link
-                href={"/companydashboard"}
-                className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 "
-              >
-                Dashboard
-              </Link>
+            </div>
+            <Link href={"/companydashboard"} className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+             
+            Dashboard
+           </Link>
 
-              <Link
-                href={"/companydashboard/personalinfo"}
-                className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 "
-              >
-                Profile
-              </Link>
+           <Link href={"/companydashboard/personalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+             
+            Profile
+           </Link>
 
-              <Link
-                href={"/companydashboard/employees"}
-                className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 "
-              >
-                Employee
-              </Link>
+           <Link href={"/companydashboard/professionalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+             
+           professional info
+           </Link>
 
-              <Link
-                href={"/companydashboard/finance"}
-                className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 "
-              >
-                Finance
-              </Link>
-              <Link
-                href={"/companydashboard/settings"}
-                className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 "
-              >
-                Setting
-              </Link>
+           <Link href={"/companydashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+             
+            Projects
+           </Link>
+           <Link href={"/companydashboard/viewfreelancer"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+             
+             View Freelancer
+            </Link>
+             
+              
+              
             </nav>
           </div>
         </div>
