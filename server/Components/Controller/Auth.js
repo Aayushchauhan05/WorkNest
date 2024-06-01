@@ -19,87 +19,53 @@ async function main(useremail, otp, transporter) {
 }
 
 const Freelancer_reg = async (req, res) => {
-  const data = req.body;
-  console.log(data.values);
   try {
+    const data = req.body;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const isValidEmail = emailRegex.test(data.Email);
 
-    const isValidEmail = emailRegex.test(data.values.Email);
-
-    console.log("email", isValidEmail);
     if (!isValidEmail) {
       return res.status(401).json({ message: "Enter valid email" });
     }
 
-    const userexist = await Freelancer.findOne({ Email: data.values.Email });
-    const Usernameexist = await Freelancer.findOne({
-      userName: data.values.userName,
+    const userExists = await Freelancer.findOne({
+      $or: [{ Email: data.Email }, { userName: data.userName }],
     });
-    if (userexist) {
-      return res.status(404).json({ message: "User already exist" });
+    if (userExists) {
+      return res.status(404).json({
+        message:
+          userExists.Email === data.Email
+            ? "User already exists"
+            : "Username already exists",
+      });
     }
-    if (Usernameexist) {
-      return res.status(404).json({ message: "Username already exist" });
-    }
-    const password = data.values.password;
-    console.log(password);
-    const hashpass = await bcrypt.hash(password, 14);
-    console.log(hashpass);
-    // console.log(phone)
-    const otpcode = otpGenerator.generate(6, {
+    const salt = await bcrypt.genSalt(14);
+    const password = data.password;
+    console.log("here is the password", password);
+    const hashpass = await bcrypt.hash(password, salt);
+    const otpCode = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       specialChars: false,
       lowerCaseAlphabets: false,
     });
-    const user = new Freelancer({
-      firstName: data.values.firstName,
-      lastName: data.values.lastName,
-      userName: "data.values.userName",
-      Email: data.values.Email,
-      phone: data.values.phone,
-      Dob: data.values.Dob,
-      professionalInfo: data.values.professionalInfo,
-      Skills: data.values.Skills,
-      Education: data.values.Education,
-      Role: data.values.Role,
-      project: data.values.project,
-      Refer: data.values.Refer,
-      verified: data.values.verified,
-      isVerified: data.values.isVerified,
-      githubLink: data.values.githubLink,
-      Linkdin: data.values.Linkdin,
-      personalWebsite: data.values.personalWebsite,
-      perHourPrice: "22",
-      connects: data.values.connects,
-      Resume: data.values.Resume,
-      InterviewedBy: data.values.InterviewedBy,
-      workExperience: 2,
-      phone: data.values.phone,
+
+    const user = await Freelancer.create({
+      ...data,
       password: hashpass,
-      otp: otpcode,
+      otp: otpCode,
     });
-    const response = await user.save();
-    console.log("here is the response", response);
 
-    //     const otpexist=  await otp.findOne({Email:data.values.Email});
+    await main(
+      data.Email,
+      otpCode,
+      nodemailer.createTransport({
+        service: "gmail",
+        port: 587,
+        secure: false,
+        auth: { user: process.env.EMAIL, pass: process.env.APP_PASS },
+      })
+    ).catch(console.error);
 
-    // if (!otpexist) {
-    //     const userotp= await  otp.create({email:data.values.Email,phone:data.values.phone,otp:otpcode})
-
-    // }
-    // else{
-    // const update= await otp.findOneAndUpdate({email:data.values.Email},{otp:otpcode},{new:true});
-    // }
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.APP_PASS,
-      },
-    });
-    await main(data.values.Email, otpcode, transporter).catch(console.error);
     return res.status(200).json({ user });
   } catch (error) {
     console.log("registrationerror", error);
@@ -203,28 +169,25 @@ const business_reg = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 const login = async (req, res) => {
   try {
     const { Email, password } = req.body;
-
     let userexist = await Business.findOne({ Email });
+
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select(
         "-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience "
       );
-      console.log("test", userexist);
     }
-    console.log("test", userexist);
 
     if (!userexist) {
       return res
         .status(404)
         .json({ message: "User not exist, please register" });
     }
-    console.log("user", userexist);
-    const userpass = userexist.password;
-    console.log(userpass);
-    const passcheck = await bcrypt.compare(password, userpass);
+    const passcheck = await bcrypt.compare(password, userexist.password);
+
     if (!passcheck) {
       return res.status(401).json({ message: " Invalid password Or Username" });
     }
