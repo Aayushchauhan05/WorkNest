@@ -7,26 +7,28 @@ import { useEffect } from "react";
 function page() {
   const jobListings = [
     {
-      title: 'Web Developer Needed',
-      description: "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: '$3,000 - $5,000',
-      priceRange: '$2,000+',
-      client: 'ABC Corp',
-      dueDate: '2024-06-15',
-      status: 'Available to bid',
-      jobType: 'Web Development',
-      experienceLevel: 'Expert'
+      title: "Web Developer Needed",
+      description:
+        "We're looking for an experienced web developer to build a custom e-commerce website.",
+      budget: "$3,000 - $5,000",
+      priceRange: "$2,000+",
+      client: "ABC Corp",
+      dueDate: "2024-06-15",
+      status: "Available to bid",
+      jobType: "Web Development",
+      experienceLevel: "Expert",
     },
     {
-      title: 'Graphic Designer for Branding',
-      description: 'We need a talented graphic designer to create a brand identity for our new startup.',
-      budget: '$1,000 - $2,500',
-      priceRange: '$500 - $2,000',
-      client: 'XYZ Corp',
-      dueDate: '2024-07-10',
-      status: 'Bid ends soon',
-      jobType: 'Graphic Design',
-      experienceLevel: 'Intermediate'
+      title: "Graphic Designer for Branding",
+      description:
+        "We need a talented graphic designer to create a brand identity for our new startup.",
+      budget: "$1,000 - $2,500",
+      priceRange: "$500 - $2,000",
+      client: "XYZ Corp",
+      dueDate: "2024-07-10",
+      status: "Bid ends soon",
+      jobType: "Graphic Design",
+      experienceLevel: "Intermediate",
     },
     {
       title: 'Content Writer for Blog',
@@ -191,41 +193,68 @@ function page() {
           </div>
         </header>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-          <div className="sticky w-auto h-full col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
+          <div className="sticky col-span-1 p-6 bg-cyan-800 rounded-lg shadow-md md:col-span-3 top-24 w-auto h-screen">
             <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
             <ul className="space-y-2">
               <li>
                 <label className="text-sm text-white hover:text-gray-300">
-                  <input type="radio" name="jobType" onChange={() => handleFilterChange('jobType', 'Web Development')} />
+                  <input
+                    type="radio"
+                    name="jobType"
+                    onChange={() =>
+                      handleFilterChange("jobType", "Web Development")
+                    }
+                  />
                   Web Development
                 </label>
               </li>
               <li>
                 <label className="text-sm text-white hover:text-gray-300">
-                  <input type="radio" name="jobType" onChange={() => handleFilterChange('jobType', 'Graphic Design')} />
+                  <input
+                    type="radio"
+                    name="jobType"
+                    onChange={() =>
+                      handleFilterChange("jobType", "Graphic Design")
+                    }
+                  />
                   Graphic Design
                 </label>
               </li>
               <li>
                 <label className="text-sm text-white hover:text-gray-300">
-                  <input type="radio" name="jobType" onChange={() => handleFilterChange('jobType', 'Content Writing')} />
+                  <input
+                    type="radio"
+                    name="jobType"
+                    onChange={() =>
+                      handleFilterChange("jobType", "Content Writing")
+                    }
+                  />
                   Content Writing
                 </label>
               </li>
               <li>
                 <label className="text-sm text-white hover:text-gray-300">
-                  <input type="radio" name="jobType" onChange={() => handleFilterChange('jobType', 'Virtual Assistant')} />
+                  <input
+                    type="radio"
+                    name="jobType"
+                    onChange={() =>
+                      handleFilterChange("jobType", "Virtual Assistant")
+                    }
+                  />
                   Virtual Assistant
                 </label>
               </li>
               <li>
                 <label className="text-sm text-white hover:text-gray-300">
-                  <input type="radio" name="jobType" onChange={() => handleFilterChange('jobType', 'Marketing')} />
+                  <input
+                    type="radio"
+                    name="jobType"
+                    onChange={() => handleFilterChange("jobType", "Marketing")}
+                  />
                   Marketing
                 </label>
               </li>
             </ul>
-
 
             <div
               data-orientation="horizontal"
@@ -249,7 +278,9 @@ function page() {
                         type="checkbox"
                         id="experience-entry"
                         className="peer "
-                        onClick={() => handleFilterChange('experienceLevel', 'Entry Level')}
+                        onClick={() =>
+                          handleFilterChange("experienceLevel", "Entry Level")
+                        }
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -263,7 +294,9 @@ function page() {
                         type="checkbox"
                         id="experience-intermediate"
                         className="peer "
-                        onClick={() => handleFilterChange('experienceLevel', 'Intermediate')}
+                        onClick={() =>
+                          handleFilterChange("experienceLevel", "Intermediate")
+                        }
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -277,7 +310,9 @@ function page() {
                         type="checkbox"
                         id="experience-expert"
                         className="peer "
-                        onClick={() => handleFilterChange('experienceLevel', 'Expert')}
+                        onClick={() =>
+                          handleFilterChange("experienceLevel", "Expert")
+                        }
                       />
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -302,7 +337,7 @@ function page() {
                     className="grid gap-2"
                     id="budget"
                     tabIndex="0"
-                    style={{ outline: 'none' }}
+                    style={{ outline: "none" }}
                   >
                     <div className="flex items-center gap-2">
                       <button
@@ -312,7 +347,9 @@ function page() {
                         data-state="checked"
                         className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="budget-0-500"
-                        onClick={() => handleFilterChange('budget', '$0 - $500')}
+                        onClick={() =>
+                          handleFilterChange("budget", "$0 - $500")
+                        }
                       ></button>
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -329,7 +366,9 @@ function page() {
                         data-state="unchecked"
                         className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="budget-500-2000"
-                        onClick={() => handleFilterChange('budget', '$500 - $2,000')}
+                        onClick={() =>
+                          handleFilterChange("budget", "$500 - $2,000")
+                        }
                       ></button>
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -346,7 +385,7 @@ function page() {
                         data-state="unchecked"
                         className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         id="budget-2000"
-                        onClick={() => handleFilterChange('budget', '$2,000+')}
+                        onClick={() => handleFilterChange("budget", "$2,000+")}
                       ></button>
                       <label
                         className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -361,11 +400,13 @@ function page() {
                   <button
                     type="button"
                     className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-500"
-                    onClick={() => setFilters({
-                      jobType: 'All',
-                      experienceLevel: 'All',
-                      budget: 'All',
-                    })}
+                    onClick={() =>
+                      setFilters({
+                        jobType: "All",
+                        experienceLevel: "All",
+                        budget: "All",
+                      })
+                    }
                   >
                     Reset Filters
                   </button>
@@ -374,15 +415,17 @@ function page() {
             </div>
           </div>
           <div className="col-span-1 md:col-span-9">
-
-
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredJobs.map((job, index) => (
-
-                <div key={index} className="rounded-lg overflow-hidden border bg-white text-black shadow-sm relative group">
+                <div
+                  key={index}
+                  className="rounded-lg overflow-hidden border bg-white text-black shadow-sm relative group"
+                >
                   <div className="flex flex-col justify-between h-full">
                     <div className="flex flex-col space-y-4 p-6">
-                      <h3 className="text-lg font-bold text-center ">{job.title}</h3>
+                      <h3 className="text-lg font-bold text-center ">
+                        {job.title}
+                      </h3>
 
                       <div className="flex flex-col space-y-2">
                         <div className="flex items-center justify-between">
@@ -390,17 +433,22 @@ function page() {
                           <span>{job.client}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-500 font-medium">Due Date:</span>
+                          <span className="text-gray-500 font-medium">
+                            Due Date:
+                          </span>
                           <span>{job.dueDate}</span>
                         </div>
                       </div>
                     </div>
                     <div className="p-6 bg-gray-100 border-t flex gap-2">
-                      <div className="text-sm text-gray-600">Budget: {job.budget}</div>
-                      <button className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}>
+                      <div className="text-sm text-gray-600">
+                        Budget: {job.budget}
+                      </div>
+                      <button
+                        className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}
+                      >
                         bid
                       </button>
-
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
@@ -409,9 +457,7 @@ function page() {
             </div>
           </div>
         </div>
-
       </div>
-
     </>
   );
 }
