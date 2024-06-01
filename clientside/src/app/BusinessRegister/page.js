@@ -95,6 +95,7 @@ toast.success("Registration succesfull")
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
                 type="text"
+            
               />
             </div>
             <div className="space-y-2">
@@ -110,6 +111,7 @@ toast.success("Registration succesfull")
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
                 type="text"
+          
               />
             </div>
           </div>
@@ -126,6 +128,7 @@ toast.success("Registration succesfull")
               onChange={formik.handleChange}
               value={formik.values.companyName}
               type="text"
+              minLength={8}
             />
           </div>
           <div className="space-y-2">
@@ -221,6 +224,7 @@ toast.success("Registration succesfull")
                 onChange={formik.handleChange}
                 value={formik.values.Position}
                 type="text"
+                minLength={8}
               />
             </div>
           </div>
@@ -236,6 +240,7 @@ toast.success("Registration succesfull")
               type="text"
               onChange={formik.handleChange}
               value={formik.values.Refer}
+              minLength={8}
             />
           </div>
           <div className="space-y-2">

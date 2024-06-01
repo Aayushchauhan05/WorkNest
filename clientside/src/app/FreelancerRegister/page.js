@@ -94,6 +94,7 @@ export default function Component() {
                 placeholder="Enter your first name"
                 required
                 type="text"
+           
               />
             </div>
             <div className="space-y-2">
@@ -109,6 +110,7 @@ export default function Component() {
                 placeholder="Enter your last name"
                 required
                 type="text"
+             
               />
             </div>
           </div>
@@ -125,6 +127,7 @@ export default function Component() {
               placeholder="Enter your username"
               required
               type="text"
+              minLength={8} 
             />
           </div>
           <div className="space-y-2">
@@ -140,6 +143,7 @@ export default function Component() {
               placeholder="Enter your email"
               required
               type="email"
+              minLength={8} 
             />
           </div>
           <div className="grid grid-cols-2 gap-6">
@@ -173,6 +177,7 @@ export default function Component() {
                 placeholder="Enter your years of experience"
                 required
                 type="number"
+                minLength={10} 
               />
             </div>
           </div>
@@ -239,6 +244,7 @@ export default function Component() {
                 placeholder="Enter your LinkedIn profile URL"
                 required
                 type="url"
+
               />
             </div>
             <div className="space-y-2">
@@ -254,6 +260,7 @@ export default function Component() {
                 placeholder="Enter your password"
                 required
                 type="password"
+                minLength={8} 
               />
             </div>
             <div className="space-y-2">
@@ -285,6 +292,7 @@ export default function Component() {
               placeholder="Enter your refer"
               required
               type="text"
+              minLength={8} 
             />
           </div>
           <div className="space-y-2">
@@ -314,12 +322,13 @@ export default function Component() {
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="previouscompany"
-              name="professionalInfo[0].previousCompany" // Corrected name attribute for nested object
+              name="professionalInfo[0].previousCompany" 
               value={formik.values.professionalInfo[0].previousCompany}
               onChange={formik.handleChange}
               placeholder="Enter your previous company"
               required
               type="text"
+              minLength={8} 
             />
           </div>
           <div className="space-y-2">
@@ -329,12 +338,13 @@ export default function Component() {
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="role-in-company"
-              name="professionalInfo[0].Role" // Corrected name attribute for nested object
+              name="professionalInfo[0].Role" 
               value={formik.values.professionalInfo[0].Role}
               onChange={formik.handleChange}
               placeholder="Your role in company"
               required
               type="text"
+              minLength={8} 
             />
           </div>
           <div className="space-y-2">

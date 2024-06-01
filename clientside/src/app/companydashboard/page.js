@@ -32,7 +32,7 @@ function page() {
             Dashboard
            </Link>
 
-           <Link href={"/companydashboard/profileInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+           <Link href={"/companydashboard/personalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
              
             Profile
            </Link>
