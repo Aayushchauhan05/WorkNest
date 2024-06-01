@@ -12,26 +12,18 @@ require("dotenv").config()
 const app= express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.json())
-// app.options('/Api/FreelancerRegister', (req, res) => {
-//     res.set({
-//       'Access-Control-Allow-Origin': process.env.ORIGIN,
-//       'Access-Control-Allow-Methods': 'POST',
-//       'Access-Control-Allow-Headers': 'Content-Type',
-//       'Access-Control-Max-Age': '86400', // 24 hours
-//     }).sendStatus(204); // No content
-//   });
-const corspermission={
-    "origin":process.env.ORIGIN,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-}
-app.use(cors(corspermission))
+app.use(express.json());
 
+const corspermission = {
+  origin: process.env.ORIGIN,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corspermission));
 
 const port = process.env.PORT || 5000;
-app.use("/Api",Authroutes);
+app.use("/Api", Authroutes);
 app.use("/api/skills", Skillsroutes);
 app.use("/api/oracle", Oracleroutes);
 app.use("/api/interviewers", Interviewerrouters);
