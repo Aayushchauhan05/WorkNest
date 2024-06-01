@@ -9,8 +9,8 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function Component() {
 
+export default function Component() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Component() {
     Education: "",
     Role: "",
     Refer: "",
-    phone: "123456789",
+    phone: "",
     professionalInfo: [
       {
         previousCompany: "",
@@ -38,32 +38,31 @@ export default function Component() {
     Skills: "",
     githubLink: "",
     Linkdin: "",
-    personalwebsite: "",
-    perHourPrice: "10",
-    workExperience: "10",
-    certifications: "",
+    personalWebsite: "",
+    perHourPrice: "",
+    workExperience: "",
+    isfreelancer: true,
+    consultant: false
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log("console.log in onsubmit", values);
+      console.log("Submitted values:", values);
 
       setLoading(true);
       try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, values);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, { values });
         setLoading(false);
         localStorage.setItem('email', formik.values.Email);
         router.push("/otp");
         console.log(response);
-      } catch (error) { // Correct error handling
-        toast.error(`${error.message}`); // Corrected error handling
+
+      } catch (error) {
+        toast.error(error.response ? error.response.data.message : 'An unexpected error occurred');
         setLoading(false);
-        if (error.response && error.response.status === 400) {
-          console.error('Bad Request: ', error.message);
-        } else {
-          console.error('An unexpected error occurred: ', error.message);
-        }
+        console.error('Error:', error.message);
+
       }
     },
   });
@@ -230,6 +229,7 @@ export default function Component() {
               rows="3"
             />
           </div>
+
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-profile">
@@ -280,16 +280,16 @@ export default function Component() {
             </div>
           </div>
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="refer">
-              Refer
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-link">
+              GitHub Link
             </Label>
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="refer"
-              name="Refer"
-              value={formik.values.Refer}
+              id="github-link"
+              name="githubLink"
+              value={formik.values.githubLink}
               onChange={formik.handleChange}
-              placeholder="Enter your refer"
+              placeholder="Enter your GitHub profile link"
               required
               type="text"
               minLength={8} 
@@ -360,51 +360,22 @@ export default function Component() {
               placeholder="Start date"
               required
               type="date"
+
             />
           </div>
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="end-date">
-              End Date
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-link">
+              LinkedIn Link
             </Label>
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="end-date"
-              name="professionalInfo[0].end"
-              value={formik.values.professionalInfo[0].end}
+              id="linkedin-link"
+              name="Linkdin"
+              value={formik.values.Linkdin}
               onChange={formik.handleChange}
-              placeholder="End date"
+              placeholder="Enter your LinkedIn profile link"
               required
-              type="date"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="skills-used">
-              Skills Used
-            </Label>
-            <Textarea
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="skills-used"
-              name="professionalInfo[0].skills"
-              value={formik.values.professionalInfo[0].skills}
-              onChange={formik.handleChange}
-              placeholder="Skills used"
-              required
-              rows="2"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="description">
-              Description
-            </Label>
-            <Textarea
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="description"
-              name="professionalInfo[0].description"
-              value={formik.values.professionalInfo[0].description}
-              onChange={formik.handleChange}
-              placeholder="Description"
-              required
-              rows="3"
+              type="url"
             />
           </div>
           <div className="space-y-2">
@@ -414,16 +385,16 @@ export default function Component() {
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
               id="personal-website"
-              name="personalwebsite"
-              value={formik.values.personalwebsite}
+              name="personalWebsite"
+              value={formik.values.personalWebsite}
               onChange={formik.handleChange}
-              placeholder="Enter your personal website URL"
+              placeholder="Enter your personal website link"
               type="url"
             />
           </div>
           <div className="space-y-2">
             <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="per-hour-price">
-              Per Hour Price
+              Per Hour Price (in USD)
             </Label>
             <Input
               className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
@@ -432,30 +403,38 @@ export default function Component() {
               value={formik.values.perHourPrice}
               onChange={formik.handleChange}
               placeholder="Enter your per hour price"
+              required
               type="number"
               min="0"
             />
           </div>
-          <div>
-            {!loading ? (
-              <Button
-                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
-                type="submit"
-              >
-                Register
-              </Button>
-            ) : (
-              <Button
-                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
-                disabled
-              >
-                Loading...
-              </Button>
-            )}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="freelancer">
+                Freelancer
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="freelancer"
+                name="isfreelancer"
+                checked={formik.values.isfreelancer}
+                onChange={formik.handleChange}
+                required
+                type="checkbox"
+              />
+            </div>
+           
           </div>
+          <Button
+            type="submit"
+            className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#00b8d4] py-2 px-4 text-sm font-medium text-white hover:bg-[#00a0b8] focus:outline-none focus:ring-2 focus:ring-[#00a0b8] focus:ring-offset-2"
+            disabled={loading}
+          >
+            {loading ? 'Submitting...' : 'Register'}
+          </Button>
+          <ToastContainer />
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 }

@@ -1,18 +1,17 @@
-
-"use client"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Select } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { useFormik } from "formik"
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+"use client";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { useFormik } from "formik";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Component() {
-  const [loading,setloading]= useState(false)
+  const [loading, setLoading] = useState(false);
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -27,51 +26,42 @@ export default function Component() {
     Linkdin: "",
     personalWebsite: "",
     isBusiness: true
-  }
-  const router= useRouter();
-
+  };
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log(values)
-      
-      localStorage.clear()
-      try {
+      console.log(values);
+      localStorage.clear();
 
-        setloading(true)
-        const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/Companyreg`,{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
+      setLoading(true);
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/Companyreg`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(values)
-        })
-const data= await response.json();
-
-        if(response.ok){
-toast.success("Registration succesfull")
-          localStorage.setItem("email",data.Data.Email)
-          setloading(false)
-          router.push("/otp")
-        }
-        else{
-          toast.error(`${data.message}`)
-          console.log("error")
+        });
+        
+        const data = await response.json();
+console.log(data)
+        if (response.ok) {
+          toast.success("Registration successful");
+          localStorage.setItem("email", data.Data.Email);
+          router.push("/otp");
+        } else {
+          toast.error(data.message);
         }
       } catch (error) {
-        toast.error("Internal server error")
-        console.log(error)
+        // toast.error("Internal server error");
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
-    
-//       const response = await axios.post(`${process.env.BACKEND_HOST}/Api/Companyreg`, {values}).then((data)=>{
-//         console.log(data);
-//       }).catch((error)=>{
-// console.log(error);
-//       })
-     
     }
-  })
+  });
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-950 sm:px-6 lg:px-8">
@@ -274,21 +264,25 @@ toast.success("Registration succesfull")
             />
           </div>
           <div>
-          { !loading? <Button
-              className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
-              type="submit"
-            >
-              Register
-            </Button>:<Button disable
-              className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
-              
-            >
-             Loading...
-            </Button>}
+            {!loading ? (
+              <Button
+                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
+                type="submit"
+              >
+                Register
+              </Button>
+            ) : (
+              <Button
+                disabled
+                className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
+              >
+                Loading...
+              </Button>
+            )}
           </div>
         </form>
       </div>
       <ToastContainer />
     </div>
-  )
+  );
 }
