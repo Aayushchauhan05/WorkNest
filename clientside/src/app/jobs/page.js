@@ -30,126 +30,126 @@ function page() {
       dueDate: '2024-06-30',
       status: 'Available to bid'
     },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends soon'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends soon'
-    },
-    {
-      title: 'Web Developer Needed',
-      description: "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: '$3,000 - $5,000',
-      client: 'ABC Corp',
-      dueDate: '2024-06-15',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Graphic Designer for Branding',
-      description: 'We need a talented graphic designer to create a brand identity for our new startup.',
-      budget: '$1,000 - $2,500',
-      client: 'XYZ Corp',
-      dueDate: '2024-07-10',
-      status: 'Bid ends'
-    },
-    {
-      title: 'Content Writer for Blog',
-      description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
-      budget: '$500 - $1,000',
-      client: '123 Inc',
-      dueDate: '2024-06-30',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends soon'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends'
-    },
-    {
-      title: 'Web Developer Needed',
-      description: "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: '$3,000 - $5,000',
-      client: 'ABC Corp',
-      dueDate: '2024-06-15',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Graphic Designer for Branding',
-      description: 'We need a talented graphic designer to create a brand identity for our new startup.',
-      budget: '$1,000 - $2,500',
-      client: 'XYZ Corp',
-      dueDate: '2024-07-10',
-      status: 'Bid ends'
-    },
-    {
-      title: 'Content Writer for Blog',
-      description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
-      budget: '$500 - $1,000',
-      client: '123 Inc',
-      dueDate: '2024-06-30',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends soon'
-    }
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Web Developer Needed',
+    //   description: "We're looking for an experienced web developer to build a custom e-commerce website.",
+    //   budget: '$3,000 - $5,000',
+    //   client: 'ABC Corp',
+    //   dueDate: '2024-06-15',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Graphic Designer for Branding',
+    //   description: 'We need a talented graphic designer to create a brand identity for our new startup.',
+    //   budget: '$1,000 - $2,500',
+    //   client: 'XYZ Corp',
+    //   dueDate: '2024-07-10',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Content Writer for Blog',
+    //   description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
+    //   budget: '$500 - $1,000',
+    //   client: '123 Inc',
+    //   dueDate: '2024-06-30',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Web Developer Needed',
+    //   description: "We're looking for an experienced web developer to build a custom e-commerce website.",
+    //   budget: '$3,000 - $5,000',
+    //   client: 'ABC Corp',
+    //   dueDate: '2024-06-15',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Graphic Designer for Branding',
+    //   description: 'We need a talented graphic designer to create a brand identity for our new startup.',
+    //   budget: '$1,000 - $2,500',
+    //   client: 'XYZ Corp',
+    //   dueDate: '2024-07-10',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Content Writer for Blog',
+    //   description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
+    //   budget: '$500 - $1,000',
+    //   client: '123 Inc',
+    //   dueDate: '2024-06-30',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends soon'
+    // }
   ];
 
 
@@ -178,7 +178,7 @@ function page() {
 
       <div>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-          <div className="sticky col-span-1 p-6 bg-cyan-800 rounded-lg shadow-md md:col-span-3 top-24 w-auto h-[50%]">
+          <div className="sticky w-auto h-full col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
             <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
             <ul className="space-y-2">
               <li>

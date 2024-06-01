@@ -7,7 +7,8 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Component() {
 
   const router = useRouter();
@@ -57,6 +58,7 @@ export default function Component() {
           console.log(response);
         })
         .catch(error => {
+          toast.error(`${response.message}`)
           setLoading(false);
           if (error.response && error.response.status === 400) {
             console.error('Bad Request: ', error.message);
@@ -442,6 +444,7 @@ export default function Component() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

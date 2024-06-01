@@ -21,18 +21,19 @@ function Navbar() {
         <div className="hidden h-auto text-white md:flex min-w-[50vw] navlink justify-evenly first:bg-red-500">
           <Link href={"/"}>Home</Link>
           <Link href={"/jobs"} className="text-red-500">Jobs</Link>
+          <Link href={"/"}>About</Link>
+              <Link href={"/"}>Contact</Link>
           {isloggedin && isfreelancer ? (
             <>
               <Link href={"/freelancerDashboard"}>Dashboard</Link>
               <Link href={"/freelancerDashboard/personalInfo"}>Personal Profile</Link>
               <Link href={"/freelancerDashboard/professionalInfo"}>Professional Profile</Link>
               <Link href={"/freelancerDashboard/projects"}>Projects</Link>
+             
             </>
           ) : isloggedin && !isfreelancer ? (
             <Link href={"/companydashboard"}>Projects</Link>
-          ) : (
-            <p>Login to access dashboard</p>
-          )}
+          ) : null}
         </div>
         <div className="flex Login_register justify-evenly w-38">
           {isloggedin ? (

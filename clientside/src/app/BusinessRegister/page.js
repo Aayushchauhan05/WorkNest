@@ -7,7 +7,12 @@ import { Button } from "@/components/ui/button"
 import { useFormik } from "formik"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Component() {
+  const [loading,setloading]= useState(false)
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -33,6 +38,8 @@ export default function Component() {
       
       localStorage.clear()
       try {
+
+        setloading(true)
         const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/Companyreg`,{
           method:"POST",
           headers:{
@@ -43,13 +50,17 @@ export default function Component() {
 const data= await response.json();
 
         if(response.ok){
+toast.success("Registration succesfull")
           localStorage.setItem("email",data.Data.Email)
+          setloading(false)
           router.push("/otp")
         }
         else{
+          toast.error(`${data.message}`)
           console.log("error")
         }
       } catch (error) {
+        toast.error("Internal server error")
         console.log(error)
       }
     
@@ -258,15 +269,21 @@ const data= await response.json();
             />
           </div>
           <div>
-            <Button
+          { !loading? <Button
               className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
               type="submit"
             >
               Register
-            </Button>
+            </Button>:<Button disable
+              className="flex w-full justify-center rounded-md bg-[#00b8d4] py-2 px-4 text-sm font-medium text-gray-950 shadow-sm hover:bg-[#00a0b4] focus:outline-none focus:ring-2 focus:ring-[#00b8d4] focus:ring-offset-2"
+              
+            >
+             Loading...
+            </Button>}
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   )
 }
