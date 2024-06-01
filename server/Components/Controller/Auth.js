@@ -172,9 +172,8 @@ try {
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select("-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience ");
 console.log("test", userexist);
-
-      console.log("test",userexist)
     }
+    console.log("test",userexist)
     
     if (!userexist) {
       return res.status(404).json({ message: "User not exist, please register" });
