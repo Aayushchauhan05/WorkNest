@@ -213,9 +213,8 @@ const login = async (req, res) => {
         "-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience "
       );
       console.log("test", userexist);
-
-      console.log("test", userexist);
     }
+    console.log("test", userexist);
 
     if (!userexist) {
       return res

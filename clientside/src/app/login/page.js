@@ -20,13 +20,16 @@ function Page() {
     onSubmit: async (values) => {
       try {
         setloading(true);
-        const response = await fetch(`https://localhost:3000/Api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }
+        );
         const Data = await response.json();
         console.log(Data);
         setloading(false);
@@ -46,12 +49,13 @@ function Page() {
             router.push("/");
           }, 100);
         } else {
-          toast.error(`error`);
+          toast.error(`Check email id and password`);
           router.push("/FreelancerRegister");
 
           // console.error('Login failed:', errorData);
         }
       } catch (error) {
+        toast.error(`Try again later`);
         console.error("Login failed:", error);
         // Handle error state, display error messages, etc.
       }
