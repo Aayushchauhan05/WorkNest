@@ -1,50 +1,51 @@
-const { Schema, model } = require("mongoose")
-const freelancer_project = new Schema({
+const { Schema, model } = require("mongoose");
+const freelancer_project = new Schema(
+  {
     projectName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     Description: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     verified: {
-        type: Schema.Types.Mixed
-    },
-    isVerified: {
-        type: Boolean
+      type: Schema.Types.Mixed,
     },
     githubLink: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     Start: {
-        type: Date
+      type: Date,
     },
     End: {
-        type: Date
+      type: Date,
     },
     Refer: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    TechUsed: [{
+    TechUsed: [
+      {
         type: String,
-        required: true
-    }],
+        required: true,
+      },
+    ],
     Role: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     projectType: {
-        type: String,
-        required: true
+      type: String,
     },
-    isVerified:{
-        type: Boolean,
-        default:false
-    }
-}, { timestamps: true });
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
 const Project = model("Project", freelancer_project);
-module.exports={Project}
+module.exports = { Project };
