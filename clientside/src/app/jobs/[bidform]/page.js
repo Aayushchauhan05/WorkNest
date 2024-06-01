@@ -1,6 +1,6 @@
 // components/JobApplicationForm.js
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import axios from 'axios';
 
@@ -17,6 +17,7 @@ const initialValues = {
   role: '',
   projectId: '',
 };
+const[projectid,setprojectid]=useState()
 
 const projectDetails = {
   projectName: 'Web Development Project',
@@ -28,7 +29,7 @@ const projectDetails = {
 const JobApplicationForm = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/apply`, values);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Applyforwork`, values);
       console.log('Success:', response.data);
       resetForm();
     } catch (error) {
@@ -38,6 +39,16 @@ const JobApplicationForm = () => {
     }
   };
 
+  useEffect(()=>{
+    const profectinfo= async ()=>{
+      try {
+        const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/projectinfo/:id`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },[projectid])
+ 
   return (
     <div className="flex max-w-4xl mx-auto bg-white rounded-md shadow-md">
       <div className="w-1/2 p-8 border-r">
