@@ -147,12 +147,18 @@ function Page() {
                     <p className="text-sm">Starting Date: {experience.start}</p>
                     <p className="ml-4 text-sm">Ending Date: {experience.end}</p>
                   </div>
-                  {/* <button
+                  <button
+                    onClick={() => handleDelete(experience.id)}
+                    className="px-4 py-1 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600"
+                  >
+                    Edit
+                  </button>
+                  <button
                     onClick={() => handleDelete(experience.id)}
                     className="px-4 py-1 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600"
                   >
                     Delete
-                  </button> */}
+                  </button>
                 </div>
               </div>
             ))}

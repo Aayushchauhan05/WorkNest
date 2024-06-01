@@ -50,22 +50,21 @@ export default function Component() {
       console.log("console.log in onsubmit", values);
 
       setLoading(true);
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, { values })
-        .then((response) => {
-          setLoading(false);
-          localStorage.setItem('email', formik.values.Email);
-          router.push("/otp");
-          console.log(response);
-        })
-        .catch(error => {
-          toast.error(`${response.message}`)
-          setLoading(false);
-          if (error.response && error.response.status === 400) {
-            console.error('Bad Request: ', error.message);
-          } else {
-            console.error('An unexpected error occurred: ', error.message);
-          }
-        });
+      try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, values); 
+        setLoading(false);
+        localStorage.setItem('email', formik.values.Email);
+        router.push("/otp");
+        console.log(response);
+      } catch (error) { // Correct error handling
+        toast.error(`${error.message}`); // Corrected error handling
+        setLoading(false);
+        if (error.response && error.response.status === 400) {
+          console.error('Bad Request: ', error.message);
+        } else {
+          console.error('An unexpected error occurred: ', error.message);
+        }
+      }
     },
   });
 
