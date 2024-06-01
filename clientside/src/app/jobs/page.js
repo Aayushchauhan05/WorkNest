@@ -1,9 +1,10 @@
-'use client'
-import { useState, useEffect } from 'react';
-import { Label } from "@/components/ui/label";
-import Link from "next/link";
+"use client"
+import { Label } from "@/components/ui/label"
+import Link from "next/link"
+import { useEffect } from "react";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-function Page() {
+function page() {
   const jobListings = [
     {
       title: 'Web Developer Needed',
@@ -38,216 +39,148 @@ function Page() {
       jobType: 'Content Writing',
       experienceLevel: 'Entry Level'
     },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      priceRange: 'Any',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends soon',
-      jobType: 'Virtual Assistant',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      priceRange: '$500 - $2,000',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid',
-      jobType: 'Marketing',
-      experienceLevel: 'Expert'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      priceRange: '$500 - $2,000',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends soon',
-      jobType: 'Marketing',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Web Developer Needed',
-      description: "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: '$3,000 - $5,000',
-      priceRange: '$2,000+',
-      client: 'ABC Corp',
-      dueDate: '2024-06-15',
-      status: 'Available to bid',
-      jobType: 'Web Development',
-      experienceLevel: 'Expert'
-    },
-    {
-      title: 'Graphic Designer for Branding',
-      description: 'We need a talented graphic designer to create a brand identity for our new startup.',
-      budget: '$1,000 - $2,500',
-      priceRange: '$500 - $2,000',
-      client: 'XYZ Corp',
-      dueDate: '2024-07-10',
-      status: 'Bid ends',
-      jobType: 'Graphic Design',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Content Writer for Blog',
-      description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
-      budget: '$500 - $1,000',
-      priceRange: '$500 - $2,000',
-      client: '123 Inc',
-      dueDate: '2024-06-30',
-      status: 'Available to bid',
-      jobType: 'Content Writing',
-      experienceLevel: 'Entry Level'
-    },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      priceRange: 'Any',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends soon',
-      jobType: 'Virtual Assistant',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      priceRange: '$500 - $2,000',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid',
-      jobType: 'Marketing',
-      experienceLevel: 'Expert'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      priceRange: '$500 - $2,000',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends soon',
-      jobType: 'Marketing',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Web Developer Needed',
-      description: "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: '$3,000 - $5,000',
-      priceRange: '$2,000+',
-      client: 'ABC Corp',
-      dueDate: '2024-06-15',
-      status: 'Available to bid',
-      jobType: 'Web Development',
-      experienceLevel: 'Expert'
-    },
-    {
-      title: 'Graphic Designer for Branding',
-      description: 'We need a talented graphic designer to create a brand identity for our new startup.',
-      budget: '$1,000 - $2,500',
-      priceRange: '$500 - $2,000',
-      client: 'XYZ Corp',
-      dueDate: '2024-07-10',
-      status: 'Bid ends',
-      jobType: 'Graphic Design',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Content Writer for Blog',
-      description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
-      budget: '$500 - $1,000',
-      priceRange: '$500 - $2,000',
-      client: '123 Inc',
-      dueDate: '2024-06-30',
-      status: 'Available to bid',
-      jobType: 'Content Writing',
-      experienceLevel: 'Entry Level'
-    },
-    {
-      title: 'Virtual Assistant Needed',
-      description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: '$15 - $25 per hour',
-      priceRange: 'Any',
-      client: 'LMN Co',
-      dueDate: '2024-07-25',
-      status: 'Bid ends',
-      jobType: 'Virtual Assistant',
-      experienceLevel: 'Intermediate'
-    },
-    {
-      title: 'Social Media Manager',
-      description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: '$1,000 - $2,000 per month',
-      priceRange: '$500 - $2,000',
-      client: 'UVW Inc',
-      dueDate: '2024-08-10',
-      status: 'Available to bid',
-      jobType: 'Marketing',
-      experienceLevel: 'Expert'
-    },
-    {
-      title: 'Copywriter for Marketing',
-      description: 'Looking for a talented copywriter for marketing materials.',
-      budget: '$500 - $1,500',
-      priceRange: '$500 - $2,000',
-      client: 'OPQ Corp',
-      dueDate: '2024-08-05',
-      status: 'Bid ends soon',
-      jobType: 'Marketing',
-      experienceLevel: 'Intermediate'
-    }
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Web Developer Needed',
+    //   description: "We're looking for an experienced web developer to build a custom e-commerce website.",
+    //   budget: '$3,000 - $5,000',
+    //   client: 'ABC Corp',
+    //   dueDate: '2024-06-15',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Graphic Designer for Branding',
+    //   description: 'We need a talented graphic designer to create a brand identity for our new startup.',
+    //   budget: '$1,000 - $2,500',
+    //   client: 'XYZ Corp',
+    //   dueDate: '2024-07-10',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Content Writer for Blog',
+    //   description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
+    //   budget: '$500 - $1,000',
+    //   client: '123 Inc',
+    //   dueDate: '2024-06-30',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends soon'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Web Developer Needed',
+    //   description: "We're looking for an experienced web developer to build a custom e-commerce website.",
+    //   budget: '$3,000 - $5,000',
+    //   client: 'ABC Corp',
+    //   dueDate: '2024-06-15',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Graphic Designer for Branding',
+    //   description: 'We need a talented graphic designer to create a brand identity for our new startup.',
+    //   budget: '$1,000 - $2,500',
+    //   client: 'XYZ Corp',
+    //   dueDate: '2024-07-10',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Content Writer for Blog',
+    //   description: 'Looking for a skilled content writer to produce high-quality blog posts on a regular basis.',
+    //   budget: '$500 - $1,000',
+    //   client: '123 Inc',
+    //   dueDate: '2024-06-30',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Virtual Assistant Needed',
+    //   description: "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
+    //   budget: '$15 - $25 per hour',
+    //   client: 'LMN Co',
+    //   dueDate: '2024-07-25',
+    //   status: 'Bid ends'
+    // },
+    // {
+    //   title: 'Social Media Manager',
+    //   description: "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
+    //   budget: '$1,000 - $2,000 per month',
+    //   client: 'UVW Inc',
+    //   dueDate: '2024-08-10',
+    //   status: 'Available to bid'
+    // },
+    // {
+    //   title: 'Copywriter for Marketing',
+    //   description: 'Looking for a talented copywriter for marketing materials.',
+    //   budget: '$500 - $1,500',
+    //   client: 'OPQ Corp',
+    //   dueDate: '2024-08-05',
+    //   status: 'Bid ends soon'
+    // }
   ];
 
 
-  const [filters, setFilters] = useState({
-    jobType: 'All',
-    experienceLevel: 'All',
-    budget: 'All',
-  });
-
-  const [filteredJobs, setFilteredJobs] = useState(jobListings);
-
-  const handleFilterChange = (name, value) => {
-    setFilters({
-      ...filters,
-      [name]: value,
-    });
-  };
-
-  useEffect(() => {
-    filterJobs();
-  }, [filters]);
-
-  const filterJobs = () => {
-    let filtered = jobListings;
-
-    if (filters.jobType !== 'All') {
-      filtered = filtered.filter(job => job.jobType === filters.jobType);
-    }
-
-    if (filters.experienceLevel !== 'All') {
-      filtered = filtered.filter(job => job.experienceLevel === filters.experienceLevel);
-    }
-
-    if (filters.budget !== 'All') {
-      if (filters.budget === '$0 - $500') {
-        filtered = filtered.filter(job => job.priceRange === '$0 - $500');
-      } else if (filters.budget === '$500 - $2,000') {
-        filtered = filtered.filter(job => job.priceRange === '$500 - $2,000');
-      } else if (filters.budget === '$2,000+') {
-        filtered = filtered.filter(job => job.priceRange === '$2,000+');
-      }
-    }
-
-    setFilteredJobs(filtered);
-  };
+  // function getBidStatusColor(status) {
+  //   switch (status) {
+  //     case 'Available to bid':
+  //       return 'bg-cyan-800 text-white';
+  //     case 'Bid ends soon':
+  //       return 'bg-yellow-500 text-black';
+  //     case 'Bid ends':
+  //       return 'bg-red-500 text-black disabled';
+  //     default:
+  //       return '';
+  //   }
+  // }
+//   useEffect( async ()=>{
+// try {
+//   const response= await fetch(`/api/`);
+// } catch (error) {
+  
+// }
+//   },[])
 
   return (
     <>
@@ -258,7 +191,7 @@ function Page() {
           </div>
         </header>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-          <div className="sticky col-span-1 p-6 bg-cyan-800 rounded-lg shadow-md md:col-span-3 top-24 w-auto h-screen">
+          <div className="sticky w-auto h-full col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
             <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
             <ul className="space-y-2">
               <li>

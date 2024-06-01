@@ -68,7 +68,7 @@ export default function Component() {
             </div>
           </div>
         </header>
-        <main className="flex-1 py-10 pl-10">
+        <main className="flex-1 py-10 pl-10 bg-white">
           <div className="container grid grid-cols-1 gap-8 mx-auto lg:grid-cols-3">
             <div className="col-span-2 space-y-8">
               <div>

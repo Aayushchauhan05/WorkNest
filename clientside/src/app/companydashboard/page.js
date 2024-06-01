@@ -12,38 +12,110 @@ function page() {
   return (
     <>
     <div className="flex w-full min-h-screen">
-    <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[50%] md:w-[20%]`}>
-       <div className="flex flex-col gap-6">
-       <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
-       <nav className={` flex flex-col w-auto h-screen gap-2 top-0  relative `}>
-        <div className="flex items-center gap-4 p-4">
-      
-          <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
-            <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" alt="User" />
-          </span>
-          <div>
-            <h2 className="text-lg font-semibold">John Doe</h2>
-            <p className="text-gray-500">CEO, Acme Inc.</p>
+    <div class="bg-gray-100 dark:bg-gray-800 p-4 md:p-6 border-r">
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-4">
+              <span class="relative flex shrink-0 overflow-hidden rounded-full h-12 w-12 md:h-14 md:w-14">
+                <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JP</span>
+              </span>
+              <div class="grid gap-1">
+                <h1 class="text-xl font-semibold md:text-2xl">Jared Palmer</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Software Engineer</p>
+              </div>
+            </div>
+            <nav class="flex flex-col gap-2">
+              <Link
+                href={"companydashboard/personalinfo"}
+                class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Personal Info
+              </Link>
+              <Link
+                href={"companydashboard/professionalinfo"}
+                class="flex items-center gap-2 px-3 py-2 rounded-md bg-gray-200 dark:bg-gray-700 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                </svg>
+                Professional Info
+              </Link>
+              <Link
+                href={" /viewfreelancer"}
+                class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect width="4" height="12" x="2" y="9"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                Freelancer
+              </Link>
+              <Link
+                class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                href="#"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <path d="M5 7 3 5"></path>
+                  <path d="M9 6V3"></path>
+                  <path d="m13 7 2-2"></path>
+                  <circle cx="9" cy="13" r="3"></circle>
+                  <path d="M11.83 12H20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2.17"></path>
+                  <path d="M16 16h2"></path>
+                </svg>
+                Projects
+              </Link>
+            </nav>
           </div>
         </div>
-        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard">
-          Dashboard
-        </Link>
-        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/profile">
-          Profile
-        </Link>
-        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/viewfreelancer">
-          Employees
-        </Link>
-        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/finance">
-          Finances
-        </Link>
-        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/setting">
-          Settings
-        </Link>
-      </nav>
-        </div>
-      </div>
       <div className="flex flex-col w-full">
         <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
           <div className="container flex items-center justify-between px-6 py-4 mx-auto">

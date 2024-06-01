@@ -28,14 +28,14 @@ const freelancer_schema = new Schema({
         type: String,
         required: true
     },
-    professionalInfo: {
+    professionalInfo:[ {
         type: Schema.Types.Mixed,
         required: true
-    },
-    Skills: {
+    }],
+    Skills:[{
         type: String,
         required: true
-    },
+    }],
     Education: {
         type: Schema.Types.Mixed,
         required: true
@@ -98,7 +98,19 @@ const freelancer_schema = new Schema({
     },
 otp:{
     type:String
-}
+},
+pendingProject:[{
+    type:Schema.Types.ObjectId,
+    ref:"ProjectListByCompany"
+}],
+rejectedProject:[{
+    type:Schema.Types.ObjectId,
+    ref:"ProjectListByCompany"
+}],
+acceptedProject:[{
+    type:Schema.Types.ObjectId,
+    ref:"ProjectListByCompany"
+}]
 }, { timestamps: true });
 const Freelancer = model("freelancer_data", freelancer_schema);
 module.exports={Freelancer}

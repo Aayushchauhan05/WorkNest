@@ -124,7 +124,8 @@ return res.status(401).json({message:"Invalid otp"})
 const {firstName,lastName,companyName,companySize,Email,phone,Dob,professionalInfo,Position,Refer,verified,isVerified,Linkdin,personalWebsite,connects,password}=req.body;
 try {
 console.log(req.body)
-  const userexist= await Business.findOne({Email});
+  const userexist= await Business.findOne({Email:Email});
+  console.log("testing user existence",userexist)
   if (userexist) {
     return res.status(401).json({message:"User already exist"})
   }

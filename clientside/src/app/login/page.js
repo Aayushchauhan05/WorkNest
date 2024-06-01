@@ -4,7 +4,8 @@ import { useAuth } from '@/context/context';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Page() {
         const router=useRouter()
@@ -35,6 +36,7 @@ setloading(false)
                     const freelancercheck= Data.userexist.isfreelancer;
                   
                     console.log("check",freelancercheck);
+                    toast.success("Login succesfull")
                     if (freelancercheck) {
                         
                         setfreelancer(true)
@@ -47,6 +49,7 @@ setloading(false)
                     },100)
                     
                 } else {
+                    toast.error(`${Data.message}`)
                     router.push('/FreelancerRegister');
                     
                     // console.error('Login failed:', errorData);
@@ -118,6 +121,7 @@ setloading(false)
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
