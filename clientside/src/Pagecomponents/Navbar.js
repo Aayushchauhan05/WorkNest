@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <>
 
-      <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between z-10">
+      <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between z-50">
         <h3 className="text-2xl text-white logo">Dehix</h3>
         <div className="hidden h-auto text-white md:flex min-w-[50vw] navlink justify-evenly first:bg-red-500">
 
@@ -68,7 +68,7 @@ function Navbar() {
           </svg>
         </button>
         {isMenuOpen && (
-          <div className="md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black">
+          <div className={`md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black`}>
             <Link href={"/"} className="py-2">Home</Link>
             <Link href={"/jobs"} className="py-2 text-red-500">Jobs</Link>
             <Link href={"/freelancerDashboard"} className="py-2">Dashboard</Link>

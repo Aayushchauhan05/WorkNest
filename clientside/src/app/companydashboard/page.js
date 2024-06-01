@@ -1,144 +1,60 @@
-import Link from "next/link"
+"use client";
+import Link from "next/link";
+import { useState } from 'react';
 
 function page() {
-  // const initailVariables={
-  //   firstName:"",
-  //   lastName:"",
-  //   companyName:"",
-  //   companySize:"",
-  // }
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <>
     <div className="flex w-full min-h-screen">
-    <div className="hidden p-6 bg-cyan-800 text-gray-50 w-[20%] md:block">
+    <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[50%] md:w-[20%]`}>
        <div className="flex flex-col gap-6">
-          
-          <nav className="fixed flex flex-col w-auto h-screen gap-2 top-20">
-          <div className="flex items-center gap-4 ">
-            <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
-              <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
-            </span>
-            <div>
-            
-              <h2 className="text-lg font-semibold">John Doe</h2>
-              <p className="text-gray-500">CEO, Acme Inc.</p>
-            </div>
+       <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
+       <nav className={` flex flex-col w-auto h-screen gap-2 top-0  relative `}>
+        <div className="flex items-center gap-4 p-4">
+      
+          <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
+            <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" alt="User" />
+          </span>
+          <div>
+            <h2 className="text-lg font-semibold">John Doe</h2>
+            <p className="text-gray-500">CEO, Acme Inc.</p>
           </div>
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800"href={"/companydashboard"}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="w-5 h-5"
-              >
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg> */}
-              Dashboard
-            </Link>
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/profile"}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="w-5 h-5"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg> */}
-              Profile
-            </Link>
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/viewfreelancer"}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="w-5 h-5"
-              >
-                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-              </svg> */}
-              Employees
-            </Link>
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/finance"}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="w-5 h-5"
-              >
-                <line x1="12" x2="12" y1="2" y2="22"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg> */}
-              Finances
-            </Link>
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/companydashboard/setting"}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="w-5 h-5"
-              >
-                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg> */}
-              Settings
-            </Link>
-          </nav>
+        </div>
+        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard">
+          Dashboard
+        </Link>
+        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/profile">
+          Profile
+        </Link>
+        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/viewfreelancer">
+          Employees
+        </Link>
+        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/finance">
+          Finances
+        </Link>
+        <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard/setting">
+          Settings
+        </Link>
+      </nav>
         </div>
       </div>
       <div className="flex flex-col w-full">
         <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
           <div className="container flex items-center justify-between px-6 py-4 mx-auto">
             <div className="flex items-center gap-4">
-              <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground md:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="w-6 h-6 text-gray-500 dark:text-gray-400"
-                >
-                  <line x1="4" x2="20" y1="12" y2="12"></line>
-                  <line x1="4" x2="20" y1="6" y2="6"></line>
-                  <line x1="4" x2="20" y1="18" y2="18"></line>
-                </svg>
-              </button>
+            <button onClick={toggleMenu} className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground md:hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-gray-500 dark:text-gray-400">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                  </svg>
+                </button>
               <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
                 <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
               </span>
