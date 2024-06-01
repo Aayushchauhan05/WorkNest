@@ -50,7 +50,7 @@ function Page() {
           }, 100);
         } else {
           toast.error(`Check email id and password`);
-          router.push("/FreelancerRegister");
+          // router.push("/FreelancerRegister");
 
           // console.error('Login failed:', errorData);
         }

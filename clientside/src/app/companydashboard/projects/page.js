@@ -59,7 +59,7 @@ function page() {
 
 
           <nav className="fixed flex flex-col w-auto h-screen gap-2 top-36">
-            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/freelancerDashboard">
+            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href="/companydashboard">
 
               Dashboard
             </Link>

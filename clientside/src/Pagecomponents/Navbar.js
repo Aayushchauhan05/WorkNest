@@ -19,10 +19,11 @@ function Navbar() {
       <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between z-10">
         <h3 className="text-2xl text-white logo">Dehix</h3>
         <div className="hidden h-auto text-white md:flex min-w-[50vw] navlink justify-evenly first:bg-red-500">
-          <Link href={"/"}>Home</Link>
-          <Link href={"/jobs"} className="text-red-500">Jobs</Link>
-          <Link href={"/"}>About</Link>
-              <Link href={"/"}>Contact</Link>
+     {isloggedin?<> <Link href={"/"}>Home</Link>
+  
+      <Link href={"/"}>About</Link>
+          <Link href={"/"}>Contact</Link></>:null}
+              {  isloggedin && !isfreelancer ?<Link href={"/hire"} >Hire</Link>:<Link href={"/jobs"} >Jobs</Link>}
           {isloggedin && isfreelancer ? (
             <>
               <Link href={"/freelancerDashboard"}>Dashboard</Link>
@@ -31,8 +32,14 @@ function Navbar() {
               <Link href={"/freelancerDashboard/projects"}>Projects</Link>
              
             </>
+            
           ) : isloggedin && !isfreelancer ? (
-            <Link href={"/companydashboard"}>Projects</Link>
+            <><Link href={"/companydashboard"}>Projects</Link>
+            <Link href={"/companydashboard/personalinfo"}>Personal Profile</Link>
+              <Link href={"/companydashboard/professionalinfo"}>Professional Profile</Link>
+              <Link href={"/companydashboard/projects"}>Projects</Link>
+            </>
+           
           ) : null}
         </div>
         <div className="flex Login_register justify-evenly w-38">

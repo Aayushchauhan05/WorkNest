@@ -11,7 +11,7 @@ export default function Component() {
   return (
     <div className="flex min-h-[100dvh]">
       <div className="flex flex-col gap-6 p-6 text-white bg-gray-900">
-        <Link href="#" className="flex items-center gap-2 text-lg font-semibold" prefetch={false}>
+        <Link href={"/companydashboard"} className="flex items-center gap-2 text-lg font-semibold" prefetch={false}>
           <Grid3x3Icon className="w-6 h-6" />
           <span>Dashboard</span>
         </Link>
@@ -19,7 +19,7 @@ export default function Component() {
           <h3 className="text-sm font-medium text-gray-400">Project</h3>
           <nav className="flex flex-col gap-2">
             <Link
-              href="#"
+              href={"companydashboard/projects"}
               className="flex items-center gap-2 text-gray-400 transition-colors hover:text-white"
               prefetch={false}
             >
@@ -27,7 +27,7 @@ export default function Component() {
               <span>Project Details</span>
             </Link>
             <Link
-              href="#"
+              href={"companydashboard/viewfreelancer"}
               className="flex items-center gap-2 text-gray-400 transition-colors hover:text-white"
               prefetch={false}
             >

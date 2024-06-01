@@ -98,7 +98,7 @@ function Page() {
               <Link href="/freelancerDashboard/professionalInfo" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
                 Professional Info
               </Link>
-              <Link href="/freelancerDashboard/skillsAndprojects" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+              <Link href="/freelancerDashboard/skillsAndProjects" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
                 Skills And Projects
               </Link>
               <Link href="/freelancerDashboard/projects" className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
@@ -119,11 +119,11 @@ function Page() {
           <h1 className="mt-2 text-3xl font-bold text-cyan-700 dark:text-gray-50">Personal Info</h1>
           <form className="mt-4 text-white">
             <div className="flex flex-col items-center userInfo">
-              <img
+              {/* <img
                 src="/default-profile.png"
                 alt="Profile Picture"
                 className="object-cover w-32 h-32 mb-4 border rounded-full"
-              />
+              /> */}
               <div className="flex flex-col items-center justify-center w-full gap-4">
                 {Object.entries(formData).map(([field, value]) => (
                   <div key={field} className="bg-gray-800 px-4 py-2 flex justify-between w-[70%] md:w-[40%] items-center rounded-md">

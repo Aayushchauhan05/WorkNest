@@ -23,7 +23,7 @@ function page() {
             </div>
             <nav class="flex flex-col gap-2">
               <Link
-                href={"companydashboard/personalinfo"}
+                href={"/personalinfo"}
                 class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <svg
@@ -44,7 +44,7 @@ function page() {
                 Personal Info
               </Link>
               <Link
-                href={"companydashboard/professionalinfo"}
+                href={"/professionalinfo"}
                 class="flex items-center gap-2 px-3 py-2 rounded-md bg-gray-200 dark:bg-gray-700 transition-colors"
               >
                 <svg
@@ -88,7 +88,7 @@ function page() {
               </Link>
               <Link
                 class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                href="#"
+                href="companydashboard/projects"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
