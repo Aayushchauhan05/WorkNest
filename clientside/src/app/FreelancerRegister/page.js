@@ -57,10 +57,12 @@ export default function Component() {
         localStorage.setItem('email', formik.values.Email);
         router.push("/otp");
         console.log(response);
+
       } catch (error) {
         toast.error(error.response ? error.response.data.message : 'An unexpected error occurred');
         setLoading(false);
         console.error('Error:', error.message);
+
       }
     },
   });
@@ -91,6 +93,7 @@ export default function Component() {
                 placeholder="Enter your first name"
                 required
                 type="text"
+           
               />
             </div>
             <div className="space-y-2">
@@ -106,6 +109,7 @@ export default function Component() {
                 placeholder="Enter your last name"
                 required
                 type="text"
+             
               />
             </div>
           </div>
@@ -122,6 +126,7 @@ export default function Component() {
               placeholder="Enter your username"
               required
               type="text"
+              minLength={8} 
             />
           </div>
           <div className="space-y-2">
@@ -137,6 +142,7 @@ export default function Component() {
               placeholder="Enter your email"
               required
               type="email"
+              minLength={8} 
             />
           </div>
           <div className="grid grid-cols-2 gap-6">
@@ -152,7 +158,9 @@ export default function Component() {
                 onChange={formik.handleChange}
                 required
                 type="date"
+               
               />
+
             </div>
             <div className="space-y-2">
               <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="years-of-experience">
@@ -168,6 +176,7 @@ export default function Component() {
                 placeholder="Enter your years of experience"
                 required
                 type="number"
+                minLength={10} 
               />
             </div>
           </div>
@@ -220,6 +229,56 @@ export default function Component() {
               rows="3"
             />
           </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-profile">
+                LinkedIn Profile
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="linkedin-profile"
+                name="Linkdin"
+                value={formik.values.Linkdin}
+                onChange={formik.handleChange}
+                placeholder="Enter your LinkedIn profile URL"
+                required
+                type="url"
+
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="password">
+                Password
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                placeholder="Enter your password"
+                required
+                type="password"
+                minLength={8} 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-profile">
+                GitHub Profile
+              </Label>
+              <Input
+                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+                id="github-profile"
+                name="githubLink"
+                value={formik.values.githubLink}
+                onChange={formik.handleChange}
+                placeholder="Enter your GitHub profile URL"
+                required
+                type="url"
+              />
+            </div>
+          </div>
           <div className="space-y-2">
             <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-link">
               GitHub Link
@@ -232,7 +291,76 @@ export default function Component() {
               onChange={formik.handleChange}
               placeholder="Enter your GitHub profile link"
               required
-              type="url"
+              type="text"
+              minLength={8} 
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role">
+              Role
+            </Label>
+            <select
+              className="block w-full rounded-md border border-[#00b8d4] bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4] cursor-pointer"
+              id="role"
+              name="Role"
+              value={formik.values.Role}
+              onChange={formik.handleChange}
+              required
+            >
+              <option value="">Select your role</option>
+              <option value="developer">Developer</option>
+              <option value="designer">Designer</option>
+              <option value="writer">Writer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <h1 className="text-center text-[#00b8d4]">Professional Info</h1>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="previouscompany">
+              Previous Company
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="previouscompany"
+              name="professionalInfo[0].previousCompany" 
+              value={formik.values.professionalInfo[0].previousCompany}
+              onChange={formik.handleChange}
+              placeholder="Enter your previous company"
+              required
+              type="text"
+              minLength={8} 
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role-in-company">
+              Your Role in Company
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="role-in-company"
+              name="professionalInfo[0].Role" 
+              value={formik.values.professionalInfo[0].Role}
+              onChange={formik.handleChange}
+              placeholder="Your role in company"
+              required
+              type="text"
+              minLength={8} 
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="start-date">
+              Start Date
+            </Label>
+            <Input
+              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+              id="start-date"
+              name="professionalInfo[0].start"
+              value={formik.values.professionalInfo[0].start}
+              onChange={formik.handleChange}
+              placeholder="Start date"
+              required
+              type="date"
+
             />
           </div>
           <div className="space-y-2">
