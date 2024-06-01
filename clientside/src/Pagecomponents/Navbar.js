@@ -18,7 +18,7 @@ function Navbar() {
       <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between z-10">
         <h3 className="text-2xl text-white logo">Dehix</h3>
         <div className="hidden h-auto text-white md:flex min-w-[50vw] navlink justify-evenly first:bg-red-500">
-     {isloggedin?<> <Link href={"/"}>Home</Link>
+     {!isloggedin?<> <Link href={"/"}>Home</Link>
   
       <Link href={"/"}>About</Link>
           <Link href={"/"}>Contact</Link></>:null}
