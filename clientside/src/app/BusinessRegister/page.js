@@ -85,6 +85,7 @@ console.log(data)
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
                 type="text"
+            
               />
             </div>
             <div className="space-y-2">
@@ -100,6 +101,7 @@ console.log(data)
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
                 type="text"
+          
               />
             </div>
           </div>
@@ -116,6 +118,7 @@ console.log(data)
               onChange={formik.handleChange}
               value={formik.values.companyName}
               type="text"
+              minLength={8}
             />
           </div>
           <div className="space-y-2">
@@ -211,6 +214,7 @@ console.log(data)
                 onChange={formik.handleChange}
                 value={formik.values.Position}
                 type="text"
+                minLength={8}
               />
             </div>
           </div>
@@ -226,6 +230,7 @@ console.log(data)
               type="text"
               onChange={formik.handleChange}
               value={formik.values.Refer}
+              minLength={8}
             />
           </div>
           <div className="space-y-2">
