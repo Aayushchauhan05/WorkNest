@@ -16,8 +16,8 @@ const initialValues = {
   },
   role: '',
   projectId: '',
-};
-const[projectid,setprojectid]=useState()
+}
+
 
 const projectDetails = {
   projectName: 'Web Development Project',
@@ -27,6 +27,7 @@ const projectDetails = {
 };
 
 const JobApplicationForm = () => {
+  const[projectid,setprojectid]=useState(null)
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Applyforwork`, values);
