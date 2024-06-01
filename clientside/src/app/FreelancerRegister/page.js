@@ -51,7 +51,7 @@ export default function Component() {
 
       setLoading(true);
       try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, values); 
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, values);
         setLoading(false);
         localStorage.setItem('email', formik.values.Email);
         router.push("/otp");
@@ -155,7 +155,9 @@ export default function Component() {
                 onChange={formik.handleChange}
                 required
                 type="date"
+               
               />
+
             </div>
             <div className="space-y-2">
               <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="years-of-experience">

@@ -24,14 +24,14 @@ function Navbar() {
           <Link href={"/"}>Home</Link>
           <Link href={"/jobs"} className="text-red-500">Jobs</Link>
           <Link href={"/"}>About</Link>
-              <Link href={"/"}>Contact</Link>
+          <Link href={"/"}>Contact</Link>
           {isloggedin && isfreelancer ? (
             <>
               <Link href={"/freelancerDashboard"}>Dashboard</Link>
               <Link href={"/freelancerDashboard/personalInfo"}>Personal Profile</Link>
               <Link href={"/freelancerDashboard/professionalInfo"}>Professional Profile</Link>
               <Link href={"/freelancerDashboard/projects"}>Projects</Link>
-             
+
             </>
           ) : isloggedin && !isfreelancer ? (
             <Link href={"/companydashboard"}>Projects</Link>
@@ -70,24 +70,26 @@ function Navbar() {
         </button>
         {isMenuOpen && (
           <div className={`md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black`}>
-            <Link href={"/"} className="py-2">Home</Link>
-            <Link href={"/jobs"} className="py-2 text-red-500">Jobs</Link>
-            <Link href={"/freelancerDashboard"} className="py-2">Dashboard</Link>
             {!isloggedin ? (
               <>
                 <Link href="/login" className="py-2">Login</Link>
-                <Button asChild className="hidden mx-2 md:block">
-                  <Link href="/FreelancerRegister" className="text-white">Register As Freelancer</Link>
-                </Button>
-                <Button asChild className="hidden mx-2 text-white md:block">
-                  <Link href="/BusinessRegister" className="text-white">Register As Business</Link>
-                </Button>
+
+                <Link href="/FreelancerRegister" className="py-2">Register As Freelancer</Link>
+
+                <Link href="/BusinessRegister" className="py-2">Register As Business</Link>
+
               </>
             ) : (
               <h2 className="py-2 text-white">
                 <Link href={"/logout"}>Logout</Link>
               </h2>
             )}
+            <Link href={"/"} className="py-2">Home</Link>
+            <Link href={"/jobs"} className="py-2 text-red-500">Jobs</Link>
+            <Link href={"/freelancerDashboard"} className="py-2">Dashboard</Link>
+            <Link href={"/"} className="py-2">About</Link>
+            <Link href={"/"} className="py-2">Contact</Link>
+
           </div>
         )}
       </header>

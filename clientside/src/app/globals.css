@@ -76,4 +76,7 @@
   }
 body{
   background-color: black;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+  }
 }
