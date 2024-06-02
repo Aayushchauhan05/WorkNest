@@ -398,3 +398,222 @@ Back-End Data
 "**v": 0
 }
 }
+
+### Oracle
+## POST http://localhost:5001/api/oracle/createOracle
+Front-End Data
+{
+    "freeLancerId": "60c72b2f4f1a5c001c8e4c9b",
+    "experienceYears": 6,
+    "status": "Applicable"
+}
+Back-End Data
+{
+  "freeLancerId": "60c72b2f4f1a5c001c8e4c9b",
+  "experienceYears": 6,
+  "status": "Applicable",
+  "_id": "665b6e2901dbc21d41e8939f",
+  "createdAt": "2024-06-01T18:53:29.272Z",
+  "updatedAt": "2024-06-01T18:53:29.272Z",
+  "__v": 0
+}
+
+## GET http://localhost:5001/api/oracle/getAllOracles
+Back-End Data
+[
+  {
+    "_id": "665b6e2901dbc21d41e8939f",
+    "freeLancerId": "60c72b2f4f1a5c001c8e4c9b",
+    "experienceYears": 6,
+    "status": "Applicable",
+    "createdAt": "2024-06-01T18:53:29.272Z",
+    "updatedAt": "2024-06-01T18:53:29.272Z",
+    "__v": 0
+  },
+  {
+    "_id": "665b6f446e504da61f79612f",
+    "freeLancerId": "60c72b2f4f1a5c001c8e4c9b",
+    "experienceYears": 6,
+    "status": "Applicable",
+    "createdAt": "2024-06-01T18:58:12.214Z",
+    "updatedAt": "2024-06-01T18:58:12.214Z",
+    "__v": 0
+  },
+  {
+    "_id": "665b6f9a5865ee15a96ab036",
+    "freeLancerId": "60c72b2f4f1a5c001c8e4c9b",
+    "experienceYears": 6,
+    "status": "Applicable",
+    "createdAt": "2024-06-01T18:59:38.256Z",
+    "updatedAt": "2024-06-01T18:59:38.256Z",
+    "__v": 0
+  }
+]
+
+## GET http://localhost:5001/api/oracle/getOracleById/665b6e2901dbc21d41e8939f
+
+Back-End Data
+{
+  "_id": "665b6e2901dbc21d41e8939f",
+  "freeLancerId": null,
+  "experienceYears": 6,
+  "status": "Applicable",
+  "createdAt": "2024-06-01T18:53:29.272Z",
+  "updatedAt": "2024-06-01T18:53:29.272Z",
+  "__v": 0
+}
+
+## PATCH http://localhost:5001/api/oracle/updateOracle/665b6e2901dbc21d41e8939f
+Front-End Data
+{
+  "freeLancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 7,
+  "status": "Applicable"
+}
+
+Back-End Data
+{
+  "_id": "665b6e2901dbc21d41e8939f",
+  "freeLancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 7,
+  "status": "Applicable",
+  "createdAt": "2024-06-01T18:53:29.272Z",
+  "updatedAt": "2024-06-01T21:12:24.388Z",
+  "__v": 0
+}
+
+## DELETE http://localhost:5001/api/oracle/deleteOracle/665b6e2901dbc21d41e8939f
+
+Front-End Data
+{
+  "freeLancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 7,
+  "status": "Applicable"
+}
+
+Back-End Data
+{
+  "message": "Oracle deleted successfully"
+}
+
+### Interviewer
+## POST http://localhost:5001/api/interviewers/createInterviewer
+
+Front-End Data
+{
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied"
+}
+
+Back-End Data
+{
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied",
+  "_id": "665b8747472f28912fd30fae",
+  "createdAt": "2024-06-01T20:40:39.935Z",
+  "updatedAt": "2024-06-01T20:40:39.935Z",
+  "__v": 0
+}
+
+## GET http://localhost:5001/api/interviewers/getAllInterviewers
+
+Back-End Data
+[
+  {
+    "_id": "665b81cb4d028e35ff668577",
+    "freelancerId": "60d5ec49d4a1f96e2cf9ec01",
+    "experienceYears": 7,
+    "skill": "JavaScript",
+    "skillId": "60d5ec69d4a1f96e2cf9ec02",
+    "status": "Applied",
+    "createdAt": "2024-06-01T20:17:15.379Z",
+    "updatedAt": "2024-06-01T20:17:15.379Z",
+    "__v": 0
+  },
+  {
+    "_id": "665b8747472f28912fd30fae",
+    "freelancerId": "60b7c2f9e301d636c04e4355",
+    "experienceYears": 6,
+    "skill": "JavaScript",
+    "skillId": "60b7c2f9e301d636c04e4356",
+    "status": "Not Applied",
+    "createdAt": "2024-06-01T20:40:39.935Z",
+    "updatedAt": "2024-06-01T20:40:39.935Z",
+    "__v": 0
+  }
+]
+
+## GET http://localhost:5001/api/interviewers/getInterviewerById/665b81cb4d028e35ff668577
+
+Back-End Data
+{
+  "_id": "665b81cb4d028e35ff668577",
+  "freelancerId": "60d5ec49d4a1f96e2cf9ec01",
+  "experienceYears": 7,
+  "skill": "JavaScript",
+  "skillId": "60d5ec69d4a1f96e2cf9ec02",
+  "status": "Applied",
+  "createdAt": "2024-06-01T20:17:15.379Z",
+  "updatedAt": "2024-06-01T20:17:15.379Z",
+  "__v": 0
+}
+
+## PATCH http://localhost:5001/api/interviewers/updateInterviewer/665b81cb4d028e35ff668577
+
+Front-End Data
+{
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied"
+}
+
+Back-End Data
+{
+  "_id": "665b81cb4d028e35ff668577",
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied",
+  "createdAt": "2024-06-01T20:17:15.379Z",
+  "updatedAt": "2024-06-01T20:51:03.308Z",
+  "__v": 0
+}
+
+## DELETE http://localhost:5001/api/interviewers/deleteInterviewer/665b81cb4d028e35ff668577
+
+Front-End Data
+{
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied"
+}
+
+Back-End Data
+{
+  "_id": "665b81cb4d028e35ff668577",
+  "freelancerId": "60b7c2f9e301d636c04e4355",
+  "experienceYears": 6,
+  "skill": "JavaScript",
+  "skillId": "60b7c2f9e301d636c04e4356",
+  "status": "Not Applied",
+  "createdAt": "2024-06-01T20:17:15.379Z",
+  "updatedAt": "2024-06-01T20:51:03.308Z",
+  "__v": 0
+}
+
+
+
+
+
+

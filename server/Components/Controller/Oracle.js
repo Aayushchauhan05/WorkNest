@@ -1,74 +1,83 @@
-const { Oracle } = require('../models/Oracle/oracle');
+const { Oracle } = require("../models/oracle/oracle");
 
-// Create Oracle
-const createOracle = async (req, res) => {
-    try {
-        const { freeLancerId, experienceYears, status } = req.body;
-        const oracle = new Oracle({ freeLancerId, experienceYears, status });
-        await oracle.save();
-        res.status(201).json(oracle);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Create a new Oracle entry
+exports.createOracle = async (req, res) => {
+  try {
+    const newOracle = new Oracle(req.body);
+    const savedOracle = await newOracle.save();
+    res.status(201).json(savedOracle);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-// Get all Oracles
-const getAllOracles = async (req, res) => {
-    try {
-        const oracles = await Oracle.find();
-        res.json(oracles);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Get all Oracle entries
+exports.getAllOracles = async (req, res) => {
+  try {
+    const oracles = await Oracle.find().populate("freeLancerId");
+    res.status(200).json(oracles);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Get Oracle by ID
-const getOracleById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const oracle = await Oracle.findById(id);
-        if (!oracle) {
-            return res.status(404).json({ message: 'Oracle not found' });
-        }
-        res.json(oracle);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Get a single Oracle entry by ID
+exports.getOracleById = async (req, res) => {
+  try {
+    const oracle = await Oracle.findById(req.params.id).populate(
+      "freeLancerId"
+    );
+    if (!oracle) return res.status(404).json({ message: "Oracle not found" });
+    res.status(200).json(oracle);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Update Oracle by ID
-const updateOracleById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { freeLancerId, experienceYears, status } = req.body;
-        const updatedOracle = await Oracle.findByIdAndUpdate(id, { freeLancerId, experienceYears, status }, { new: true });
-        if (!updatedOracle) {
-            return res.status(404).json({ message: 'Oracle not found' });
-        }
-        res.json(updatedOracle);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Update an Oracle entry by ID
+exports.updateOracle = async (req, res) => {
+  try {
+    const oracle = await Oracle.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!oracle) return res.status(404).json({ message: "Oracle not found" });
+    res.status(200).json(oracle);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
-// Delete Oracle by ID
-const deleteOracleById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const deletedOracle = await Oracle.findByIdAndDelete(id);
-        if (!deletedOracle) {
-            return res.status(404).json({ message: 'Oracle not found' });
-        }
-        res.json({ message: 'Oracle deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// Delete an Oracle entry by ID
+exports.deleteOracle = async (req, res) => {
+  try {
+    const oracle = await Oracle.findByIdAndDelete(req.params.id);
+    if (!oracle) return res.status(404).json({ message: "Oracle not found" });
+    res.status(200).json({ message: "Oracle deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-module.exports = {
-    createOracle,
-    getAllOracles,
-    getOracleById,
-    updateOracleById,
-    deleteOracleById
+exports.updateOracleByFreelancerId = async (req, res) => {
+  try {
+    const oracle = await Oracle.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!oracle) return res.status(404).json({ message: "Oracle not found" });
+    res.status(200).json({ message: "Oracle updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getOracleByFreelancerId = async (req, res) => {
+  try {
+    const oracle = await Oracle.findOne({ freeLancerId: req.params.id });
+    if (!oracle) return res.status(404).json({ message: "Oracle not found" });
+    res.status(200).json(oracle);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
