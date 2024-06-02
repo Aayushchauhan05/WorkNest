@@ -52,12 +52,20 @@ function Page() {
   };
 
   return (
-    <div className="flex w-full h-screen">
-      {/* Left side Navbar */}
-      <div className={`fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
+    <div class="flex flex-col md:flex-row h-screen">
+
+
+
+
+
+
+      <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex h-screen text-gray-50 w-[70%] md:w-[20%]`}>
         <div className="flex flex-col gap-6">
-          <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50">X</button>
-          <nav className="flex flex-col w-auto h-screen gap-2 top-10 relative">
+          <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
+
+          {/* leftside Navbar */}
+
+          <nav className="flex flex-col w-auto h-screen gap-2 top-10  relative">
             <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
               Dashboard
             </Link>
@@ -83,7 +91,7 @@ function Page() {
         </div>
       </div>
       {/* Right side Main Container */}
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-[100%] h-screen">
         <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
           <div className="container flex items-center justify-between px-6 py-4 mx-auto">
             <div className="flex items-center gap-4">
