@@ -221,7 +221,7 @@ function Page() {
           {isVerified && (
             <div className='w-full h-96 bg-gray-500 flex rounded-2xl items-center justify-center '>
            
-            <h2>"You will receive interview schedules whenever you are selected."</h2>
+            <h2>You will receive interview schedules whenever you are selected.</h2>
             </div>
           )}
          </div>:<div>You Are not Eligible to apply</div>}
