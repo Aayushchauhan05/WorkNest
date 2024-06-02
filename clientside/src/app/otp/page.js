@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 function VerifyIdentity() {
-  const [email,setemail]= useState(localStorage.getItem("email"))
-  // useEffect(()=>{
-
-  // },[])
+  const [email,setemail]= useState(null)
+  useEffect(()=>{
+   setemail(localStorage.getItem("email")) 
+  })
   const initialValues = {
     Email:`${email}`,
     otp: ""
