@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 function Page() {
-  const [userExperience,setUserExperience]=useState(5)
+  const [userExp, setUserExp] = useState(5);
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,26 +71,19 @@ function Page() {
     ];
 
     setUsers(dummyUsers);
-
-    setTimeout(() => {
-      setIsVerified(true);
-    }, 5000); 
   }, []);
 
-  const toggleShowUsers = () => {
-    setShowUsers(prevState => !prevState);
-  };
+
+
 
   const handleApplyClick = () => {
     const eligibleUser = users.find(user => user.experience > 5);
+    setTimeout(() => {
+      setIsVerified(true);
+    }, 5000);
     if (eligibleUser) {
       setIsApplying(true);
       setApplyMessage('Your verification is under process.');
-      setTimeout(() => {
-        setIsVerified(true);
-        setApplyMessage('Verified');
-        setShowUsers(true);
-      }, 2000); 
     } else {
       setApplyMessage('You do not have the required experience.');
     }
@@ -98,10 +91,10 @@ function Page() {
 
   return (
     <div className="flex w-full h-screen">
+      {/* Left side Navbar */}
       <div className={`fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
         <div className="flex flex-col gap-6">
           <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50">X</button>
-          {/* leftside Navbar */}
           <nav className="flex flex-col w-auto h-screen gap-2 top-10 relative">
             <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
               Dashboard
@@ -127,7 +120,7 @@ function Page() {
           </nav>
         </div>
       </div>
-      {/* rightSide Main Container */}
+      {/* Right side Main Container */}
       <div className="flex flex-col w-full">
         <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
           <div className="container flex items-center justify-between px-6 py-4 mx-auto">
@@ -150,10 +143,8 @@ function Page() {
                   <line x1="4" x2="20" y1="18" y2="18"></line>
                 </svg>
               </button>
-             
               <div>
-                <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">John Doe</h1>
-                <p className="text-cyan-500 dark:text-gray-400">Freelance Designer</p>
+              <h1 className="text-3xl font-bold text-white dark:text-gray-50 mt-2">Interviews</h1>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -200,41 +191,40 @@ function Page() {
 
         {/* Right side Main Container */}
         <main className="flex-grow container bg-gray-950 p-6  w-[100%] text-white">
-          <h1 className="text-3xl font-bold text-cyan-700 dark:text-gray-50 mt-2">Interviews</h1>
-          {isVerified ? (
-            showUsers ? (
-              <div>
-                <h1 className="text-2xl font-semibold my-4">Users</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {users.map(user => (
-                    <div key={user.id} className="bg-white rounded-lg shadow-md text-black p-4 flex flex-col items-center w-full">
-                      <img className="w-24 h-24 rounded-full mb-4" src={user.profileImage} alt={`${user.name}'s profile`} />
-                      <h2 className="text-xl font-semibold mb-2">{user.name}</h2>
-                      <p className="text-gray-600 mb-2">{user.email}</p>
-                      <p className="text-gray-600 mb-2">{user.phone}</p>
-                      <a className="text-blue-500 mb-2" href={user.github} target="_blank" rel="noopener noreferrer">
-                        GitHub Profile
-                      </a>
-                      <p className="text-gray-600">{user.location}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <p className="text-green-500 font-semibold">Verified</p>
-            )
+      
+        {userExp>=5? <div className='w-full flex flex-col items-center'>
+         {!isVerified ? (
+            <>
+            <button
+              onClick={handleApplyClick}
+              className={`px-4 py-2 ${isApplying ? 'bg-gray-400' : 'bg-cyan-700'} text-white rounded-md hover:bg-cyan-800`}
+              disabled={isApplying}
+            >
+              {isApplying ? "Applied" : "Apply"}
+            </button>
+           {isApplying && <h2>Your request has been sent for verification.</h2>}
+            </>
           ) : (
             <>
               <button
                 onClick={handleApplyClick}
-                className="px-4 py-2 bg-cyan-700 text-white rounded-md hover:bg-cyan-800"
+                className="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-cyan-800"
                 disabled={isApplying}
               >
-                {isApplying ? 'Applying' : 'Apply'}
+                verified
               </button>
-              {applyMessage && <p className="text-red-500 font-semibold">{applyMessage}</p>}
+              <h2>You are verified now you can take interviews now</h2>
             </>
           )}
+
+
+          {isVerified && (
+            <div className='w-full h-96 bg-gray-500 flex rounded-2xl items-center justify-center '>
+           
+            <h2>"You will receive interview schedules whenever you are selected."</h2>
+            </div>
+          )}
+         </div>:<div>You Are not Eligible to apply</div>}
         </main>
       </div>
     </div>
