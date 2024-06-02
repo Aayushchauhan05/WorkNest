@@ -258,21 +258,21 @@ console.log(workExperiences)
           <div className="flex flex-wrap justify-center gap-6 mt-4">
             {workExperiences.map((experience) => (
               <div
-                key={experience.id}
+                key={experience?.id}
                 className="w-64 h-full border rounded-lg shadow-sm bg-card text-card-foreground"
               >
                 <div className="flex flex-col justify-end h-full p-4">
                   <h2 className="text-xl font-bold">
-                    {experience.company}
+                    {experience?.company}
                   </h2>
-                  <p className="text-sm text-cyan-700">Role:  {experience.jobTitle}</p>
-                  <p className="text-sm">{experience.skills}</p>
+                  <p className="text-sm text-cyan-700">Role:  {experience?.jobTitle}</p>
+                  <p className="text-sm">{experience?.skills}</p>
                   <p className="text-sm">
-                    Description: {experience.workDescription}
+                    Description: {experience?.workDescription}
                   </p>
                   <div className="flex mt-auto">
-                    <p className="text-sm">Starting Date: {experience.workFrom}</p>
-                    <p className="ml-4 text-sm">Ending Date: {experience.workTo}</p>
+                    <p className="text-sm">Starting Date: {experience?.workFrom}</p>
+                    <p className="ml-4 text-sm">Ending Date: {experience?.workTo}</p>
                   </div>
                   <button
                     onClick={openModal}
@@ -281,7 +281,7 @@ console.log(workExperiences)
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(experience.id)}
+                    onClick={() => handleDelete(experience?.id)}
                     className="px-4 py-1 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600"
                   >
                     Delete

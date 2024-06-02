@@ -49,7 +49,7 @@ export default function Component() {
 console.log(data)
         if (response.ok) {
           toast.success("Registration successful");
-          localStorage.setItem("email", data.Data.Email);
+          // localStorage.setItem("email", data.Data.Email);
           router.push("/otp");
         } else {
           toast.error(data.message);

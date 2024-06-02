@@ -157,8 +157,8 @@ function page() {
                <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
              </span> */}
              <div>
-               <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">{`${userinfo.firstName}`}</h1>
-               <p className="text-cyan-500 dark:text-gray-400">{`${userinfo.Role}`}</p>
+               <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">{`${userinfo?.firstName}`}</h1>
+               <p className="text-cyan-500 dark:text-gray-400">{`${userinfo?.Role}`}</p>
              </div>
            </div>
            <div className="flex items-center gap-4">
@@ -212,8 +212,8 @@ function page() {
            </div>
            <div className="grid gap-3 p-2">
              <div>
-               <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">{`${userinfo.firstName} ${userinfo.lastName}`}</h3>
-               <p className="text-gray-500 dark:text-gray-400">{`${userinfo.Email}`}</p>
+               <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">{`${userinfo?.firstName} ${userinfo?.lastName}`}</h3>
+               <p className="text-gray-500 dark:text-gray-400">{`${userinfo?.Email}`}</p>
              </div>
              <div>
                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Skills</h3>
@@ -307,7 +307,7 @@ function page() {
            <div className="grid gap-4 p-6 ">
              <div className="flex items-center justify-between">
                <div>
-                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">$12,345</h3>
+                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">0</h3>
                  <p className="text-gray-500 dark:text-gray-400">Total Earnings</p>
                </div>
                <svg

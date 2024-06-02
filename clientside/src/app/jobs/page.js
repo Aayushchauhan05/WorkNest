@@ -18,207 +18,7 @@ function page() {
       jobType: "Web Development",
       experienceLevel: "Expert",
     },
-    {
-      title: "Graphic Designer for Branding",
-      description:
-        "We need a talented graphic designer to create a brand identity for our new startup.",
-      budget: "$1,000 - $2,500",
-      priceRange: "$500 - $2,000",
-      client: "XYZ Corp",
-      dueDate: "2024-07-10",
-      status: "Bid ends soon",
-      jobType: "Graphic Design",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Content Writer for Blog",
-      description:
-        "Looking for a skilled content writer to produce high-quality blog posts on a regular basis.",
-      budget: "$500 - $1,000",
-      priceRange: "$500 - $2,000",
-      client: "123 Inc",
-      dueDate: "2024-06-30",
-      status: "Available to bid",
-      jobType: "Content Writing",
-      experienceLevel: "Entry Level",
-    },
-    {
-      title: "Virtual Assistant Needed",
-      description:
-        "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: "$15 - $25 per hour",
-      priceRange: "Any",
-      client: "LMN Co",
-      dueDate: "2024-07-25",
-      status: "Bid ends soon",
-      jobType: "Virtual Assistant",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Social Media Manager",
-      description:
-        "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: "$1,000 - $2,000 per month",
-      priceRange: "$500 - $2,000",
-      client: "UVW Inc",
-      dueDate: "2024-08-10",
-      status: "Available to bid",
-      jobType: "Marketing",
-      experienceLevel: "Expert",
-    },
-    {
-      title: "Copywriter for Marketing",
-      description: "Looking for a talented copywriter for marketing materials.",
-      budget: "$500 - $1,500",
-      priceRange: "$500 - $2,000",
-      client: "OPQ Corp",
-      dueDate: "2024-08-05",
-      status: "Bid ends soon",
-      jobType: "Marketing",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Web Developer Needed",
-      description:
-        "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: "$3,000 - $5,000",
-      priceRange: "$2,000+",
-      client: "ABC Corp",
-      dueDate: "2024-06-15",
-      status: "Available to bid",
-      jobType: "Web Development",
-      experienceLevel: "Expert",
-    },
-    {
-      title: "Graphic Designer for Branding",
-      description:
-        "We need a talented graphic designer to create a brand identity for our new startup.",
-      budget: "$1,000 - $2,500",
-      priceRange: "$500 - $2,000",
-      client: "XYZ Corp",
-      dueDate: "2024-07-10",
-      status: "Bid ends",
-      jobType: "Graphic Design",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Content Writer for Blog",
-      description:
-        "Looking for a skilled content writer to produce high-quality blog posts on a regular basis.",
-      budget: "$500 - $1,000",
-      priceRange: "$500 - $2,000",
-      client: "123 Inc",
-      dueDate: "2024-06-30",
-      status: "Available to bid",
-      jobType: "Content Writing",
-      experienceLevel: "Entry Level",
-    },
-    {
-      title: "Virtual Assistant Needed",
-      description:
-        "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: "$15 - $25 per hour",
-      priceRange: "Any",
-      client: "LMN Co",
-      dueDate: "2024-07-25",
-      status: "Bid ends soon",
-      jobType: "Virtual Assistant",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Social Media Manager",
-      description:
-        "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: "$1,000 - $2,000 per month",
-      priceRange: "$500 - $2,000",
-      client: "UVW Inc",
-      dueDate: "2024-08-10",
-      status: "Available to bid",
-      jobType: "Marketing",
-      experienceLevel: "Expert",
-    },
-    {
-      title: "Copywriter for Marketing",
-      description: "Looking for a talented copywriter for marketing materials.",
-      budget: "$500 - $1,500",
-      priceRange: "$500 - $2,000",
-      client: "OPQ Corp",
-      dueDate: "2024-08-05",
-      status: "Bid ends soon",
-      jobType: "Marketing",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Web Developer Needed",
-      description:
-        "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: "$3,000 - $5,000",
-      priceRange: "$2,000+",
-      client: "ABC Corp",
-      dueDate: "2024-06-15",
-      status: "Available to bid",
-      jobType: "Web Development",
-      experienceLevel: "Expert",
-    },
-    {
-      title: "Graphic Designer for Branding",
-      description:
-        "We need a talented graphic designer to create a brand identity for our new startup.",
-      budget: "$1,000 - $2,500",
-      priceRange: "$500 - $2,000",
-      client: "XYZ Corp",
-      dueDate: "2024-07-10",
-      status: "Bid ends",
-      jobType: "Graphic Design",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Content Writer for Blog",
-      description:
-        "Looking for a skilled content writer to produce high-quality blog posts on a regular basis.",
-      budget: "$500 - $1,000",
-      priceRange: "$500 - $2,000",
-      client: "123 Inc",
-      dueDate: "2024-06-30",
-      status: "Available to bid",
-      jobType: "Content Writing",
-      experienceLevel: "Entry Level",
-    },
-    {
-      title: "Virtual Assistant Needed",
-      description:
-        "We're looking for a reliable virtual assistant to help with administrative tasks and customer support.",
-      budget: "$15 - $25 per hour",
-      priceRange: "Any",
-      client: "LMN Co",
-      dueDate: "2024-07-25",
-      status: "Bid ends",
-      jobType: "Virtual Assistant",
-      experienceLevel: "Intermediate",
-    },
-    {
-      title: "Social Media Manager",
-      description:
-        "We need a social media expert to manage our company's Facebook, Instagram, and Twitter accounts.",
-      budget: "$1,000 - $2,000 per month",
-      priceRange: "$500 - $2,000",
-      client: "UVW Inc",
-      dueDate: "2024-08-10",
-      status: "Available to bid",
-      jobType: "Marketing",
-      experienceLevel: "Expert",
-    },
-    {
-      title: "Copywriter for Marketing",
-      description: "Looking for a talented copywriter for marketing materials.",
-      budget: "$500 - $1,500",
-      priceRange: "$500 - $2,000",
-      client: "OPQ Corp",
-      dueDate: "2024-08-05",
-      status: "Bid ends soon",
-      jobType: "Marketing",
-      experienceLevel: "Intermediate",
-    },
+
   ];
 
   const [filters, setFilters] = useState({
@@ -295,6 +95,7 @@ function page() {
         <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
           <div className="container flex items-center justify-between mx-auto">
             <h1 className="text-2xl font-bold">Freelance Jobs</h1>
+            
           </div>
         </header>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
@@ -522,7 +323,8 @@ function page() {
           <div className="col-span-1 md:col-span-9">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredJobs.map((job, index) => (
-                <div
+             
+             <Link href={`/jobs/1`}>   <div
                   key={index}
                   className="relative overflow-hidden text-black bg-white border rounded-lg shadow-sm group"
                 >
@@ -549,15 +351,13 @@ function page() {
                       <div className="text-sm text-gray-600">
                         Budget: {job.budget}
                       </div>
-                      <Link href={"/jobs/"}
-                        className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}
-                      >
-                        bid
-                      </Link>
+                      <h1   className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}>Bid</h1>
+                     
                     </div>
                   </div>
                   <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>

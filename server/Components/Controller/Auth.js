@@ -186,8 +186,9 @@ const login = async (req, res) => {
         .status(404)
         .json({ message: "User not exist, please register" });
     }
+    console.log(password)
     const passcheck = await bcrypt.compare(password, userexist.password);
-
+console.log(passcheck)
     if (!passcheck) {
       return res.status(401).json({ message: " Invalid password Or Username" });
     }

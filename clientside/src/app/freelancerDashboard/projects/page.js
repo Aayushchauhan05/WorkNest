@@ -17,223 +17,223 @@ function page() {
       client: 'ABC Corp',
       status: 'Pending'
     },
-    {
-      id: 2,
-      name: 'Mobile App Development',
-      dueDate: '2024-07-10',
-      client: 'XYZ Corp',
-      status: 'Applied'
-    },
-    {
-      id: 3,
-      name: 'Logo Design',
-      dueDate: '2024-06-30',
-      client: '123 Inc',
-      status: 'Complete'
-    },
-    {
-      id: 4,
-      name: 'Social Media Marketing',
-      dueDate: '2024-06-25',
-      client: 'LMN Co',
-      status: 'Rejected'
-    },
-    {
-      id: 5,
-      name: 'Content Writing',
-      dueDate: '2024-07-05',
-      client: 'PQR Ltd',
-      status: 'Pending'
-    },
-    {
-      id: 6,
-      name: 'Graphic Design',
-      dueDate: '2024-07-20',
-      client: 'EFG LLC',
-      status: 'Applied'
-    },
-    {
-      id: 7,
-      name: 'SEO Optimization',
-      dueDate: '2024-07-12',
-      client: 'GHI Corp',
-      status: 'Complete'
-    },
-    {
-      id: 8,
-      name: 'Video Production',
-      dueDate: '2024-07-08',
-      client: 'UVW Inc',
-      status: 'Rejected'
-    },
-    {
-      id: 9,
-      name: 'Email Marketing Campaign',
-      dueDate: '2024-07-30',
-      client: 'MNO Co',
-      status: 'Pending'
-    },
-    {
-      id: 10,
-      name: 'UI/UX Design',
-      dueDate: '2024-07-25',
-      client: 'RST Ltd',
-      status: 'Applied'
-    },
-    {
-      id: 11,
-      name: 'Brand Strategy',
-      dueDate: '2024-07-18',
-      client: 'IJK Inc',
-      status: 'Complete'
-    },
-    {
-      id: 12,
-      name: 'Print Advertising',
-      dueDate: '2024-08-05',
-      client: 'OPQ Corp',
-      status: 'Rejected'
-    },
-    {
-      id: 13,
-      name: 'E-commerce Website Development',
-      dueDate: '2024-08-10',
-      client: 'JKL Ltd',
-      status: 'Pending'
-    },
-    {
-      id: 14,
-      name: 'Social Media Management',
-      dueDate: '2024-08-15',
-      client: 'TUV Co',
-      status: 'Applied'
-    },
-    {
-      id: 15,
-      name: 'Content Marketing Strategy',
-      dueDate: '2024-08-20',
-      client: 'WXY Inc',
-      status: 'Complete'
-    },
-    {
-      id: 16,
-      name: 'Photography Services',
-      dueDate: '2024-08-25',
-      client: 'ABD Corp',
-      status: 'Rejected'
-    },
-    {
-      id: 17,
-      name: 'Software Development',
-      dueDate: '2024-09-05',
-      client: 'CDE LLC',
-      status: 'Pending'
-    },
-    {
-      id: 18,
-      name: 'Digital Advertising Campaign',
-      dueDate: '2024-09-10',
-      client: 'EHI Ltd',
-      status: 'Applied'
-    },
-    {
-      id: 19,
-      name: 'UI Design Consultation',
-      dueDate: '2024-09-15',
-      client: 'FGH Inc',
-      status: 'Complete'
-    },
-    {
-      id: 20,
-      name: 'Market Research',
-      dueDate: '2024-09-20',
-      client: 'IJK Co',
-      status: 'Rejected'
-    },
-    {
-      id: 21,
-      name: 'Video Editing Services',
-      dueDate: '2024-09-25',
-      client: 'LMN Corp',
-      status: 'Pending'
-    },
-    {
-      id: 22,
-      name: 'Copywriting for Website',
-      dueDate: '2024-10-05',
-      client: 'OPQ Ltd',
-      status: 'Applied'
-    },
-    {
-      id: 23,
-      name: 'Product Packaging Design',
-      dueDate: '2024-10-10',
-      client: 'RST Inc',
-      status: 'Complete'
-    },
-    {
-      id: 24,
-      name: 'Event Planning',
-      dueDate: '2024-10-15',
-      client: 'UVW Corp',
-      status: 'Rejected'
-    },
-    {
-      id: 25,
-      name: 'SEO Audit',
-      dueDate: '2024-10-20',
-      client: 'XYZ Ltd',
-      status: 'Pending'
-    },
-    {
-      id: 26,
-      name: 'Public Relations Campaign',
-      dueDate: '2024-10-25',
-      client: '123 Inc',
-      status: 'Applied'
-    },
-    {
-      id: 27,
-      name: 'Technical Support Services',
-      dueDate: '2024-11-05',
-      client: '456 Co',
-      status: 'Complete'
-    },
-    {
-      id: 28,
-      name: 'Illustration Design',
-      dueDate: '2024-11-10',
-      client: '789 Corp',
-      status: 'Rejected'
-    },
-    {
-      id: 29,
-      name: 'User Testing',
-      dueDate: '2024-11-15',
-      client: '012 Ltd',
-      status: 'Pending'
-    },
-    {
-      id: 30,
-      name: 'Mobile App UI Design',
-      dueDate: '2024-11-20',
-      client: '345 Inc',
-      status: 'Applied'
-    },
-    {
-      id: 31,
-      name: 'Printed Brochure Design',
-      dueDate: '2024-11-25',
-      client: '678 Co',
-      status: 'Complete'
-    },
-    {
-      id: 32,
-      name: 'Content Localization',
-      dueDate: '2024-12-05',
-      client: '901 Corp',
-      status: 'Rejected'
-    }
+    // {
+    //   id: 2,
+    //   name: 'Mobile App Development',
+    //   dueDate: '2024-07-10',
+    //   client: 'XYZ Corp',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Logo Design',
+    //   dueDate: '2024-06-30',
+    //   client: '123 Inc',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Social Media Marketing',
+    //   dueDate: '2024-06-25',
+    //   client: 'LMN Co',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 5,
+    //   name: 'Content Writing',
+    //   dueDate: '2024-07-05',
+    //   client: 'PQR Ltd',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 6,
+    //   name: 'Graphic Design',
+    //   dueDate: '2024-07-20',
+    //   client: 'EFG LLC',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 7,
+    //   name: 'SEO Optimization',
+    //   dueDate: '2024-07-12',
+    //   client: 'GHI Corp',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 8,
+    //   name: 'Video Production',
+    //   dueDate: '2024-07-08',
+    //   client: 'UVW Inc',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 9,
+    //   name: 'Email Marketing Campaign',
+    //   dueDate: '2024-07-30',
+    //   client: 'MNO Co',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 10,
+    //   name: 'UI/UX Design',
+    //   dueDate: '2024-07-25',
+    //   client: 'RST Ltd',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 11,
+    //   name: 'Brand Strategy',
+    //   dueDate: '2024-07-18',
+    //   client: 'IJK Inc',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 12,
+    //   name: 'Print Advertising',
+    //   dueDate: '2024-08-05',
+    //   client: 'OPQ Corp',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 13,
+    //   name: 'E-commerce Website Development',
+    //   dueDate: '2024-08-10',
+    //   client: 'JKL Ltd',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 14,
+    //   name: 'Social Media Management',
+    //   dueDate: '2024-08-15',
+    //   client: 'TUV Co',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 15,
+    //   name: 'Content Marketing Strategy',
+    //   dueDate: '2024-08-20',
+    //   client: 'WXY Inc',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 16,
+    //   name: 'Photography Services',
+    //   dueDate: '2024-08-25',
+    //   client: 'ABD Corp',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 17,
+    //   name: 'Software Development',
+    //   dueDate: '2024-09-05',
+    //   client: 'CDE LLC',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 18,
+    //   name: 'Digital Advertising Campaign',
+    //   dueDate: '2024-09-10',
+    //   client: 'EHI Ltd',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 19,
+    //   name: 'UI Design Consultation',
+    //   dueDate: '2024-09-15',
+    //   client: 'FGH Inc',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 20,
+    //   name: 'Market Research',
+    //   dueDate: '2024-09-20',
+    //   client: 'IJK Co',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 21,
+    //   name: 'Video Editing Services',
+    //   dueDate: '2024-09-25',
+    //   client: 'LMN Corp',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 22,
+    //   name: 'Copywriting for Website',
+    //   dueDate: '2024-10-05',
+    //   client: 'OPQ Ltd',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 23,
+    //   name: 'Product Packaging Design',
+    //   dueDate: '2024-10-10',
+    //   client: 'RST Inc',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 24,
+    //   name: 'Event Planning',
+    //   dueDate: '2024-10-15',
+    //   client: 'UVW Corp',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 25,
+    //   name: 'SEO Audit',
+    //   dueDate: '2024-10-20',
+    //   client: 'XYZ Ltd',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 26,
+    //   name: 'Public Relations Campaign',
+    //   dueDate: '2024-10-25',
+    //   client: '123 Inc',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 27,
+    //   name: 'Technical Support Services',
+    //   dueDate: '2024-11-05',
+    //   client: '456 Co',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 28,
+    //   name: 'Illustration Design',
+    //   dueDate: '2024-11-10',
+    //   client: '789 Corp',
+    //   status: 'Rejected'
+    // },
+    // {
+    //   id: 29,
+    //   name: 'User Testing',
+    //   dueDate: '2024-11-15',
+    //   client: '012 Ltd',
+    //   status: 'Pending'
+    // },
+    // {
+    //   id: 30,
+    //   name: 'Mobile App UI Design',
+    //   dueDate: '2024-11-20',
+    //   client: '345 Inc',
+    //   status: 'Applied'
+    // },
+    // {
+    //   id: 31,
+    //   name: 'Printed Brochure Design',
+    //   dueDate: '2024-11-25',
+    //   client: '678 Co',
+    //   status: 'Complete'
+    // },
+    // {
+    //   id: 32,
+    //   name: 'Content Localization',
+    //   dueDate: '2024-12-05',
+    //   client: '901 Corp',
+    //   status: 'Rejected'
+    // }
   ];
 
   const filterProjectsByStatus = (status) => {
