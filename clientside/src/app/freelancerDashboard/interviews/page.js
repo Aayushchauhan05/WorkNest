@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 function Page() {
-  const [userExp, setUserExp] = useState(5);
+  const [userExp, setUserExp] = useState(3);
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,46 +28,8 @@ function Page() {
         profileImage: 'https://via.placeholder.com/150',
         experience: 6
       },
-      {
-        id: 2,
-        name: 'Jane Smith',
-        email: 'jane.smith@example.com',
-        phone: '+0987654321',
-        github: 'https://github.com/janesmith',
-        location: 'Los Angeles, USA',
-        profileImage: 'https://via.placeholder.com/150',
-        experience: 3
-      },
-      {
-        id: 3,
-        name: 'Alice Johnson',
-        email: 'alice.johnson@example.com',
-        phone: '+1122334455',
-        github: 'https://github.com/alicejohnson',
-        location: 'Chicago, USA',
-        profileImage: 'https://via.placeholder.com/150',
-        experience: 8
-      },
-      {
-        id: 4,
-        name: 'Bob Brown',
-        email: 'bob.brown@example.com',
-        phone: '+5566778899',
-        github: 'https://github.com/bobbrown',
-        location: 'Houston, USA',
-        profileImage: 'https://via.placeholder.com/150',
-        experience: 2
-      },
-      {
-        id: 5,
-        name: 'Charlie Davis',
-        email: 'charlie.davis@example.com',
-        phone: '+6677889900',
-        github: 'https://github.com/charliedavis',
-        location: 'Phoenix, USA',
-        profileImage: 'https://via.placeholder.com/150',
-        experience: 10
-      }
+    
+      
     ];
 
     setUsers(dummyUsers);
@@ -77,7 +39,7 @@ function Page() {
 
 
   const handleApplyClick = () => {
-    const eligibleUser = users.find(user => user.experience > 5);
+    const eligibleUser = users.find(user => user.experience > 2);
     setTimeout(() => {
       setIsVerified(true);
     }, 5000);
@@ -144,7 +106,7 @@ function Page() {
                 </svg>
               </button>
               <div>
-              <h1 className="text-3xl font-bold text-white dark:text-gray-50 mt-2">Interviews</h1>
+              <h1 className="text-3xl font-bold text-white dark:text-gray-50 mt-2"> Interview</h1>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -190,9 +152,10 @@ function Page() {
         </header>
 
         {/* Right side Main Container */}
-        <main className="flex-grow container bg-gray-950 p-6  w-[100%] text-white">
+        <main className="flex-grow container bg-gray-950 p-6 items-center justify-center w-[100%] text-white">
       
-        {userExp>=5? <div className='w-full flex flex-col items-center'>
+        {userExp>=2?
+         <div className='w-full flex flex-col mt-10 gap-10 items-center '>
          {!isVerified ? (
             <>
             <button
@@ -202,7 +165,7 @@ function Page() {
             >
               {isApplying ? "Applied" : "Apply"}
             </button>
-           {isApplying && <h2>Your request has been sent for verification.</h2>}
+           {isApplying && <h2 className='opacity-50'>Your request has been sent for verification.</h2>}
             </>
           ) : (
             <>
@@ -211,20 +174,23 @@ function Page() {
                 className="px-4 py-2 bg-green-700 text-white rounded-md hover:bg-cyan-800"
                 disabled={isApplying}
               >
-                verified
+                Verified
               </button>
-              <h2>You are verified now you can take interviews now</h2>
+              <h2 className='opacity-50'>You are verified now you can take Interviews </h2>
             </>
           )}
 
 
           {isVerified && (
-            <div className='w-full h-96 bg-gray-500 flex rounded-2xl items-center justify-center '>
+            <div className='w-full h-96 bg-gray-500 opacity-40 flex rounded-2xl items-center justify-center '>
            
-            <h2>You will receive interview schedules whenever you are selected.</h2>
+            <h2 className='text-2xl '>You will receive interview schedules whenever you are selected.</h2>
             </div>
           )}
-         </div>:<div>You Are not Eligible to apply</div>}
+         </div>:<div>You Are not Eligible to apply for Oracle</div>}
+         <div className='w-full h-auto  mt-10 opacity-80 flex rounded-2xl items-center justify-center '>
+          <h2 className='text-red-800 text-2xl'>Before applying for the Interview verification, you should have a minimum of 5 years of experience.</h2>
+         </div>
         </main>
       </div>
     </div>
