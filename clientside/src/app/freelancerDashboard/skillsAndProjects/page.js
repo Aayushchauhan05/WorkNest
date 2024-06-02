@@ -30,7 +30,7 @@ function Page() {
 
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancerprofile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`
@@ -39,7 +39,7 @@ function Page() {
 
         const data = await response.json();
         if (isMounted) {
-          console.log(data.Data.professionalInfo)
+          console.log(data.Data)
           setUserinfo(data.Data);
           setSkills(data.Data.Skills.split(','));
           setProjects(data.Data.project || []);
@@ -104,10 +104,10 @@ function Page() {
         {/* Left side Navbar */}
         <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
        <div className="flex flex-col gap-6">
-       <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
+       <button onClick={toggleMenu} className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden ">X</button>
 
          {/* leftside Navbar */}
-         <nav className="flex flex-col w-auto h-screen gap-2 top-10  relative">
+         <nav className="relative flex flex-col w-auto h-screen gap-2 top-10">
          <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
              {/* <svg
                xmlns="http://www.w3.org/2000/svg"
@@ -146,15 +146,15 @@ function Page() {
            </Link>
 
            <Link href={"/freelancerDashboard/professionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Profectional Info
+             Professional Info
            </Link>
 
-           <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800">
+           <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors bg-gray-800 rounded-md">
              Skills And Projects
            </Link>
            
            <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Projects
+          Freelance Projects
            </Link>
            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
              {/* <svg
@@ -176,7 +176,7 @@ function Page() {
            </Link>
 
            <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Oracle Verify
+             Oracle 
            </Link>
          
          </nav>

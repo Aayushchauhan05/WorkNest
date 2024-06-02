@@ -18,6 +18,7 @@ function Navbar() {
       <header className="fixed flex items-center w-screen h-16 px-[1rem] md:px-[5rem] bg-black justify-between z-10">
         <h3 className="text-2xl text-white logo">Dehix</h3>
         <div className="hidden h-auto text-white md:flex min-w-[50vw] navlink justify-evenly first:bg-red-500">
+        
      {!isloggedin?<> <Link href={"/"}>Home</Link>
   
       <Link href={"/"}>About</Link>
@@ -26,8 +27,8 @@ function Navbar() {
           {isloggedin && isfreelancer ? (
             <>
               <Link href={"/freelancerDashboard"}>Dashboard</Link>
-              <Link href={"/freelancerDashboard/personalInfo"}>Personal Profile</Link>
-              <Link href={"/freelancerDashboard/professionalInfo"}>Professional Profile</Link>
+              <Link href={"/freelancerDashboard/personalInfo"}>Profile</Link>
+              
               <Link href={"/freelancerDashboard/projects"}>Projects</Link>
              
             </>
@@ -40,6 +41,7 @@ function Navbar() {
             </>
            
           ) : null}
+          <button disable><strong>Wallet</strong></button>
         </div>
         <div className="flex Login_register justify-evenly w-38">
           {isloggedin ? (

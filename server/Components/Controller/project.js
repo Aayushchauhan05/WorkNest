@@ -63,12 +63,14 @@ const project_reg= async (req,res)=>{
       };
   const dataForAllAndFilter= async(req,res)=>{
 try {
-    const data= await ProjectListByBusiness.Find();
+    console.log(ProjectListByBusiness)
+    const data= await ProjectListByBusiness.find();
     return res.status(200).json({data})
 } catch (error) {
     console.log(error);
     return res.status(500).json({message:"Internal Server Error"})
 }
 };
+
 
 module.exports={ListprojectBybusiness,getprojectdata,project_reg,dataForAllAndFilter};

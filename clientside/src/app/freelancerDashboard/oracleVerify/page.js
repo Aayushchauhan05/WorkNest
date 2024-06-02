@@ -105,7 +105,7 @@ function Page() {
            </Link>
            
            <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Projects
+             Freelance Projects
            </Link>
            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
             
@@ -113,7 +113,7 @@ function Page() {
            </Link>
 
            <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800">
-             Oracle Verify
+             Oracle 
            </Link>
          
          </nav>

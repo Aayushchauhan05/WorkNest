@@ -40,7 +40,7 @@ function Page() {
     const fetchUserInfo = async () => {
       try {
         console.log(token);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancerprofile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`
@@ -110,7 +110,7 @@ function Page() {
            </Link>
 
            <Link href={"/freelancerDashboard/professionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Profectional Info
+             Professional Info
            </Link>
 
            <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
@@ -118,7 +118,7 @@ function Page() {
            </Link>
            
            <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Projects
+            Freelance Projects
            </Link>
            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
              {/* <svg
@@ -140,7 +140,7 @@ function Page() {
            </Link>
 
            <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Oracle Verify
+             Oracle 
            </Link>
          
          </nav>

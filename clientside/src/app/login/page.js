@@ -49,7 +49,7 @@ function Page() {
             router.push("/");
           }, 100);
         } else {
-          toast.error(`Check email id and password`);
+          toast.error(`${Data.message}`);
           // router.push("/FreelancerRegister");
 
           // console.error('Login failed:', errorData);

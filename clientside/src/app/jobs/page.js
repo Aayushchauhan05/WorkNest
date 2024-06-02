@@ -266,6 +266,29 @@ function page() {
     setFilteredJobs(filtered);
   };
 
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Allproject`);
+        const data = await response.json();
+        if (isMounted) {
+          console.log(data);
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error('Error fetching data:', error);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <>
       <div className="">

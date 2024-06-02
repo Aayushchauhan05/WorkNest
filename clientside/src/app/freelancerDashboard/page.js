@@ -1,24 +1,60 @@
-'use client'
-import Link from "next/link"
-import { useState } from "react";
+'use client';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/context/context';
 
 function page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userinfo, setUserinfo] = useState([]);
+  const { token } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchUserInfo = async () => {
+      try {
+        console.log(token);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (isMounted) {
+          setUserinfo(data.Data);
+        }
+      } catch (error) {
+        console.log('Error fetching user info:', error);
+      }
+    };
+
+    if (token) {
+      fetchUserInfo();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
+  // onst pendingProjectCount = userinfo[0]?.pendingProject?.length || 0
   return (
    <>
    
    <div className="flex w-full h-screen ">
    <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
        <div className="flex flex-col gap-6">
-       <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
+       <button onClick={toggleMenu} className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden ">X</button>
 
          {/* leftside Navbar */}
-         <nav className="flex flex-col w-auto h-screen gap-2 top-10  relative">
-         <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+         <nav className="relative flex flex-col w-auto h-screen gap-2 top-10">
+         <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors bg-gray-800 rounded-md ">
              {/* <svg
                xmlns="http://www.w3.org/2000/svg"
                width="24"
@@ -56,7 +92,7 @@ function page() {
            </Link>
 
            <Link href={"/freelancerDashboard/professionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Profectional Info
+             Professional Info
            </Link>
 
            <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
@@ -64,7 +100,7 @@ function page() {
            </Link>
            
            <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Projects
+            Freelance Projects
            </Link>
            <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800" href={"/freelancerDashboard/interviews"}>
              {/* <svg
@@ -86,7 +122,7 @@ function page() {
            </Link>
 
            <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
-             Oracle Verify
+             Oracle 
            </Link>
          
          </nav>
@@ -121,8 +157,8 @@ function page() {
                <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
              </span> */}
              <div>
-               <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">John Doe</h1>
-               <p className="text-cyan-500 dark:text-gray-400">Freelance Designer</p>
+               <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">{`${userinfo.firstName}`}</h1>
+               <p className="text-cyan-500 dark:text-gray-400">{`${userinfo.Role}`}</p>
              </div>
            </div>
            <div className="flex items-center gap-4">
@@ -167,7 +203,7 @@ function page() {
          </div>
        </header>
        <main className="container grid gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
-         <div className="border rounded-lg min-h-72 min-w-72 shadow-sm bg-card text-card-foreground h-72" data-v0-t="card">
+         <div className="border rounded-lg shadow-sm min-h-72 min-w-72 bg-card text-card-foreground h-72" data-v0-t="card">
            <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
              <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Profile</h3>
              <Link className="p-1 text-sm text-gray-500 border rounded hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="/">
@@ -176,8 +212,8 @@ function page() {
            </div>
            <div className="grid gap-3 p-2">
              <div>
-               <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">John Doe</h3>
-               <p className="text-gray-500 dark:text-gray-400">johndoe@example.com</p>
+               <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">{`${userinfo.firstName} ${userinfo.lastName}`}</h3>
+               <p className="text-gray-500 dark:text-gray-400">{`${userinfo.Email}`}</p>
              </div>
              <div>
                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Skills</h3>
@@ -205,7 +241,7 @@ function page() {
            <div className="grid gap-4 p-6">
              <div className="flex items-center justify-between">
                <div>
-                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">12</h3>
+                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">1</h3>
                  <p className="text-gray-500 dark:text-gray-400">Pending Projects</p>
                </div>
                <svg
@@ -240,7 +276,7 @@ function page() {
            <div className="grid gap-4 p-6">
              <div className="flex items-center justify-between">
                <div>
-                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">28</h3>
+                 <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">0</h3>
                  <p className="text-gray-500 dark:text-gray-400">Completed Projects</p>
                </div>
                <svg
