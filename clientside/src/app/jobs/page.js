@@ -549,11 +549,11 @@ function page() {
                       <div className="text-sm text-gray-600">
                         Budget: {job.budget}
                       </div>
-                      <button
+                      <Link href={"/jobs/"}
                         className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}
                       >
                         bid
-                      </button>
+                      </Link>
                     </div>
                   </div>
                   <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>

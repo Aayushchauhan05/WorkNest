@@ -34,9 +34,9 @@ function Navbar() {
             </>
             
           ) : isloggedin && !isfreelancer ? (
-            <><Link href={"/companydashboard"}>Projects</Link>
-            <Link href={"/companydashboard/personalinfo"}>Personal Profile</Link>
-              <Link href={"/companydashboard/professionalinfo"}>Professional Profile</Link>
+            <><Link href={"/companydashboard"}>Dashboard</Link>
+            <Link href={"/companydashboard/personalinfo"}> Profile</Link>
+             
               <Link href={"/companydashboard/projects"}>Projects</Link>
             </>
            
