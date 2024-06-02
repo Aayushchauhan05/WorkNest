@@ -15,7 +15,7 @@ function page() {
   <div className="flex w-full h-screen ">
    <div className={`  fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
        <div className="flex flex-col gap-6">
-       <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50 ">X</button>
+       <button onClick={toggleMenu} className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden ">X</button>
            
             <nav class="flex flex-col gap-2 h-screen">
             <div class="flex items-center gap-4">
@@ -27,7 +27,7 @@ function page() {
                 <p class="text-sm text-gray-500 dark:text-gray-400">Software Engineer</p>
               </div>
             </div>
-            <Link href={"/companydashboard"} className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+            <Link href={"/companydashboard"} className="flex items-center gap-3 px-3 py-2 mt-10 transition-colors bg-gray-800 rounded-md ">
              
             Dashboard
            </Link>
@@ -167,7 +167,7 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="border rounded-lg min-h-72 shadow-sm bg-card text-card-foreground" data-v0-t="card">
+          <div className="border rounded-lg shadow-sm min-h-72 bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Completed Projects</h3>
               <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
@@ -198,7 +198,7 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="border rounded-lg min-h-72 shadow-sm bg-card text-card-foreground" data-v0-t="card">
+          <div className="border rounded-lg shadow-sm min-h-72 bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Earnings</h3>
               <a className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
@@ -230,14 +230,14 @@ function page() {
             </div>
           </div>
         </main>
-        <section className=" shadow-sm dark:bg-gray-900">
+        <section className="shadow-sm  dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
             <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Pending Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-            <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+            <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project A</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -255,7 +255,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -267,12 +267,12 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
 
-              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+              <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project B</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -290,7 +290,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -302,12 +302,12 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
 
-              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+              <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project C</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -325,7 +325,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -337,12 +337,12 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
 
-              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+              <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project A</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -360,7 +360,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -372,19 +372,19 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
               
             </div>
           </div>
         </section>
-        <section className=" shadow-sm dark:bg-gray-900">
+        <section className="shadow-sm  dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
             <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Completed Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+            <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project x</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -402,7 +402,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -414,12 +414,12 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
 
-              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+              <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project Y</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -437,7 +437,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -449,13 +449,13 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
 
 
-              <div className="rounded-lg overflow-hidden border bg-white shadow-sm relative group">
+              <div className="relative overflow-hidden bg-white border rounded-lg shadow-sm group">
                 <div className="flex flex-col justify-between h-full">
-                  <div className="flex flex-col space-y-4 p-6">
+                  <div className="flex flex-col p-6 space-y-4">
                     <h3 className="text-lg font-bold text-center ">Project Z</h3>
                     <Link
                     className="text-sm text-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -473,7 +473,7 @@ function page() {
                         <p className="text-gray-500 dark:text-gray-400">ABC Inc</p>
                         </div>
                         <div className="flex items-center justify-between">
-                        <span className=" font-medium">Due Date:</span>
+                        <span className="font-medium ">Due Date:</span>
                         <p className="text-gray-500 dark:text-gray-400">May 30, 2023</p>
                       </div>
                     </div>
@@ -485,7 +485,7 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
               </div>
             </div>
           </div>

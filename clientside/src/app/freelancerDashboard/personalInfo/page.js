@@ -30,7 +30,7 @@ function Page() {
     const fetchUserInfo = async () => {
       try {
         console.log(token);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancerprofile`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`
@@ -81,6 +81,7 @@ function Page() {
     <>
       <div className="flex w-full h-screen">
         {/* Left side Navbar */}
+
         <div className={`fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
           <div className="flex flex-col gap-6">
             <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50">X</button>
@@ -95,6 +96,7 @@ function Page() {
             </nav>
           </div>
         </div>
+
 
         {/* Right side Main Container */}
         <main className="container flex-grow p-6 bg-gray-950">
@@ -134,6 +136,7 @@ function Page() {
 
           <form className="mt-4 text-white">
             <div className="flex flex-col items-center userInfo">
+
               <div className="flex flex-col items-center justify-center w-full gap-4">
                 {Object.entries(formData).map(([field, value]) => (
                   <div key={field} className="bg-gray-800 px-4 py-2 flex justify-between w-[70%] md:w-[40%] items-center rounded-md">

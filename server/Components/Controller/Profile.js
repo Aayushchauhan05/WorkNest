@@ -2,7 +2,7 @@ const { Freelancer} = require("../models/freelancer/Freelancerreg");
 const{Business}= require("../models/Business/Businessreg")
 
 
-const freelancerprofile=async(req,res)=>{
+const profile=async(req,res)=>{
 const {Email,isfreelancer}= req.user;
 try {
         let Data;
@@ -22,4 +22,4 @@ return res.status(200).json({Data})
     return res.status(500).json({message:"Internal server error"})
 }
 }
-module.exports={freelancerprofile}
+module.exports={profile}

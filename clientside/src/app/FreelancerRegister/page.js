@@ -1,440 +1,221 @@
-"use client";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { useFormik } from "formik";
-import { useEffect, useState } from "react";
-import axios from "axios";
+"use client"
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-export default function Component() {
+const Form = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    Email: "",
-    Dob: "",
-    password: "",
-    Education: "",
-    Role: "",
-    Refer: "",
-    phone: "",
-    professionalInfo: [
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    userName: '',
+    password: '',
+    Email: '',
+    phone: '',
+    Dob: '',
+    professionalInfo: {
+      company: '',
+      jobTitle: '',
+      workDescription: '',
+      workFrom: '',
+      workTo: '',
+      referencePersonName: '',
+      referencePersonContact: '',
+      githubRepoLink: '',
+    },
+    Skills: [
       {
-        previousCompany: "",
-        Role: "",
-        start: "",
-        end: "",
-        skills: "",
-        description: ""
+        name: '',
+        level: '',
+        experience: '',
       },
     ],
-    Skills: "",
-    githubLink: "",
-    Linkdin: "",
-    personalWebsite: "",
-    perHourPrice: "",
-    workExperience: "",
-    isfreelancer: true,
-    consultant: false
+    Education: [
+      {
+        degree: '',
+        universityName: '',
+        fieldOfStudy: '',
+        startDate: '',
+        endDate: '',
+        grade: '',
+      },
+    ],
+    Role: '',
+    githubLink: '',
+    Linkdin: '',
+    personalWebsite: '',
+    perHourPrice: '',
+    workExperience: '',
+  });
+const[loading,setloading]=useState(false)
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const nameParts = name.split('.');
+
+    setValues((prevValues) => {
+      let newValues = { ...prevValues };
+      let current = newValues;
+
+      for (let i = 0; i < nameParts.length - 1; i++) {
+        if (!current[nameParts[i]]) {
+          current[nameParts[i]] = {};
+        }
+        current = current[nameParts[i]];
+      }
+
+      current[nameParts[nameParts.length - 1]] = value;
+      return newValues;
+    });
   };
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit: async (values) => {
-      console.log("Submitted values:", values);
 
-      setLoading(true);
-      try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, { values });
-        setLoading(false);
-        localStorage.setItem('email', formik.values.Email);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(values);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      });
+      
+      const data = await response.json();
+console.log(data)
+      if (response.ok) {
+        toast.success("Registration successful");
+        localStorage.setItem("email", data.user.Email);
         router.push("/otp");
-        console.log(response);
-
-      } catch (error) {
-        toast.error(error.response ? error.response.data.message : 'An unexpected error occurred');
-        setLoading(false);
-        console.error('Error:', error.message);
-
+      } else {
+        toast.error(data.message);
       }
-    },
-  });
+    } catch (error) {
+      // toast.error("Internal server error");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-950 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-[#00b8d4]">
-            Register as a Freelancer
-          </h2>
-          <p className="mt-2 text-sm text-center text-gray-400">
-            Join our platform and start showcasing your skills
-          </p>
+   <div className='flex items-center justify-center w-[95vw] h-full  '>  <form onSubmit={handleSubmit} className="p-6 bg-black rounded-lg text-cyan-500 w-[60vw]">
+    <div>
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-[#00b8d4]">Register As Freelancer</h2>
+          <p className="mt-2 text-sm text-center text-gray-400">Join our platform and start showcasing your skills</p>
         </div>
-        <form onSubmit={formik.handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="first-name">
-                First Name
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="first-name"
-                name="firstName"
-                value={formik.values.firstName}
-                onChange={formik.handleChange}
-                placeholder="Enter your first name"
-                required
-                type="text"
-           
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="last-name">
-                Last Name
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="last-name"
-                name="lastName"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
-                placeholder="Enter your last name"
-                required
-                type="text"
-             
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="username">
-              Username
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="username"
-              name="username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              placeholder="Enter your username"
-              required
-              type="text"
-              minLength={8} 
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="email"
-              name="Email"
-              value={formik.values.Email}
-              onChange={formik.handleChange}
-              placeholder="Enter your email"
-              required
-              type="email"
-              minLength={8} 
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="date-of-birth">
-                Date of Birth
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="date-of-birth"
-                name="Dob"
-                value={formik.values.Dob}
-                onChange={formik.handleChange}
-                required
-                type="date"
-               
-              />
-
-            </div>
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="years-of-experience">
-                Years of Experience
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="years-of-experience"
-                min="0"
-                name="workExperience"
-                value={formik.values.workExperience}
-                onChange={formik.handleChange}
-                placeholder="Enter your years of experience"
-                required
-                type="number"
-                minLength={10} 
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="skills">
-              Skills
-            </Label>
-            <Textarea
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="skills"
-              name="Skills"
-              value={formik.values.Skills}
-              onChange={formik.handleChange}
-              placeholder="Enter your skills (separated by commas)"
-              required
-              rows="3"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="highest-education">
-              Highest Education
-            </Label>
-            <select
-              className="block w-full rounded-md border border-[#00b8d4] bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4] cursor-pointer"
-              id="highest-education"
-              name="Education"
-              value={formik.values.Education}
-              onChange={formik.handleChange}
-              required
-            >
-              <option value="">Select your highest education</option>
-              <option value="high-school">High School</option>
-              <option value="bachelor">Bachelor's Degree</option>
-              <option value="master">Master's Degree</option>
-              <option value="doctorate">Doctorate</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="certifications">
-              Certifications
-            </Label>
-            <Textarea
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="certifications"
-              name="certifications"
-              value={formik.values.certifications}
-              onChange={formik.handleChange}
-              placeholder="Enter your certifications (separated by commas)"
-              required
-              rows="3"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-profile">
-                LinkedIn Profile
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="linkedin-profile"
-                name="Linkdin"
-                value={formik.values.Linkdin}
-                onChange={formik.handleChange}
-                placeholder="Enter your LinkedIn profile URL"
-                required
-                type="url"
-
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="password">
-                Password
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="password"
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                placeholder="Enter your password"
-                required
-                type="password"
-                minLength={8} 
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-profile">
-                GitHub Profile
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="github-profile"
-                name="githubLink"
-                value={formik.values.githubLink}
-                onChange={formik.handleChange}
-                placeholder="Enter your GitHub profile URL"
-                required
-                type="url"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="github-link">
-              GitHub Link
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="github-link"
-              name="githubLink"
-              value={formik.values.githubLink}
-              onChange={formik.handleChange}
-              placeholder="Enter your GitHub profile link"
-              required
-              type="text"
-              minLength={8} 
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role">
-              Role
-            </Label>
-            <select
-              className="block w-full rounded-md border border-[#00b8d4] bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4] cursor-pointer"
-              id="role"
-              name="Role"
-              value={formik.values.Role}
-              onChange={formik.handleChange}
-              required
-            >
-              <option value="">Select your role</option>
-              <option value="developer">Developer</option>
-              <option value="designer">Designer</option>
-              <option value="writer">Writer</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <h1 className="text-center text-[#00b8d4]">Professional Info</h1>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="previouscompany">
-              Previous Company
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="previouscompany"
-              name="professionalInfo[0].previousCompany" 
-              value={formik.values.professionalInfo[0].previousCompany}
-              onChange={formik.handleChange}
-              placeholder="Enter your previous company"
-              required
-              type="text"
-              minLength={8} 
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="role-in-company">
-              Your Role in Company
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="role-in-company"
-              name="professionalInfo[0].Role" 
-              value={formik.values.professionalInfo[0].Role}
-              onChange={formik.handleChange}
-              placeholder="Your role in company"
-              required
-              type="text"
-              minLength={8} 
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="start-date">
-              Start Date
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="start-date"
-              name="professionalInfo[0].start"
-              value={formik.values.professionalInfo[0].start}
-              onChange={formik.handleChange}
-              placeholder="Start date"
-              required
-              type="date"
-
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="linkedin-link">
-              LinkedIn Link
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="linkedin-link"
-              name="Linkdin"
-              value={formik.values.Linkdin}
-              onChange={formik.handleChange}
-              placeholder="Enter your LinkedIn profile link"
-              required
-              type="url"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="personal-website">
-              Personal Website
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="personal-website"
-              name="personalWebsite"
-              value={formik.values.personalWebsite}
-              onChange={formik.handleChange}
-              placeholder="Enter your personal website link"
-              type="url"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="per-hour-price">
-              Per Hour Price (in USD)
-            </Label>
-            <Input
-              className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-              id="per-hour-price"
-              name="perHourPrice"
-              value={formik.values.perHourPrice}
-              onChange={formik.handleChange}
-              placeholder="Enter your per hour price"
-              required
-              type="number"
-              min="0"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-[#00b8d4]" htmlFor="freelancer">
-                Freelancer
-              </Label>
-              <Input
-                className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
-                id="freelancer"
-                name="isfreelancer"
-                checked={formik.values.isfreelancer}
-                onChange={formik.handleChange}
-                required
-                type="checkbox"
-              />
-            </div>
-           
-          </div>
-          <Button
-            type="submit"
-            className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#00b8d4] py-2 px-4 text-sm font-medium text-white hover:bg-[#00a0b8] focus:outline-none focus:ring-2 focus:ring-[#00a0b8] focus:ring-offset-2"
-            disabled={loading}
-          >
-            {loading ? 'Submitting...' : 'Register'}
-          </Button>
-          <ToastContainer />
-        </form>
-      </div>
+   <div className="mb-4">
+     <label className="block mb-2">First Name</label>
+     <input type="text" name="firstName" value={values.firstName} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Last Name</label>
+     <input type="text" name="lastName" value={values.lastName} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Username</label>
+     <input type="text" name="userName" value={values.userName} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Password</label>
+     <input type="password" name="password" value={values.password} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Email</label>
+     <input type="email" name="Email" value={values.Email} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Phone</label>
+     <input type="text" name="phone" value={values.phone} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Date of Birth</label>
+     <input type="date" name="Dob" value={values.Dob} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Company</label>
+     <input type="text" name="professionalInfo.company" value={values.professionalInfo.company} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Job Title</label>
+     <input type="text" name="professionalInfo.jobTitle" value={values.professionalInfo.jobTitle} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Work Description</label>
+     <input type="text" name="professionalInfo.workDescription" value={values.professionalInfo.workDescription} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Work From</label>
+     <input type="date" name="professionalInfo.workFrom" value={values.professionalInfo.workFrom} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Work To</label>
+     <input type="date" name="professionalInfo.workTo" value={values.professionalInfo.workTo} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Reference Person Name</label>
+     <input type="text" name="professionalInfo.referencePersonName" value={values.professionalInfo.referencePersonName} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Reference Person Contact</label>
+     <input type="text" name="professionalInfo.referencePersonContact" value={values.professionalInfo.referencePersonContact} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">GitHub Repo Link</label>
+     <input type="url" name="professionalInfo.githubRepoLink" value={values.professionalInfo.githubRepoLink} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   {/* <div className="mb-4">
+     <label className="block mb-2">Skills</label>
+     {values.Skills.map((skill, index) => (
+       <div key={index} className="mb-2">
+         <input type="text" name={`Skills[${index}].name`} value={skill.name} onChange={handleChange} placeholder="Skill Name" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="text" name={`Skills[${index}].level`} value={skill.level} onChange={handleChange} placeholder="Skill Level" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="text" name={`Skills[${index}].experience`} value={skill.experience} onChange={handleChange} placeholder="Experience" className="w-full p-2 border rounded border-cyan-500" />
+       </div>
+     ))}
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Education</label>
+  
+       <div  className="mb-2">
+         <input type="text" name={`values.Education[0].degree`} value={values.Education[0].degree} onChange={handleChange} placeholder="Degree" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="text" name={`Evalues.Education[0].universityName`} value={values.Education[0].universityName} onChange={handleChange} placeholder="University Name" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="text" name={`values.Education[0].fieldOfStudy`} value={values.Education[0].fieldOfStudy} onChange={handleChange} placeholder="Field of Study" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="date" name={`values.Education[0].startDate`} value={values.Education[0].startDate} onChange={handleChange} placeholder="Start Date" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="date" name={`values.Education[0].endDate`} value={values.Education[0].endDate} onChange={handleChange} placeholder="End Date" className="w-full p-2 mb-2 border rounded border-cyan-500" />
+         <input type="text" name={`values.Education[0].grade`} value={values.Education[0].grade} onChange={handleChange} placeholder="Grade" className="w-full p-2 border rounded border-cyan-500" />
+       </div>
+     
+   </div> */}
+   <div className="mb-4">
+     <label className="block mb-2">Role</label>
+     <input type="text" name="Role" value={values.Role} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">GitHub Link</label>
+     <input type="url" name="githubLink" value={values.githubLink} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">LinkedIn</label>
+     <input type="url" name="Linkdin" value={values.Linkdin} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Personal Website</label>
+     <input type="url" name="personalWebsite" value={values.personalWebsite} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Per Hour Price</label>
+     <input type="number" name="perHourPrice" value={values.perHourPrice} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500" />
+   </div>
+   <div className="mb-4">
+     <label className="block mb-2">Work Experience</label>
+     <textarea name="workExperience" value={values.workExperience} onChange={handleChange} className="w-full p-2 border rounded border-cyan-500"></textarea>
+   </div>
+   <button type="submit" className="p-2 text-black rounded bg-cyan-500">Submit</button>
+ </form>
+    <ToastContainer />
     </div>
   );
-}
+};
+
+export default Form;

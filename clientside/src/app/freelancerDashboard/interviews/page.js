@@ -56,6 +56,101 @@ function Page() {
 
 
 
+           <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Skills And Projects
+           </Link>
+           
+           <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Freelance Projects
+           </Link>
+           <Link className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800" href={"/freelancerDashboard/interviews"}>
+           
+            Interview
+           </Link>
+
+           <Link href={"/freelancerDashboard/oracleVerify"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">
+             Oracle 
+           </Link>
+         
+         </nav>
+
+        
+       </div>
+     </div>
+      {/* rightSide Main Container */}
+     <div className="flex flex-col w-full">
+       <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
+         <div className="container flex items-center justify-between px-6 py-4 mx-auto">
+           <div className="flex items-center gap-4">
+             <button onClick={toggleMenu} className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground md:hidden">
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 className="w-6 h-6 text-gray-500 dark:text-gray-400"
+               >
+                 <line x1="4" x2="20" y1="12" y2="12"></line>
+                 <line x1="4" x2="20" y1="6" y2="6"></line>
+                 <line x1="4" x2="20" y1="18" y2="18"></line>
+               </svg>
+             </button>
+             {/* <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
+               <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
+             </span> */}
+             <div>
+               <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">John Doe</h1>
+               <p className="text-cyan-500 dark:text-gray-400">Freelance Designer</p>
+             </div>
+           </div>
+           <div className="flex items-center gap-4">
+             <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:bg-red-700">
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 className="w-6 h-6 text-white dark:text-gray-400"
+               >
+                 <path d="M2 20h.01"></path>
+                 <path d="M7 20v-4"></path>
+                 <path d="M12 20v-8"></path>
+                 <path d="M17 20V8"></path>
+                 <path d="M22 4v16"></path>
+               </svg>
+             </button>
+             <button className="inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:bg-red-700">
+               <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 className="w-6 h-6 text-white dark:text-gray-400"
+               >
+                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                 <circle cx="12" cy="12" r="3"></circle>
+               </svg>
+             </button>
+           </div>
+         </div>
+       </header>
+
+
 
 
 

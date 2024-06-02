@@ -76,7 +76,7 @@ export default function Component() {
   return (
     <div className="flex flex-col h-full">
       <div className="flex flex-1 ">
-        <div className="flex-shrink-0 w-64 p-6 text-white border-r border-gray-200 bg-cyan-950 dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex-shrink-0 w-64 p-6 text-white border-r border-gray-200 bg-cyan-950 dark:bg-gray-800 dark:border-gray-700 h-[100vh] ">
           <h2 className="mb-4 text-lg font-bold">Filters</h2>
           <div className="space-y-4">
             <div>

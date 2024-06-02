@@ -10,7 +10,7 @@ const initialValues = {
   role: "",
   projectId: "",
 };
-const [projectid, setprojectid] = useState();
+// const [projectid, setprojectid] = useState();
 
 const projectDetails = {
   projectName: "Web Development Project",
@@ -20,6 +20,7 @@ const projectDetails = {
 };
 
 const JobApplicationForm = () => {
+  const[projectid,setprojectid]=useState(null)
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(

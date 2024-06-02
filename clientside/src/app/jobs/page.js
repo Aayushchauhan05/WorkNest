@@ -266,6 +266,29 @@ function page() {
     setFilteredJobs(filtered);
   };
 
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Allproject`);
+        const data = await response.json();
+        if (isMounted) {
+          console.log(data);
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error('Error fetching data:', error);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <>
       <div className="">
@@ -275,7 +298,7 @@ function page() {
           </div>
         </header>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-          <div className="sticky col-span-1 p-6 bg-cyan-800 rounded-lg shadow-md md:col-span-3 top-24 w-auto h-screen">
+          <div className="sticky w-auto h-screen col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
             <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
             <ul className="space-y-2">
               <li>
@@ -501,10 +524,10 @@ function page() {
               {filteredJobs.map((job, index) => (
                 <div
                   key={index}
-                  className="rounded-lg overflow-hidden border bg-white text-black shadow-sm relative group"
+                  className="relative overflow-hidden text-black bg-white border rounded-lg shadow-sm group"
                 >
                   <div className="flex flex-col justify-between h-full">
-                    <div className="flex flex-col space-y-4 p-6">
+                    <div className="flex flex-col p-6 space-y-4">
                       <h3 className="text-lg font-bold text-center ">
                         {job.title}
                       </h3>
@@ -515,25 +538,25 @@ function page() {
                           <span>{job.client}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-gray-500 font-medium">
+                          <span className="font-medium text-gray-500">
                             Due Date:
                           </span>
                           <span>{job.dueDate}</span>
                         </div>
                       </div>
                     </div>
-                    <div className="p-6 bg-gray-100 border-t flex gap-2">
+                    <div className="flex gap-2 p-6 bg-gray-100 border-t">
                       <div className="text-sm text-gray-600">
                         Budget: {job.budget}
                       </div>
-                      <button
+                      <Link href={"/jobs/"}
                         className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}
                       >
                         bid
-                      </button>
+                      </Link>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-white opacity-0 rounded-lg transition-opacity group-hover:opacity-20"></div>
+                  <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
                 </div>
               ))}
             </div>

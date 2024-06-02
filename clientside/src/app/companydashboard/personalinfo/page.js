@@ -36,7 +36,7 @@ function ProfilePage() {
           <div className="flex flex-col gap-6">
             <button
               onClick={toggleMenu}
-              className="md:hidden p-5 absolute text-xl top-0 right-0 z-50"
+              className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden"
             >
               X
             </button>
@@ -51,7 +51,7 @@ function ProfilePage() {
                 <p class="text-sm text-gray-500 dark:text-gray-400">Software Engineer</p>
               </div>
             </div>
-            <Link href={"/companydashboard"} className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+            <Link href={"/companydashboard"} className="flex items-center gap-3 px-3 py-2 mt-10 transition-colors bg-gray-800 rounded-md ">
              
             Dashboard
            </Link>
@@ -166,9 +166,9 @@ function ProfilePage() {
 
           <div className="container flex flex-col items-center gap-8 p-6">
   {/* Personal Information Section */}
-  <section className="w-full flex flex-col items-center bg-gray-800 p-6 rounded-lg shadow-lg text-white space-y-4">
-    <div className="w-full flex items-center justify-center">
-      <img src="#" className="rounded-full h-20 border w-auto" alt="Profile" />
+  <section className="flex flex-col items-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+    <div className="flex items-center justify-center w-full">
+      <img src="#" className="w-auto h-20 border rounded-full" alt="Profile" />
     </div>
     <div className="flex flex-col items-center w-full">
       <p className="text-sm font-semibold">Name:</p>
@@ -194,10 +194,10 @@ function ProfilePage() {
   </section>
 
   {/* Social Links Section */}
-  <section className="w-full flex flex-col items-center justify-center bg-gray-800 p-6 rounded-lg shadow-lg text-white space-y-4">
+  <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
     <div className="flex flex-col w-full">
-      <p className="text-lg font-semibold mb-4">Social Links:</p>
-      <div className="flex space-x-4 items-center">
+      <p className="mb-4 text-lg font-semibold">Social Links:</p>
+      <div className="flex items-center space-x-4">
       <div className="flex flex-col items-center w-full">
       <p className="text-sm font-semibold">Instagram:</p>
       <a className="text-lg">instagram.com</a>
@@ -214,7 +214,7 @@ function ProfilePage() {
 
             <button
               onClick={toggleModal}
-              className="mt-4  items-end w-36 px-4 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-700"
+              className="items-end px-4 py-2 mt-4 text-white rounded-md w-36 bg-cyan-600 hover:bg-cyan-700"
             >
               Edit Profile
             </button>
@@ -247,10 +247,10 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-black bg-opacity-50 absolute inset-0" onClick={onClose}></div>
-      <div className="bg-white rounded-lg p-6 z-10 max-w-lg w-full">
-        <h2 className="text-lg font-semibold mb-4">Edit Profile</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
+      <div className="z-10 w-full max-w-lg p-6 bg-white rounded-lg">
+        <h2 className="mb-4 text-lg font-semibold">Edit Profile</h2>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4">
             <div className="grid gap-2">
@@ -261,7 +261,7 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background"
               />
             </div>
             <div className="grid gap-2">
@@ -272,7 +272,7 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
                 name="experience"
                 value={formData.experience}
                 onChange={handleChange}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background"
               />
             </div>
             <div className="grid gap-2">
@@ -282,7 +282,7 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
                 name="bio"
                 value={formData.bio}
                 onChange={handleChange}
-                className="flex h-24 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className="flex w-full h-24 px-3 py-2 text-sm border rounded-md border-input bg-background"
               ></textarea>
             </div>
             <div className="grid gap-2">
@@ -293,7 +293,7 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
                 name="social"
                 value={formData.social}
                 onChange={handleChange}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background"
               />
             </div>
           </div>
@@ -307,7 +307,7 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
             </button>
             <button
               type="submit"
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-cyan-600 rounded-md hover:bg-cyan-700"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded-md bg-cyan-600 hover:bg-cyan-700"
             >
               Save
             </button>

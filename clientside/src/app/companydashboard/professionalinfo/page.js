@@ -19,7 +19,7 @@ function page() {
           <div className="flex flex-col gap-6">
             <button
               onClick={toggleMenu}
-              className="md:hidden p-5 absolute text-xl top-0 right-0 z-50"
+              className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden"
             >
               X
             </button>
@@ -34,7 +34,7 @@ function page() {
                 <p class="text-sm text-gray-700 dark:text-gray-400">Software Engineer</p>
               </div>
             </div>
-            <Link href={"/companydashboard"} className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+            <Link href={"/companydashboard"} className="flex items-center gap-3 px-3 py-2 mt-10 transition-colors rounded-md hover:bg-gray-800 ">
              
             Dashboard
            </Link>
@@ -44,7 +44,7 @@ function page() {
             Profile
            </Link>
 
-           <Link href={"/companydashboard/professionalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+           <Link href={"/companydashboard/professionalinfo"} className="flex items-center gap-3 px-3 py-2 transition-colors bg-gray-800 rounded-md ">
              
            professional info
            </Link>
