@@ -165,7 +165,7 @@ function Page() {
             >
               {isApplying ? "Applied" : "Apply"}
             </button>
-           {isApplying && <h2 className='opacity-50'>Your request has been sent for verification.</h2>}
+           {isApplying && <h2 className='opacity-50 text-xl'>Your request has been sent for verification.</h2>}
             </>
           ) : (
             <>
@@ -176,20 +176,20 @@ function Page() {
               >
                 Verified
               </button>
-              <h2 className='opacity-50'>You are verified now you can take Interviews </h2>
+              <h2 className='opacity-50 text-xl'>You are verified now you can take Interviews </h2>
             </>
           )}
 
 
           {isVerified && (
-            <div className='w-full h-96 bg-gray-500 opacity-40 flex rounded-2xl items-center justify-center '>
+            <div className='w-[70%] h-[20rem] bg-gray-500 opacity-40 flex rounded-2xl items-center justify-center '>
            
-            <h2 className='text-2xl '>You will receive interview schedules whenever you are selected.</h2>
+            <h2 className='text-3xl '>You will receive interview schedules whenever you are selected.</h2>
             </div>
           )}
          </div>:<div>You Are not Eligible to apply for Oracle</div>}
          <div className='w-full h-auto  mt-10 opacity-80 flex rounded-2xl items-center justify-center '>
-          <h2 className='text-red-800 text-2xl'>Before applying for the Interview verification, you should have a minimum of 5 years of experience.</h2>
+          <h2 className='text-white text-2xl'>Before applying for the Interview verification, you should have a minimum of 5 years of experience.</h2>
          </div>
         </main>
       </div>
