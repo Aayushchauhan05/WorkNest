@@ -45,7 +45,7 @@ const businessSchema = new Schema({
     },
     isVerified: {
         type: Boolean,
-        default:false
+        default: false
     },
     Linkdin: {
         type: String
@@ -62,18 +62,18 @@ const businessSchema = new Schema({
         type: Number,
         default: 0
     },
-    otp:{
-type:String
+    otp: {
+        type: String
     },
-    ProjectList:[{
-        type:Schema.Types.ObjectId,
-        ref:"ProjectListByCompany"
-            }],
-            Appliedcandidates:[{
-                type:Schema.Types.ObjectId,
-                ref:"Applicationforwork"
-                    }]
+    ProjectList: [{
+        type: Schema.Types.ObjectId,
+        ref: "ProjectListByCompany"
+    }],
+    Appliedcandidates: [{
+        type: Schema.Types.ObjectId,
+        ref: "Applicationforwork"
+    }]
 
 }, { timestamps: true });
 const Business = model("Business_Data", businessSchema);
-module.exports={Business}
+module.exports = { Business }

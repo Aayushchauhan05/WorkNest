@@ -106,12 +106,6 @@ function ProfilePage() {
                     <line x1="4" y1="18" x2="20" y2="18"></line>
                   </svg>
                 </button>
-                <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
-                  <img
-                    className="w-full h-full aspect-square"
-                    src={profile.profileImage}
-                  />
-                </span>
                 <div className="">
                   <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">
                     Acme Inc.
@@ -167,9 +161,9 @@ function ProfilePage() {
           <div className="container flex flex-col items-center gap-8 p-6">
   {/* Personal Information Section */}
   <section className="flex flex-col items-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-    <div className="flex items-center justify-center w-full">
+    {/* <div className="flex items-center justify-center w-full">
       <img src="#" className="w-auto h-20 border rounded-full" alt="Profile" />
-    </div>
+    </div> */}
     <div className="flex flex-col items-center w-full">
       <p className="text-sm font-semibold">Name:</p>
       <span className="text-lg">ImDezCode</span>

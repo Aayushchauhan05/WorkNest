@@ -22,10 +22,10 @@ function page() {
               <span class="relative flex shrink-0 overflow-hidden rounded-full h-12 w-12 md:h-14 md:w-14">
                 <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JP</span>
               </span>
-              <div class="grid gap-1">
+              {/* <div class="grid gap-1">
                 <h1 class="text-xl font-semibold md:text-2xl">Jared Palmer</h1>
                 <p class="text-sm text-gray-500 dark:text-gray-400">Software Engineer</p>
-              </div>
+              </div> */}
             </div>
             <Link href={"/companydashboard"} className="flex items-center gap-3 px-3 py-2 mt-10 transition-colors bg-gray-800 rounded-md ">
              
@@ -67,9 +67,6 @@ function page() {
                     <line x1="4" y1="18" x2="20" y2="18"></line>
                   </svg>
                 </button>
-              <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
-                <img className="w-full h-full aspect-square" src="/placeholder-user.jpg" />
-              </span>
               <div className="">
                 <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">Acme Inc.</h1>
                 <p className="text-cyan-500 dark:text-gray-400">Company Dashboard</p>
@@ -124,11 +121,11 @@ function page() {
             <div className="grid gap-4 p-6">
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Freelancers Hired</h3>
-                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">42</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">3</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Total Money Spent</h3>
-                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">$125,678</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">$0</p>
               </div>
             </div>
           </div>
@@ -142,7 +139,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">12</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">1</h3>
                   <p className="text-gray-500 dark:text-gray-400">Pending Projects</p>
                 </div>
                 <svg
@@ -177,7 +174,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">28</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">0</h3>
                   <p className="text-gray-500 dark:text-gray-400">Completed Projects</p>
                 </div>
                 <svg
@@ -208,7 +205,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">$12,345</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">$0</h3>
                   <p className="text-gray-500 dark:text-gray-400">Total Earnings</p>
                 </div>
                 <svg
@@ -230,7 +227,7 @@ function page() {
             </div>
           </div>
         </main>
-        <section className="shadow-sm  dark:bg-gray-900">
+        <section className="shadow-sm dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
             <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Pending Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -378,7 +375,7 @@ function page() {
             </div>
           </div>
         </section>
-        <section className="shadow-sm  dark:bg-gray-900">
+        <section className="shadow-sm dark:bg-gray-900">
           <div className="container px-6 py-8 mx-auto">
             <h2 className="mb-6 text-2xl font-bold text-white dark:text-gray-50">Completed Projects</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

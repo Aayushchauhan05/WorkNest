@@ -89,12 +89,12 @@ function page() {
                     <line x1="4" y1="18" x2="20" y2="18"></line>
                   </svg>
                 </button>
-                <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
+                {/* <span className="relative flex w-10 h-10 overflow-hidden rounded-full shrink-0">
                   <img
                     className="w-full h-full aspect-square"
                     src="#"
                   />
-                </span>
+                </span> */}
                 <div className="">
                   <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">
                     Acme Inc.

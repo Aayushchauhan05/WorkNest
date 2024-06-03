@@ -20,60 +20,25 @@ export default function Component() {
   const [freelancers, setFreelancers] = useState([
     {
       id: 1,
-      name: "John Doe",
+      name: "Aayush chauhan",
       skills: ["JavaScript", "React", "Node.js"],
-      hourlyRate: 50,
-      hoursWorked: 80,
+      hourlyRate: 15,
+      hoursWorked: 8,
     },
     {
       id: 2,
-      name: "Jane Smith",
+      name: "Arpit",
       skills: ["Python", "Django", "SQL"],
-      hourlyRate: 45,
-      hoursWorked: 60,
+      hourlyRate: 9,
+      hoursWorked: 6,
     },
     {
       id: 3,
-      name: "Bob Johnson",
+      name: "vansh jain",
       skills: ["Java", "Spring", "Hibernate"],
-      hourlyRate: 55,
-      hoursWorked: 70,
-    },
-    {
-      id: 4,
-      name: "Sarah Lee",
-      skills: ["PHP", "Laravel", "MySQL"],
-      hourlyRate: 40,
-      hoursWorked: 90,
-    },
-    {
-      id: 5,
-      name: "Tom Wilson",
-      skills: ["Ruby", "Ruby on Rails", "PostgreSQL"],
-      hourlyRate: 60,
-      hoursWorked: 75,
-    },
-    {
-      id: 6,
-      name: "Emily Davis",
-      skills: ["C#", ".NET", "SQL Server"],
-      hourlyRate: 50,
-      hoursWorked: 85,
-    },
-    {
-      id: 7,
-      name: "Michael Brown",
-      skills: ["Swift", "iOS", "Xcode"],
-      hourlyRate: 65,
-      hoursWorked: 65,
-    },
-    {
-      id: 8,
-      name: "Olivia Anderson",
-      skills: ["Kotlin", "Android", "Firebase"],
-      hourlyRate: 45,
-      hoursWorked: 80,
-    },
+      hourlyRate: 7,
+      hoursWorked: 10,
+    }
   ])
   useEffect(() => {
     setTotalFreelancers(freelancers.length)
@@ -87,7 +52,7 @@ export default function Component() {
       <div className="flex flex-col gap-6">
         <button
           onClick={toggleMenu}
-          className="md:hidden p-5 absolute text-xl top-0 right-0 z-50"
+          className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden"
         >
           X
         </button>
@@ -102,7 +67,7 @@ export default function Component() {
             <p class="text-sm text-gray-700 dark:text-gray-400">Software Engineer</p>
           </div>
         </div>
-        <Link href={"/companydashboard"} className="flex items-center mt-10 gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800 ">
+        <Link href={"/companydashboard"} className="flex items-center gap-3 px-3 py-2 mt-10 transition-colors rounded-md hover:bg-gray-800 ">
          
         Dashboard
        </Link>
@@ -121,7 +86,7 @@ export default function Component() {
          
         Projects
        </Link>
-       <Link href={"/companydashboard/viewfreelancer"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800 ">
+       <Link href={"/companydashboard/viewfreelancer"} className="flex items-center gap-3 px-3 py-2 transition-colors bg-gray-800 rounded-md ">
          
          View Freelancer
         </Link>
@@ -207,7 +172,7 @@ export default function Component() {
     <main className="container pt-5 text-white">
     <section className="p-6 mb-8 bg-gray-700 rounded-lg shadow-md dark:bg-gray-900">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2">
-            <div className="p-4 bg-gray-900 rounded-lg  dark:bg-gray-800">
+            <div className="p-4 bg-gray-900 rounded-lg dark:bg-gray-800">
               <h2 className="mb-2 text-2xl font-bold text-gray-100 dark:text-gray-100">Total Freelancers</h2>
               <p className="text-4xl font-bold text-gray-100 dark:text-gray-100">{totalFreelancers}</p>
             </div>
