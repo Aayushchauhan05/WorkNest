@@ -37,7 +37,7 @@ export default function Component() {
 
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/Companyreg`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Companyreg`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

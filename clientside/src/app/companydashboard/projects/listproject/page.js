@@ -19,7 +19,7 @@ const ProjectForm = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await fetch(`${NEXT_PUBLIC_BACKEND_HOST}/api/Listprojectbusiness`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Listprojectbusiness`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

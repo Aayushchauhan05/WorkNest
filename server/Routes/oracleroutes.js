@@ -28,5 +28,6 @@ router.put(
   "/updateOracleByFreelancerId/:id",
   oracleController.updateOracleByFreelancerId
 );
-
+// email to oracle
+router.get("/EmailToOracle",OracleUserverificationmail);
 module.exports = router;

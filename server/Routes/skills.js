@@ -6,9 +6,9 @@ const {
     updateSkill,
     deleteSkill
 } = require('../Controller/skills');
-
+const addskills = require("../Controller/skillsapi");
 const router = express.Router();
-
+router.post("/skills",addskills)   
 // Create a new skill
 router.post('/createSkill', createSkill);
 

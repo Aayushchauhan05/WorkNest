@@ -46,6 +46,8 @@ const JobApplicationForm = () => {
         console.log(error);
       }
     };
+
+    profectinfo()
   }, [projectid]);
 
   return (
