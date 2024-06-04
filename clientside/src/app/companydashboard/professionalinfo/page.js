@@ -25,7 +25,7 @@ function page() {
             toggleMenu={toggleMenu}
 
           />
-          <div class="flex-1 justify-center items-center bg-black dark:bg-gray-800/40 p-4 md:p-10 ">
+          <div class="flex-1 md:pl-64 lg:pl-72 justify-center items-center bg-black dark:bg-gray-800/40 p-4 md:p-10 ">
             <div class="container max-w-6xl grid gap-8">
               <section>
              

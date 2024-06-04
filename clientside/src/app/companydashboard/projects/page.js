@@ -67,7 +67,7 @@ function Page() {
         isCompanydashboard={true} 
         toggleMenu={toggleMenu}
       />
-        <main className="container grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
+        <main className="container md:pl-64 lg:pl-72 grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
         {((filteredProjects || projects)).map(project => (
             <div key={project.id} className="relative overflow-hidden max-h-72 bg-white border rounded-lg shadow-sm group">
               <div className="flex flex-col justify-between h-full">

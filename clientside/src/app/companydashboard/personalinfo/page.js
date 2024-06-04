@@ -33,7 +33,7 @@ function ProfilePage() {
   return (
     <>
       <div className="flex w-full h-screen ">
-        <VerticalNav isMenuOpen={isMenuOpen}   isActive={"profile"} toggleMenu={toggleMenu} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"} />
+        <VerticalNav isMenuOpen={isMenuOpen}   isActive={"profile"} toggleMenu={toggleMenu} isCompanyDashboard={true} userName={"ayush badoria"} userProfession={"Software Developer"} />
         <div className="flex flex-col w-full">
           <Header
             companyName="Company XYZ"
@@ -42,14 +42,12 @@ function ProfilePage() {
             toggleMenu={toggleMenu}
           
           />
-          <div className="container flex flex-col items-center max-h-screen ">
+          <div className="container flex flex-col md:pl-64 lg:pl-72 items-center max-h-screen ">
 
             <div className="container flex flex-col items-center gap-8 p-6">
               {/* Personal Information Section */}
               <section className="flex flex-col items-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-                <div className="flex items-center justify-center w-full">
-                  <img src="#" className="w-auto h-20 border rounded-full" alt="Profile" />
-                </div>
+             
                 <div className="flex flex-col items-center w-full">
                   <p className="text-sm font-semibold">Name:</p>
                   <span className="text-lg">ImDezCode</span>
@@ -89,6 +87,7 @@ function ProfilePage() {
                   </div>
                 </div>
               </section>
+
             </div>
 
 
@@ -98,6 +97,37 @@ function ProfilePage() {
             >
               Edit Profile
             </button>
+            <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-lg shadow-xl overflow-hidden">
+  <div class="p-6">
+    <h2 class="text-3xl font-bold text-white mb-4">Title of the Card</h2>
+    <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia nulla eget ultricies pulvinar.</p>
+    <div class="flex items-center mt-6">
+      <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/50" alt="Avatar"/>
+      <p class="text-sm text-gray-300 ml-2">John Doe</p>
+    </div>
+  </div>
+  <img class="w-full h-32 object-cover object-center" src="https://via.placeholder.com/600x200" alt="Blockchain Image"/>
+  <div class="p-6 flex justify-between items-center">
+    <button class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-purple-500">Action</button>
+    <span class="text-xs uppercase font-semibold tracking-wider text-gray-300">May 12, 2024</span>
+  </div>
+</div>
+
+<div class="bg-gradient-to-br from-teal-900 to-blue-900 rounded-lg shadow-xl overflow-hidden">
+  <div class="p-6">
+    <h2 class="text-3xl font-bold text-white mb-4">Title of the Card</h2>
+    <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia nulla eget ultricies pulvinar.</p>
+    <div class="flex items-center mt-6">
+      <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/50" alt="Avatar"/>
+      <p class="text-sm text-gray-300 ml-2">John Doe</p>
+    </div>
+  </div>
+  <img class="w-full h-32 object-cover object-center" src="https://via.placeholder.com/600x200" alt="Blockchain Image"/>
+  <div class="p-6 flex justify-between items-center">
+    <button class="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500">Action</button>
+    <span class="text-xs uppercase font-semibold tracking-wider text-gray-300">May 12, 2024</span>
+  </div>
+</div>
           </div>
         </div>
       </div>
@@ -191,6 +221,9 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
             >
               Save
             </button>
+  
+
+
           </div>
         </form>
       </div>

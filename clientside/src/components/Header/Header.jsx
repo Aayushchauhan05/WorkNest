@@ -8,9 +8,9 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
  
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full ">
       <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
-        <div className="container flex items-center justify-between px-6 py-4 mx-auto">
+        <div className="container flex items-center justify-between px-6 md:pl-64 lg:pl-72 py-4 mx-auto">
           <div className="flex items-center gap-4">
             <button 
               onClick={toggleMenu} 
@@ -35,7 +35,7 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
         </div>
       </header>
 
-      <h2 className='text-3xl font-bold tracking-tight text-white dark:text-gray-100 ml-6 md:ml-[2rem] mt-5'>{pageName}</h2>
+      <h2 className='text-3xl font-bold tracking-tight text-white dark:text-gray-100 ml-[2rem] md:pl-64 lg:pl-72  mt-5'>{pageName}</h2>
   
     </div>
   );

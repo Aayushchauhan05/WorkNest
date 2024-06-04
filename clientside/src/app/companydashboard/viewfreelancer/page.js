@@ -60,7 +60,7 @@ export default function Component() {
 
       />
       
-    <main className="container pt-5 text-white">
+    <main className="container md:pl-64 lg:pl-72 pt-5 text-white">
     <section className="p-6 mb-8 bg-gray-700 rounded-lg shadow-md dark:bg-gray-900">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2">
             <div className="p-4 bg-gray-900 rounded-lg  dark:bg-gray-800">

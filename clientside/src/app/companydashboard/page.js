@@ -24,7 +24,7 @@ function page() {
         isCompanydashboard={true} 
         toggleMenu={toggleMenu}
       />
-        <main className="container grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
+        <main className="container md:pl-64 lg:pl-72 grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
           <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Company Overview</h3>
