@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const oracleController = require("../Controller/Oracle");
-
+const OracleUserverificationmail=require("../Controller/OracleUserprojecttest")
 // Create a new Oracle entry
 router.post("/createOracle", oracleController.createOracle);
 
