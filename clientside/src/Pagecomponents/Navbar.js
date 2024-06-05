@@ -71,7 +71,7 @@ function Navbar() {
           )}
         </div>
         <button className="text-white md:hidden" onClick={toggleMenu}>
-        <IoMdMenu size={30}  color="white" />
+        <IoMdMenu size={30}   color="white" />
         </button>
         {isMenuOpen && (
           <div className="md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black">

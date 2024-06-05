@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
+import bannerImg from '../../../../public/banner.jpg'
 
 import Header from "@/components/Header/Header";
 
@@ -33,43 +34,41 @@ function ProfilePage() {
   return (
     <>
       <div className="flex w-full h-screen ">
-        <VerticalNav isMenuOpen={isMenuOpen}   isActive={"profile"} toggleMenu={toggleMenu} isCompanyDashboard={true} userName={"ayush badoria"} userProfession={"Software Developer"} />
+        <VerticalNav isMenuOpen={isMenuOpen} isActive={"profile"} toggleMenu={toggleMenu} isCompanyDashboard={true} userName={"ayush badoria"} userProfession={"Software Developer"} />
         <div className="flex flex-col w-full">
           <Header
             companyName="Company XYZ"
             pageName="Your Profile"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
-          
+
           />
-          <div className="container flex flex-col md:pl-64 lg:pl-72 items-center max-h-screen ">
+          <div className="container flex flex-col md:pl-64 lg:pl-72 items-center max-h-screen relative">
 
             <div className="container flex flex-col items-center gap-8 p-6">
               {/* Personal Information Section */}
-              <section className="flex flex-col items-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-             
-                <div className="flex flex-col items-center w-full">
-                  <p className="text-sm font-semibold">Name:</p>
-                  <span className="text-lg">ImDezCode</span>
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <p className="text-sm font-semibold">Email:</p>
-                  <span className="text-lg">imdezcode@gmail.com</span>
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <p className="text-sm font-semibold">Bio:</p>
-                  <span className="text-lg">a software developer who has passion for development</span>
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <p className="text-sm font-semibold">Experience:</p>
-                  <span className="text-lg">5 year</span>
-                </div>
-                <div className="flex flex-col items-center w-full">
-                  <p className="text-sm font-semibold">Description:</p>
-                  <span className="text-lg">a software developer who has passion for development</span>
-                </div>
+              <section className="flex flex-col items-center w-full relative h-full space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+    <div className="relative bg-gradient-to-r from-green-400 to-blue-500 w-full h-[15rem] rounded-t-lg">
+        <div className="h-40 border bg-white w-40 absolute rounded-full top-36 left-[3.6rem] md:left-12 flex items-center justify-center">
+            <h2 className="text-black text-5xl">AB</h2>
+        </div>
+    </div>
 
-              </section>
+    <div className="pt-6 w-full flex flex-col md:flex-row justify-between pb-20">
+        <div className="md:ml-14 mt-8 flex flex-col gap-2 items-center md:items-start justify-center">
+            <h2 className="text-xl">Ayush Badoria</h2>
+            <p className="text-sm">Software Developer</p>
+            <p className="text-sm">Delhi India</p>
+            <p className="text-sm">imdezcode@gmail.com</p>
+        </div>
+
+        <div className="flex flex-col justify-between gap-2 items-center w-full px-[3rem] pt-2 md:p-0 md:relative">
+            <p className="text-sm md:absolute right-5">A software developer who has passion for development</p>
+            <p className="md:right-5 md:absolute md:bottom-0">Experience: 7 years</p>
+        </div>
+    </div>
+</section>
+
 
               {/* Social Links Section */}
               <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
@@ -78,11 +77,11 @@ function ProfilePage() {
                   <div className="flex items-center space-x-4">
                     <div className="flex flex-col items-center w-full">
                       <p className="text-sm font-semibold">Instagram:</p>
-                      <a className="text-lg">instagram.com</a>
+                      <a className="text-lg" href="https://instagram.com" target="_blank" rel="noopener noreferrer">instagram.com</a>
                     </div>
                     <div className="flex flex-col items-center w-full">
-                      <p className="text-sm font-semibold">linkedin:</p>
-                      <a className="text-lg">linkedin.com</a>
+                      <p className="text-sm font-semibold">LinkedIn:</p>
+                      <a className="text-lg" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin.com</a>
                     </div>
                   </div>
                 </div>
@@ -93,44 +92,14 @@ function ProfilePage() {
 
             <button
               onClick={toggleModal}
-              className="items-end px-4 py-2 mt-4 text-white rounded-md w-36 bg-cyan-600 hover:bg-cyan-700"
+              className="items-end px-2 absolute py-2 mt-2 right-5 top-10 text-white rounded-md w-26 bg-cyan-800 hover:bg-cyan-700"
             >
               Edit Profile
             </button>
-            <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-lg shadow-xl overflow-hidden">
-  <div class="p-6">
-    <h2 class="text-3xl font-bold text-white mb-4">Title of the Card</h2>
-    <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia nulla eget ultricies pulvinar.</p>
-    <div class="flex items-center mt-6">
-      <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/50" alt="Avatar"/>
-      <p class="text-sm text-gray-300 ml-2">John Doe</p>
-    </div>
-  </div>
-  <img class="w-full h-32 object-cover object-center" src="https://via.placeholder.com/600x200" alt="Blockchain Image"/>
-  <div class="p-6 flex justify-between items-center">
-    <button class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-purple-500">Action</button>
-    <span class="text-xs uppercase font-semibold tracking-wider text-gray-300">May 12, 2024</span>
-  </div>
-</div>
 
-<div class="bg-gradient-to-br from-teal-900 to-blue-900 rounded-lg shadow-xl overflow-hidden">
-  <div class="p-6">
-    <h2 class="text-3xl font-bold text-white mb-4">Title of the Card</h2>
-    <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia nulla eget ultricies pulvinar.</p>
-    <div class="flex items-center mt-6">
-      <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/50" alt="Avatar"/>
-      <p class="text-sm text-gray-300 ml-2">John Doe</p>
-    </div>
-  </div>
-  <img class="w-full h-32 object-cover object-center" src="https://via.placeholder.com/600x200" alt="Blockchain Image"/>
-  <div class="p-6 flex justify-between items-center">
-    <button class="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500">Action</button>
-    <span class="text-xs uppercase font-semibold tracking-wider text-gray-300">May 12, 2024</span>
-  </div>
-</div>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
 
       {isModalOpen && (
         <ModalProfileForm
@@ -138,7 +107,8 @@ function ProfilePage() {
           onClose={toggleModal}
           onUpdate={handleProfileUpdate}
         />
-      )}
+      )
+      }
     </>
   );
 }
@@ -221,9 +191,6 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
             >
               Save
             </button>
-  
-
-
           </div>
         </form>
       </div>
@@ -232,4 +199,3 @@ function ModalProfileForm({ profile, onClose, onUpdate }) {
 }
 
 export default ProfilePage;
-
