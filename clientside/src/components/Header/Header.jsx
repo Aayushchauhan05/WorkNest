@@ -8,7 +8,7 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
  
 
   return (
-    <div className="flex flex-col w-full ">
+    <div className="flex flex-col w-full">
       <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
         <div className="container flex items-center justify-between px-6 md:pl-64 lg:pl-72 py-4 mx-auto">
           <div className="flex items-center gap-4">
