@@ -4,6 +4,7 @@ import { useState } from "react";
 import userIcon from '../../public/user.svg';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/context";
+import { IoMdMenu } from "react-icons/io";
 
 function Navbar() {
   const { isloggedin, isfreelancer } = useAuth();
@@ -70,9 +71,7 @@ function Navbar() {
           )}
         </div>
         <button className="text-white md:hidden" onClick={toggleMenu}>
-          <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
+        <IoMdMenu size={30}   color="white" />
         </button>
         {isMenuOpen && (
           <div className="md:hidden h-[30rem] text-2xl p-20 text-white w-screen navlink ml-[-1rem] first:bg-red-500 flex flex-col items-center justify-center mt-[34rem] absolute bg-black">

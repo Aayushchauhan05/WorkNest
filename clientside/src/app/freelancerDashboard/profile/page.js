@@ -291,31 +291,7 @@ try {
           </div>
         </div>
       </div>
-      {/* <div class="rounded-lg border text-card-foreground shadow-sm bg-cyan-700 dark:bg-cyan-400" data-v0-t="card">
-        <div class="flex-col space-y-1.5 p-6 flex items-center justify-between">
-          <h2 class="text-lg font-medium text-gray-950 dark:text-gray-950">Interests</h2>
-          <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:text-accent-foreground h-9 rounded-md px-3 text-gray-950 dark:text-gray-950 border-gray-950 dark:border-gray-950 hover:bg-gray-950/10 dark:hover:bg-gray-950/10">
-            Edit
-          </button>
-        </div>
-        <div class="p-6 flex flex-wrap gap-2">
-          <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-secondary/80 bg-gray-950 text-cyan-400 dark:bg-gray-950 dark:text-cyan-400">
-            Coding
-          </div>
-          <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-secondary/80 bg-gray-950 text-cyan-400 dark:bg-gray-950 dark:text-cyan-400">
-            Reading
-          </div>
-          <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-secondary/80 bg-gray-950 text-cyan-400 dark:bg-gray-950 dark:text-cyan-400">
-            Traveling
-          </div>
-          <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-secondary/80 bg-gray-950 text-cyan-400 dark:bg-gray-950 dark:text-cyan-400">
-            Photography
-          </div>
-          <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-secondary/80 bg-gray-950 text-cyan-400 dark:bg-gray-950 dark:text-cyan-400">
-            Hiking
-          </div>
-        </div>
-      </div> */}
+      
     </div>
   </main>
 </div>
