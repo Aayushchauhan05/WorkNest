@@ -1,3 +1,4 @@
+const { Business } = require("../models/Business/Businessreg");
 const { ProjectListByBusiness, Totalprojectlistedbybusiness } = require("../models/Business/ProjectSchema");
 const{Freelancer}=require("../models/freelancer/Freelancerreg")
 const{Project}= require("../models/freelancer/projectSchema")
@@ -9,15 +10,11 @@ const {Email}= req.user;
 const project= await ProjectListByBusiness.create({projectName,Description,Email,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer})
 
 const{_id}=project;
-const projectexist= await Totalprojectlistedbybusiness.findOne({Email})
 console.log("projectid",_id);
-if (!projectexist) {
-    await Totalprojectlistedbybusiness.create({Email,CompanyName,ProjectList:_id});
-}
-else{
-    await Totalprojectlistedbybusiness.findOneAndUpdate({Email},{$push:{ProjectList:_id}});
-}
-return res.status(200)
+
+  const projectupdate=  await Business.findOneAndUpdate({Email},{$push:{ProjectList:_id}});
+console.log(projectupdate)
+return res.status(200).send(projectupdate)
     } catch (error) {
        console.log(error);
        return res.status(500).json({message:"Internal server error"}) 
@@ -28,7 +25,10 @@ return res.status(200)
 const getprojectdata= async (req,res)=>{
 try {
     const{Email}=req.user;
-    const data= await Totalprojectlistedbybusiness.findOne({Email});
+    const data = await Business.findOne({ Email })
+    .populate('ProjectList')
+    
+  
     if (!data) {
         return res.status(404).json({message:"No data found"})
     }

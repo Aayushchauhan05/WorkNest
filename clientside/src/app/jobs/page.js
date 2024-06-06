@@ -5,21 +5,7 @@ import { useEffect ,useState} from "react";
 // import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 function page() {
-  const jobListings = [
-    {
-      title: "Web Developer Needed",
-      description:
-        "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: "$3,000 - $5,000",
-      priceRange: "$2,000+",
-      client: "ABC Corp",
-      dueDate: "2024-06-15",
-      status: "Available to bid",
-      jobType: "Web Development",
-      experienceLevel: "Expert",
-    },
-
-  ];
+  const [jobListings,setjob] = useState([])
 
   const [filters, setFilters] = useState({
     jobType: "All",
@@ -65,29 +51,25 @@ function page() {
 
     setFilteredJobs(filtered);
   };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Allproject`);
+      const data = await response.json();
+      
+        console.log(data);
+        if (response.ok) {
+          setFilteredJobs(data.data)
+        }
+      
+    } catch (error) {
+      if (isMounted) {
+        console.error('Error fetching data:', error);
+      }
+    }
+  };
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/Allproject`);
-        const data = await response.json();
-        if (isMounted) {
-          console.log(data);
-        }
-      } catch (error) {
-        if (isMounted) {
-          console.error('Error fetching data:', error);
-        }
-      }
-    };
-
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
   return (
     <>
@@ -322,34 +304,40 @@ function page() {
           </div>
           <div className="col-span-1 md:col-span-9">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredJobs.map((job, index) => (
+              {filteredJobs.map((job) => (
              
-             <Link href={`/jobs/1`}>   <div
-                  key={index}
+             <Link href={`/jobs/${job._id}`}>   <div
+                  key={job._id}
                   className="relative overflow-hidden text-black bg-white border rounded-lg shadow-sm group"
                 >
                   <div className="flex flex-col justify-between h-full">
                     <div className="flex flex-col p-6 space-y-4">
                       <h3 className="text-lg font-bold text-center ">
-                        {job.title}
+                       {`${job.projectName}`}
                       </h3>
 
                       <div className="flex flex-col space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-medium">Client:</span>
-                          <span>{job.client}</span>
+                          <span className="font-medium">Company Name</span>
+                          <span>{job.CompanyName}</span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="font-medium text-gray-500">
-                            Due Date:
+                            Start Date:
                           </span>
-                          <span>{job.dueDate}</span>
+                          <span>{job.Start}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium text-gray-500">
+                            End Date:
+                          </span>
+                          <span>{job.End}</span>
                         </div>
                       </div>
                     </div>
                     <div className="flex gap-2 p-6 bg-gray-100 border-t">
                       <div className="text-sm text-gray-600">
-                        Budget: {job.budget}
+                        Freelancer Required: {job.TotalNeedOffreelancer}
                       </div>
                       <h1   className={`inline-flex items-center justify-center w-[50%] h-10 bg-cyan-800  rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3`}>Bid</h1>
                      

@@ -1,14 +1,32 @@
 "use client";
+import { useAuth } from "@/context/context";
 import Link from "next/link";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 function page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+const{token}=useAuth()
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const fetchdata= async ()=>{
+    try {
+      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`,{
+        method:"GET",
+        headers:{
+          "Authorization":`Bearer ${token}`
+        }
+      });
+      const data=await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  useEffect(()=>{
+  fetchdata()
+  },[])
   return (
    <>
 <div className="flex w-full h-screen">

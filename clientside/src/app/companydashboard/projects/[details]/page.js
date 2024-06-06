@@ -1,13 +1,29 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/irvKcQ69uAy
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { useEffect } from "react"
 
 export default function Component() {
+  const fetchdata= async ()=>{
+    try {
+    const{token}=useAuth();
+      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api`,{
+        method:"GET",
+        headers:{
+          "Authorization":`Bearer ${token}`
+        }
+      });
+      const data=await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  useEffect(()=>{
+  fetchdata()
+  },[])
   return (
     <div className="flex min-h-[100dvh]">
       <div className="flex flex-col gap-6 p-6 text-white bg-gray-900">
@@ -51,6 +67,7 @@ export default function Component() {
                 </Link>
               </span>
             </Link>
+           
           </nav>
         </div>
       </div>

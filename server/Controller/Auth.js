@@ -173,7 +173,7 @@ const business_reg = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { Email, password } = req.body;
-    let userexist = await Business.findOne({ Email });
+    let userexist = await Business.findOne({ Email }).select("-ProjectList");
 
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select(

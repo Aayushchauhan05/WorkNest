@@ -47,7 +47,7 @@ const {Schema,model}= require("mongoose");
     },
     status:{
         type:String,
-        default:"Not assigned"
+        default:"Pending"
     }
  })
  const TotalprojectlistedbybusinessSchema= new Schema({
@@ -79,7 +79,7 @@ type:Schema.Types.ObjectId,
 ref:"Applicationforwork"
     }]
 })
-const AppliedCandidates= new model("Applied candidatesforbusiness",AppliedcandidatesSchema)
+const AppliedCandidates= new model("Appliedcandidatesforbusiness",AppliedcandidatesSchema)
 const Totalprojectlistedbybusiness= new model("Projectlistbusinesswise",TotalprojectlistedbybusinessSchema);
  const ProjectListByBusiness= new model("ProjectListByCompany",ProjectSchemaByBusiness);
   module.exports={ProjectListByBusiness,Totalprojectlistedbybusiness,AppliedCandidates};

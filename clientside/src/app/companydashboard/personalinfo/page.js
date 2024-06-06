@@ -1,10 +1,12 @@
 "use client";
+import { useAuth } from "@/context/context";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const{token}=useAuth()
   const [profile, setProfile] = useState({
     fullName: "Jared Palmer",
     experience: "5 years",
@@ -25,7 +27,25 @@ function ProfilePage() {
     setProfile(updatedProfile);
     toggleModal();
   };
+const fetchdata= async ()=>{
+  const token=localStorage.getItem("token")
+  try {
+    const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`,{
+      method:"GET",
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    });
+    const data=await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+useEffect(()=>{
+fetchdata()
+},[])
   return (
     <>
       <div className="flex w-full h-screen">

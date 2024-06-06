@@ -6,24 +6,18 @@ const { Freelancer } = require("../models/freelancer/Freelancerreg");
 
 const Applicationforwork = async (req, res) => {
   try {
-    const { address, desiredSalary, experience, role, companyemail, companyName, status, projectId } = req.body;
+    const {companyemail, desiredSalary, role, projectId } = req.body;
     const { firstName, Email, phone } = req.user;
-
+console.log("email",companyemail)
     const companyExist = await Business.findOne({ Email: companyemail });
     if (!companyExist) {
       return res.status(404).json({ message: "Company does not exist" });
     }
 
     const application = await ApplyForPosition.create({
-      Name: firstName,
-      Email,
-      phoneNumber: phone,
-      address,
+     Email,
       desiredSalary,
-      experience,
       role,
-      companyemail,
-      status,
       projectId
     });
 
@@ -43,20 +37,20 @@ const Applicationforwork = async (req, res) => {
     const { _id } = application;
     console.log(_id);
 
-    const previousCandidates = await AppliedCandidates.findOne({ Email: companyemail });
-    if (!previousCandidates) {
-      await AppliedCandidates.create({
-        companyName,
-        email: companyemail,
-        AppliedCandidates: [_id]
-      });
-    } else {
-      await AppliedCandidates.findOneAndUpdate(
+    // const previousCandidates = await AppliedCandidates.findOne({ Email: companyemail });
+    // if (!previousCandidates) {
+    //   await AppliedCandidates.create({
+    //     companyName,
+    //     email: companyemail,
+    //     AppliedCandidates: [_id]
+    //   });
+    // } else {
+      await Business.findOneAndUpdate(
         { Email: companyemail },
         { $push: { AppliedCandidates: _id } },
         { new: true }
       );
-    }
+    // }
 
     return res.status(200).json({ message: "Application submitted successfully" });
 
