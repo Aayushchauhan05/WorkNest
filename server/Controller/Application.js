@@ -63,7 +63,7 @@ console.log("email",companyemail)
 const SendDataTocompany = async (req, res) => {
   try {
     const { Email } = req.user;
-    const data = await AppliedCandidates.findOne({ Email });
+    const data = await Business.findOne({ Email }).populate("Appliedcandidates").populate("projectId");
     if (!data) {
       return res.status(404).json({ message: "No applications found" });
     }
