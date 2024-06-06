@@ -58,25 +58,33 @@ function Page() {
 
   return (
     <>
-    <div className="flex w-full h-screen ">
-  <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isProduct={true}   filterProjectsByStatus={filterProjectsByStatus}  userName={"ayush badoria"} userProfession={"Software Developer"}/>
-      <div className="flex flex-col w-full">
-      <Header 
-        companyName="Company XYZ"
-        pageName="Your Projects"
-        isCompanydashboard={true} 
-        toggleMenu={toggleMenu}
-      />
-        <main className="container md:pl-64 lg:pl-72 grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
-        {((filteredProjects || projects)).map(project => (
-            <div key={project.id} className="relative overflow-hidden max-h-72 bg-white border rounded-lg shadow-sm group">
-              <div className="flex flex-col justify-between h-full">
-                <div className="flex flex-col p-6 space-y-4">
-                  <h3 className="text-lg font-bold text-center ">{project.name}</h3>
+      <div className="flex w-full h-screen">
+        <VerticalNav 
+          isMenuOpen={isMenuOpen} 
+          toggleMenu={toggleMenu} 
+          isProduct={true}   
+          filterProjectsByStatus={filterProjectsByStatus}  
+          userName={"ayush badoria"} 
+          userProfession={"Software Developer"}
+        />
+        <div className="flex flex-col w-full">
+          <Header 
+            companyName="Company XYZ"
+            pageName="Your Projects"
+            isCompanydashboard={true} 
+            toggleMenu={toggleMenu}
+          />
+          <main className="container md:pl-64 lg:pl-72 grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
+          <section  className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+            {(filteredProjects || projects).map(project => (
+            
+               <div key={project.id}>
+                <div className="flex flex-col w-full">
+                  <h3 className="text-lg font-bold text-center">{project.name}</h3>
                   <div className={`px-3 py-1 rounded-full text-center text-xs font-medium ${getStatusColor(project.status)}`}>
                     {project.status}
                   </div>
-                  <div className="flex flex-col space-y-2">
+                  <div className="flex flex-col space-y-2 mt-4">
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Client:</span>
                       <span>{project.client}</span>
@@ -87,32 +95,19 @@ function Page() {
                     </div>
                   </div>
                 </div>
-                <div className="p-6 bg-gray-100 border-t">
-                  <Link href={"companydashboard/projects/viewdetails"} >
-                    <p className="inline-flex items-center justify-center text-sm font-medium text-blue-500 rounded-md hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                      View Details
-                    </p>
+                <div className="w-full">
+                  <Link href={`companydashboard/projects/viewdetails`} className="inline-flex items-center justify-center w-full text-sm font-medium text-blue-500 rounded-md hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    View Details
                   </Link>
                 </div>
-              </div>
-              <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>
-            </div>
-          ))}
-        </main>
-     
+               </div>
+              
+            ))}
+            </section>
+          </main>
+        </div>
       </div>
-    </div></>
-
-
-
-
-
-
-
-
-
-     
-
+    </>
   );
 }
 
