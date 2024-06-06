@@ -7,8 +7,9 @@ import { useEffect } from "react"
 export default function Component() {
   const fetchdata= async ()=>{
     try {
-    const{token}=useAuth();
-      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api`,{
+    // const{token}=useAuth();
+    const token= localStorage.getItem("token")
+      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Senddatatocompany`,{
         method:"GET",
         headers:{
           "Authorization":`Bearer ${token}`
