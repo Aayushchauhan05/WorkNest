@@ -25,7 +25,7 @@ const VerticalNav = ({
 
   return (
     <div
-      className={`fixed  p-6 bg-cyan-800 transition-transform transform  ${
+      className={`fixed  p-6 bg-cyan-800 transition-transform transform z-50 ${
         isMenuOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[17rem]`}
     >

@@ -9,7 +9,7 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
 
   return (
     <div className="flex flex-col w-full">
-      <header className="bg-gray-900 shadow-sm dark:bg-gray-900">
+      <header className="fixed w-screen z-30 bg-gray-900 shadow-sm dark:bg-gray-900">
         <div className="container flex items-center justify-between px-6 md:pl-64 lg:pl-72 py-4 mx-auto">
           <div className="flex items-center gap-4">
             <button 
@@ -21,10 +21,12 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
             </button>
 
             {isCompanydashboard ? (
-              <div>
-                <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">{companyName}</h1>
-                <p className="text-cyan-500 dark:text-gray-400">Company Dashboard</p>
-              </div>
+           <div className='h-[3rem]'>
+           <h1 className="text-3xl font-bold text-cyan-700 dark:text-gray-50">{companyName}</h1>
+          
+         </div>
+         
+           
             ) : (
               <div>
                 <h1 className="text-xl font-bold text-cyan-700 dark:text-gray-50">{userName}</h1>
@@ -35,7 +37,7 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
         </div>
       </header>
 
-      <h2 className='text-3xl font-bold tracking-tight text-white dark:text-gray-100 ml-[2rem] md:pl-64 lg:pl-72  mt-5'>{pageName}</h2>
+      <h2 className='text-3xl font-bold pt-[5rem] tracking-tight text-white dark:text-gray-100 ml-[2rem] md:pl-64 lg:pl-72  mt-5'>{pageName}</h2>
   
     </div>
   );

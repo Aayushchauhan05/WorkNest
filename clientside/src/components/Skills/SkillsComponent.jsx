@@ -33,6 +33,7 @@ import { IoLogoSwift } from "react-icons/io";
 import { FaRProject } from "react-icons/fa";
 import { SiLaravel, SiGraphql, SiRedux, SiAws } from "react-icons/si";
 import { FaDev } from "react-icons/fa";
+import { GrPersonalComputer } from "react-icons/gr";
 
 
 const SkillIcons = {
@@ -81,8 +82,8 @@ const SkillComponent = ({ skill }) => {
           <p className="text-sm">{skill}</p>
         </div>
       ) : (
-        <div key={skill} className="flex items-center gap-2">
-          {/* Default icon or text */}
+        <div key={skill} className="flex items-center flex-col justify-center gap-1">
+          <GrPersonalComputer size={35} />
           <span>{skill}</span>
         </div>
       )}

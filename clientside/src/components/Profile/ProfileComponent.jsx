@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AiFillIdcard } from "react-icons/ai";
 import SkillComponent from "../Skills/SkillsComponent";
 import { GrCertificate } from "react-icons/gr";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 
 const ProfileComponent = ({
   name,
@@ -13,7 +14,8 @@ const ProfileComponent = ({
   location,
   email,
   profileDescription,
-  experience,
+  experienceInYears,
+  experiences,
   socialLinks,
   toggleModal,
   industry,
@@ -27,9 +29,9 @@ const ProfileComponent = ({
 }) => {
   return (
     <>
-      {isCompanyDashboard ? (
-        <div className="container flex flex-col md:pl-64 lg:pl-72 items-center min-h-screen relative">
-          <div className="container flex flex-col items-center gap-8 p-6">
+      {isCompanyDashboard && (
+        <div className="container flex flex-col md:pl-64 lg:pl-72 items-center min-h-screen  relative">
+          <div className="container flex flex-col items-center gap-8 p-6 ">
             {/* Personal Information Section */}
             <section className="flex flex-col items-center w-full relative h-full space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
               <div className="relative bg-gradient-to-r from-green-400 to-blue-500 w-full h-[15rem] rounded-t-lg">
@@ -67,7 +69,7 @@ const ProfileComponent = ({
                     </div>
                   )}
                   <p className="md:right-[10rem] md:absolute md:bottom-0">
-                    Experience: {experience} Years
+                    Experience: {experienceInYears} Years
                   </p>
                 </div>
               </div>
@@ -77,24 +79,29 @@ const ProfileComponent = ({
                 <div className="flex flex-col w-full">
                   <p className="mb-4 text-lg font-semibold">Skills</p>
                   <div className="flex flex-wrap gap-5">
-                    {skills.map((skill) => (
+                    {skills.map((skill, index) => (
                       <div
                         className="flex items-center border p-5 min-w-28 max-w-28 justify-center rounded-lg"
-                        key={skill}
+                        key={index}
                       >
                         <SkillComponent skill={skill} />
                       </div>
                     ))}
                   </div>
                 </div>
+              </section>
+            )}
+            {/* Certificates Section */}
+            {certifications && certifications.length > 0 && (
+              <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
                 <div className="flex flex-col w-full">
                   <p className="mb-4 text-lg font-semibold">Certificates</p>
                   <div className="flex flex-wrap gap-5">
                     {certifications.map((certificate, index) => (
                       <Link
-                        href={certificate.link}
-                        className="flex items-center flex-col border p-5 w-[47%] h-50 justify-center rounded-lg"
+                        href={certificate?.link}
                         key={index}
+                        className="flex items-center flex-col border p-5 w-[47%] h-50 justify-center rounded-lg"
                       >
                         <GrCertificate size={65} />
                         <div className="flex flex-col items-center justify-center">
@@ -105,6 +112,48 @@ const ProfileComponent = ({
                           </div>
                         </div>
                       </Link>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Experience Section */}
+            {experiences && experiences.length > 0 && (
+              <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+                <div className="flex flex-col w-full">
+                  <p className="mb-4 text-lg font-semibold">Experience</p>
+                  <div className="flex flex-col items-center space-y-4">
+                    {experiences.map((exp, index) => (
+                      <div
+                        key={index}
+                        className={`flex flex-col items-start space-y-2 ${
+                          index === experiences.length - 1 ? "" : "border-b"
+                        } w-full border-gray-600 p-4 `}
+                      >
+                        <div>
+                          <HiOutlineBuildingOffice2 size={22} />
+                        </div>
+                        <div>
+                          <h2 className="text-lg font-semibold">
+                            {exp.position}
+                          </h2>
+                          <p className="text-sm">{exp.durationInYears}</p>
+                          {exp.location && (
+                            <p className="text-xs text-gray-400">
+                              {exp.location}
+                            </p>
+                          )}
+                          <div className="flex">
+                            <p>{exp.company} </p>
+                            <p> - {exp.employmentType}</p>
+                          </div>
+                          <div className="flex justify-between text-sm text-gray-500">
+                            <p>{exp.duration}</p>
+                          </div>
+                          {exp.description && <p>{exp.description}</p>}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -125,7 +174,7 @@ const ProfileComponent = ({
                   {socialLinks.linkedin && (
                     <div className="flex flex-col items-center w-full">
                       <Link href={socialLinks.linkedin}>
-                      <FaLinkedin size={35} />
+                        <FaLinkedin size={35} />
                       </Link>
                     </div>
                   )}
@@ -141,11 +190,9 @@ const ProfileComponent = ({
             </section>
           </div>
         </div>
-      ) : null}
+      )}
     </>
   );
 };
 
 export default ProfileComponent;
-
-                       

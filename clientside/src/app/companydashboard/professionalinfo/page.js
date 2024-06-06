@@ -17,7 +17,59 @@ function page() {
     location: 'Delhi, India',
     email: 'imdezcode@gmail.com',
     bio: 'A software developer who has a passion for development',
-    experience: '7',
+    experienceInYears: '7',
+    experiences:[
+      {
+        position: "Co-Founder",
+        company: "engineerHUB",
+        employmentType: "Full-time",
+        duration: "Nov 2020 - Present",
+        durationInYears: "3 yrs 8 mos",
+        location: "New Delhi, Delhi, India",
+        description: "\"engineerHUB\" One-stop career solution marketplace ✅ All engineering related solution at one stop, we build engineerHUB with an aim to say “We are proud of our engineers” 🙌🏽"
+      },
+      {
+        position: "Angel Investor",
+        company: "Singro Venture",
+        employmentType: "Part-time",
+        duration: "Jul 2023 - Present",
+        durationInYears: "1 yr",
+        location: "Ghaziabad, Uttar Pradesh, India · Remote",
+        description: "Helping Early stage founders with finance."
+      },
+      {
+        position: "Director",
+        company: "Singro Venture",
+        employmentType: "Full-time",
+        duration: "Jul 2023 - Present",
+        durationInYears: "1 yr",
+        location: "Ghaziabad, Uttar Pradesh, India · Remote",
+        description: "Aim to help and support early-stage founders by mentoring them, connecting them with peer network and support them with early stage funding."
+      },
+      {
+        position: "Equity Stock Investor",
+        company: "NSE India",
+        employmentType: "Part-time",
+        duration: "Apr 2018 - Present",
+        durationInYears: "6 yrs 3 mos",
+        location: "India · Remote",
+        description: "Equity investor since age 16😎 Invested in more than 20+ companies with an average CAGR of 28% since 2018."
+      },
+      {
+        position: "Google Study Jam",
+        company: "Google",
+        duration: "Dec 2020 - May 2023",
+        durationInYears: "2 yrs 6 mos"
+      },
+      {
+        position: "Management Intern",
+        company: "Vardhan Consulting Engineers",
+        employmentType: "Internship",
+        duration: "Jan 2021 - Mar 2021",
+        durationInYears: "3 mos",
+        description: "My responsibility as Management Intern is to do analytical learning, simulation / designing / modeling with techno-commercial detailing of my project topic."
+      }
+    ],
     companyName: 'Company XYZ',
     industry: 'IT',
     phone:"+91 7066668776",
@@ -59,7 +111,7 @@ function page() {
   };
 
   const handleProfileUpdate = (updatedProfile) => {
-    setprofessionalData(updatedProfile);
+    setProfessionalData(updatedProfile);
     toggleModal();
   };
   return (
@@ -81,7 +133,8 @@ function page() {
             location={professionalData.location}
             email={professionalData.email}
             profileDescription={professionalData.bio}
-            experience={professionalData.experience}
+            experienceInYears={professionalData.experienceInYears}
+            experiences={professionalData.experiences}
             socialLinks={professionalData.socialLinks}
             toggleModal={toggleModal}
             isCompanyDashboard={true}
@@ -101,6 +154,7 @@ function page() {
           profile={professionalData}
           onClose={toggleModal}
           onUpdate={handleProfileUpdate}
+          isProfessional={true}
         />
       )}
     </>
