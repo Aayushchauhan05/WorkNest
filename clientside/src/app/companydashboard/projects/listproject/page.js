@@ -1,9 +1,13 @@
 // components/ProjectForm.js
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form, FieldArray } from 'formik';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from 'next/link';
 
 const ProjectForm = () => {
+  const[loading,setloading]=useState(false)
   const initialValues = {
     projectName: '',
     Description: '',
@@ -18,11 +22,14 @@ const ProjectForm = () => {
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    setloading(true)
+    const token=localStorage.getItem("token")
     try {
-      const response = await fetch(`${NEXT_PUBLIC_BACKEND_HOST}/api/Listprojectbusiness`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Listprojectbusiness`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          "Authorization":`${token}`
         },
         body: JSON.stringify(values),
       });
@@ -30,6 +37,9 @@ const ProjectForm = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Success:', data);
+        toast.sucess("Project listed successfully")
+        setloading(false)
+        
         resetForm();
       } else {
         console.error('Error:', response.statusText);
@@ -37,12 +47,14 @@ const ProjectForm = () => {
     } catch (error) {
       console.error('Error:', error);
     } finally {
+      setloading(false)
       setSubmitting(false);
     }
   };
 
   return (
     <div className="max-w-2xl p-6 mx-auto bg-black rounded-lg shadow-md text-cyan-400">
+    <Link href={"/companydashboard/projects"} className={"text-cyan bg-black"}>Go back</Link>
       <h1 className="mb-6 text-2xl font-bold text-center">Create Project</h1>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
@@ -53,12 +65,13 @@ const ProjectForm = () => {
             </div>
             <div className="form-group">
               <label className="block mb-1">Description</label>
-              <Field name="Description" placeholder="Description" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
+              <textarea type="text" name="Description" placeholder="Description" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
+
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label className="block mb-1">Email</label>
               <Field name="Email" placeholder="Email" type="email" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
-            </div>
+            </div> */}
             <div className="form-group">
               <label className="block mb-1">Company Name</label>
               <Field name="CompanyName" placeholder="Company Name" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
@@ -103,6 +116,7 @@ const ProjectForm = () => {
           </Form>
         )}
       </Formik>
+      <ToastContainer />
     </div>
   );
 };

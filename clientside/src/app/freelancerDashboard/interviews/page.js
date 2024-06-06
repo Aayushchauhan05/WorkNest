@@ -135,7 +135,7 @@ function Page() {
               </svg>
             </button>
             <div>
-              <h1 className="text-xl font-bold text-white dark:text-gray-50">Oracle Verify</h1>
+              <h1 className="text-xl font-bold text-white dark:text-gray-50"> Interview Verify</h1>
             </div>
           </div>
           <div className="flex items-center gap-4">

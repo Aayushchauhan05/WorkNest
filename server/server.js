@@ -1,12 +1,13 @@
 const express= require("express");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const connectdb= require("./Components/Database/db")
-const Authroutes= require("./Components/Routes/Routes")
-const Skillsroutes= require("./Components/Routes/skills")
-const Oracleroutes= require("./Components/Routes/oracleroutes")
-const Interviewerrouters= require("./Components/Routes/interviewerrouter")
-
+const connectdb= require("./Database/db")
+const commonroutes= require("./Routes/Routes")
+const Skillsroutes= require("./Routes/skills")
+const Oracleroutes= require("./Routes/oracleroutes")
+const Interviewerrouters= require("./Routes/interviewerrouter")
+const freelancerroute=require("./Routes/freelancerroute")
+const businessroutes=require("./Routes/businessroutes")
 const cors= require("cors")
 require("dotenv").config()
 const app= express();
@@ -23,7 +24,9 @@ const corspermission = {
 app.use(cors(corspermission));
 
 const port = process.env.PORT || 5000;
-app.use("/Api", Authroutes);
+app.use("/Api", commonroutes);
+app.use("/api/business",businessroutes)
+app.use("/api/freelacer",freelancerroute)
 app.use("/api/skills", Skillsroutes);
 app.use("/api/oracle", Oracleroutes);
 app.use("/api/interviewers", Interviewerrouters);

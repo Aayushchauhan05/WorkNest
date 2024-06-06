@@ -73,7 +73,8 @@ const[loading,setloading]=useState(false)
     e.preventDefault();
     console.log(values);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/FreelancerRegister`, {
+app.use("/api/freelacer",freelancerroute)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelacer/FreelancerRegister`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

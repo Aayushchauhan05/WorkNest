@@ -84,10 +84,10 @@ function Page() {
 
         <div className={`fixed md:relative p-6 bg-cyan-800 transition-transform transform z-10 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex text-gray-50 w-[70%] md:w-[20%]`}>
           <div className="flex flex-col gap-6">
-            <button onClick={toggleMenu} className="md:hidden p-5 absolute text-xl top-0 right-0 z-50">X</button>
-            <nav className="flex flex-col w-auto h-screen gap-2 top-10 relative">
+            <button onClick={toggleMenu} className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden">X</button>
+            <nav className="relative flex flex-col w-auto h-screen gap-2 top-10">
               <Link href={"/freelancerDashboard"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">Dashboard</Link>
-              <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md bg-gray-800">Personal Info</Link>
+              <Link href={"/freelancerDashboard/personalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors bg-gray-800 rounded-md">Personal Info</Link>
               <Link href={"/freelancerDashboard/professionalInfo"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">Professional Info</Link>
               <Link href={"/freelancerDashboard/skillsAndProjects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">Skills And Projects</Link>
               <Link href={"/freelancerDashboard/projects"} className="flex items-center gap-3 px-3 py-2 transition-colors rounded-md hover:bg-gray-800">Projects</Link>
@@ -157,7 +157,7 @@ function Page() {
                 {isEditing ? (
                   <button
                     type="button"
-                    className="px-4 py-2 ml-2 rounded-md text-gray-50 bg-green-600 hover:bg-green-700"
+                    className="px-4 py-2 ml-2 bg-green-600 rounded-md text-gray-50 hover:bg-green-700"
                     onClick={handleSave}
                   >
                     Save
@@ -165,7 +165,7 @@ function Page() {
                 ) : (
                   <button
                     type="button"
-                    className="px-4 py-2 ml-2 rounded-md text-gray-50 bg-blue-600 hover:bg-blue-700"
+                    className="px-4 py-2 ml-2 bg-blue-600 rounded-md text-gray-50 hover:bg-blue-700"
                     onClick={handleEditClick}
                   >
                     Edit

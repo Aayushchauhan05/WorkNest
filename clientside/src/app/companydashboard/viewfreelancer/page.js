@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/NnGQZ7M9Tj6
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 
 "use client";
 import Link from "next/link";
@@ -44,6 +40,7 @@ export default function Component() {
     },
   
    
+
   ])
   useEffect(() => {
     setTotalFreelancers(freelancers.length)
@@ -59,11 +56,12 @@ export default function Component() {
         toggleMenu={toggleMenu}
 
       />
+
       
     <main className="container md:pl-64 lg:pl-72 pt-5 text-white">
     <section className="p-6 mb-8 bg-gray-700 rounded-lg shadow-md dark:bg-gray-900">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2">
-            <div className="p-4 bg-gray-900 rounded-lg  dark:bg-gray-800">
+            <div className="p-4 bg-gray-900 rounded-lg dark:bg-gray-800">
               <h2 className="mb-2 text-2xl font-bold text-gray-100 dark:text-gray-100">Total Freelancers</h2>
               <p className="text-4xl font-bold text-gray-100 dark:text-gray-100">{totalFreelancers}</p>
             </div>

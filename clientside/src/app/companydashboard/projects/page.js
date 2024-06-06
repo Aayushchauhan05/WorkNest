@@ -1,40 +1,26 @@
 'use client'
+
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
 import Header from "@/components/Header/Header";
+import { useAuth } from '@/context/context';
+
 
 function Page() {
   const [filteredProjects, setFilteredProjects] = useState(null);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  const projects = [
-    {
-      id: 1,
-      name: 'Website Redesign',
-      dueDate: '2024-06-15',
-      client: 'ABC Corp',
-      status: 'Pending'
-    },
-    {
-      id: 2,
-      name: 'Mobile App Development',
-      dueDate: '2024-07-10',
-      client: 'XYZ Corp',
-      status: 'ongoing'
-    },
-    {
-      id: 3,
-      name: 'Logo Design',
-      dueDate: '2024-06-30',
-      client: '123 Inc',
-      status: 'Complete'
-    }
-  ];
+ 
+
+  const{token}=useAuth()
+  const [projects,setprojects] = useState([]);
+
 
   const filterProjectsByStatus = (status) => {
     const filtered = projects.filter(project => project.status === status);
@@ -55,9 +41,31 @@ function Page() {
         return '';
     }
   }
-
+  const fetchdata= async ()=>{
+    try {
+      const token=localStorage.getItem("token")
+      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Getprojectdata`,{
+        method:"GET",
+        headers:{
+          "Authorization":`Bearer ${token}`
+        }
+      });
+      const data=await response.json();
+      console.log(data);
+      if(response.ok){
+setprojects(data.data.ProjectList)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  useEffect(()=>{
+  fetchdata()
+  },[])
   return (
     <>
+
       <div className="flex w-full h-screen">
         <VerticalNav 
           isMenuOpen={isMenuOpen} 
@@ -92,6 +100,7 @@ function Page() {
                     <div className="flex items-center justify-between">
                       <span className="font-medium text-gray-500">Due Date:</span>
                       <span>{project.dueDate}</span>
+
                     </div>
                   </div>
                 </div>

@@ -21,7 +21,7 @@ function Page() {
     initialValues,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post("http://localhost:5001/Api/Listproject", values);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelacer/Listproject`, values);
         console.log(response);
       } catch (error) {
         console.error(error);

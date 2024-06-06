@@ -3,21 +3,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Filter from "@/components/Filter/Filter";
 
-function Page() {
-  const jobListings = [
-    {
-      title: "Web Developer Needed",
-      description:
-        "We're looking for an experienced web developer to build a custom e-commerce website.",
-      budget: "$3,000 - $5,000",
-      priceRange: "$2,000+",
-      client: "ABC Corp",
-      dueDate: "2024-06-15",
-      status: "Available to bid",
-      jobType: "Web Development",
-      experienceLevel: "Expert",
-    },
-  ];
+
+
+function page() {
+  const [jobListings,setjob] = useState([])
+
 
   const [filters, setFilters] = useState({
     jobType: "All",
@@ -72,6 +62,7 @@ function Page() {
     setFilteredJobs(filtered);
   };
 
+
   useEffect(() => {
     let isMounted = true;
 
@@ -87,15 +78,18 @@ function Page() {
       } catch (error) {
         if (isMounted) {
           console.error("Error fetching data:", error);
+
         }
+      
+    } catch (error) {
+      if (isMounted) {
+        console.error('Error fetching data:', error);
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   return (
@@ -109,7 +103,7 @@ function Page() {
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
           <Filter onFilterChange={handleFilterChange} resetFilters={resetFilters} />
           <div className="col-span-1 md:col-span-9">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
               {filteredJobs.map((job, index) => (
                 <Link href={`/jobs/1`} key={index}>
                   <div className="relative overflow-hidden text-black bg-white border rounded-lg shadow-sm group">
@@ -140,6 +134,7 @@ function Page() {
                         >
                           Bid
                         </h1>
+
                       </div>
                     </div>
                     <div className="absolute inset-0 transition-opacity bg-white rounded-lg opacity-0 group-hover:opacity-20"></div>

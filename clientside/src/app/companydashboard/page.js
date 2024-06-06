@@ -16,6 +16,7 @@ function page() {
     <>
   
   <div className="flex w-full h-screen ">
+
   <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"dashboard"} isCompanyDashboard={true} userName={"ayush badoria"} userProfession={"Software Developer"}/>
       <div className="flex flex-col w-full">
       <Header 
@@ -25,6 +26,7 @@ function page() {
         toggleMenu={toggleMenu}
       />
         <main className="container md:pl-64 lg:pl-72 grid flex-1 grid-cols-1 gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
+
           <div className="border rounded-lg shadow-sm bg-card text-card-foreground" data-v0-t="card">
             <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
               <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Company Overview</h3>
@@ -32,11 +34,11 @@ function page() {
             <div className="grid gap-4 p-6">
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Freelancers Hired</h3>
-                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">42</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">3</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">Total Money Spent</h3>
-                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">$125,678</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-gray-50">$0</p>
               </div>
             </div>
           </div>
@@ -50,7 +52,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">12</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">1</h3>
                   <p className="text-gray-500 dark:text-gray-400">Pending Projects</p>
                 </div>
                 <svg
@@ -85,7 +87,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">28</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">0</h3>
                   <p className="text-gray-500 dark:text-gray-400">Completed Projects</p>
                 </div>
                 <svg
@@ -116,7 +118,7 @@ function page() {
             <div className="grid gap-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">$12,345</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">$0</h3>
                   <p className="text-gray-500 dark:text-gray-400">Total Earnings</p>
                 </div>
                 <svg
@@ -138,7 +140,7 @@ function page() {
             </div>
           </div>
         </main>
-     
+
       </div>
     </div></>
   )
