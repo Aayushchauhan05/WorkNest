@@ -72,5 +72,8 @@ try {
 }
 };
 
-
+// const displayProjectDetails= async ()=>{
+//   const id= req.params;
+//   const data= await ProjectListByBusiness.findById(id)
+// }
 module.exports={ListprojectBybusiness,getprojectdata,project_reg,dataForAllAndFilter};

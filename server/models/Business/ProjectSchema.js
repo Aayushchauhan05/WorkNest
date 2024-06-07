@@ -48,7 +48,11 @@ const {Schema,model}= require("mongoose");
     status:{
         type:String,
         default:"Pending"
-    }
+    },
+    team:[{
+        type:Schema.Types.ObjectId,
+        ref:"freelancer_data"
+    }]
  })
  const TotalprojectlistedbybusinessSchema= new Schema({
     Email:{

@@ -4,6 +4,7 @@ const {Authmiddle, loginValidator, signupValidator} = require("../Middleware/Mid
 const { SendDataTocompany} = require("../Controller/Application");
 const {ListprojectBybusiness, getprojectdata}= require("../Controller/project");
 const ActionFromBusinessSide = require("../Controller/ActionsOnBid");
+const{appliedFreelancerDetails}= require("../Controller/appliedcandidatesdetails")
 const route= express.Router();
 
 // POST-Routes
@@ -13,5 +14,5 @@ route.post("/Listprojectbusiness",Authmiddle,ListprojectBybusiness)  // product 
 route.get("/Senddatatocompany",Authmiddle,SendDataTocompany) // Bid data send to company x
 route.get("/Getprojectdata",Authmiddle,getprojectdata)// For Business.
 route.put("/Action",Authmiddle,ActionFromBusinessSide)// TO ACCEPT OR REJECT x
-
+route.get("/appliedFreelancerData/:id",Authmiddle,appliedFreelancerDetails)
 module.exports= route;

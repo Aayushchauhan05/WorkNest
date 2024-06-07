@@ -3,7 +3,7 @@ const { ProjectListByBusiness } = require("../models/Business/ProjectSchema");
 const projectinfo= async (req,res)=>{
 try {
     const {id}= req.params;
-    const data= await ProjectListByBusiness.findById(id);
+    const data= await ProjectListByBusiness.findById(id).populate("team");
     if (!data) {
         return res.status(404).json({message:"Project not found"});
     }
