@@ -82,13 +82,15 @@ function Page() {
   return (
     <>
       <div className="flex w-full h-screen">
-        <VerticalNav
-          isMenuOpen={isMenuOpen}
-          toggleMenu={toggleMenu}
-          isProject={true}
-          filterProjectsByStatus={filterProjectsByStatus}
-          userName={'ayush badoria'}
-          userProfession={'Software Developer'}
+
+        <VerticalNav 
+          isMenuOpen={isMenuOpen} 
+          toggleMenu={toggleMenu} 
+          isProduct={true}   
+          filterProjectsByStatus={filterProjectsByStatus}  
+          userName={`${projects.companyName|| ""}`} 
+          userProfession={"ceo"}
+
         />
         <div className="flex flex-col w-full">
           <Header
@@ -97,6 +99,7 @@ function Page() {
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
           />
+
           <main className="container md:pl-72 flex items-center justify-center w-screen">
             {loading ? (
               <div className='text-white'>Loading...</div>
@@ -134,6 +137,8 @@ function Page() {
                           View Details
                         </button>
                       </Link>
+
+         
                     </div>
                   </div>
                 ))}

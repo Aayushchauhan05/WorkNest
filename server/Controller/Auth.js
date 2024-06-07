@@ -78,7 +78,15 @@ const otpgen = async (req, res) => {
     const userexist =
       (await Business.findOne({ Email })) || Freelancer.findOne({ Email });
     if (userexist && userexist.otp == otp) {
-      return res.status(200).json({ message: "login successfull" });
+    if(userexist.isfreelancer==true){
+await Freelancer.findOneAndUpdate({Email},{isfreelancer:true},{new:true});
+return res.status(200).json({ message: "Registration successfull" });
+    }
+    else if(userexist.iscompany==true){
+      await Business.findOneAndUpdate({Email},{isfreelancer:true},{new:true});
+return res.status(200).json({ message: "Registration successfull" });
+    }
+      return res.status(200).json({ message: "Registration successfull" });
     }
     return res.status(401).json({ message: "Invalid otp" });
   } catch (error) {
@@ -174,13 +182,17 @@ const login = async (req, res) => {
   try {
     const { Email, password } = req.body;
     let userexist = await Business.findOne({ Email }).select("-ProjectList");
-
+if (userexist.otpverified==false) {
+  return res.status(401).json({message:"unauthorised user"})
+}
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select(
         "-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience "
       );
     }
-
+    if (userexist.otpverified==false) {
+      return res.status(401).json({message:"unauthorised user"})
+    }
     if (!userexist) {
       return res
         .status(404)

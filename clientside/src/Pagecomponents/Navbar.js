@@ -42,7 +42,7 @@ function Navbar() {
             </>
            
           ) : null}
-          <button disable><strong>Wallet</strong></button>
+          <button disable="true"><strong>Wallet</strong></button>
         </div>
         <div className="flex Login_register justify-evenly w-38">
           {isloggedin ? (

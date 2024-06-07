@@ -16,7 +16,7 @@ function ProfilePage() {
     initials: 'AB',
     profession: 'Software Developer',
     location: 'Delhi, India',
-    email: 'imdezcode@gmail.com',
+    Email: 'imdezcode@gmail.com',
     bio: 'A software developer who has passion for development',
     experience: '7',
     socialLinks: {
@@ -25,7 +25,13 @@ function ProfilePage() {
       portfolio: 'https://portfolio.com'
     }
   });
-
+const [socialLinks,setsocialLinks]=useState({
+  socialLinks: {
+    instagram: 'https://instagram.com',
+    linkedin: 'https://linkedin.com',
+    portfolio: 'https://portfolio.com'
+  }
+})
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -39,19 +45,31 @@ function ProfilePage() {
     toggleModal();
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+const fetchdata= async ()=>{
+  const token=localStorage.getItem("token")
+  try {
+    const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`,{
+      method:"GET",
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    });
+    const data=await response.json();
+    console.log(data);
+    if (response.ok) {
+      setProfileData(data.Data)
+      setProfileData(prevProfileData => ({
+        ...prevProfileData,
+        socialLinks: {
+          linkedin: data.Data.Linkdin,
+          portfolio: data.Data.personalWebsite,
+        },
+      }));
     }
+    console.log(data);
+  } catch (error) {
+    console.log(error)
+
   }
 
   useEffect(() => {
@@ -66,25 +84,27 @@ function ProfilePage() {
           isActive={"profile"} 
           toggleMenu={toggleMenu} 
           isCompanyDashboard={true} 
-          userName={profileData.name} 
-          userProfession={profileData.profession} 
+
+          userName={`${profileData.companyName}`} 
+          userProfession={`${profileData.Position}`} 
         />
         <div className="flex flex-col w-full">
-          <Header
+          {/* <Header
+
             companyName="Company XYZ"
             pageName="Your Profile"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
-          />
+          /> */}
           <ProfileComponent 
-            name={profileData.name}
-            initials={profileData.initials}
-            jobTitle={profileData.profession}
-            location={profileData.location}
-            email={profileData.email}
-            profileDescription={profileData.bio}
-            experience={profileData.experience}
-            socialLinks={profileData.socialLinks}
+            name={profileData?.firstName}
+            initials={"Dehix"}
+            jobTitle={profileData?.companyName}
+            location={profileData?.location}
+            email={profileData?.Email}
+            profileDescription={profileData?.bio}
+            experience={profileData?.experience}
+            socialLinks={profileData.socialLinks|| []}
             toggleModal={toggleModal}
             isCompanyDashboard={true}
             isProfile={true}

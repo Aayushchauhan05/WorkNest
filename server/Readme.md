@@ -612,8 +612,125 @@ Back-End Data
   "__v": 0
 }
 
+data for business dashboard
+{
+  "Data": {
+    "_id": "665f2ba09df46f08d11ac562",
+    "firstName": "John",
+    "lastName": "Doe",
+    "companyName": "Awesome Company",
+    "companySize": "Small",
+    "password": "$2b$14$CworOKMFND8bg0XBFCmtTewDTgI1cDEmdpkIQGJmzeuBtkobsVeFK",
+    "Email": "john.doe@awesomecompany.com",
+    "phone": "+1234567890",
+    "Dob": "1990-01-01",
+    "Position": "CEO",
+    "Refer": "Someone",
+    "verified": null,
+    "isVerified": false,
+    "Linkdin": "https://www.linkedin.com/in/john-doe-12345678",
+    "personalWebsite": "https://johndoe.com",
+    "isBusiness": true,
+    "connects": 0,
+    "otp": "973430",
+    "ProjectList": [
+      "665f5f5b7a0290b9cc9faf17",
+      "665f5fa5d2c51d188a4d027c",
+      "665f600c5fb800cdf8cebb4b"
+    ],
+    "Appliedcandidates": [],
+    "createdAt": "2024-06-04T14:58:41.006Z",
+    "updatedAt": "2024-06-05T19:50:12.391Z",
+    "__v": 0
+  }
+}
+for all pages
 
 
-
-
+project data for company
+{
+  "data": {
+    "_id": "665f2ba09df46f08d11ac562",
+    "firstName": "John",
+    "lastName": "Doe",
+    "companyName": "Awesome Company",
+    "companySize": "Small",
+    "password": "$2b$14$CworOKMFND8bg0XBFCmtTewDTgI1cDEmdpkIQGJmzeuBtkobsVeFK",
+    "Email": "john.doe@awesomecompany.com",
+    "phone": "+1234567890",
+    "Dob": "1990-01-01",
+    "Position": "CEO",
+    "Refer": "Someone",
+    "verified": null,
+    "isVerified": false,
+    "Linkdin": "https://www.linkedin.com/in/john-doe-12345678",
+    "personalWebsite": "https://johndoe.com",
+    "isBusiness": true,
+    "connects": 0,
+    "otp": "973430",
+    "ProjectList": [
+      {
+        "_id": "665f5f5b7a0290b9cc9faf17",
+        "projectName": "web design",
+        "Description": "ndjdnjendejdejnedjednededjndejendjenedjndejnededndeedddddddddddddddddddddddddn",
+        "Email": "john.doe@awesomecompany.com",
+        "CompanyName": "dehix",
+        "Start": "2024-06-14T00:00:00.000Z",
+        "End": "2024-06-13T00:00:00.000Z",
+        "SkillsRequired": [
+          "html",
+          "css",
+          "js"
+        ],
+        "Role": "dev",
+        "projectType": "web development",
+        "TotalNeedOffreelancer": "20",
+        "status": "Not assigned",
+        "__v": 0
+      },
+      {
+        "_id": "665f5fa5d2c51d188a4d027c",
+        "projectName": "web design",
+        "Description": "ndjdnjendejdejnedjednededjndejendjenedjndejnededndeedddddddddddddddddddddddddn",
+        "Email": "john.doe@awesomecompany.com",
+        "CompanyName": "dehix",
+        "Start": "2024-06-14T00:00:00.000Z",
+        "End": "2024-06-13T00:00:00.000Z",
+        "SkillsRequired": [
+          "html",
+          "css",
+          "js"
+        ],
+        "Role": "dev",
+        "projectType": "web development",
+        "TotalNeedOffreelancer": "20",
+        "status": "Not assigned",
+        "__v": 0
+      },
+      {
+        "_id": "665f600c5fb800cdf8cebb4b",
+        "projectName": "web design",
+        "Description": "ndjdnjendejdejnedjednededjndejendjenedjndejnededndeedddddddddddddddddddddddddn",
+        "Email": "john.doe@awesomecompany.com",
+        "CompanyName": "dehix",
+        "Start": "2024-06-14T00:00:00.000Z",
+        "End": "2024-06-13T00:00:00.000Z",
+        "SkillsRequired": [
+          "html",
+          "css",
+          "js"
+        ],
+        "Role": "dev",
+        "projectType": "web development",
+        "TotalNeedOffreelancer": "20",
+        "status": "Not assigned",
+        "__v": 0
+      }
+    ],
+    "Appliedcandidates": [],
+    "createdAt": "2024-06-04T14:58:41.006Z",
+    "updatedAt": "2024-06-05T19:50:12.391Z",
+    "__v": 0
+  }
+}
 

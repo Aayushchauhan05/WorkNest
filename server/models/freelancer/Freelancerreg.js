@@ -153,6 +153,10 @@ const freelancer_schema = new Schema(
     otp: {
       type: String,
     },
+    otpverified:{
+      type:Boolean,
+      default:false
+  },
     pendingProject: [
       {
         type: Schema.Types.ObjectId,

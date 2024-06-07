@@ -31,17 +31,17 @@ const ProfileComponent = ({
   return (
     <>
       {isCompanyDashboard && (
-        <div className="container flex flex-col md:pl-64 lg:pl-72 items-center min-h-screen  relative">
+        <div className="container relative flex flex-col items-center min-h-screen md:pl-64 lg:pl-72">
           <div className="container flex flex-col items-center gap-8 p-6 ">
             {/* Personal Information Section */}
-            <section className="flex flex-col items-center w-full relative h-full space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+            <section className="relative flex flex-col items-center w-full h-full space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
               <div className="relative bg-gradient-to-r from-green-400 to-blue-500 w-full h-[15rem] rounded-t-lg">
                 <div className="h-40 border bg-white w-40 absolute rounded-full top-36 left-[3.6rem] md:left-12 flex items-center justify-center">
-                  <h2 className="text-black text-5xl">{initials}</h2>
+                  <h2 className="text-5xl text-black">{initials}</h2>
                 </div>
               </div>
-              <div className="pt-6 w-full flex flex-col md:flex-row justify-between pb-20">
-                <div className="md:ml-14 mt-8 flex flex-col gap-2 items-center md:items-start justify-center">
+              <div className="flex flex-col justify-between w-full pt-6 pb-20 md:flex-row">
+                <div className="flex flex-col items-center justify-center gap-2 mt-8 md:ml-14 md:items-start">
                   <h2 className="text-xl">{name}</h2>
                   <p className="text-sm">{jobTitle}</p>
                   <p className="text-sm">{location}</p>
@@ -60,10 +60,10 @@ const ProfileComponent = ({
                   </p>
                   {!isProfile && (
                     <div className="md:absolute top-20 right-[10rem] flex items-center gap-2">
-                      <div className="border rounded w-10 flex items-center justify-center h-10">
+                      <div className="flex items-center justify-center w-10 h-10 border rounded">
                         <AiFillIdcard size={32} />
                       </div>
-                      <div className="flex items-center justify-center flex-col">
+                      <div className="flex flex-col items-center justify-center">
                         <h2 className="text-2xl">{companyName}</h2>
                         <p className="text-sm text-gray-400">{industry}</p>
                       </div>
@@ -82,7 +82,7 @@ const ProfileComponent = ({
                   <div className="flex flex-wrap gap-5">
                     {skills.map((skill, index) => (
                       <div
-                        className="flex items-center border p-5 min-w-28 max-w-28 justify-center rounded-lg"
+                        className="flex items-center justify-center p-5 border rounded-lg min-w-28 max-w-28"
                         key={index}
                       >
                         <SkillComponent skill={skill} />
@@ -165,21 +165,21 @@ const ProfileComponent = ({
               <div className="flex flex-col w-full">
                 <p className="mb-4 text-lg font-semibold">Social Links:</p>
                 <div className="flex items-center space-x-4">
-                  {socialLinks.instagram && (
+                  {socialLinks?.instagram && (
                     <div className="flex flex-col items-center w-full">
                       <Link href={socialLinks.instagram}>
                         <FaInstagram size={35} />
                       </Link>
                     </div>
                   )}
-                  {socialLinks.linkedin && (
+                  {socialLinks?.linkedin && (
                     <div className="flex flex-col items-center w-full">
                       <Link href={socialLinks.linkedin}>
                         <FaLinkedin size={35} />
                       </Link>
                     </div>
                   )}
-                  {socialLinks.portfolio && (
+                  {socialLinks?.portfolio && (
                     <div className="flex flex-col items-center w-full">
                       <Link href={socialLinks.portfolio}>
                         <CgWebsite size={35} />
