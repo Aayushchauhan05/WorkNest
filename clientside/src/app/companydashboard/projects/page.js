@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { FiCheckSquare, FiXSquare, FiAlertCircle } from 'react-icons/fi';
 import { IoMdCodeWorking } from 'react-icons/io';
@@ -9,14 +10,24 @@ import Header from '@/components/Header/Header';
 import { useAuth } from '@/context/context';
 
 function Page() {
+  const router = useRouter(); 
   const [filteredProjects, setFilteredProjects] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const { token } = useAuth();
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+
+  const dummyProject = {
+    id: 1,
+    name: 'Dummy Project',
+    status: 'complete',
+    client: 'Dummy Client',
+    dueDate: '2024-06-10',
   };
 
   const fetchProjects = async () => {
@@ -35,6 +46,8 @@ function Page() {
       }
     } catch (error) {
       console.error(error);
+      // Set dummy project data if there's an error fetching from API
+      setProjects([dummyProject]);
     } finally {
       setLoading(false);
     }
@@ -92,9 +105,8 @@ function Page() {
                 {(filteredProjects || projects).map((project, index) => (
                   <div
                     key={project.id}
-                    className={`text-white w-full flex gap-5 flex-col ${
-                      index === (filteredProjects || projects).length - 1 ? '' : 'border-b'
-                    } p-6 mb-4`}
+                    className={`text-white w-full flex gap-5 flex-col ${index === (filteredProjects || projects).length - 1 ? '' : 'border-b'
+                      } p-6 mb-4`}
                   >
                     <GoProjectRoadmap />
                     <div className="flex justify-between items-center ">
@@ -112,8 +124,15 @@ function Page() {
                       </div>
                     </div>
                     <div className="mt-4 flex item-end justify-end">
-                      <Link href={`companydashboard/projects/viewdetails`} passHref>
-                        <button className="bg-cyan-700 px-3 py-2 text-white rounded hover:underline">View Details</button>
+                      <Link href={`/companydashboard/projects/${project.id}`} passHref>
+                        <button
+                          className="bg-cyan-700 px-3 py-2 text-white rounded hover:underline"
+                          onClick={() => {
+                            router.push(`/companydashboard/projects/${project.id}`); 
+                          }}
+                        >
+                          View Details
+                        </button>
                       </Link>
                     </div>
                   </div>
@@ -134,3 +153,4 @@ function Page() {
 }
 
 export default Page;
+
