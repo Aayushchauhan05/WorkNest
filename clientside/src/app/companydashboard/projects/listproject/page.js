@@ -5,9 +5,11 @@ import { Formik, Field, Form, FieldArray } from 'formik';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
+import { format } from 'date-fns';
 
 const ProjectForm = () => {
-  const[loading,setloading]=useState(false)
+  const [loading, setLoading] = useState(false);
+
   const initialValues = {
     projectName: '',
     Description: '',
@@ -22,39 +24,48 @@ const ProjectForm = () => {
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    setloading(true)
-    const token=localStorage.getItem("token")
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    
+    // Format the dates
+    const formattedValues = {
+      ...values,
+      Start: values.Start ? format(new Date(values.Start), 'yyyy-MM-dd') : '',
+      End: values.End ? format(new Date(values.End), 'yyyy-MM-dd') : '',
+    };
+
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Listprojectbusiness`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          "Authorization":`${token}`
+          'Authorization': `${token}`,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(formattedValues),
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log('Success:', data);
-        toast.sucess("Project listed successfully")
-        setloading(false)
-        
+        toast.success("Project listed successfully");
         resetForm();
       } else {
-        console.error('Error:', response.statusText);
+        const errorText = await response.text();
+        console.error('Error:', errorText);
+        toast.error(`Error: ${response.status} - ${errorText}`);
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error('An unexpected error occurred.');
     } finally {
-      setloading(false)
+      setLoading(false);
       setSubmitting(false);
     }
   };
 
   return (
     <div className="max-w-2xl p-6 mx-auto bg-black rounded-lg shadow-md text-cyan-400">
-    <Link href={"/companydashboard/projects"} className={"text-cyan bg-black"}>Go back</Link>
+      <Link href="/companydashboard/projects" className="bg-black text-cyan">Go back</Link>
       <h1 className="mb-6 text-2xl font-bold text-center">Create Project</h1>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
@@ -65,13 +76,8 @@ const ProjectForm = () => {
             </div>
             <div className="form-group">
               <label className="block mb-1">Description</label>
-              <textarea type="text" name="Description" placeholder="Description" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
-
+              <textarea name="Description" placeholder="Description" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
             </div>
-            {/* <div className="form-group">
-              <label className="block mb-1">Email</label>
-              <Field name="Email" placeholder="Email" type="email" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
-            </div> */}
             <div className="form-group">
               <label className="block mb-1">Company Name</label>
               <Field name="CompanyName" placeholder="Company Name" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
@@ -110,8 +116,8 @@ const ProjectForm = () => {
               <label className="block mb-1">Total Number of Freelancers Needed</label>
               <Field name="TotalNeedOffreelancer" placeholder="Total Number of Freelancers Needed" className="w-full p-2 bg-black border rounded text-cyan-400 border-cyan-400" />
             </div>
-            <button type="submit" disabled={isSubmitting} className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
-              Submit
+            <button type="submit" disabled={isSubmitting || loading} className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
+              {loading ? 'Submitting...' : 'Submit'}
             </button>
           </Form>
         )}
