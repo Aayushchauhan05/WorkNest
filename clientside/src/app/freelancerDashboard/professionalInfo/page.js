@@ -112,6 +112,7 @@ function ProfilePage() {
 
   const fetchProfileData = async () => {
     try {
+      const token=localStorage.getItem("token");
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
         method: "GET",
         headers: {

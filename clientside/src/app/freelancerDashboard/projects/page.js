@@ -23,11 +23,7 @@ function Page() {
 
 
   const dummyProject = {
-    id: 1,
-    name: 'Dummy Project',
-    status: 'complete',
-    client: 'Dummy Client',
-    dueDate: '2024-06-10',
+  
   };
 
   const fetchProjects = async () => {
