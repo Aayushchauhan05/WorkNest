@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-const Filter = ({ onFilterChange, resetFilters }) => {
+const Filter = ({ onFilterChange, resetFilters ,isjobPortal }) => {
   const handleFilterChange = (name, value) => {
     onFilterChange(name, value);
   };
 
   return (
-    <div className="sticky w-auto h-screen col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
+    isjobPortal ? (<div className="sticky w-auto h-[50rem] col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
       <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
       <ul className="space-y-2">
         <li>
@@ -15,6 +15,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
               type="radio"
               name="jobType"
               onChange={() => handleFilterChange("jobType", "Web Development")}
+              style={{ display: 'none' }}
             />
             Web Development
           </label>
@@ -25,6 +26,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
               type="radio"
               name="jobType"
               onChange={() => handleFilterChange("jobType", "Graphic Design")}
+              style={{ display: 'none' }}
             />
             Graphic Design
           </label>
@@ -35,6 +37,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
               type="radio"
               name="jobType"
               onChange={() => handleFilterChange("jobType", "Content Writing")}
+              style={{ display: 'none' }}
             />
             Content Writing
           </label>
@@ -45,6 +48,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
               type="radio"
               name="jobType"
               onChange={() => handleFilterChange("jobType", "Virtual Assistant")}
+              style={{ display: 'none' }}
             />
             Virtual Assistant
           </label>
@@ -55,6 +59,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
               type="radio"
               name="jobType"
               onChange={() => handleFilterChange("jobType", "Marketing")}
+              style={{ display: 'none' }}
             />
             Marketing
           </label>
@@ -83,6 +88,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                   type="checkbox"
                   id="experience-entry"
                   className="peer "
+                  style={{ display: 'none' }}
                   onClick={() =>
                     handleFilterChange("experienceLevel", "Entry Level")
                   }
@@ -99,6 +105,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                   type="checkbox"
                   id="experience-intermediate"
                   className="peer "
+                  style={{ display: 'none' }}
                   onClick={() =>
                     handleFilterChange("experienceLevel", "Intermediate")
                   }
@@ -114,6 +121,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                 <input
                   type="checkbox"
                   id="experience-expert"
+                  style={{ display: 'none' }}
                   className="peer "
                   onClick={() => handleFilterChange("experienceLevel", "Expert")}
                 />
@@ -148,7 +156,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                   role="radio"
                   aria-checked="true"
                   data-state="checked"
-                  className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                 
                   id="budget-0-500"
                   onClick={() => handleFilterChange("budget", "$0 - $500")}
                 ></button>
@@ -165,7 +173,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                   role="radio"
                   aria-checked="false"
                   data-state="unchecked"
-                  className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                 
                   id="budget-500-2000"
                   onClick={() => handleFilterChange("budget", "$500 - $2,000")}
                 ></button>
@@ -182,7 +190,7 @@ const Filter = ({ onFilterChange, resetFilters }) => {
                   role="radio"
                   aria-checked="false"
                   data-state="unchecked"
-                  className="w-4 h-4 border rounded-full aspect-square border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  
                   id="budget-2000"
                   onClick={() => handleFilterChange("budget", "$2,000+")}
                 ></button>
@@ -206,8 +214,8 @@ const Filter = ({ onFilterChange, resetFilters }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>):("not found"))
+  ;
 };
 
 export default Filter;

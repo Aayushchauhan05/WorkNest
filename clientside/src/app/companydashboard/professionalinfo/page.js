@@ -1,21 +1,19 @@
 "use client";
 
-import VerticalNav from '@/components/VerticalNav/VerticalNav';
+import { useState, useEffect } from "react";
+import { useAuth } from "@/context/context";
+import VerticalNav from "@/components/VerticalNav/VerticalNav";
 import Header from "@/components/Header/Header";
 import ProfileComponent from "@/components/Profile/ProfileComponent";
 import ModalProfileForm from "@/components/ProfileForm/ModalProfileForm";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
-import { CgWebsite } from "react-icons/cg";
-import { useAuth } from "@/context/context";
-import Link from "next/link";
-import { useState,useEffect } from 'react';
-function page() {
+
+function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [professionalData, setProfessionalData] = useState({
-    
+
   });
-  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,19 +22,22 @@ function page() {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   const{token}=useAuth()
   // const toggleMenu = () => {
   //   setIsMenuOpen(!isMenuOpen);
   // };
   const fetchdata= async ()=>{
     const token= localStorage.getItem("token")
+
     try {
-      const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`,{
-        method:"GET",
-        headers:{
-          "Authorization":`Bearer ${token}`
-        }
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       const data=await response.json();
       console.log(data.Data)
       if(response.ok){
@@ -50,34 +51,36 @@ function page() {
           }
         }))
       }
+
       console.log(data);
     } catch (error) {
-      console.log(error)
+      console.error(error);
     }
-  }
-  
-  useEffect(()=>{
-  fetchdata()
-  },[])
+  };
 
+  useEffect(() => {
+    fetchdata();
+  }, []);
 
   const handleProfileUpdate = (updatedProfile) => {
     setProfessionalData(updatedProfile);
     toggleModal();
   };
+
   return (
     <>
+
       <div className="flex w-full h-screen ">
         <VerticalNav isMenuOpen={isMenuOpen} isActive={"professionalinfo"} toggleMenu={toggleMenu} isCompanyDashboard={true} userName={`${professionalData?.companyName}`} userProfession={`${professionalData?.Position}`} />
+
         <div className="flex flex-col w-full">
           <Header
             companyName={`${professionalData?.companyName}`}
             pageName="Your Professional Info"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
-
-
           />
+
            <ProfileComponent 
             name={professionalData?.companyName}
             initials={professionalData?.initials}
@@ -88,6 +91,7 @@ function page() {
             experienceInYears={professionalData?.experienceInYears}
             experiences={professionalData?.experiences}
             socialLinks={professionalData?.socialLinks}
+
             toggleModal={toggleModal}
             isCompanyDashboard={true}
             industry={professionalData?.industry}
@@ -96,10 +100,10 @@ function page() {
             certifications={professionalData?.certifications}
             phone={professionalData?.phone}
             isProfile={false}
-            password={professionalData?.password}
-          />
-         
 
+            password={professionalData?.password}
+
+          />
         </div>
       </div>
       {isModalOpen && (
@@ -111,7 +115,7 @@ function page() {
         />
       )}
     </>
-  )
+  );
 }
 
-export default page
+export default ProfilePage;

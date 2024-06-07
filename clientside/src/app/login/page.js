@@ -65,13 +65,13 @@ function Page() {
   // Return your JSX with the form and its elements
   return (
     <div>
-      <div className="flex items-center justify-center min-h-screen bg-gray-900 dark:bg-gray-900">
-        <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-md shadow-lg dark:bg-gray-800">
+      <div className="flex items-center justify-center  bg-gray-900 dark:bg-gray-900" style={{ height: 'calc(100vh - 5rem)'}}>
+        <div className="w-full max-w-md p-8 space-y-8 rounded-md shadow-lg bg-gray-800">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="text-3xl font-bold text-gray-100">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-400">
               Enter your email and password below.
             </p>
           </div>
@@ -79,7 +79,7 @@ function Page() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-300"
               >
                 Email address
               </label>
@@ -88,18 +88,18 @@ function Page() {
                   id="email"
                   autoComplete="email"
                   required
-                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
+                  className="block w-full px-3 py-2 placeholder-gray-400 text-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
                   type="email"
-                  name="Email" // Change to lowercase to match initial values
-                  onChange={formik.handleChange} // Handle change using Formik
-                  value={formik.values.Email} // Set value using Formik
+                  name="Email" 
+                  onChange={formik.handleChange} 
+                  value={formik.values.Email} 
                 />
               </div>
             </div>
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-300 "
               >
                 Password
               </label>
@@ -108,11 +108,11 @@ function Page() {
                   id="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
                   type="password"
-                  name="password" // Change to lowercase to match initial values
-                  onChange={formik.handleChange} // Handle change using Formik
-                  value={formik.values.password} // Set value using Formik
+                  name="password" s
+                  onChange={formik.handleChange} 
+                  value={formik.values.password} 
                 />
               </div>
             </div>
@@ -120,14 +120,14 @@ function Page() {
               {loading ? (
                 <button
                   disabled
-                  className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                  className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-cyan-500 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
                 >
-                  Loading
+                  Loading ...
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                  className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-cyan-500 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
                 >
                   Sign in
                 </button>
