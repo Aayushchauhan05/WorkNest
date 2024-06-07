@@ -32,14 +32,14 @@ const Freelancer_reg = async (req, res) => {
       $or: [{ Email: data.Email }, { userName: data.userName }],
     });
     if (userExists) {
-      return res.status(404).json({
+      return res.status(401).json({
         message:
           userExists.Email === data.Email
             ? "User already exists"
             : "Username already exists",
       });
     }
-    const salt = await bcrypt.genSalt(14);
+    const salt = 14;
     const password = data.password;
     console.log("here is the password", password);
     const hashpass = await bcrypt.hash(password, salt);
@@ -182,17 +182,17 @@ const login = async (req, res) => {
   try {
     const { Email, password } = req.body;
     let userexist = await Business.findOne({ Email }).select("-ProjectList");
-if (userexist.otpverified==false) {
-  return res.status(401).json({message:"unauthorised user"})
-}
+// if (userexist?.otpverified==false) {
+//   return res.status(401).json({message:"unauthorised user"})
+// }
     if (!userexist) {
       userexist = await Freelancer.findOne({ Email }).select(
         "-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience "
       );
     }
-    if (userexist.otpverified==false) {
-      return res.status(401).json({message:"unauthorised user"})
-    }
+    // if (userexist.otpverified==false) {
+    //   return res.status(401).json({message:"unauthorised user"})
+    // }
     if (!userexist) {
       return res
         .status(404)

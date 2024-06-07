@@ -1,3 +1,4 @@
+const { Freelancer } = require("../models/freelancer/Freelancerreg");
 const { Oracle } = require("../models/oracle/oracle");
 
 // Create a new Oracle entry
@@ -81,3 +82,37 @@ exports.getOracleByFreelancerId = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.sendUserDetailsToOracle = async (req, res) => {
+  try {
+    const freelancerData = await Freelancer.find({$and:[{ workExperience: { $gte: 2} },{oracle:true}]});
+    if (!freelancerData || freelancerData.length === 0) {
+      return res.status(404).json({ message: "no user found" });
+    }
+
+    const updatedFreelancers = await Promise.all(freelancerData.map(async (elem) => {
+      const randomUsers = await Freelancer.aggregate([
+        { $match: { isverified: false } },
+        { $sample: { size: 5 } }
+      ]);
+
+      if (!randomUsers || randomUsers.length < 2) {
+        return { id: elem._id, status: 'no users found for verification' };
+      }
+
+      const randomUserIds = randomUsers.map(user => user._id);
+      await Freelancer.findByIdAndUpdate(
+        { _id: elem._id },
+        { $addToSet: { oracledata: { $each: randomUserIds } } }
+      );
+
+      return { id: elem._id, status: 'updated' };
+    }));
+
+    return res.status(200).json({ message: "success", data: updatedFreelancers });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "internal server error" });
+  }
+}

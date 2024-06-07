@@ -145,6 +145,10 @@ const freelancer_schema = new Schema(
       required: true,
       default: true,
     },
+    oracle:{
+      type: Boolean,
+      default: false,
+    },
     consultant: {
       type: Boolean,
       required: true,
@@ -175,7 +179,14 @@ const freelancer_schema = new Schema(
         ref: "ProjectListByCompany",
       },
     ],
+    oracledata:[
+    {
+        type:Schema.Types.ObjectId,
+        ref:"freelancer_data"
+      }
+    ]
   },
+  
   { timestamps: true }
 );
 

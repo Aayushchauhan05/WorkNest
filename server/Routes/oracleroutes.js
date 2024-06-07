@@ -30,4 +30,7 @@ router.put(
 );
 // email to oracle
 router.get("/EmailToOracle",OracleUserverificationmail);
+// details to oracle
+router.put("/detailsToOracle",oracleController.sendUserDetailsToOracle)
+
 module.exports = router;
