@@ -7,6 +7,7 @@ import SkillComponent from "../Skills/SkillsComponent";
 import { GrCertificate } from "react-icons/gr";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 
+
 const ProfileComponent = ({
   name,
   initials,

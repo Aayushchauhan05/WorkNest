@@ -1,19 +1,16 @@
-
 'use client'
 import { useAuth } from "@/context/context";
 import Link from "next/link";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
 import Header from "@/components/Header/Header";
 import ProfileComponent from "@/components/Profile/ProfileComponent";
 import ModalProfileForm from "@/components/ProfileForm/ModalProfileForm";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
-import { CgWebsite } from "react-icons/cg";
 
 function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-   const{token}=useAuth()
+  const { token } = useAuth();
   const [profileData, setProfileData] = useState({
     name: 'Ayush Badoria',
     initials: 'AB',
@@ -27,7 +24,6 @@ function ProfilePage() {
       linkedin: 'https://linkedin.com',
       portfolio: 'https://portfolio.com'
     }
-
   });
 
   const toggleMenu = () => {
@@ -42,38 +38,38 @@ function ProfilePage() {
     setProfileData(updatedProfile);
     toggleModal();
   };
-const fetchdata= async ()=>{
-  const token=localStorage.getItem("token")
-  try {
-    const response= await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`,{
-      method:"GET",
-      headers:{
-        "Authorization":`Bearer ${token}`
-      }
-    });
-    const data=await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error)
-  }
-}
 
-useEffect(()=>{
-fetchdata()
-},[])
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="flex w-full h-screen">
-
         <VerticalNav 
           isMenuOpen={isMenuOpen} 
           isActive={"profile"} 
           toggleMenu={toggleMenu} 
           isCompanyDashboard={true} 
-          userName={"Ayush Badoria"} 
-          userProfession={"Software Developer"} 
+          userName={profileData.name} 
+          userProfession={profileData.profession} 
         />
-        <div className="flex flex-col  w-full">
+        <div className="flex flex-col w-full">
           <Header
             companyName="Company XYZ"
             pageName="Your Profile"
@@ -93,7 +89,6 @@ fetchdata()
             isCompanyDashboard={true}
             isProfile={true}
           />
-
         </div>
       </div>
       {isModalOpen && (
