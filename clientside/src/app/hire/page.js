@@ -74,9 +74,9 @@ export default function Component() {
     })
   }, [filters])
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex flex-1 ">
-        <div className="flex-shrink-0 w-64 p-6 text-white border-r border-gray-200 bg-cyan-950 dark:bg-gray-800 dark:border-gray-700 h-[100vh] ">
+    <div className="flex flex-col w-screen h-full">
+      <div className="flex flex-1 relative ">
+        <div className="sticky w-60 h-[50rem] text-white col-span-1 p-6 left-60 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-36 ">
           <h2 className="mb-4 text-lg font-bold">Filters</h2>
           <div className="space-y-4">
             <div>
@@ -137,10 +137,10 @@ export default function Component() {
             </div>
           </div>
         </div>
-        <div className="flex-1 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="flex-1 ml-60 p-6">
+          <div className="flex items-center  justify-between mb-4">
             <div>
-              <h2 className="text-lg font-bold">Freelancers</h2>
+              <h2 className="text-lg font-bold text-white">Freelancers</h2>
               <p className="text-gray-500 dark:text-gray-400">{filteredFreelancers.length} freelancers found</p>
             </div>
             <div className="flex items-center space-x-4">
