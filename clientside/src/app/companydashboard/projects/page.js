@@ -72,8 +72,8 @@ setprojects(data.data.ProjectList)
           toggleMenu={toggleMenu} 
           isProduct={true}   
           filterProjectsByStatus={filterProjectsByStatus}  
-          userName={"ayush badoria"} 
-          userProfession={"Software Developer"}
+          userName={`${projects.companyName|| ""}`} 
+          userProfession={"ceo"}
         />
         <div className="flex flex-col w-full">
           <Header 
@@ -88,18 +88,18 @@ setprojects(data.data.ProjectList)
             
                <div key={project.id}>
                 <div className="flex flex-col w-full">
-                  <h3 className="text-lg font-bold text-center">{project.name}</h3>
+                  <h3 className="text-lg font-bold text-center">{project.projectName}</h3>
                   <div className={`px-3 py-1 rounded-full text-center text-xs font-medium ${getStatusColor(project.status)}`}>
                     {project.status}
                   </div>
                   <div className="flex flex-col space-y-2 mt-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-medium">Client:</span>
-                      <span>{project.client}</span>
+                      <span className="font-medium">Company Name:</span>
+                      <span>{project.companyName}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-500">Due Date:</span>
-                      <span>{project.dueDate}</span>
+                      <span className="font-medium text-gray-500">End Date:</span>
+                      <span>{project.End}</span>
 
                     </div>
                   </div>

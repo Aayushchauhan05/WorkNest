@@ -19,7 +19,7 @@ function ProfilePage() {
     initials: 'AB',
     profession: 'Software Developer',
     location: 'Delhi, India',
-    email: 'imdezcode@gmail.com',
+    Email: 'imdezcode@gmail.com',
     bio: 'A software developer who has passion for development',
     experience: '7',
     socialLinks: {
@@ -29,7 +29,13 @@ function ProfilePage() {
     }
 
   });
-
+const [socialLinks,setsocialLinks]=useState({
+  socialLinks: {
+    instagram: 'https://instagram.com',
+    linkedin: 'https://linkedin.com',
+    portfolio: 'https://portfolio.com'
+  }
+})
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -53,6 +59,17 @@ const fetchdata= async ()=>{
     });
     const data=await response.json();
     console.log(data);
+    if (response.ok) {
+      setProfileData(data.Data)
+      setProfileData(prevProfileData => ({
+        ...prevProfileData,
+        socialLinks: {
+          linkedin: data.Data.Linkdin,
+          portfolio: data.Data.personalWebsite,
+        },
+      }));
+    }
+    console.log(data);
   } catch (error) {
     console.log(error)
   }
@@ -70,25 +87,25 @@ fetchdata()
           isActive={"profile"} 
           toggleMenu={toggleMenu} 
           isCompanyDashboard={true} 
-          userName={"Ayush Badoria"} 
-          userProfession={"Software Developer"} 
+          userName={`${profileData.companyName}`} 
+          userProfession={`${profileData.Position}`} 
         />
-        <div className="flex flex-col  w-full">
-          <Header
+        <div className="flex flex-col w-full">
+          {/* <Header
             companyName="Company XYZ"
             pageName="Your Profile"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
-          />
+          /> */}
           <ProfileComponent 
-            name={profileData.name}
-            initials={profileData.initials}
-            jobTitle={profileData.profession}
-            location={profileData.location}
-            email={profileData.email}
-            profileDescription={profileData.bio}
-            experience={profileData.experience}
-            socialLinks={profileData.socialLinks}
+            name={profileData?.firstName}
+            initials={"Dehix"}
+            jobTitle={profileData?.companyName}
+            location={profileData?.location}
+            email={profileData?.Email}
+            profileDescription={profileData?.bio}
+            experience={profileData?.experience}
+            socialLinks={profileData.socialLinks|| []}
             toggleModal={toggleModal}
             isCompanyDashboard={true}
             isProfile={true}
