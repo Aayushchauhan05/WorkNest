@@ -22,6 +22,7 @@ const Freelancer_reg = async (req, res) => {
   try {
     const data = req.body;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    console.log(data.Email)
     const isValidEmail = emailRegex.test(data.Email);
 
     if (!isValidEmail) {
@@ -54,7 +55,7 @@ const Freelancer_reg = async (req, res) => {
       password: hashpass,
       otp: otpCode,
     });
-
+console.log(otpCode)
     await main(
       data.Email,
       otpCode,
@@ -75,15 +76,18 @@ const Freelancer_reg = async (req, res) => {
 const otpgen = async (req, res) => {
   try {
     const { otp, Email } = req.body;
+    console.log(otp)
     const userexist =
-      (await Business.findOne({ Email })) || Freelancer.findOne({ Email });
+      (await Business.findOne({ Email })) ||await  Freelancer.findOne({ Email });
+      console.log(userexist.otp)
     if (userexist && userexist.otp == otp) {
+      console.log(userexist.otp)
     if(userexist.isfreelancer==true){
-await Freelancer.findOneAndUpdate({Email},{isfreelancer:true},{new:true});
+await Freelancer.findOneAndUpdate({Email},{isfreelancer:true,otpverified:true},{new:true});
 return res.status(200).json({ message: "Registration successfull" });
     }
     else if(userexist.iscompany==true){
-      await Business.findOneAndUpdate({Email},{isfreelancer:true},{new:true});
+      await Business.findOneAndUpdate({Email},{isfreelancer:true,otpverified:true},{new:true});
 return res.status(200).json({ message: "Registration successfull" });
     }
       return res.status(200).json({ message: "Registration successfull" });

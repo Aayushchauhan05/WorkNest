@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Input } from "@/components/ui/input";
 
 const Form = () => {
+  
   const router = useRouter();
   const [values, setValues] = useState({
     firstName: '',
@@ -40,8 +41,8 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(values);
+    setloading(true)
     try {
-      app.use("/api/freelacer", freelancerroute)
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/FreelancerRegister`, {
         method: "POST",
         headers: {
@@ -54,6 +55,7 @@ const Form = () => {
       console.log(data)
       if (response.ok) {
         toast.success("Registration successful");
+        setloading(false)
         localStorage.setItem("email", data.user.Email);
         router.push("/otp");
       } else {
@@ -165,7 +167,7 @@ const Form = () => {
 
 
 
-            <button type="submit" className="p-2 text-black rounded align-center bg-cyan-500 hover:bg-cyan-400">Submit</button>
+          { loading? <button disabled="true "className="p-2 text-black rounded align-center bg-cyan-500 hover:bg-cyan-400">Loading...</button>: <button type="submit" className="p-2 text-black rounded align-center bg-cyan-500 hover:bg-cyan-400">Submit</button>}
           </form>
           <ToastContainer />
         </section>

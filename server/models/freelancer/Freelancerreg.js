@@ -27,7 +27,7 @@ const freelancer_schema = new Schema(
     },
     Dob: {
       type: String,
-      required: true,
+      // required: true,
     },
     professionalInfo: {
       company: {

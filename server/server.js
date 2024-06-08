@@ -26,7 +26,7 @@ app.use(cors(corspermission));
 const port = process.env.PORT || 5000;
 app.use("/Api", commonroutes);
 app.use("/api/business",businessroutes)
-app.use("/api/freelacer",freelancerroute)
+app.use("/api/freelancer",freelancerroute)
 app.use("/api/skills", Skillsroutes);
 app.use("/api/oracle", Oracleroutes);
 app.use("/api/interviewers", Interviewerrouters);

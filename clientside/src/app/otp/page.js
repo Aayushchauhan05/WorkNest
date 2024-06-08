@@ -1,29 +1,31 @@
-"use client";
-import axios from 'axios';
-import { useFormik } from 'formik';
+"use client"
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
+import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function VerifyIdentity() {
-  const [email,setemail]= useState(null)
-  useEffect(()=>{
-   setemail(localStorage.getItem("email")) 
-  })
-  const initialValues = {
-    Email:`${email}`,
-    otp: ""
-  };
-  const router= useRouter()
+  const storedEmail = typeof window !== 'undefined' ? localStorage.getItem('email') : null;
+  const [email, setEmail] = useState(storedEmail);
+
+  const router = useRouter();
 
   const formik = useFormik({
-    initialValues,
+    initialValues: {
+      Email: email || '',  // Provide a default value if email is null
+      otp: ''
+    },
     onSubmit: async (values) => {
       try {
-        console.log(values)
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/otp`, values);
-       router.push("/login")
+        console.log(values);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/otp`, values);
+        toast.success("otp verified")
+        router.push('/login');
         console.log(response.data);
       } catch (error) {
+        toast.error(error)
         console.log(error);
         // Handle error appropriately
       }
@@ -35,7 +37,7 @@ function VerifyIdentity() {
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Enter Your OTP</h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">Please enter the one-time password sent to your device.</p>
+          <p className="mt-2 text-gray-600 dark:text-gray-400">Please enter the one-time password sent to your email: {`${email}`}.</p>
         </div>
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div>
@@ -63,6 +65,7 @@ function VerifyIdentity() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -3,7 +3,7 @@ const { Freelancer_reg, otpgen, business_reg, login } = require("../Controller/A
 const {Authmiddle, loginValidator, signupValidator} = require("../Middleware/Middleware");
 const {Applicationforwork, SendDataTocompany} = require("../Controller/Application");
 const {ListprojectBybusiness, getprojectdata,project_reg, dataForAllAndFilter}= require("../Controller/project");
-const {profile } = require("../Controller/Profile");
+const {profile, editProfile } = require("../Controller/Profile");
 const OracleUserverificationmail = require("../Controller/OracleUserprojecttest");
 const ActionFromBusinessSide = require("../Controller/ActionsOnBid");
 const { projectinfo } = require("../Controller/projectinfo");
@@ -17,5 +17,6 @@ route.post("/login",login);// login.
 route.get("/profile",Authmiddle,profile); 
 route.get("/Allproject",dataForAllAndFilter); // For All
 route.get("/projectinfo/:id",projectinfo)
-
+route.post("/otp",otpgen)
+route.put("/editprofile",editProfile)
 module.exports= route;

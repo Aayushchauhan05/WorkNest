@@ -23,4 +23,21 @@ return res.status(200).json({Data})
     return res.status(500).json({message:"Internal server error"})
 }
 }
-module.exports={profile}
+const editProfile= async (req,res)=>{
+    try {
+        const data= req.body;
+       const user= await Freelancer.findOne({Email:data.Email}) || await Business.findOne({Email:data.Email});
+       if (!user) {
+        return res.status(404).json({message:"User not found"});
+       }
+const userupdate= await Freelancer.findOneAndUpdate({Email:data.Email},data,{new:true}) || await Business.findOneAndUpdate({Email:data.Email},data,{new:true})
+if (!userupdate) {
+    return res.status(404).json({message:"error in update"});
+}
+return res.status(200).json({message:"profile updated successfully"})
+    } catch (error) {
+       console.log(error) 
+       return res.status(500).json({message:"Internal server error"})
+    }
+}
+module.exports={profile,editProfile}
