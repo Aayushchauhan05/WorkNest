@@ -76,7 +76,7 @@ function Page() {
 
   return (
     <>
-      <div className="">
+      <div>
         <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
           <div className="container flex items-center justify-between mx-auto">
             <h1 className="text-2xl font-bold">Freelance Jobs</h1>

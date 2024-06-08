@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 const JobApplicationForm = () => {
   const { bidform } = useParams();
 const router=useRouter()
@@ -71,7 +72,7 @@ const router=useRouter()
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelacer/Applyforwork`,
+        `${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/Applyforwork`,
         {
           ...formData,
           projectId,
@@ -102,6 +103,7 @@ setTimeout(()=>{
 
   return (
     <div className="flex h-full max-w-4xl mx-auto bg-white rounded-md shadow-md">
+    <Link href={"/jobs"}>Go back</Link>
       <div className="w-1/2 h-full p-8 border-r">
         <h2 className="mb-4 text-2xl font-semibold">
           {projectDetails?.projectName}

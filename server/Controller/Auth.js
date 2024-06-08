@@ -190,9 +190,9 @@ const login = async (req, res) => {
         "-Resume -Skills -Education -Role -project -Refer -verified -isVerified -githubLink -Linkdin -personalWebsite -perHourPrice -connects -Resume -InterviewedBy -workExperience "
       );
     }
-    // if (userexist.otpverified==false) {
-    //   return res.status(401).json({message:"unauthorised user"})
-    // }
+    if (userexist.otpverified==false) {
+      return res.status(401).json({message:"unauthorised user"})
+    }
     if (!userexist) {
       return res
         .status(404)

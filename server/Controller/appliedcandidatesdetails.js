@@ -2,7 +2,7 @@ const { ApplyForPosition } = require("../models/freelancer/Apply");
 const appliedFreelancerDetails= async (req,res)=>{
 try{
 const {id}= req.params;
-const data= await ApplyForPosition.find({projectId:id})
+const data= await ApplyForPosition.find({$and:[{projectId:id},{status:{$eq:"Pending"}}]})
 if(!data){
 return res.status(404).json({message:"no data found"})
 }
