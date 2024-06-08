@@ -90,7 +90,7 @@ const freelancer_schema = new Schema(
     ],
     Role: {
       type: String,
-      required: true,
+      // required: true,
     },
     project: [
       {
@@ -124,7 +124,7 @@ const freelancer_schema = new Schema(
     },
     perHourPrice: {
       type: Number,
-      required: true,
+      // required: true,
     },
     connects: {
       type: Number,
@@ -138,7 +138,7 @@ const freelancer_schema = new Schema(
     },
     workExperience: {
       type: String,
-      required: true,
+      // required: true,
     },
     isfreelancer: {
       type: Boolean,
@@ -190,5 +190,5 @@ const freelancer_schema = new Schema(
   { timestamps: true }
 );
 
-const Freelancer = model("freelancer_data", freelancer_schema);
+const Freelancer = new  model("freelancer_data", freelancer_schema);
 module.exports = { Freelancer };

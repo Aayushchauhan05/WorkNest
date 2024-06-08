@@ -42,7 +42,7 @@ const Form = () => {
     console.log(values);
     try {
       app.use("/api/freelacer", freelancerroute)
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelacer/FreelancerRegister`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/FreelancerRegister`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -71,13 +71,13 @@ const Form = () => {
     <div className={`flex items-center justify-center  px-4 py-12 bg-gray-950 sm:px-6 lg:px-8`} style={{ height: 'calc(100vh - 5rem)'}} >
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h2 className=" text-center text-3xl font-bold tracking-tight text-white">Register As Freelancer</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-center text-white ">Register As Freelancer</h2>
           <p className="mt-2 text-sm text-center text-gray-400">Join our platform and start showcasing your skills</p>
         </div>
-        <section className="flex flex-col  items-center md:ml-5 mt-5 justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit} className="p-6 flex flex-col justify-center">
+        <section className="flex flex-col items-center justify-center w-full p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
+          <form onSubmit={handleSubmit} className="flex flex-col justify-center p-6">
             <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-2 mb-5">
+              <div className="mb-5 space-y-2">
                 <Input
                   className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                   id="first-name"
@@ -90,7 +90,7 @@ const Form = () => {
 
                 />
               </div>
-              <div className="space-y-2 mb-3">
+              <div className="mb-3 space-y-2">
                 <Input
                   className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
                   id="last-name"
@@ -105,7 +105,7 @@ const Form = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-2 mb-5">
+              <div className="mb-5 space-y-2">
 
                 <Input
                   className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
@@ -118,7 +118,7 @@ const Form = () => {
                   type="email"
                 />
               </div>
-              <div className="space-y-2 mb-5">
+              <div className="mb-5 space-y-2">
 
                 <Input
                   className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
@@ -133,7 +133,7 @@ const Form = () => {
               </div>
             </div>
 
-            <div className="space-y-2 mb-5">
+            <div className="mb-5 space-y-2">
 
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
@@ -147,7 +147,7 @@ const Form = () => {
               />
             </div>
 
-            <div className="space-y-2 mb-5">
+            <div className="mb-5 space-y-2">
 
               <Input
                 className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
@@ -165,7 +165,7 @@ const Form = () => {
 
 
 
-            <button type="submit" className="p-2  text-black rounded  align-center bg-cyan-500 hover:bg-cyan-400">Submit</button>
+            <button type="submit" className="p-2 text-black rounded align-center bg-cyan-500 hover:bg-cyan-400">Submit</button>
           </form>
           <ToastContainer />
         </section>

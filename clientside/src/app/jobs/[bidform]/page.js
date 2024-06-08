@@ -72,7 +72,7 @@ const router=useRouter()
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelacer/Applyforwork`,
+        `${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/Applyforwork`,
         {
           ...formData,
           projectId,

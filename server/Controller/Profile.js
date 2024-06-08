@@ -8,14 +8,15 @@ try {
         let Data;
         console.log(isfreelancer);
         if (isfreelancer) {
-            Data = await Freelancer.findOne({Email}).populate("project");
+            Data = await Freelancer.findOne({Email}).populate("project").populate("pendingProject").populate("rejectedProject").populate("acceptedProject");
         } else {
             Data = await Business.findOne({ Email });
         }
+        console.log(Data)
     if (!Data) {
         return res.status(404).json({message:"No Data Found"});
     }
-    
+   
 return res.status(200).json({Data})
 } catch (error) {
     console.log(error);
