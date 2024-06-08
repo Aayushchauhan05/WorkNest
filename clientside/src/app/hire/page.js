@@ -1,36 +1,31 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/4jMkUS78aI5
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-"use client"
-
-import { useState, useMemo } from "react"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationEllipsis, PaginationNext } from "@/components/ui/pagination"
+'use client'
+import React, { useState, useEffect } from "react";
+import Filter from "@/components/Filter/Filter";
+import { Button } from "@/components/ui/button";
 
 export default function Component() {
   const [filters, setFilters] = useState({
-    skills: [],
-    rate: { min: 0, max: 500 },
-    availability: "all",
-  })
-  const [view, setView] = useState("grid")
+    skills: "All",
+    hourlyRate: "All",
+    availability: "All",
+  });
+  const [freelancerListings, setFreelancerListings] = useState([]);
+  const [filteredFreelancers, setFilteredFreelancers] = useState([]);
+  const [filterKey, setFilterKey] = useState(0);
+
   const freelancers = [
     {
       id: 1,
       name: "John Doe",
       skills: ["React", "Node.js", "MongoDB"],
-      rate: 75,
+      rate: 15,
       available: true,
     },
     {
       id: 2,
       name: "Jane Smith",
       skills: ["Vue.js", "Laravel", "MySQL"],
-      rate: 85,
+      rate: 120,
       available: false,
     },
     {
@@ -61,236 +56,145 @@ export default function Component() {
       rate: 100,
       available: true,
     },
-  ]
-  const filteredFreelancers = useMemo(() => {
-    return freelancers.filter((freelancer) => {
-      const skillsMatch = filters.skills.every((skill) => freelancer.skills.includes(skill))
-      const rateMatch = freelancer.rate >= filters.rate.min && freelancer.rate <= filters.rate.max
-      const availabilityMatch =
-        filters.availability === "all" ||
-        (filters.availability === "available" && freelancer.available) ||
-        (filters.availability === "unavailable" && !freelancer.available)
-      return skillsMatch && rateMatch && availabilityMatch
-    })
-  }, [filters])
+  ];
+
+  useEffect(() => {
+    setFreelancerListings(freelancers);
+    setFilteredFreelancers(freelancers);
+  }, []);
+
+  useEffect(() => {
+    filterFreelancers();
+  }, [filters, freelancerListings]);
+
+  const handleFilterChange = (name, value) => {
+    setFilters((prevFilters) => {
+      if (name === "skills") {
+        let newSkills;
+        if (value === "All") {
+          newSkills = [];
+        } else {
+          newSkills = Array.isArray(prevFilters.skills) ? [...prevFilters.skills] : [];
+          const index = newSkills.indexOf(value);
+          if (index === -1) {
+            newSkills.push(value);
+          } else {
+            newSkills.splice(index, 1);
+          }
+        }
+        return { ...prevFilters, skills: newSkills };
+      } else {
+        return { ...prevFilters, [name]: value };
+      }
+    });
+  };
+  
+  
+
+  const resetFilters = () => {
+    setFilters({
+      skills: 'All',
+      hourlyRate: "All",
+      availability: "All",
+    });
+    setFilterKey((prevKey) => prevKey + 1);
+  };
+
+  const filterFreelancers = () => {
+    let filtered = [...freelancerListings];
+  
+    if (filters.hourlyRate !== "All") {
+      filtered = filtered.filter((freelancer) => {
+        const rate = parseFloat(filters.hourlyRate);
+        if (filters.hourlyRate.includes("+")) {
+          return freelancer.rate >= rate;
+        } else {
+          const [minRate, maxRate] = filters.hourlyRate.split("-").map(Number);
+          return freelancer.rate >= minRate && freelancer.rate <= maxRate;
+        }
+      });
+    }
+  
+    if (filters.skills !== "All" && filters.skills.length > 0) {
+      filtered = filtered.filter((person) => {
+        return filters.skills.some((skill) => person.skills.includes(skill));
+      });
+    }
+  
+    if (filters.availability !== "All") {
+      const available = filters.availability === true; 
+      filtered = filtered.filter((freelancer) => freelancer.available === available);
+    }
+  
+    setFilteredFreelancers(filtered);
+  };
+  
+  
+
   return (
-    <div className="flex flex-col w-screen h-full">
-      <div className="flex flex-1 relative ">
-        <div className="sticky w-60 h-[50rem] text-white col-span-1 p-6 left-60 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-36 ">
-          <h2 className="mb-4 text-lg font-bold">Filters</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="mb-2 text-sm font-bold">Skills</h3>
-              <div className="space-y-2 ">
-                {["React", "Node.js", "Vue.js", "Laravel", "Python", "Angular"].map((skill) => (
-                  <div key={skill} className="flex items-center">
-                    <Checkbox 
-                      id={`skill-${skill}`}
-                      checked={filters.skills.includes(skill)}
-                      onCheckedChange={(checked) => {
-                        if (checked) {
-                          setFilters({
-                            ...filters,
-                            skills: [...filters.skills, skill],
-                          })
-                        } else {
-                          setFilters({
-                            ...filters,
-                            skills: filters.skills.filter((s) => s !== skill),
-                          })
-                        }
-                      }}
-                    />
-                    <Label htmlFor={`skill-${skill}`} className="ml-2 font-medium">
-                      {skill}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-bold">Hourly Rate</h3>
-              <div />
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-bold">Availability</h3>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <div />
-                  <Label htmlFor="availability-all" className="ml-2 font-medium">
-                    All
-                  </Label>
-                </div>
-                <div className="flex items-center">
-                  <div />
-                  <Label htmlFor="availability-available" className="ml-2 font-medium">
-                    Available
-                  </Label>
-                </div>
-                <div className="flex items-center">
-                  <div />
-                  <Label htmlFor="availability-unavailable" className="ml-2 font-medium">
-                    Unavailable
-                  </Label>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="">
+      <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
+        <div className="container flex items-center justify-between mx-auto">
+          <h1 className="text-2xl font-bold">Freelancers</h1>
         </div>
-        <div className="flex-1 ml-60 p-6">
-          <div className="flex items-center  justify-between mb-4">
-            <div>
-              <h2 className="text-lg font-bold text-white">Freelancers</h2>
-              <p className="text-gray-500 dark:text-gray-400">{filteredFreelancers.length} freelancers found</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant={view === "grid" ? "primary" : "outline"} onClick={() => setView("grid")}>
-                <Grid3x3Icon className="w-5 h-5" />
-              </Button>
-              <Button variant={view === "list" ? "primary" : "outline"} onClick={() => setView("list")}>
-                <ListIcon className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
-          <div
-            className={`grid gap-6 ${
-              view === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"
-            }`}
+      </header>
+      <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
+        <div className=" sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
+          <Filter
+            key={filterKey}
+            onFilterChange={handleFilterChange}
+            isjobPortal={false}
+          />
+          <button
+            className="bg-red-600 mt-5 p-2 rounded-md"
+            onClick={resetFilters}
           >
-            {filteredFreelancers.map((freelancer) => (
-              <div
-                key={freelancer.id}
-                className={`bg-white dark:bg-gray-950 rounded-lg shadow-md overflow-hidden ${
-                  view === "list" ? "flex" : ""
-                }`}
-              >
-                <div
-                  className={`flex-shrink-0 ${
-                    view === "list" ? "w-32 h-32" : "h-40"
-                  } bg-gray-100 dark:bg-gray-800 flex items-center justify-center`}
+            Reset Filters
+          </button>
+        </div>
+        <div className="col-span-1 md:col-span-9 mb-10">
+          {filteredFreelancers.map((freelancer) => (
+            <div
+              key={freelancer.id}
+              className="bg-white dark:bg-gray-950 rounded-lg shadow-md overflow-hidden mb-4"
+            >
+              <div className="flex flex-col p-4">
+                <h3 className="text-lg font-bold">{freelancer.name}</h3>
+                <div className="flex items-center mb-2 space-x-2">
+                  {freelancer.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center mb-2 space-x-2">
+                  <span className="text-gray-500 dark:text-gray-400">
+                    ${freelancer.rate}/hr
+                  </span>
+                </div>
+                <Button
+                  variant="primary"
+                  className="w-full bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90"
+                  disabled={!freelancer.available}
                 >
-                  <UserIcon className="w-12 h-12 text-gray-400" />
-                </div>
-                <div className="flex-1 p-4">
-                  <h3 className="text-lg font-bold">{freelancer.name}</h3>
-                  <div className="flex items-center mb-2 space-x-2">
-                    {freelancer.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center mb-2 space-x-2">
-                    <DollarSignIcon className="w-4 h-4 text-gray-500" />
-                    <span className="text-gray-500 dark:text-gray-400">${freelancer.rate}/hr</span>
-                  </div>
-                  <Button
-                    variant="primary"
-                    className="w-full bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90"
-                    disabled={!freelancer.available}
-                  >
-                    {freelancer.available ? "Hire" : "Unavailable"}
-                  </Button>
-                </div>
+                  {freelancer.available ? "Hire" : "Unavailable"}
+                </Button>
               </div>
-            ))}
-          </div>
-          
+            </div>
+          ))}
+        </div>
+        <div>
+        <button
+    
+      className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
+    >
+  Filter
+    </button>
         </div>
       </div>
     </div>
-  )
-}
-
-function DollarSignIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="12" x2="12" y1="2" y2="22" />
-      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    </svg>
-  )
-}
-
-
-function Grid3x3Icon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M3 9h18" />
-      <path d="M3 15h18" />
-      <path d="M9 3v18" />
-      <path d="M15 3v18" />
-    </svg>
-  )
-}
-
-
-function ListIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="8" x2="21" y1="6" y2="6" />
-      <line x1="8" x2="21" y1="12" y2="12" />
-      <line x1="8" x2="21" y1="18" y2="18" />
-      <line x1="3" x2="3.01" y1="6" y2="6" />
-      <line x1="3" x2="3.01" y1="12" y2="12" />
-      <line x1="3" x2="3.01" y1="18" y2="18" />
-    </svg>
-  )
-}
-
-
-function UserIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  )
+  );
 }
