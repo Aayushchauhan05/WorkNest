@@ -124,9 +124,9 @@ function Page() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col ">
-                        <span>{project.companyName}</span>
-                        <span>{project.Start}</span>
-                        <span>{project.End}</span>
+                        <span><p>Company Name:{project.companyName}</p></span>
+                        <span><p>Start:{project.Start}</p></span>
+                        <span><p>End:{project.End}</p></span>
                       </div>
                     </div>
                     <div className="flex justify-end mt-4 item-end">

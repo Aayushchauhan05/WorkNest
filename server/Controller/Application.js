@@ -31,7 +31,7 @@ console.log("email",companyemail)
     //     { new: true }
     //   );
     // }
-    const user= await Freelancer.findOneAndUpdate({Email}, { $push: { pendingProject: projectId } },
+    const user= await Freelancer.findOneAndUpdate({Email}, { $addToSet: { pendingProject: projectId } },
            { new: true })
 
     const { _id } = application;

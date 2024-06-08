@@ -1,7 +1,7 @@
 const { Business } = require("../models/Business/Businessreg");
 const { ApplyForPosition } = require("../models/freelancer/Apply");
 const { projectsDetailsToFreelancer } = require("../models/freelancer/Assignprojectschema");
-
+const { Freelancer } = require("../models/freelancer/Freelancerreg");
 const ActionFromBusinessSide = async (req, res) => {
   try {
     const business = req.user;
@@ -19,7 +19,7 @@ const ActionFromBusinessSide = async (req, res) => {
 
     const updatedApplication = await ApplyForPosition.findOneAndUpdate(
       { Email },
-      { status },
+      { status:status },
       { new: true }
     );
 
@@ -28,20 +28,20 @@ const ActionFromBusinessSide = async (req, res) => {
     }
 
     if (status === "rejected") {
-      await projectsDetailsToFreelancer.findOneAndUpdate(
+      await Freelancer.findOneAndUpdate(
         { Email },
         {
           $pull: { pendingProject: projectId },
-          $push: { rejectedProject: projectId }
+          $addToSet: { rejectedProject: projectId }
         },
         { new: true }
       );
     } else {
-      await projectsDetailsToFreelancer.findOneAndUpdate(
+      await Freelancer.findOneAndUpdate(
         { Email },
         {
           $pull: { pendingProject: projectId },
-          $push: { acceptedProject: projectId }
+          $addToSet: { acceptedProject: projectId }
         },
         { new: true }
       );

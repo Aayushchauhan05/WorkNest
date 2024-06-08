@@ -28,6 +28,7 @@ function Page() {
 
   const fetchProjects = async () => {
     try {
+      const token=localStorage.getItem("token")
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/business/Getprojectdata`, {
         method: 'GET',
         headers: {
