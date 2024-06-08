@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Component() {
   const [filters, setFilters] = useState({
-    skills: [],
+    skills: "All",
     hourlyRate: "All",
     availability: "All",
   });
@@ -68,11 +68,28 @@ export default function Component() {
   }, [filters, freelancerListings]);
 
   const handleFilterChange = (name, value) => {
-    setFilters({
-      ...filters,
-      [name]: value,
+    setFilters((prevFilters) => {
+      if (name === "skills") {
+        let newSkills;
+        if (value === "All") {
+          newSkills = [];
+        } else {
+          newSkills = Array.isArray(prevFilters.skills) ? [...prevFilters.skills] : [];
+          const index = newSkills.indexOf(value);
+          if (index === -1) {
+            newSkills.push(value);
+          } else {
+            newSkills.splice(index, 1);
+          }
+        }
+        return { ...prevFilters, skills: newSkills };
+      } else {
+        return { ...prevFilters, [name]: value };
+      }
     });
   };
+  
+  
 
   const resetFilters = () => {
     setFilters({
@@ -85,7 +102,7 @@ export default function Component() {
 
   const filterFreelancers = () => {
     let filtered = [...freelancerListings];
-
+  
     if (filters.hourlyRate !== "All") {
       filtered = filtered.filter((freelancer) => {
         const rate = parseFloat(filters.hourlyRate);
@@ -97,20 +114,22 @@ export default function Component() {
         }
       });
     }
-
-    if (Array.isArray(filters.skills) && filters.skills.length > 0) {
+  
+    if (filters.skills !== "All" && filters.skills.length > 0) {
       filtered = filtered.filter((person) => {
         return filters.skills.some((skill) => person.skills.includes(skill));
       });
     }
-
+  
     if (filters.availability !== "All") {
       const available = filters.availability === true; 
       filtered = filtered.filter((freelancer) => freelancer.available === available);
     }
-
+  
     setFilteredFreelancers(filtered);
   };
+  
+  
 
   return (
     <div className="">
@@ -120,7 +139,7 @@ export default function Component() {
         </div>
       </header>
       <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-        <div className="sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
+        <div className=" sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
           <Filter
             key={filterKey}
             onFilterChange={handleFilterChange}
@@ -133,7 +152,7 @@ export default function Component() {
             Reset Filters
           </button>
         </div>
-        <div className="col-span-1 md:col-span-9">
+        <div className="col-span-1 md:col-span-9 mb-10">
           {filteredFreelancers.map((freelancer) => (
             <div
               key={freelancer.id}
@@ -166,6 +185,14 @@ export default function Component() {
               </div>
             </div>
           ))}
+        </div>
+        <div>
+        <button
+    
+      className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
+    >
+  Filter
+    </button>
         </div>
       </div>
     </div>
