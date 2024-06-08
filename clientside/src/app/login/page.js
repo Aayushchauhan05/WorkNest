@@ -55,6 +55,7 @@ function Page() {
           // console.error('Login failed:', errorData);
         }
       } catch (error) {
+        setloading(false);
         toast.error(`Try again later`);
         console.error("Login failed:", error);
         // Handle error state, display error messages, etc.
@@ -99,7 +100,7 @@ function Page() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-300 "
+                className="block text-sm font-medium text-gray-200 "
               >
                 Password
               </label>
@@ -108,7 +109,7 @@ function Page() {
                   id="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
+                  className="block w-full px-3 py-2 placeholder-gray-100 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-700 dark:border-gray-600 text-gray-100 dark:placeholder-gray-400"
                   type="password"
                   name="password" s
                   onChange={formik.handleChange} 

@@ -1,221 +1,487 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-const Filter = ({ onFilterChange, resetFilters ,isjobPortal }) => {
+const Filter = ({ onFilterChange,  isjobPortal }) => {
+  const [jobType, setJobType] = useState("");
+
+
   const handleFilterChange = (name, value) => {
     onFilterChange(name, value);
   };
 
-  return (
-    isjobPortal ? (<div className="sticky w-auto h-[50rem] col-span-1 p-6 rounded-lg shadow-md bg-cyan-800 md:col-span-3 top-24">
-      <h2 className="mb-4 text-lg font-bold">Job Categories</h2>
-      <ul className="space-y-2">
-        <li>
-          <label className="text-sm text-white hover:text-gray-300">
+  
+  
+
+  return isjobPortal ? (
+    <div>
+      <div className="flex flex-col gap-5 md:min-w-[10rem] text-white">
+        <h3>Job Categories</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
             <input
+              id="web-radio"
               type="radio"
-              name="jobType"
-              onChange={() => handleFilterChange("jobType", "Web Development")}
-              style={{ display: 'none' }}
+              value=""
+              name="job-category"
+             
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+              checked={jobType === "Web Development"}
+              onChange={() => {
+                setJobType("Web Development");
+                handleFilterChange("jobType", "Web Development");
+              }}
             />
-            Web Development
-          </label>
-        </li>
-        <li>
-          <label className="text-sm text-white hover:text-gray-300">
+            <label
+              for="web-radio"
+              class="ms-2 text-sm font-medium "
+            >
+              Web Development
+            </label>
+          </div>
+
+          <div class="flex items-center  border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
             <input
+              id="graphic-radio"
               type="radio"
-              name="jobType"
-              onChange={() => handleFilterChange("jobType", "Graphic Design")}
-              style={{ display: 'none' }}
+              value=""
+              name="job-category"
+              class="w-4 h-4  bg-gray-100 border-cyan-500 "
+             checked={jobType === "Graphic Design"}
+              onChange={() => {
+                setJobType("Graphic Design");
+                handleFilterChange("jobType", "Graphic Design");
+              }}
             />
+            <label
+              for="graphic-radio"
+              class="ms-2 text-sm font-medium "
+            >
             Graphic Design
-          </label>
-        </li>
-        <li>
-          <label className="text-sm text-white hover:text-gray-300">
-            <input
-              type="radio"
-              name="jobType"
-              onChange={() => handleFilterChange("jobType", "Content Writing")}
-              style={{ display: 'none' }}
-            />
-            Content Writing
-          </label>
-        </li>
-        <li>
-          <label className="text-sm text-white hover:text-gray-300">
-            <input
-              type="radio"
-              name="jobType"
-              onChange={() => handleFilterChange("jobType", "Virtual Assistant")}
-              style={{ display: 'none' }}
-            />
-            Virtual Assistant
-          </label>
-        </li>
-        <li>
-          <label className="text-sm text-white hover:text-gray-300">
-            <input
-              type="radio"
-              name="jobType"
-              onChange={() => handleFilterChange("jobType", "Marketing")}
-              style={{ display: 'none' }}
-            />
-            Marketing
-          </label>
-        </li>
-      </ul>
-
-      <div
-        data-orientation="horizontal"
-        role="none"
-        className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
-      ></div>
-
-      <div className="grid gap-4">
-        <h3 className="text-lg font-bold">Filters</h3>
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <label
-              className="text-base font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              htmlFor="experience"
-            >
-              Experience Level
             </label>
-            <div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="experience-entry"
-                  className="peer "
-                  style={{ display: 'none' }}
-                  onClick={() =>
-                    handleFilterChange("experienceLevel", "Entry Level")
-                  }
-                />
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="experience-entry"
-                >
-                  Entry Level
-                </label>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="experience-intermediate"
-                  className="peer "
-                  style={{ display: 'none' }}
-                  onClick={() =>
-                    handleFilterChange("experienceLevel", "Intermediate")
-                  }
-                />
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="experience-intermediate"
-                >
-                  Intermediate
-                </label>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="experience-expert"
-                  style={{ display: 'none' }}
-                  className="peer "
-                  onClick={() => handleFilterChange("experienceLevel", "Expert")}
-                />
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="experience-expert"
-                >
-                  Expert
-                </label>
-              </div>
-            </div>
           </div>
-          <div className="grid gap-2">
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="content-radio"
+              type="radio"
+              value=""
+              name="job-category"
+              class="w-4 h-4  bg-gray-100 border-cyan-500 "
+              checked={jobType === "Content Writing"}
+              onChange={() => {
+                setJobType("Content Writing");
+                handleFilterChange("jobType", "Content Writing");
+              }}
+            />
             <label
-              className="text-base font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              htmlFor="budget"
+              for="content-radio"
+              class="ms-2 text-sm font-medium "
             >
-              Budget
+              Content Writing
             </label>
-            <div
-              role="radiogroup"
-              aria-required="false"
-              dir="ltr"
-              className="grid gap-2"
-              id="budget"
-              tabIndex="0"
-              style={{ outline: "none" }}
-            >
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="true"
-                  data-state="checked"
-                 
-                  id="budget-0-500"
-                  onClick={() => handleFilterChange("budget", "$0 - $500")}
-                ></button>
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="budget-0-500"
-                >
-                  $0 - $500
-                </label>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="false"
-                  data-state="unchecked"
-                 
-                  id="budget-500-2000"
-                  onClick={() => handleFilterChange("budget", "$500 - $2,000")}
-                ></button>
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="budget-500-2000"
-                >
-                  $500 - $2,000
-                </label>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="false"
-                  data-state="unchecked"
-                  
-                  id="budget-2000"
-                  onClick={() => handleFilterChange("budget", "$2,000+")}
-                ></button>
-                <label
-                  className="text-sm font-medium text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="budget-2000"
-                >
-                  $2,000+
-                </label>
-              </div>
-            </div>
           </div>
-          <div>
-            <button
-              type="button"
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-500"
-              onClick={resetFilters}
+
+          <div class="flex items-center  border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="virtual-radio"
+              type="radio"
+              value=""
+              name="job-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+              checked={jobType === "Virtual Assistant"}
+              onChange={() => {
+                setJobType("Virtual Assistant");
+                handleFilterChange("jobType", "Virtual Assistant");
+              }}
+            />
+            <label
+              for="virtual-radio"
+              className="ms-2 text-sm font-medium "
             >
-              Reset Filters
-            </button>
+              Virtual Assistant
+            </label>
+          </div>
+
+
+          <div class="flex items-center  border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="marketing-radio"
+              type="radio"
+              value=""
+              name="job-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+              checked={jobType === "Marketing"}
+              onChange={() => {
+                setJobType("Marketing");
+                handleFilterChange("jobType", "Marketing");
+              }}
+            />
+            <label
+              for="marketing-radio"
+              classNmae="ms-2 text-sm font-medium "
+            >
+              Marketing
+            </label>
           </div>
         </div>
       </div>
-    </div>):("not found"))
-  ;
+
+      <div className="flex flex-col gap-5 mt-5 text-white">
+        <h3>Experience Level</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="entry-checkbox"
+              type="checkbox"
+              value=""
+              name="entry-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("experienceLevel","Entry Level")}
+            />
+            <label
+              for="entry-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+              Entry Level
+            </label>
+          </div>
+
+          <div class="flex items-center  border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="intermediate-checkbox"
+              type="checkbox"
+              value=""
+              name="intermediate-checkbox"
+              onChange={()=>handleFilterChange("experienceLevel","Intermediate")}
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="intermediate-checkbox"
+              className="ms-2 text-sm font-medium "
+            >
+            Intermediate
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="expert-checkbox"
+                type="checkbox"
+              value=""
+              onChange={()=>handleFilterChange("experienceLevel","Expert")}
+              name="expert-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="expert-checkbox"
+              className="ms-2 text-sm font-medium "
+            >
+             Expert
+            </label>
+          </div>
+
+        
+
+
+          
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-5 mt-5 text-white">
+        <h3>Budget</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="0-500"
+              type="radio"
+              value="0-500"
+              onChange={()=>handleFilterChange("budget","0-500")}
+              name="budget-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="0-500"
+              className="ms-2 text-sm font-medium "
+            >
+            $0-500
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="500-2000"
+              type="radio"
+              value="500-2000"
+              onChange={()=>handleFilterChange("budget","500-2000")}
+              name="budget-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="500-2000"
+              className="ms-2 text-sm font-medium "
+            >
+            $0-500
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="2000+"
+              type="radio"
+              value="2000++"
+              onChange={()=>handleFilterChange("budget","2000+")}
+              name="budget-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="2000+"
+              class="ms-2 text-sm font-medium "
+            >
+            $2000+
+            </label>
+          </div>
+          
+        </div>
+      </div>
+
+     
+    </div>
+  ) : (
+    <div>
+   
+
+      <div className=" flex-col gap-5  md:min-w-[15rem] text-white">
+        <h3>Skills</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="react-checkbox"
+              type="checkbox"
+              value=""
+              name="react-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","React")}
+            />
+            <label
+              for="react-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             React
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="nodeJs-checkbox"
+              type="checkbox"
+              value=""
+              name="nodeJs-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","Node.js")}
+            />
+            <label
+              for="nodeJs-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             Node.js
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="vueJs-checkbox"
+              type="checkbox"
+              value=""
+              name="vueJs-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","Vue.js")}
+            />
+            <label
+              for="vueJs-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             Vue.js
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="laravel-checkbox"
+              type="checkbox"
+              value=""
+              name="laravel-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","Laravel")}
+            />
+            <label
+              for="laravel-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             Laravel
+            </label>
+          </div>
+
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="python-checkbox"
+              type="checkbox"
+              value=""
+              name="python-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","Python")}
+            />
+            <label
+              for="python-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             Python
+            </label>
+          </div>
+
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2 border-gray-500 pb-3 pt-3">
+            <input
+              id="angular-checkbox"
+              type="checkbox"
+              value=""
+              name="angular-checkbox"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded px-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={()=>handleFilterChange("skills","Angular")}
+            />
+            <label
+              for="angular-checkbox"
+              class="ms-2 text-sm font-medium "
+            >
+             Angular
+            </label>
+          </div>
+
+         
+
+        
+
+
+          
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-5 mt-5 text-white">
+        <h3>Hourly Rate</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="0-50"
+              type="radio"
+              value="0-50"
+              onChange={()=>handleFilterChange("hourlyRate","0-50")}
+              name="hourlyRate-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="0-50"
+              className="ms-2 text-sm font-medium "
+            >
+            $0-50
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="50-100"
+              type="radio"
+              value="50-100"
+              onChange={()=>handleFilterChange("hourlyRate","50-100")}
+              name="hourlyRate-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="50-100"
+              className="ms-2 text-sm font-medium "
+            >
+            $50-100
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="100+"
+              type="radio"
+              value="2000++"
+              onChange={()=>handleFilterChange("hourlyRate","100+")}
+              name="hourlyRate-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="100+"
+              class="ms-2 text-sm font-medium "
+            >
+            $100+
+            </label>
+          </div>
+          
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-5 mt-5 text-white">
+        <h3>Availability</h3>
+        <div>
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="all"
+              type="radio"
+              value="all"
+              onChange={()=>handleFilterChange("availability","All")}
+              name="availability-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="all"
+              className="ms-2 text-sm font-medium "
+            >
+            All
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="available"
+              type="radio"
+              value="available"
+              onChange={()=>handleFilterChange("availability",true)}
+              name="availability-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="available"
+              className="ms-2 text-sm font-medium "
+            >
+            Available
+            </label>
+          </div>
+
+          <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">
+            <input
+              id="unavailable"
+              type="radio"
+              value="unavailable"
+              onChange={()=>handleFilterChange("availability",false)}
+              name="availability-category"
+              className="w-4 h-4  bg-gray-100 border-cyan-500 "
+            />
+            <label
+              for="unavailable"
+              className="ms-2 text-sm font-medium "
+            >
+            Unavailable
+            </label>
+          </div>
+          
+        </div>
+      </div>
+
+     
+    </div>
+  );
 };
 
 export default Filter;

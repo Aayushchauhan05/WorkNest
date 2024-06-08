@@ -88,7 +88,7 @@ function Page() {
         <VerticalNav 
           isMenuOpen={isMenuOpen} 
           toggleMenu={toggleMenu} 
-          isProduct={true}   
+          isProject={true}   
           filterProjectsByStatus={filterProjectsByStatus}  
           userName={`${projects.companyName|| ""}`} 
           userProfession={"ceo"}
