@@ -100,32 +100,15 @@ return res.status(200).json({ message: "Registration successfull" });
 };
 
 const business_reg = async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    companyName,
-    companySize,
-    Email,
-    phone,
-    Dob,
-    professionalInfo,
-    Position,
-    Refer,
-    verified,
-    isVerified,
-    Linkdin,
-    personalWebsite,
-    connects,
-    password,
-  } = req.body;
+  const data= req.body;
   try {
     console.log(req.body);
-    const userexist = await Business.findOne({ Email: Email });
+    const userexist = await Business.findOne({ Email: data.Email });
     console.log("testing user existence", userexist);
     if (userexist) {
       return res.status(401).json({ message: "User already exist" });
     }
-    const companyExist = await Business.findOne({ companyName });
+    const companyExist = await Business.findOne({companyName:data.companyName });
     if (companyExist) {
       return res.status(401).json({ message: "Company already exist" });
     }
@@ -137,33 +120,11 @@ const business_reg = async (req, res) => {
       lowerCaseAlphabets: false,
     });
     const user = Business.create({
-      firstName,
-      lastName,
-      companyName,
-      companySize,
-      Email,
-      phone,
-      Dob,
-      professionalInfo,
-      Position,
-      Refer,
-      verified,
-      isVerified,
-      Linkdin,
-      personalWebsite,
-      connects,
+    ...data,
       password: hashpass,
       otp: otpcode,
     });
 
-    //     const otpexist=  await Business.findOne({Email});
-
-    // if (!otpexist) {
-    //     const userotp= await otp.create({email:Email,phone,otp:otpcode})
-
-    // }
-    // else{
-    // const update= await Business.findOneAndUpdate({email:Email},{otp:otpcode},{new:true});
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -174,7 +135,7 @@ const business_reg = async (req, res) => {
         pass: process.env.APP_PASS,
       },
     });
-    await main(Email, otpcode, transporter).catch(console.error);
+    await main(data.Email, otpcode, transporter).catch(console.error);
     return res.status(200).json({ message: "Registration Succesfull" });
   } catch (error) {
     console.log(error);
