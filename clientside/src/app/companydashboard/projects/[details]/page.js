@@ -125,7 +125,7 @@ export default function Component({params}) {
               </div>
             </div>
             </section>
-            <section className="flex flex-col items-start justify-start w-full p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
+            <section className="flex flex-col items-start justify-start w-full max-h-screen-md overflow-y-scroll p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
             <div className="space-y-8">
               <div>
                 <h2 className="mb-4 text-xl font-bold">Freelancer Applied</h2>

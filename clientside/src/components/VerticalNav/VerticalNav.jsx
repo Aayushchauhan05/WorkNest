@@ -9,6 +9,7 @@ import { IoMdCodeWorking } from "react-icons/io";
 import { CiViewList } from "react-icons/ci";
 import { FiXCircle } from "react-icons/fi";
 import UserProfile from "../UserProfile/UserProfile";
+import { GoPlusCircle } from "react-icons/go";
 
 
 const VerticalNav = ({
@@ -62,6 +63,7 @@ const VerticalNav = ({
           {isProject? (
             <>
               {renderLink("/companydashboard", "Dashboard", MdDashboard, isActive === "dashboard")}
+              {renderLink("/companydashboard/projects/listproject","Add Project", GoPlusCircle, isActive === "Add Project")}
               {renderButton("View All", CiViewList, isActive === "view all", () => filterProjectsByStatus("view all"))}
               {renderButton("Ongoing", IoMdCodeWorking, isActive === "ongoing", () => filterProjectsByStatus("ongoing"))}
               {renderButton("Pending", FiXSquare, isActive === "pending", () => filterProjectsByStatus("pending"))}
