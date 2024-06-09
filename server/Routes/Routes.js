@@ -1,22 +1,21 @@
 const express= require("express");
-const { Freelancer_reg, otpgen, business_reg, login } = require("../Controller/Auth");
+const { login,otpverify} = require("../Controller/Auth");
 const {Authmiddle, loginValidator, signupValidator} = require("../Middleware/Middleware");
-const {Applicationforwork, SendDataTocompany} = require("../Controller/Application");
-const {ListprojectBybusiness, getprojectdata,project_reg, dataForAllAndFilter}= require("../Controller/project");
+const {dataForAllAndFilter}= require("../Controller/project");
 const {profile, editProfile } = require("../Controller/Profile");
-const OracleUserverificationmail = require("../Controller/OracleUserprojecttest");
-const ActionFromBusinessSide = require("../Controller/ActionsOnBid");
 const { projectinfo } = require("../Controller/projectinfo");
-const skillsdata = require("../models/Common/skills");
-const addskills = require("../Controller/skillsapi");
+const { freelancerData, freelancerInfo } = require("../Controller/FreelancerhireApi");
+
+
 const route= express.Router();
 
-// POST-Routes
 
 route.post("/login",login);// login.
 route.get("/profile",Authmiddle,profile); 
 route.get("/Allproject",dataForAllAndFilter); // For All
 route.get("/projectinfo/:id",projectinfo)
-route.post("/otp",otpgen)
+route.post("/otp",otpverify)
 route.put("/editprofile",editProfile)
+route.get("/allFreelancer",freelancerData)
+route.get("/freelancerinfo/:id",freelancerInfo)
 module.exports= route;

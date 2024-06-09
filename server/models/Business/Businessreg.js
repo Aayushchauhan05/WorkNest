@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model, SchemaType } = require("mongoose")
 const businessSchema = new Schema({
     firstName: {
         type: String,
@@ -30,15 +30,15 @@ const businessSchema = new Schema({
     },
     Dob: {
         type: String,
-        required: true
+        
     },
     Position: {
         type: String,
-        required: true
+        
     },
     Refer: {
         type: String,
-        required: true
+        
     },
     verified: {
         type: Schema.Types.Mixed
@@ -65,6 +65,9 @@ const businessSchema = new Schema({
     otp: {
         type: String
     },
+    otpverified:{
+        type:String,
+    },
     ProjectList: [{
         type: Schema.Types.ObjectId,
         ref: "ProjectListByCompany"
@@ -72,6 +75,16 @@ const businessSchema = new Schema({
     Appliedcandidates: [{
         type: Schema.Types.ObjectId,
         ref: "Applicationforwork"
+    }],
+    hirefreelancer:[{
+        freelancer:{
+type:Schema.Types.ObjectId,
+ref:"freelancer_data"
+        },
+        status:{
+type:String ,
+default:"Pending"
+        }
     }]
 
 }, { timestamps: true });
