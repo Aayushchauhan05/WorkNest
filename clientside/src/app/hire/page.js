@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Filter from "@/components/Filter/Filter";
 import { Button } from "@/components/ui/button";
-
+import axios from "axios";
+import Link from "next/link";
 export default function Component() {
   const [filters, setFilters] = useState({
     skills: "All",
@@ -13,54 +14,8 @@ export default function Component() {
   const [filteredFreelancers, setFilteredFreelancers] = useState([]);
   const [filterKey, setFilterKey] = useState(0);
 
-  const freelancers = [
-    {
-      id: 1,
-      name: "John Doe",
-      skills: ["React", "Node.js", "MongoDB"],
-      rate: 15,
-      available: true,
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      skills: ["Vue.js", "Laravel", "MySQL"],
-      rate: 120,
-      available: false,
-    },
-    {
-      id: 3,
-      name: "Bob Johnson",
-      skills: ["Python", "Django", "PostgreSQL"],
-      rate: 90,
-      available: true,
-    },
-    {
-      id: 4,
-      name: "Alice Williams",
-      skills: ["Angular", "Ruby on Rails", "Redis"],
-      rate: 95,
-      available: true,
-    },
-    {
-      id: 5,
-      name: "Tom Davis",
-      skills: ["PHP", "WordPress", "MySQL"],
-      rate: 80,
-      available: false,
-    },
-    {
-      id: 6,
-      name: "Sarah Wilson",
-      skills: ["Java", "Spring", "PostgreSQL"],
-      rate: 100,
-      available: true,
-    },
-  ];
-
   useEffect(() => {
-    setFreelancerListings(freelancers);
-    setFilteredFreelancers(freelancers);
+    fetchdata();
   }, []);
 
   useEffect(() => {
@@ -88,8 +43,6 @@ export default function Component() {
       }
     });
   };
-  
-  
 
   const resetFilters = () => {
     setFilters({
@@ -102,7 +55,7 @@ export default function Component() {
 
   const filterFreelancers = () => {
     let filtered = [...freelancerListings];
-  
+
     if (filters.hourlyRate !== "All") {
       filtered = filtered.filter((freelancer) => {
         const rate = parseFloat(filters.hourlyRate);
@@ -114,22 +67,37 @@ export default function Component() {
         }
       });
     }
-  
+
     if (filters.skills !== "All" && filters.skills.length > 0) {
       filtered = filtered.filter((person) => {
         return filters.skills.some((skill) => person.skills.includes(skill));
       });
     }
-  
+
     if (filters.availability !== "All") {
       const available = filters.availability === true; 
       filtered = filtered.filter((freelancer) => freelancer.available === available);
     }
-  
+
     setFilteredFreelancers(filtered);
   };
-  
-  
+
+  const fetchdata = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/allFreelancer`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const freelancers = response.data.user;
+      console.log(freelancers)
+      setFreelancerListings(freelancers);
+      setFilteredFreelancers(freelancers);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="">
@@ -139,29 +107,29 @@ export default function Component() {
         </div>
       </header>
       <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-        <div className=" sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
+        <div className="sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
           <Filter
             key={filterKey}
             onFilterChange={handleFilterChange}
             isjobPortal={false}
           />
           <button
-            className="bg-red-600 mt-5 p-2 rounded-md"
+            className="p-2 mt-5 bg-red-600 rounded-md"
             onClick={resetFilters}
           >
             Reset Filters
           </button>
         </div>
-        <div className="col-span-1 md:col-span-9 mb-10">
+        <div className="col-span-1 mb-10 md:col-span-9">
           {filteredFreelancers.map((freelancer) => (
             <div
-              key={freelancer.id}
-              className="bg-white dark:bg-gray-950 rounded-lg shadow-md overflow-hidden mb-4"
+              key={freelancer._id}
+              className="mb-4 overflow-hidden text-black bg-white rounded-lg shadow-md dark:bg-gray-950"
             >
               <div className="flex flex-col p-4">
-                <h3 className="text-lg font-bold">{freelancer.name}</h3>
+                <h3 className="text-lg font-bold">{freelancer?.firstName}</h3>
                 <div className="flex items-center mb-2 space-x-2">
-                  {freelancer.skills.map((skill) => (
+                  {(freelancer.skills || []).map((skill) => (
                     <span
                       key={skill}
                       className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
@@ -172,27 +140,26 @@ export default function Component() {
                 </div>
                 <div className="flex items-center mb-2 space-x-2">
                   <span className="text-gray-500 dark:text-gray-400">
-                    ${freelancer.rate}/hr
+                    {`${10}/hr`}
                   </span>
                 </div>
-                <Button
+                <Link href={`/hire/${freelancer._id}`}
                   variant="primary"
                   className="w-full bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90"
-                  disabled={!freelancer.available}
+                 
                 >
-                  {freelancer.available ? "Hire" : "Unavailable"}
-                </Button>
+                  hire
+                </Link>
               </div>
             </div>
           ))}
         </div>
         <div>
-        <button
-    
-      className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
-    >
-  Filter
-    </button>
+          <button
+            className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
+          >
+            Filter
+          </button>
         </div>
       </div>
     </div>

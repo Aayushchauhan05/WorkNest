@@ -18,9 +18,9 @@ function page() {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchUserInfo = async () => {
+    const fetchUserInfo  = async () => {
       try {
-        const token=localStorage.getItem("token")
+        const token=localStorage.getItem("token") 
         console.log(token);
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
           method: 'GET',

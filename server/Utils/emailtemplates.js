@@ -121,7 +121,7 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
               <p>We hope this message finds you well.</p>
               <p>We recently came across your profile and were highly impressed with your skills and experience. We believe that you would be a great fit for our team.</p>
               
-              <p>We would love to discuss this opportunity with you further and see how we can work together. If you are interested, please reach out to us by replying to this email at ${business.email}.</p>
+              <p>We would love to discuss this opportunity with you further and see how we can work together. If you are interested, please reach out to us by replying to this email at ${business.Email}.</p>
               
               <p>If you have any questions or need further information, please do not hesitate to reach out to us.</p>
   
@@ -130,7 +130,6 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
           <div class="footer">
               Kind regards,<br>
               ${business.companyName}<br>
-              ${business.position}<br>
               ${business.Email}
           </div>
       </div>

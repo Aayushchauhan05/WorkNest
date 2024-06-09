@@ -55,17 +55,19 @@ const freelancer_schema = new Schema(
         type: String,
       },
     },
-    Skills: {
-      name: {
-        type: String,
+    Skills: [
+      {
+        name: {
+          type: String,
+        },
+        level: {
+          type: String,
+        },
+        experience: {
+          type: String,
+        },
       },
-      level: {
-        type: String,
-      },
-      experience: {
-        type: String,
-      },
-    },
+    ],
     Education: [
       {
         degree: {
@@ -145,7 +147,7 @@ const freelancer_schema = new Schema(
       required: true,
       default: true,
     },
-    oracle:{
+    oracle: {
       type: Boolean,
       default: false,
     },
@@ -157,10 +159,10 @@ const freelancer_schema = new Schema(
     otp: {
       type: String,
     },
-    otpverified:{
-      type:Boolean,
-      default:false
-  },
+    otpverified: {
+      type: Boolean,
+      default: false,
+    },
     pendingProject: [
       {
         type: Schema.Types.ObjectId,
@@ -179,16 +181,15 @@ const freelancer_schema = new Schema(
         ref: "ProjectListByCompany",
       },
     ],
-    oracledata:[
-    {
-        type:Schema.Types.ObjectId,
-        ref:"freelancer_data"
-      }
-    ]
+    oracledata: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "freelancer_data",
+      },
+    ],
   },
-  
   { timestamps: true }
 );
 
-const Freelancer = new  model("freelancer_data", freelancer_schema);
+const Freelancer = model("freelancer_data", freelancer_schema);
 module.exports = { Freelancer };

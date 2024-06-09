@@ -4,8 +4,9 @@ const { check, validationResult } = require('express-validator');
 const Authmiddle= async (req,res,next)=>{
 try {
     const checktoken= req.header("Authorization");
-    const token= checktoken.replace("Bearer","").trim()
     console.log("token",checktoken)
+    const token= checktoken.replace("Bearer","").trim()
+   
     if(!checktoken) return res.status(401).json({message:"Un-Authorised User"})
  const verifytoken= jwt.verify(token,process.env.SECRET_KEY)
 if (!verifytoken) {

@@ -4,9 +4,9 @@ const { Freelancer } = require("../models/freelancer/Freelancerreg")
 const nodemailer = require('nodemailer');
 
 // send all freelancer data
-const freelancerData= async ()=>{
+const freelancerData= async (req,res)=>{
     try {
-        const user= await Freelancer.find();
+        const user= await Freelancer.find().populate("project");
 return res.status(200).json({user})
     } catch (error) {
         console.log(error)
@@ -45,6 +45,7 @@ const hireFreelancer= async (req,res)=>{
 try {
     const {id}= req.params;
     const business= req.user;
+    console.log(business)
     const user= await Freelancer.findById(id);
     if (!user) {
         return res.status(404).json({message:"User not found"})
