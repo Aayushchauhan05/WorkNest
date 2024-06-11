@@ -104,7 +104,7 @@ function Page() {
   return (
     <>
      
-<div className="flex w-full h-screen ">
+<div className="flex w-screen h-screen ">
 
 <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"skillsandprojects"} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"}/>
     <div className="flex flex-col w-full">
@@ -116,10 +116,10 @@ function Page() {
     />
 
         {/* Right side Main Container */}
-        <main className="container ml-72">
+        <main className="container md:ml-72">
        
 
-          <div className="container mx-auto mt-8 text-white">
+          <div className=" md:mx-auto md:mt-8 text-white">
             <h1 className="mb-4 text-3xl text-white font-bold">Add Skills and Projects</h1>
             <div className="mb-8">
               <h2 className="mb-2 text-xl font-bold">Add Skills:</h2>
