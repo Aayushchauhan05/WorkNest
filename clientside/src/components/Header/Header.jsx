@@ -21,8 +21,8 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
             </button>
 
             {isCompanydashboard ? (
-           <div className='h-[3rem]'>
-           <h1 className="text-3xl font-bold text-cyan-700 ml-10 dark:text-gray-50">{companyName}</h1>
+           <div className=''>
+           <h1 className="text-3xl font-bold text-cyan-700 md:ml-10 dark:text-gray-50">{companyName}</h1>
           
          </div>
          

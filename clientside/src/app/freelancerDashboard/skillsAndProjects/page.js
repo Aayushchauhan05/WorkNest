@@ -119,7 +119,7 @@ function Page() {
         <main className="container md:ml-72">
        
 
-          <div className=" md:mx-auto md:mt-8 text-white">
+          <div className=" mx-auto mt-8 text-white">
             <h1 className="mb-4 text-3xl text-white font-bold">Add Skills and Projects</h1>
             <div className="mb-8">
               <h2 className="mb-2 text-xl font-bold">Add Skills:</h2>

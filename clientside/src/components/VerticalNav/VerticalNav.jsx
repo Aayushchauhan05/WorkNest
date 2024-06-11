@@ -33,17 +33,24 @@ const VerticalNav = ({
     }`;
 
   const renderLink = (href, label, Icon, condition) => (
-    <Link href={href} className={menuItemClasses(condition)}>
+    <Link href={href}  onClick={() => {
+      onClick()}} className={menuItemClasses(condition)}>
       <Icon /> {label}
     </Link>
   );
 
-  const renderButton = (label, Icon, condition, onClick) => (
-    <button onClick={onClick} className={menuItemClasses(condition)}>
+  const renderButton = (label, Icon, condition, onClick, toggleMenu) => (
+    <button 
+      onClick={
+        onClick
+      
+      } 
+      className={menuItemClasses(condition)}
+    >
       <Icon /> {label}
     </button>
   );
-
+  
   return (
     <div
       className={`fixed p-6 bg-cyan-800 transition-transform transform z-50 ${
@@ -53,7 +60,7 @@ const VerticalNav = ({
       <div className="flex flex-col gap-6">
         <button
           onClick={toggleMenu}
-          className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden"
+          className="absolute top-0 right-0 ml-10 z-50 p-5  text-xl md:hidden"
         >
          <FiXCircle />
         </button>
