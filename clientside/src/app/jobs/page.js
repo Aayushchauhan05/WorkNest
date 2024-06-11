@@ -4,6 +4,7 @@ import Link from "next/link";
 import Filter from "@/components/Filter/Filter";
 
 function Page() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [filters, setFilters] = useState({
     jobType: "All",
     experienceLevel: "All",
@@ -83,7 +84,7 @@ function Page() {
           </div>
         </header>
         <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-         <div  className="sticky w-auto h-[50rem] col-span-1 p-6 rounded px-2-lg shadow-md bg-cyan-700 md:col-span-3 top-24">
+        <div className={`sticky w-auto h-[50rem] transition-transform transform md:translate-y-0 col-span-1 p-6 rounded px-2-lg shadow-md bg-cyan-700 md:col-span-3  md:translate-x-0 ${isMenuOpen ? "translate-y-0" : "translate-y-full mt-[10rem] md:mt-0"}`}>
          <Filter
           key={filterKey} 
             onFilterChange={handleFilterChange}
@@ -103,7 +104,7 @@ function Page() {
             {Array.isArray(filteredJobs) &&
               filteredJobs.map((job, index) => (
                 <Link href={`/jobs/${index}`} key={index}>
-              <div className="relative mt-2 overflow-hidden text-white bg-gray-900 border rounded-lg shadow-2xl group">
+              <div className="relative mt-2 overflow-hidden text-black bg-gray-200 border rounded-lg shadow-2xl group">
 
 
   <div className="flex flex-col justify-between h-full">
@@ -120,7 +121,7 @@ function Page() {
         </div>
       </div>
     </div>
-    <div className="flex items-center justify-between p-6 bg-gray-800 border-t border-gray-700">
+    <div className="flex items-center justify-between text-gray-700 p-6 bg-gray-200 border-t border-gray-700">
       <div className="text-sm text-gray-400">Budget: {job.budget}</div>
       <button className="inline-flex items-center justify-center w-[10%] h-10 bg-cyan-800 rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3">
         Bid
@@ -132,6 +133,15 @@ function Page() {
                 </Link>
               ))}
           </div>
+
+          <div>
+          <button
+            className="bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            Filter
+          </button>
+        </div>
         </div>
       </div>
     </>

@@ -12,6 +12,7 @@ export default function Component() {
   const [freelancerListings, setFreelancerListings] = useState([]);
   const [filteredFreelancers, setFilteredFreelancers] = useState([]);
   const [filterKey, setFilterKey] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const freelancers = [
     {
@@ -88,8 +89,6 @@ export default function Component() {
       }
     });
   };
-  
-  
 
   const resetFilters = () => {
     setFilters({
@@ -128,22 +127,20 @@ export default function Component() {
   
     setFilteredFreelancers(filtered);
   };
-  
-  
 
   return (
-    <div className="">
+    <div className="w-screen mx-auto">
       <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
         <div className="container flex items-center justify-between mx-auto">
-          <h1 className="text-2xl font-bold">Freelancers</h1>
+          <h1 className="text-2xl font-bold fixed">Freelancers</h1>
         </div>
       </header>
       <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-        <div className=" sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
+      <div className={`sticky md:fixed w-auto h-[50rem] transition-transform transform md:translate-y-0 col-span-1 p-6 rounded px-2-lg shadow-md bg-cyan-700 md:col-span-3  md:translate-x-0 ${isMenuOpen ? "translate-y-0" : "translate-y-full mt-[10rem] md:mt-0"}`}>
           <Filter
             key={filterKey}
             onFilterChange={handleFilterChange}
-            isjobPortal={false}
+            isfreelancerPortal={false}
           />
           <button
             className="bg-red-600 mt-5 p-2 rounded-md"
@@ -152,47 +149,49 @@ export default function Component() {
             Reset Filters
           </button>
         </div>
-        <div className="col-span-1 md:col-span-9 mb-10">
-          {filteredFreelancers.map((freelancer) => (
-            <div
-              key={freelancer.id}
-              className="bg-white dark:bg-gray-950 rounded-lg shadow-md overflow-hidden mb-4"
-            >
-              <div className="flex flex-col p-4">
-                <h3 className="text-lg font-bold">{freelancer.name}</h3>
-                <div className="flex items-center mb-2 space-x-2">
-                  {freelancer.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center mb-2 space-x-2">
-                  <span className="text-gray-500 dark:text-gray-400">
-                    ${freelancer.rate}/hr
-                  </span>
-                </div>
-                <Button
-                  variant="primary"
-                  className="w-full bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90"
-                  disabled={!freelancer.available}
-                >
-                  {freelancer.available ? "Hire" : "Unavailable"}
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div>
-        <button
-    
-      className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
+        <div className="col-span-1 md:col-span-9  gap-6 md:ml-80 grid grid-cols-1 md:grid-cols-3 ">
+  {filteredFreelancers.map((freelancer) => (
+    <div
+      key={freelancer.id}
+      className="relative overflow-hidden w-auto text-gray-800 bg-white border rounded-lg shadow-2xl"
     >
-  Filter
-    </button>
+      <div className="flex flex-col justify-between w-72 h-full">
+        <div className="flex flex-col p-6 space-y-4">
+          <h3 className="text-lg font-bold text-center">{freelancer.name}</h3>
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-medium">Skills:</span>
+              <span>{freelancer.skills.join(", ")}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="font-medium text-gray-400">Rate:</span>
+              <span>${freelancer.rate}/hr</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-between p-6 bg-gray-200 border-t border-gray-700">
+          <div className="text-sm text-gray-500">Availability: {freelancer.available ? "Available" : "Unavailable"}</div>
+          <Button
+            variant="primary"
+            className="w-20 bg-cyan-800 text-white hover:bg-cyan-700"
+            disabled={!freelancer.available}
+          >
+            {freelancer.available ? "Hire" : "Unavailable"}
+          </Button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+        <div>
+          <button
+            className="bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            Filter
+          </button>
         </div>
       </div>
     </div>
