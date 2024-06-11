@@ -1,7 +1,22 @@
+const { acceptAndRejectApplication } = require("../Utils/emailtemplates");
 const { Business } = require("../models/Business/Businessreg");
 const { ApplyForPosition } = require("../models/freelancer/Apply");
 const { projectsDetailsToFreelancer } = require("../models/freelancer/Assignprojectschema");
 const { Freelancer } = require("../models/freelancer/Freelancerreg");
+const nodemailer = require('nodemailer');
+async function main(action,business,freelancer,transporter) {
+  
+  const info = await transporter.sendMail({
+    from: process.env.EMAIL, 
+    to: `${freelancer.Email}`, 
+    subject: "Update on Your Application", 
+    html: acceptAndRejectApplication(action,business,freelancer)
+   
+  });
+
+  console.log("Message sent: %s", info.messageId);
+ 
+}
 const ActionFromBusinessSide = async (req, res) => {
   try {
     const business = req.user;
@@ -46,7 +61,16 @@ const ActionFromBusinessSide = async (req, res) => {
         { new: true }
       );
     }
-
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.APP_PASS,
+      },
+    });
+    await main(status,business,{Email:Email,projectId:projectId}, transporter);
     return res.status(200).json({ message: "Success" });
   } catch (error) {
     console.log(error);

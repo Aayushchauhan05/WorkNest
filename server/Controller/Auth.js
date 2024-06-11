@@ -73,7 +73,7 @@ console.log(otpCode)
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-const otpgen = async (req, res) => {
+const otpverify = async (req, res) => {
   try {
     const { otp, Email } = req.body;
     console.log(otp)
@@ -95,7 +95,7 @@ return res.status(200).json({ message: "Registration successfull" });
     return res.status(401).json({ message: "Invalid otp" });
   } catch (error) {
     console.log(error);
-    return res.status(200).json({ message: "Something went wrong" });
+    return res.status(200).json({ message: "Something went  wrong use different Email Id" });
   }
 };
 
@@ -119,7 +119,7 @@ const business_reg = async (req, res) => {
       specialChars: false,
       lowerCaseAlphabets: false,
     });
-    const user = Business.create({
+    const user = await Business.create({
     ...data,
       password: hashpass,
       otp: otpcode,
@@ -181,4 +181,4 @@ console.log(passcheck)
   }
 };
 
-module.exports = { Freelancer_reg, otpgen, business_reg, login };
+module.exports = { Freelancer_reg, otpverify, business_reg, login };
