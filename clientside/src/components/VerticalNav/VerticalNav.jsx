@@ -32,9 +32,8 @@ const VerticalNav = ({
       isActiveCondition ? "bg-gray-800 text-white" : "hover:bg-gray-800 hover:text-white"
     }`;
 
-  const renderLink = (href, label, Icon, condition) => (
-    <Link href={href}  onClick={() => {
-      onClick()}} className={menuItemClasses(condition)}>
+  const renderLink = (href, label, Icon, condition,onClick) => (
+    <Link href={href}  onClick={onClick} className={menuItemClasses(condition)}>
       <Icon /> {label}
     </Link>
   );
