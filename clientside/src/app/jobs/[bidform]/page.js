@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from "react-toastify";
+import { FiArrowLeft } from "react-icons/fi";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 const JobApplicationForm = () => {
@@ -102,8 +103,10 @@ setTimeout(()=>{
   };
 
   return (
-    <div className="flex h-full max-w-4xl mx-auto bg-white rounded-md shadow-md">
-    <Link href={"/jobs"}>Go back</Link>
+   <div className="w-[100vw] flex items-center flex-col "> 
+   <Link href={"/jobs"} className="text-white  m-10 flex items-center"> <FiArrowLeft /> Go back</Link>
+    <section className=" flex flex-col md:flex-row items-center w-[60vw] space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+   
       <div className="w-1/2 h-full p-8 border-r">
         <h2 className="mb-4 text-2xl font-semibold">
           {projectDetails?.projectName}
@@ -130,44 +133,44 @@ setTimeout(()=>{
         </ul>
       </div>
 
-      <div className="w-1/2 p-8">
+      <div className="w-1/2 p-8 text-white">
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
           <div className="mb-4">
-            <label className="block text-gray-700">Company Email</label>
+            <label className="block ">Company Email</label>
             <input
               name="companyemail"
               type="email"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={projectDetails.Email}
-              readOnly // Make the field read-only
+              readOnly 
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Desired Salary</label>
+            <label className="block ">Desired Salary</label>
             <input
               name="desiredSalary"
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={formData.desiredSalary}
               onChange={handleChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Role</label>
+            <label className="block ">Role</label>
             <input
               name="role"
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={formData.role}
               onChange={handleChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Project ID</label>
+            <label className="block ">Project ID</label>
             <input
               name="projectId"
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={projectId}
               readOnly
             />
@@ -182,6 +185,7 @@ setTimeout(()=>{
         </form>
       </div>
       <ToastContainer />
+    </section>
     </div>
   );
 };
