@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import Link from "next/link";
@@ -6,7 +6,6 @@ import { AiFillIdcard } from "react-icons/ai";
 import SkillComponent from "../Skills/SkillsComponent";
 import { GrCertificate } from "react-icons/gr";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-
 
 const ProfileComponent = ({
   name,
@@ -28,6 +27,40 @@ const ProfileComponent = ({
   isCompanyDashboard,
   isProfile,
 }) => {
+  const [showAddExperienceForm, setShowAddExperienceForm] = useState(false);
+  const [newExperience, setNewExperience] = useState({
+    position: "",
+    durationInYears: "",
+    location: "",
+    company: "",
+    employmentType: "",
+    duration: "",
+    description: "",
+  });
+
+  const toggleAddExperienceForm = () => {
+    setShowAddExperienceForm(!showAddExperienceForm);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewExperience({ ...newExperience, [name]: value });
+  };
+
+  const handleAddExperience = () => {
+    experiences.push(newExperience);
+    setShowAddExperienceForm(false);
+    setNewExperience({
+      position: "",
+      durationInYears: "",
+      location: "",
+      company: "",
+      employmentType: "",
+      duration: "",
+      description: "",
+    });
+  };
+
   return (
     <>
       {isCompanyDashboard && (
@@ -75,51 +108,7 @@ const ProfileComponent = ({
                 </div>
               </div>
             </section>
-            {!isProfile && (
-              <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-                <div className="flex flex-col w-full">
-                  <p className="mb-4 text-lg font-semibold">Skills</p>
-                  <div className="flex flex-wrap gap-5">
-                    {skills.map((skill, index) => (
-                      <div
-                        className="flex items-center justify-center p-5 border rounded-lg min-w-28 max-w-28"
-                        key={index}
-                      >
-                        <SkillComponent skill={skill} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
-            )}
-            {/* Certificates Section */}
-            {certifications && certifications.length > 0 && (
-              <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
-                <div className="flex flex-col w-full">
-                  <p className="mb-4 text-lg font-semibold">Certificates</p>
-                  <div className="flex flex-wrap gap-5">
-                    {certifications.map((certificate, index) => (
-                      <Link
-                        href={certificate?.link}
-                        key={index}
-                        className="flex items-center flex-col border p-5 w-[47%] h-50 justify-center rounded-lg"
-                      >
-                        <GrCertificate size={65} />
-                        <div className="flex flex-col items-center justify-center">
-                          <h2>{certificate.title}</h2>
-                          <div className="flex">
-                            <p>{certificate.startDate + " - "}</p>
-                            <p>{certificate.endDate}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </section>
-            )}
 
-            {/* Experience Section */}
             {experiences && experiences.length > 0 && (
               <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
                 <div className="flex flex-col w-full">
@@ -160,8 +149,9 @@ const ProfileComponent = ({
                 </div>
               </section>
             )}
+
             {/* Social Links Section */}
-            <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+           { socialLinks && socialLinks.length > 0 && <section className="flex flex-col items-center justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
               <div className="flex flex-col w-full">
                 <p className="mb-4 text-lg font-semibold">Social Links:</p>
                 <div className="flex items-center space-x-4">
@@ -188,7 +178,7 @@ const ProfileComponent = ({
                   )}
                 </div>
               </div>
-            </section>
+            </section>}
           </div>
         </div>
       )}
