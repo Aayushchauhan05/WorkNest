@@ -31,7 +31,7 @@ const ProfileComponent = ({
   return (
     <>
       {isCompanyDashboard && (
-        <div className="md:container md:relative flex flex-col items-center  min-h-screen  md:pl-64 ">
+        <div className="md:container md:relative flex flex-col items-center  min-h-screen  md:pl-72 ">
           <div className="container flex flex-col items-center gap-8 md:p-6  ">
             {/* Personal Information Section */}
             <section className="relative flex flex-col items-center w-[100%] h-full space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
