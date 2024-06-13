@@ -105,7 +105,12 @@ function Page() {
       <div className="flex w-auto overflow-x-hidden h-screen">
         <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"skillsandprojects"} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"} />
         <div className="flex flex-col w-full">
-        
+        <Header
+            companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
+            pageName="Your Professional Info"
+            isCompanydashboard={true}
+            toggleMenu={toggleMenu}
+          />
           <main className="container md:ml-80">
             <div className="mx-auto mt-8 text-white">
             

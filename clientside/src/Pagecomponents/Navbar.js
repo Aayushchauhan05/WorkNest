@@ -92,11 +92,12 @@ function Navbar() {
            
               </>
             ) : (
-              <h2 className="py-2 text-white">
+              <div className="py-2 text-white flex flex-col items-center">
               <Link href={"/freelancerDashboard"} className="py-2">Dashboard</Link>
              
-                <Link href={"/logout"}>Logout</Link>
-              </h2>
+              <Link href={"/logout"} className="py-2">Logout</Link>
+              </div>
+              
             )}
           </div>
         )}

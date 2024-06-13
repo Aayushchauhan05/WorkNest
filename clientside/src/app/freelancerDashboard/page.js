@@ -53,10 +53,10 @@ function page() {
 
 <div className="flex w-full h-screen ">
 
-<VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"dashboard"} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"}/>
+<VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"dashboard"} isCompanyDashboard={false} userName={`${userinfo?.firstName} ${userinfo?.lastName}`} userProfession={"Software Developer"}/>
     <div className="flex flex-col w-full">
     <Header 
-      companyName="Company XYZ"
+      companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
       pageName="Dashboard"
       isCompanydashboard={true} 
       toggleMenu={toggleMenu}

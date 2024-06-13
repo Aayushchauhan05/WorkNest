@@ -1,4 +1,4 @@
-// Import necessary dependencies
+
 "use client";
 import { useAuth } from "@/context/context";
 import { useFormik } from "formik";
@@ -58,16 +58,16 @@ function Page() {
         setloading(false);
         toast.error(`Try again later`);
         console.error("Login failed:", error);
-        // Handle error state, display error messages, etc.
+      
       }
     },
   });
 
-  // Return your JSX with the form and its elements
+
   return (
     <div>
-      <div className="flex items-center justify-center  bg-gray-900 dark:bg-gray-900" style={{ height: 'calc(100vh - 5rem)'}}>
-        <div className="w-full max-w-md p-8 space-y-8 rounded-md shadow-lg bg-gray-800">
+      <div className="flex items-center justify-center  bg-gray-900 dark:bg-gray-900  h-[92.5vh]">
+        <div className="md:w-full w-[80vw] max-w-md p-8 space-y-8 rounded-md shadow-lg bg-gray-800">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-100">
               Sign in to your account
