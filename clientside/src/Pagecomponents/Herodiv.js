@@ -7,12 +7,12 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { ProgressBar } from 'react-loader-spinner'
+
 
 export default function Component() {
-  const [loading, setLoading] = useState(false);
 
-  setLoading(true);
+
+
 //  const [count,setcount]= useState(0)
 //  useEffect(() => {
 //   const fetchData = async () => {
@@ -31,18 +31,7 @@ export default function Component() {
 //     console.log("Cleanup function called");
 //   };
 // }, []);
-setLoading(false);
-if (loading) {
-  return <ProgressBar
-  visible={true}
-  height="80"
-  width="80"
-  color="#4fa94d"
-  ariaLabel="progress-bar-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  />; 
-}
+
 
   return (
     <div className="text-white bg-black">

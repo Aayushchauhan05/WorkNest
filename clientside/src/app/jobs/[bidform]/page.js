@@ -105,35 +105,39 @@ setTimeout(()=>{
   return (
    <div className="w-[100vw] flex items-center flex-col "> 
    <Link href={"/jobs"} className="text-white  m-10 flex items-center"> <FiArrowLeft /> Go back</Link>
-    <section className=" flex flex-col md:flex-row items-center w-[60vw] space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
+    <section className=" flex flex-col md:flex-row items-center w-[90vw]  md:w-[60vw] space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
    
-      <div className="w-1/2 h-full p-8 border-r">
-        <h2 className="mb-4 text-2xl font-semibold">
-          {projectDetails?.projectName}
-        </h2>
-        <p className="mb-2">
-          <strong>Company Name:</strong> {projectDetails?.CompanyName}
-        </p>
-        <p className="mb-2">
-          <strong>Duration:</strong> {projectDetails?.duration}
-        </p>
-        <p className="mb-2 min-h-28 w-28 text-ellipsis whitespace-nowrap">
-          <strong>Description:</strong> {`${projectDetails?.Description}`}
-        </p>
-        <p className="mb-2">
-          <strong>Company Email:</strong> {projectDetails?.Email}
-        </p>
-        <p className="mb-2">
-          <strong>Skills Required:</strong>
-        </p>
-        <ul className="list-disc list-inside">
-          {(projectDetails?.SkillsRequired || []).map((skill, index) => (
-            <li key={index}>{skill}</li>
-          ))}
-        </ul>
-      </div>
+    <div className="w-full md:w-1/2 h-full p-8 border-b md:border-r md:border-b-0 border-gray-200">
+  <h2 className="mb-4 text-2xl font-semibold text-[#00ffff]">
+    {projectDetails?.projectName}
+  </h2>
+  <p className="mb-2">
+    <strong>Company Name:</strong> <span className="text-gray-200">{projectDetails?.CompanyName}hello</span>
+  </p>
+  <p className="mb-2">
+    <strong>Duration:</strong> <span className="text-gray-200">{projectDetails?.duration}</span>
+  </p>
+  <p className="mb-2">
+    <strong>Description:</strong>
+  </p>
+  <p className="mb-4 text-gray-200 min-h-28 w-full overflow-hidden text-ellipsis">
+    {projectDetails?.Description}
+  </p>
+  <p className="mb-2">
+    <strong>Company Email:</strong> <span className="text-gray-200">{projectDetails?.Email}</span>
+  </p>
+  <p className="mb-2">
+    <strong>Skills Required:</strong>
+  </p>
+  <ul className="list-disc list-inside text-gray-200">
+    {(projectDetails?.SkillsRequired || []).map((skill, index) => (
+      <li key={index}>{skill}</li>
+    ))}
+  </ul>
+</div>
 
-      <div className="w-1/2 p-8 text-white">
+
+      <div className="w-full md:w-1/2 p-8 text-white">
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
           <div className="mb-4">
             <label className="block ">Company Email</label>
@@ -178,7 +182,7 @@ setTimeout(()=>{
 
           <button
             type="submit"
-            className="p-2 text-white bg-blue-500 rounded"
+            className="p-2 text-white bg-blue-200 rounded"
           >
             Submit
           </button>

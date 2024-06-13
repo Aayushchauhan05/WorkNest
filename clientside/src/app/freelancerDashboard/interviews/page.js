@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
 import Header from "@/components/Header/Header";
-import { ProgressBar } from 'react-loader-spinner'
+
 
 function Page() {
   const [userExp, setUserExp] = useState(3);
@@ -13,14 +13,14 @@ function Page() {
   const [isApplying, setIsApplying] = useState(false);
   const [applyMessage, setApplyMessage] = useState('');
   const [isVerified, setIsVerified] = useState(false);
-  const [loading, setLoading] = useState(false);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const fetchProfileData = async () => {
     try {
-      setLoading(true);
+    
       const token = localStorage.getItem("token");
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
         method: "GET",
@@ -31,7 +31,7 @@ function Page() {
       const data = await response.json();
       console.log(data);
       setUserinfo(data.Data);
-      setLoading(false);
+     
     } catch (error) {
       console.error(error);
     }
@@ -42,17 +42,7 @@ function Page() {
   
   }, []);
 
-  if (loading) {
-    return <ProgressBar
-    visible={true}
-    height="80"
-    width="80"
-    color="#4fa94d"
-    ariaLabel="progress-bar-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    />; 
-  }
+ 
 
 
   const handleApplyClick = () => {
