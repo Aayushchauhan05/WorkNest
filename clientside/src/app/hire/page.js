@@ -4,6 +4,7 @@ import Filter from "@/components/Filter/Filter";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import Link from "next/link";
+
 export default function Component() {
   const [filters, setFilters] = useState({
     skills: "All",
@@ -13,6 +14,7 @@ export default function Component() {
   const [freelancerListings, setFreelancerListings] = useState([]);
   const [filteredFreelancers, setFilteredFreelancers] = useState([]);
   const [filterKey, setFilterKey] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchdata();
@@ -100,63 +102,71 @@ export default function Component() {
   };
 
   return (
-    <div className="">
+    <div className="w-screen mx-auto">
       <header className="sticky top-0 z-10 w-full px-6 py-4 text-white bg-black">
         <div className="container flex items-center justify-between mx-auto">
-          <h1 className="text-2xl font-bold">Freelancers</h1>
+          <h1 className="text-2xl font-bold ">Freelancers</h1>
         </div>
       </header>
-      <div className="container grid grid-cols-1 gap-6 py-8 mx-auto text-white bg-black md:grid-cols-12">
-        <div className="sticky w-auto h-auto col-span-1 p-6 rounded shadow-md bg-cyan-700 md:col-span-3 top-24">
-          <Filter
-            key={filterKey}
-            onFilterChange={handleFilterChange}
-            isjobPortal={false}
-          />
-          <button
-            className="p-2 mt-5 bg-red-600 rounded-md"
-            onClick={resetFilters}
-          >
-            Reset Filters
-          </button>
-        </div>
-        <div className="col-span-1 mb-10 md:col-span-9">
-          {filteredFreelancers.map((freelancer) => (
-            <div
-              key={freelancer._id}
-              className="mb-4 overflow-hidden text-black bg-white rounded-lg shadow-md dark:bg-gray-950"
+      <div className="container flex flex-col md:flex-row gap-6 py-8 mx-auto text-white bg-black">
+        <div className={`w-full md:w-1/4 h-full p-6 bg-cyan-700 fixed md:sticky top-10 ${isMenuOpen ? "block" : "hidden md:block"}`}>
+          <div className="md:sticky md:top-30">
+            <Filter
+              key={filterKey}
+              onFilterChange={handleFilterChange}
+              isfreelancerPortal={false}
+            />
+            <button
+              className="p-2 mt-5 bg-red-600 rounded-md"
+              onClick={resetFilters}
             >
-              <div className="flex flex-col p-4">
-                <h3 className="text-lg font-bold">{freelancer?.firstName}</h3>
-                <div className="flex items-center mb-2 space-x-2">
-                  {(freelancer.skills || []).map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+              Reset Filters
+            </button>
+          </div>
+        </div>
+        <div className="w-full md:w-3/4 ml-auto">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredFreelancers.map((freelancer) => (
+              <div
+                key={freelancer._id}
+                className="mb-4 overflow-hidden text-black  rounded-lg shadow-md dark:bg-gray-950"
+              >
+                <div className="relative mt-2 overflow-hidden text-black bg-gray-200 border rounded-lg shadow-2xl group">
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col p-6 space-y-4">
+                      <h3 className="text-lg font-bold text-center">{freelancer?.firstName}</h3>
+                      <div className="flex flex-col space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">Price:</span>
+                          <span> <span className="text-gray-500 dark:text-gray-400">
+                              {`${10}/hr`}
+                            </span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-gray-700 p-6 bg-gray-200 border-t border-gray-700">
+                      {(freelancer.skills || []).map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 py-1 text-xs text-gray-700 bg-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      <Link href={`/hire/${freelancer._id}`} className="inline-flex items-center justify-center w-[20%] h-10 bg-cyan-800 rounded-md text-sm font-medium text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-3">
+                        Hire
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center mb-2 space-x-2">
-                  <span className="text-gray-500 dark:text-gray-400">
-                    {`${10}/hr`}
-                  </span>
-                </div>
-                <Link href={`/hire/${freelancer._id}`}
-                  variant="primary"
-                  className="w-full bg-gray-900 text-gray-50 hover:bg-gray-900/90 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90"
-                 
-                >
-                  hire
-                </Link>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <div>
           <button
             className={`bg-cyan-700 z-50 left-0 bottom-0 w-full hover:bg-cyan-700 text-white font-bold px-20 py-4 rounded fixed md:hidden`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             Filter
           </button>

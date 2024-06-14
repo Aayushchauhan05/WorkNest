@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/TMorSKlrRQ4
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -12,7 +8,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
+
 export default function Component() {
+
+
+
 //  const [count,setcount]= useState(0)
 //  useEffect(() => {
 //   const fetchData = async () => {
@@ -31,6 +31,8 @@ export default function Component() {
 //     console.log("Cleanup function called");
 //   };
 // }, []);
+
+
   return (
     <div className="text-white bg-black">
       

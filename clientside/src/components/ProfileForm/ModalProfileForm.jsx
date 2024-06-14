@@ -9,7 +9,12 @@ function ModalProfileForm({
   isProfessional,
   isExperience,
 }) {
-  const [formData, setFormData] = useState({ ...profile, certifications: [] });
+
+  const [formData, setFormData] = useState({
+    ...profile,
+    certifications: profile.certifications || [],
+    socialLinks: profile.socialLinks || {},
+  });
   const [inputValue, setInputValue] = useState("");
   const [skills, setSkills] = useState(formData.skills || []);
   const [title, setTitle] = useState("");
@@ -90,7 +95,7 @@ function ModalProfileForm({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="absolute inset-0 bg-black bg-opacity-50 "
+        className="absolute inset-0 bg-black bg-opacity-50"
         onClick={onClose}
       ></div>
       <div className="z-10 w-full max-w-lg p-6 bg-white rounded-lg mx-2 md:h-[70%] overflow-scroll">
@@ -103,8 +108,9 @@ function ModalProfileForm({
                   label={"Full Name"}
                   name={"name"}
                   type={"text"}
-                  value={formData.name}
+                  value={`${profile?.firstName} ${profile?.lastName}`}
                   onChange={handleChange}
+                  disabled={true}
                 />
               </div>
               <div className="grid">
@@ -112,6 +118,7 @@ function ModalProfileForm({
                   label={"Profession"}
                   name={"profession"}
                   type={"text"}
+                  placeholder={"Enter Your Profession"}
                   value={formData.profession}
                   onChange={handleChange}
                 />
@@ -121,7 +128,8 @@ function ModalProfileForm({
               <InputField
                 label={"Experience"}
                 name={"experience"}
-                type={"text"}
+                type={"number"}
+                placeholder={"Enter Your Experience in Years"}
                 value={formData.experience}
                 onChange={handleChange}
               />
@@ -131,6 +139,7 @@ function ModalProfileForm({
                 label={"Location"}
                 name={"location"}
                 type={"text"}
+                placeholder={"Enter Your Location"}
                 value={formData.location}
                 onChange={handleChange}
               />
@@ -140,7 +149,8 @@ function ModalProfileForm({
                 label={"Email"}
                 name={"email"}
                 type={"text"}
-                value={formData.email}
+                disabled={true}
+                value={profile.Email}
                 onChange={handleChange}
               />
             </div>
@@ -149,6 +159,7 @@ function ModalProfileForm({
                 label={"Bio"}
                 name={"bio"}
                 type={"text"}
+                placeholder={"write about Your Self"}
                 value={formData.bio}
                 onChange={handleChange}
               />
@@ -160,6 +171,7 @@ function ModalProfileForm({
                 name={"socialLinks.instagram"}
                 id={"instagram"}
                 type={"text"}
+                placeholder={"Add Instagram Link"}
                 value={formData.socialLinks.instagram || ""}
                 onChange={handleChange}
               />
@@ -170,6 +182,7 @@ function ModalProfileForm({
                 name={"socialLinks.linkedin"}
                 id={"linkedin"}
                 type={"text"}
+                placeholder={"Add LinkedIn Link"}
                 value={formData.socialLinks.linkedin || ""}
                 onChange={handleChange}
               />
@@ -179,6 +192,7 @@ function ModalProfileForm({
                 label={`Portfolio Website ${" "}`}
                 name={"socialLinks.portfolio"}
                 id={"portfolio"}
+                placeholder={"Add Website Link"}
                 type={"text"}
                 value={formData.socialLinks.portfolio || ""}
                 onChange={handleChange}
@@ -208,7 +222,7 @@ function ModalProfileForm({
                 </div>
                 <div className="grid gap-2">
                   <InputField
-                    label={" Phone Number"}
+                    label={"Phone Number"}
                     name={"phone"}
                     id={"phone"}
                     type={"text"}
@@ -307,7 +321,7 @@ function ModalProfileForm({
                   </div>
                   <button
                     type="button"
-                    className=" items-center px-4 py-2 text-sm font-medium  text-white rounded-md bg-cyan-600 hover:bg-cyan-700"
+                    className="items-center px-4 py-2 text-sm font-medium text-white rounded-md bg-cyan-600 hover:bg-cyan-700"
                     onClick={addCertificate}
                   >
                     Add Certificate

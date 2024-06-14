@@ -8,6 +8,7 @@ import { GoProjectRoadmap } from 'react-icons/go';
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
 import Header from '@/components/Header/Header';
 import { useAuth } from '@/context/context';
+import { ProgressBar } from 'react-loader-spinner'
 
 function Page() {
   const router = useRouter(); 
@@ -15,6 +16,7 @@ function Page() {
  
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userinfo, setUserinfo] = useState({});
   const { token } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
@@ -22,9 +24,33 @@ function Page() {
   };
 
 
-  const dummyProject = {
-  
-  };
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+        if (isMounted) {
+          setUserinfo(data.Data);
+          }
+      } catch (error) {
+        console.log("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
 
   const fetchProjects = async () => {
     try {
@@ -44,7 +70,7 @@ function Page() {
       }
     } catch (error) {
       console.error(error);
-      // Set dummy project data if there's an error fetching from API
+     
       setProjects([dummyProject]);
     } finally {
       setLoading(false);
@@ -83,21 +109,31 @@ function Page() {
         <VerticalNav
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}
+          isfreelance={true}
           isProject={true}
           filterProjectsByStatus={filterProjectsByStatus}
-          userName={'ayush badoria'}
+          userName={`${userinfo?.firstName} ${userinfo?.lastName}`}
           userProfession={'Software Developer'}
         />
         <div className="flex flex-col w-full">
           <Header
-            companyName="Company XYZ"
+            companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
             pageName="Your Projects"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
           />
           <main className="container md:pl-72 flex items-center justify-center w-screen">
             {loading ? (
-              <div className='text-white'>Loading...</div>
+              <div className='flex items-center h-full justify-center'>
+                <ProgressBar
+              visible={true}
+              height="80"
+              width="50vw"
+              color="#4fa94d"
+              ariaLabel="progress-bar-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              /></div>
             ) : projects.length ? (
               <section className="flex flex-col items-center md:ml-5 mt-5 justify-center w-full p-6 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg">
                 {(filteredProjects || projects).map((project, index) => (

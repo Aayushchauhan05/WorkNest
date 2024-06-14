@@ -81,12 +81,12 @@ function ProfilePage() {
           userProfession={`${profileData.Position}`} 
         />
         <div className="flex flex-col w-full">
-          {/* <Header
+          <Header
             companyName="Company XYZ"
             pageName="Your Profile"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
-          /> */}
+          />
           <ProfileComponent 
             name={profileData?.firstName}
             initials={"Dehix"}
