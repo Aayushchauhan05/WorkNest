@@ -2,25 +2,33 @@ const { Business } = require("../models/Business/Businessreg");
 const { ProjectListByBusiness, Totalprojectlistedbybusiness } = require("../models/Business/ProjectSchema");
 const{Freelancer}=require("../models/freelancer/Freelancerreg")
 const{Project}= require("../models/freelancer/projectSchema")
+const ListprojectBybusiness = async (req, res) => {
+  try {
+      const frontenddata = req.body;
+      console.log("Frontend data received:", frontenddata);
+      
+      const { Email } = req.user;
+      console.log("User email:", Email);
 
-const ListprojectBybusiness= async (req,res)=>{
-    try {
-        const {projectName,Description,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer}=req.body;
-const {Email}= req.user;
-const project= await ProjectListByBusiness.create({projectName,Description,Email,CompanyName,Start,End,SkillsRequired,Role,projectType,TotalNeedOffreelancer})
+      const project = await ProjectListByBusiness.create({...frontenddata,Email:Email});
+      const { _id } = project;
+      console.log("Project ID:", _id);
 
-const{_id}=project;
-console.log("projectid",_id);
+      const projectUpdate = await Business.findOneAndUpdate(
+          { Email },
+          { $push: { ProjectList: _id } },
+          { new: true } 
+      );
 
-  const projectupdate=  await Business.findOneAndUpdate({Email},{$push:{ProjectList:_id}});
-console.log(projectupdate)
-return res.status(200).send(projectupdate)
-    } catch (error) {
-       console.log(error);
-       return res.status(500).json({message:"Internal server error"}) 
-    }
+      console.log("Updated business document:", projectUpdate);
 
-}
+   
+      return res.status(200).send(projectUpdate);
+  } catch (error) {
+      console.error("Error in ListprojectBybusiness:", error);
+      return res.status(500).json({ message: "Internal server error" });
+  }
+};
 
 const getprojectdata= async (req,res)=>{
 try {

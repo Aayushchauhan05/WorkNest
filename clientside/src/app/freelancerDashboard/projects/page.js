@@ -37,6 +37,7 @@ function Page() {
       });
       const data = await response.json();
       if (response.ok) {
+        console.log(data.data.ProjectList)
         setProjects(data.data.ProjectList);
       } else {
         throw new Error(data.error || 'Failed to fetch project data');

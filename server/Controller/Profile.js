@@ -10,7 +10,10 @@ try {
         if (isfreelancer) {
             Data = await Freelancer.findOne({Email}).populate("project").populate("pendingProject").populate("rejectedProject").populate("acceptedProject");
         } else {
-            Data = await Business.findOne({ Email });
+            Data = await Business.findOne({ Email }). populate({
+                path: 'hirefreelancer.freelancer', 
+                model: 'freelancer_data'
+            });
         }
         console.log(Data)
     if (!Data) {

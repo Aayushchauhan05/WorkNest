@@ -113,7 +113,7 @@ const business_reg = async (req, res) => {
       return res.status(401).json({ message: "Company already exist" });
     }
 
-    const hashpass = await bcrypt.hash(password, 14);
+    const hashpass = await bcrypt.hash(data.password, 14);
     const otpcode = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       specialChars: false,

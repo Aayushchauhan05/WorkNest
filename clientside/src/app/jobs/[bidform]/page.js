@@ -5,9 +5,10 @@ import { useParams, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
+
 const JobApplicationForm = () => {
   const { bidform } = useParams();
-const router=useRouter()
+  const router = useRouter();
   const initialValues = {
     desiredSalary: "",
     role: "",
@@ -84,27 +85,26 @@ const router=useRouter()
           },
         }
       );
-    
-        console.log("Success:", response.data);
-      
+
+      console.log("Success:", response.data);
+
       // Reset form after successful submission
       setProjectId("");
       setFormData(initialValues);
-        toast.success("bid successfull")
-setTimeout(()=>{
-  router.push("/jobs")
-},1000)
-      
-      
+      toast.success("Bid successful");
+      setTimeout(() => {
+        router.push("/jobs");
+      }, 1000);
+
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   return (
-    <div className="flex h-full max-w-4xl mx-auto bg-white rounded-md shadow-md">
-    <Link href={"/jobs"}>Go back</Link>
-      <div className="w-1/2 h-full p-8 border-r">
+    <div className="flex flex-col md:flex-row h-full max-w-4xl mx-auto bg-white rounded-md shadow-md">
+      <Link href={"/jobs"} className="p-4 text-blue-500 underline">Go back</Link>
+      <div className="w-full md:w-1/2 h-full p-8 border-b md:border-b-0 md:border-r">
         <h2 className="mb-4 text-2xl font-semibold">
           {projectDetails?.projectName}
         </h2>
@@ -114,8 +114,11 @@ setTimeout(()=>{
         <p className="mb-2">
           <strong>Duration:</strong> {projectDetails?.duration}
         </p>
-        <p className="mb-2 min-h-28 w-28 text-ellipsis whitespace-nowrap">
-          <strong>Description:</strong> {`${projectDetails?.Description}`}
+        <p className="mb-2">
+          <strong>Description:</strong>
+          <span className="block mt-1 max-h-[70vh] overflow-y-auto text-justify">
+            {projectDetails?.Description}
+          </span>
         </p>
         <p className="mb-2">
           <strong>Company Email:</strong> {projectDetails?.Email}
@@ -130,7 +133,7 @@ setTimeout(()=>{
         </ul>
       </div>
 
-      <div className="w-1/2 p-8">
+      <div className="w-full md:w-1/2 p-8">
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
           <div className="mb-4">
             <label className="block text-gray-700">Company Email</label>
