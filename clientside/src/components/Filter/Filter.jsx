@@ -13,7 +13,7 @@ const Filter = ({ onFilterChange,  isjobPortal }) => {
 
   return isjobPortal ? (
     <div>
-      <div className="flex flex-col gap-5 md:min-w-[10rem] text-white">
+      <div className="flex flex-col gap-5 md:min-w-[10rem] max-h-[90vh ] text-white">
         <h3>Job Categories</h3>
         <div>
           <div class="flex items-center border-b hover:bg-cyan-500  rounded px-2   border-gray-500 pb-3 pt-3">

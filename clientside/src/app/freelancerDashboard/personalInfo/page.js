@@ -7,24 +7,15 @@ import Header from "@/components/Header/Header";
 import ProfileComponent from "@/components/Profile/ProfileComponent";
 import ModalProfileForm from "@/components/ProfileForm/ModalProfileForm";
 
+
+
 function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userinfo, setUserinfo] = useState([]);
   const { token } = useAuth();
-  const [profileData, setProfileData] = useState({
-    name: 'Ayush Badoria',
-    initials: 'AB',
-    profession: 'Software Developer',
-    location: 'Delhi, India',
-    email: 'imdezcode@gmail.com',
-    bio: 'A software developer who has passion for development',
-    experience: '7',
-    socialLinks: {
-      instagram: 'https://instagram.com',
-      linkedin: 'https://linkedin.com',
-      portfolio: 'https://portfolio.com'
-    }
-  });
+ 
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,12 +26,14 @@ function ProfilePage() {
   };
 
   const handleProfileUpdate = (updatedProfile) => {
-    setProfileData(updatedProfile);
+    setUserinfo(updatedProfile);
     toggleModal();
   };
 
   const fetchData = async () => {
+   
     try {
+      
       const token=localStorage.getItem("token")
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
         method: "GET",
@@ -49,7 +42,8 @@ function ProfilePage() {
         }
       });
       const data = await response.json();
-      console.log(data);
+setUserinfo(data.Data);
+
     } catch (error) {
       console.log(error);
     }
@@ -58,6 +52,7 @@ function ProfilePage() {
   useEffect(() => {
     fetchData();
   }, []);
+ 
 
   return (
     <>
@@ -67,25 +62,20 @@ function ProfilePage() {
           isActive={"profile"} 
           toggleMenu={toggleMenu} 
           isCompanyDashboard={false} 
-          userName={profileData.name} 
-          userProfession={profileData.profession} 
+          userName={`${userinfo?.firstName} ${userinfo?.lastName}`} 
+          userProfession={'Software Developer'} 
         />
         <div className="flex flex-col w-full">
           <Header
-            companyName="Company XYZ"
+            companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
             pageName="Your Profile"
             isCompanydashboard={true}
             toggleMenu={toggleMenu}
           />
           <ProfileComponent 
-            name={profileData.name}
-            initials={profileData.initials}
-            jobTitle={profileData.profession}
-            location={profileData.location}
-            email={profileData.email}
-            profileDescription={profileData.bio}
-            experience={profileData.experience}
-            socialLinks={profileData.socialLinks}
+            name={`${userinfo?.firstName} ${userinfo?.lastName}`}
+            jobTitle={'software Developer'}
+            email={userinfo?.Email}
             toggleModal={toggleModal}
             isCompanyDashboard={true}
             isProfile={true}
@@ -94,7 +84,7 @@ function ProfilePage() {
       </div>
       {isModalOpen && (
         <ModalProfileForm
-          profile={profileData}
+          profile={userinfo}
           onClose={toggleModal}
           onUpdate={handleProfileUpdate}
         />

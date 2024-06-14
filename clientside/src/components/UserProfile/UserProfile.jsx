@@ -9,7 +9,7 @@ const UserProfile = ({ userName, userProfession }) => {
 
   return (
     <Link href="/companydashboard/profile" className="mb-5">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 md:mt-0 mt-5">
         <span className="relative flex shrink-0 overflow-hidden rounded-full h-12 w-12 md:h-14 md:w-14">
           <span className="flex h-full w-full items-center text-black justify-center rounded-full bg-muted">
             {Initials}

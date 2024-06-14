@@ -9,7 +9,7 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
 
   return (
     <div className="flex flex-col w-full">
-      <header className="fixed w-screen z-30 bg-gray-900 shadow-sm dark:bg-gray-900">
+      <header className="fixed w-screen z-10 bg-gray-900 shadow-sm dark:bg-gray-900">
         <div className="container flex items-center justify-between px-6 md:pl-64 lg:pl-72 py-4 mx-auto">
           <div className="flex items-center gap-4">
             <button 
@@ -21,8 +21,8 @@ const Header = ({ userName, userProfession, companyName, pageName,  isCompanydas
             </button>
 
             {isCompanydashboard ? (
-           <div className='h-[3rem]'>
-           <h1 className="text-3xl font-bold text-cyan-700 dark:text-gray-50">{companyName}</h1>
+           <div className=''>
+           <h1 className="text-3xl font-bold text-cyan-700 md:ml-10 dark:text-gray-50">{companyName}</h1>
           
          </div>
          

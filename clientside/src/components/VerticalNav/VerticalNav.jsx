@@ -11,8 +11,8 @@ import { FiXCircle } from "react-icons/fi";
 import UserProfile from "../UserProfile/UserProfile";
 import { GoPlusCircle } from "react-icons/go";
 
-
 const VerticalNav = ({
+  isfreelance,
   isMenuOpen,
   toggleMenu,
   isCompanyDashboard,
@@ -29,16 +29,25 @@ const VerticalNav = ({
 
   const menuItemClasses = (isActiveCondition) =>
     `flex items-center gap-3 px-3 py-2 transition-colors rounded-md ${
-      isActiveCondition ? "bg-gray-800 text-white" : "hover:bg-gray-800 hover:text-white"
+      isActiveCondition
+        ? "bg-gray-800 text-white"
+        : "hover:bg-gray-800 hover:text-white"
     }`;
 
-  const renderLink = (href, label, Icon, condition) => (
-    <Link href={href} className={menuItemClasses(condition)}>
+  const renderLink = (href, label, Icon, condition, onClick) => (
+    <Link href={href} onClick={onClick} className={menuItemClasses(condition)}>
       <Icon /> {label}
     </Link>
   );
 
-  const renderButton = (label, Icon, condition, onClick) => (
+  const renderButton = (
+    label,
+    Icon,
+    condition,
+    onClick,
+    toggleMenu,
+    isfreelance
+  ) => (
     <button onClick={onClick} className={menuItemClasses(condition)}>
       <Icon /> {label}
     </button>
@@ -53,40 +62,140 @@ const VerticalNav = ({
       <div className="flex flex-col gap-6">
         <button
           onClick={toggleMenu}
-          className="absolute top-0 right-0 z-50 p-5 text-xl md:hidden"
+          className="absolute top-0 right-0 ml-10 z-50 p-5  text-xl md:hidden"
         >
-         <FiXCircle />
+          <FiXCircle />
         </button>
         <nav className="flex flex-col gap-2 h-screen">
-        <UserProfile userName={userName} userProfession={userProfession} />
+          <UserProfile userName={userName} userProfession={userProfession} />
 
-          {isProject? (
+          {isProject ? (
             <>
-              {renderLink("/companydashboard", "Dashboard", MdDashboard, isActive === "dashboard")}
-              {renderLink("/companydashboard/projects/listproject","Add Project", GoPlusCircle, isActive === "Add Project")}
-              {renderButton("View All", CiViewList, isActive === "view all", () => filterProjectsByStatus("view all"))}
-              {renderButton("Ongoing", IoMdCodeWorking, isActive === "ongoing", () => filterProjectsByStatus("ongoing"))}
-              {renderButton("Pending", FiXSquare, isActive === "pending", () => filterProjectsByStatus("pending"))}
-              {renderButton("Completed", FiCheckSquare, isActive === "completed", () => filterProjectsByStatus("complete"))}
+              {isfreelance
+                ? renderLink(
+                    "/freelancerDashboard",
+                    "Dashboard",
+                    MdDashboard,
+                    isActive === "dashboard"
+                  )
+                : renderLink(
+                    "/companydashboard",
+                    "Dashboard",
+                    MdDashboard,
+                    isActive === "dashboard"
+                  )}
+
+              {isfreelance?renderLink(
+                "/freelancerDashboard/projects/listproject",
+                "Add Project",
+                GoPlusCircle,
+                isActive === "Add Project"
+              ):renderLink(
+                "/companydashboard/projects/listproject",
+                "Add Project",
+                GoPlusCircle,
+                isActive === "Add Project"
+              )}
+              {renderButton(
+                "View All",
+                CiViewList,
+                isActive === "view all",
+                () => filterProjectsByStatus("view all")
+              )}
+              {renderButton(
+                "Ongoing",
+                IoMdCodeWorking,
+                isActive === "ongoing",
+                () => filterProjectsByStatus("ongoing")
+              )}
+              {renderButton("Pending", FiXSquare, isActive === "pending", () =>
+                filterProjectsByStatus("pending")
+              )}
+              {renderButton(
+                "Completed",
+                FiCheckSquare,
+                isActive === "completed",
+                () => filterProjectsByStatus("complete")
+              )}
             </>
           ) : isCompanyDashboard ? (
             <>
-              {renderLink("/companydashboard", "Dashboard", MdDashboard, isActive === "dashboard")}
-              {renderLink("/companydashboard/personalinfo", "Profile", FaRegUser, isActive === "profile")}
-              {renderLink("/companydashboard/professionalinfo", "Professional Info", FaBriefcase, isActive === "professionalinfo")}
-              {renderLink("/companydashboard/projects", "Projects", FaProjectDiagram, isActive === "projects")}
+              {renderLink(
+                "/companydashboard",
+                "Dashboard",
+                MdDashboard,
+                isActive === "dashboard"
+              )}
+              {renderLink(
+                "/companydashboard/personalinfo",
+                "Profile",
+                FaRegUser,
+                isActive === "profile"
+              )}
+              {renderLink(
+                "/companydashboard/professionalinfo",
+                "Professional Info",
+                FaBriefcase,
+                isActive === "professionalinfo"
+              )}
+              {renderLink(
+                "/companydashboard/projects",
+                "Projects",
+                FaProjectDiagram,
+                isActive === "projects"
+              )}
               {/* {renderLink("/companydashboard/selectfreelancer", "Select Freelancer", BiSelectMultiple, isActive === "selectfreelancer")} */}
-              {renderLink("/companydashboard/viewfreelancer", "View Freelancer", SiFreelancer, isActive === "viewfreelancer")}
+              {renderLink(
+                "/companydashboard/viewfreelancer",
+                "View Freelancer",
+                SiFreelancer,
+                isActive === "viewfreelancer"
+              )}
             </>
           ) : (
             <>
-              {renderLink("/freelancerDashboard", "Dashboard", MdDashboard, isActive === "dashboard")}
-              {renderLink("/freelancerDashboard/personalInfo", "Personal Info", FaRegUser, isActive === "personalinfo")}
-              {renderLink("/freelancerDashboard/professionalInfo", "Professional Info", FaBriefcase, isActive === "professionalinfo")}
-              {renderLink("/freelancerDashboard/skillsAndProjects", "Skills And Projects", GiSkills, isActive === "skillsandprojects")}
-              {renderLink("/freelancerDashboard/projects", "Freelance Projects", FaProjectDiagram, isActive === "freelanceprojects")}
-              {renderLink("/freelancerDashboard/interviews", "Interview", FaProjectDiagram, isActive === "interview")}
-              {renderLink("/freelancerDashboard/oracleVerify", "Oracle", FaProjectDiagram, isActive === "oracle")}
+              {renderLink(
+                "/freelancerDashboard",
+                "Dashboard",
+                MdDashboard,
+                isActive === "dashboard"
+              )}
+              {renderLink(
+                "/freelancerDashboard/personalInfo",
+                "Personal Info",
+                FaRegUser,
+                isActive === "personalinfo"
+              )}
+              {renderLink(
+                "/freelancerDashboard/professionalInfo",
+                "Professional Info",
+                FaBriefcase,
+                isActive === "professionalinfo"
+              )}
+              {renderLink(
+                "/freelancerDashboard/skillsAndProjects",
+                "Skills And Projects",
+                GiSkills,
+                isActive === "skillsandprojects"
+              )}
+              {renderLink(
+                "/freelancerDashboard/projects",
+                "Freelance Projects",
+                FaProjectDiagram,
+                isActive === "freelanceprojects"
+              )}
+              {renderLink(
+                "/freelancerDashboard/interviews",
+                "Interview",
+                FaProjectDiagram,
+                isActive === "interview"
+              )}
+              {renderLink(
+                "/freelancerDashboard/oracleVerify",
+                "Oracle",
+                FaProjectDiagram,
+                isActive === "oracle"
+              )}
             </>
           )}
         </nav>

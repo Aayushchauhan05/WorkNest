@@ -61,13 +61,13 @@ export default function Component() {
   });
 
   return (
-    <div className="flex items-center justify-center px-4 py-12 pt-44 bg-gray-950 sm:px-6 lg:px-8" style={{ height: 'calc(100vh - 5rem)'}}>
-      <div className="w-full max-w-md space-y-8">
+    <div className="flex items-center justify-center px-4 py-12 mb-20 bg-gray-950 sm:px-6 lg:px-8" style={{ height: 'calc(100vh - 5rem)'}}>
+      <div className="w-full max-w-md space-y-8 h-[70vh] ">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-center text-white ">Register Your Business</h2>
           <p className="mt-2 text-sm text-center text-gray-400">Join our platform and start showcasing your company</p>
         </div>
-        <section className="flex flex-col items-center justify-center w-full p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
+        <section className="flex flex-col items-center justify-center w-full  p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
           <form action="#" className="space-y-6" method="POST" onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -113,7 +113,7 @@ export default function Component() {
                   onChange={formik.handleChange}
                   value={formik.values.companyName}
                   type="text"
-                  minLength={8}
+                  
                 />
               </div>
               <div className="space-y-2">
@@ -128,7 +128,7 @@ export default function Component() {
                   onChange={formik.handleChange}
                   value={formik.values.Position}
                   type="text"
-                  minLength={8}
+                 
                 />
               </div>
             </div>
