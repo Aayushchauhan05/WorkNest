@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link"
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
@@ -7,7 +7,7 @@ import { useParams, useRouter } from 'next/navigation';
 import VerticalNav from "@/components/VerticalNav/VerticalNav"
 import Header from "@/components/Header/Header"
 
-export default function Component({params}) {
+export default function Component({ params }) {
   const [projectDetails, setProjectDetails] = useState();
   const [freelancers, setFreelancers] = useState([]);
   const [actionDetails, setActionDetails] = useState({
@@ -65,7 +65,7 @@ export default function Component({params}) {
   useEffect(() => {
     fetchData();
     fetchFreelancerData();
-  }, [loading]);
+  }, []);
 
   const handleAction = async () => {
     try {
@@ -85,20 +85,14 @@ export default function Component({params}) {
         },
         body: JSON.stringify(update)
       });
-    const data=  await response.json();
-    console.log(data)
+      const data = await response.json();
+      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (actionDetails.status && actionDetails.Email) {
-      handleAction();
-    }
-  }, [actionDetails]);
 
   const handleClick = (e) => {
     const action = e.target.getAttribute("data-action");
@@ -108,8 +102,8 @@ export default function Component({params}) {
       Email: Email,
       projectId: actionDetails.projectId
     });
+    handleAction();
   };
-
   return (
     <div className="flex w-full h-screen text-white">
       <VerticalNav

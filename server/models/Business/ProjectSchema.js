@@ -33,6 +33,9 @@ const {Schema,model}= require("mongoose");
         type:String,
         required:true
     }],
+    experience:{
+        type:String
+    },
     Role:{
         type:String,
         required:true

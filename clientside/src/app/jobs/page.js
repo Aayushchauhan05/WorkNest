@@ -91,7 +91,7 @@ function Page() {
        
             isjobPortal={true}
           />
-          <button className="bg-red-600 mt-5 p-2 rounded-md" onClick={() => {
+          <button className="p-2 mt-5 bg-red-600 rounded-md" onClick={() => {
             resetFilters()
             setFilterKey(prevKey => prevKey + 1)}}>
         Reset Filters
@@ -113,7 +113,7 @@ function Page() {
       <div className="flex flex-col space-y-2">
         <div className="flex items-center justify-between">
           <span className="font-medium">Client:</span>
-          <span>{job.companyName}</span>
+          <span>{job.CompanyName}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-medium text-gray-400">Due Date:</span>

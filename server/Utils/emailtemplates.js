@@ -33,11 +33,11 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
   </head>
   <body>
       <div class="container">
-          <div class="header">Update on Your Application for ${freelancer.projectId} at ${user.companyName}</div>
+          <div class="header">Update on Your Application for ${freelancer.projectId} at ${user.CompanyName}</div>
           <div class="content">
               <p>Dear ${freelancer.firstName}</p>
               <p>I hope this message finds you well.</p>
-              <p>Thank you for applying for the [Project Name] at [Company Name]. We appreciate the time and effort you put into your application.</p>
+              <p>Thank you for applying for the ${freelancer.projectId} at${user.CompanyName} . We appreciate the time and effort you put into your application.</p>
   
               ${
                 !action == 'rejected'
@@ -55,7 +55,7 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
                     </div>`
                   : `<div class="rejected">
                       <p>After careful consideration, we regret to inform you that we have decided to move forward with another candidate for this project. This decision was not easy, as we received numerous applications from highly qualified professionals.</p>
-                      <p>While your application for this particular project was not successful, we were impressed with your qualifications and would like to keep your profile in our records for future opportunities. We encourage you to apply for other projects at  ${user.companyName} that match your skills and experience. Please feel free to check our job board regularly for new openings.</p>
+                      <p>While your application for this particular project was not successful, we were impressed with your qualifications and would like to keep your profile in our records for future opportunities. We encourage you to apply for other projects at  ${user.CompanyName} that match your skills and experience. Please feel free to check our job board regularly for new openings.</p>
                       <p>Thank you once again for your interest and understanding.</p>
                     </div>`
               }
@@ -65,7 +65,7 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
           <div class="footer">
               Kind regards,<br>
              ${user.position}<br>
-             ${user.companyName}<br>
+             ${user.CompanyName}<br>
           </div>
       </div>
   </body>
@@ -129,7 +129,7 @@ const acceptAndRejectApplication = (action,user,freelancer) => {
           </div>
           <div class="footer">
               Kind regards,<br>
-              ${business.companyName}<br>
+              ${business.CompanyName}<br>
               ${business.Email}
           </div>
       </div>

@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from 'react';
 import { Formik, Field, Form, FieldArray } from 'formik';
@@ -22,6 +21,7 @@ const ProjectForm = () => {
     Role: '',
     projectType: '',
     TotalNeedOffreelancer: '',
+    experience: ''
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -53,7 +53,7 @@ const ProjectForm = () => {
       } else {
         const errorText = await response.json();
         console.error('Error:', errorText);
-        toast.error(`Error: ${data.message}`);
+        toast.error(`Error: ${errorText.message}`);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -85,6 +85,7 @@ const ProjectForm = () => {
               <label className="block mb-1 text-cyan-400">Company Name</label>
               <Field name="CompanyName" placeholder="Company Name" className="w-full p-2 text-white bg-black border border-white rounded" />
             </div>
+            
             <div className="form-group">
               <label className="block mb-1 text-cyan-400">Start Date</label>
               <Field name="Start" type="date" className="w-full p-2 text-white bg-black border border-white rounded" />
@@ -118,6 +119,15 @@ const ProjectForm = () => {
             <div className="form-group">
               <label className="block mb-1 text-cyan-400">Total Number of Freelancers Needed</label>
               <Field name="TotalNeedOffreelancer" placeholder="Total Number of Freelancers Needed" className="w-full p-2 text-white bg-black border border-white rounded" />
+            </div>
+            <div className="form-group">
+              <label className="block mb-1 text-cyan-400">Experience</label>
+              <Field as="select" name="experience" className="w-full p-2 text-white bg-black border border-white rounded">
+                <option value="">Select Experience</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="expert">Expert</option>
+              </Field>
             </div>
             <button type="submit" disabled={isSubmitting || loading} className="w-full py-2 text-white border-white rounded-md bg-cyan-500 hover:bg-cyan-400">
               {loading ? 'Submitting...' : 'Submit'}

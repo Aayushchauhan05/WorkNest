@@ -6,6 +6,7 @@ const {ListprojectBybusiness, getprojectdata}= require("../Controller/project");
 const ActionFromBusinessSide = require("../Controller/ActionsOnBid");
 const{appliedFreelancerDetails}= require("../Controller/appliedcandidatesdetails");
 const { hireFreelancer } = require("../Controller/FreelancerhireApi");
+const { hirefilter } = require("../Controller/Filterapi");
 const route= express.Router();
 
 // POST-Routes
@@ -17,4 +18,5 @@ route.get("/Getprojectdata",Authmiddle,getprojectdata)// For Business.
 route.put("/Action",Authmiddle,ActionFromBusinessSide)// TO ACCEPT OR REJECT x
 route.get("/appliedFreelancerData/:id",Authmiddle,appliedFreelancerDetails)
 route.post("/hirefreelancer/:id",Authmiddle,hireFreelancer)
+route.get("/filterfreelancer",hirefilter)
 module.exports= route;

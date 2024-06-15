@@ -5,6 +5,7 @@ import VerticalNav from '@/components/VerticalNav/VerticalNav';
 import InputField from "../../../components/Input/InputField";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import Header from "@/components/Header/Header";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,14 +17,6 @@ function Page() {
   const [newSkill, setNewSkill] = useState('');
   const [projects, setProjects] = useState([]);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [projectFormData, setProjectFormData] = useState({
-    projectName: '',
-    techStack: '',
-    duration: '',
-    description: '',
-    deployedLink: '',
-    githubLink: '',
-  });
   const [userinfo, setUserinfo] = useState({});
   const { token } = useAuth();
 
@@ -69,27 +62,6 @@ function Page() {
     }
   };
 
-  const handleProjectInputChange = (e) => {
-    const { name, value } = e.target;
-    setProjectFormData({
-      ...projectFormData,
-      [name]: value,
-    });
-  };
-
-  const handleAddProject = () => {
-    setProjects([...projects, projectFormData]);
-    setProjectFormData({
-      projectName: '',
-      techStack: '',
-      duration: '',
-      description: '',
-      deployedLink: '',
-      githubLink: '',
-    });
-    setIsProjectModalOpen(false);
-  };
-
   const handleDeleteProject = (index) => {
     const updatedProjects = [...projects];
     updatedProjects.splice(index, 1);
@@ -100,12 +72,64 @@ function Page() {
     setSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
   };
 
+  const validateProjectForm = (values) => {
+    const errors = {};
+    if (!values.projectName) {
+      errors.projectName = 'Project Name is required';
+    }
+    if (!values.techStack) {
+      errors.techStack = 'Tech Stack is required';
+    }
+    if (!values.duration) {
+      errors.duration = 'Duration is required';
+    }
+    if (!values.description) {
+      errors.description = 'Description is required';
+    }
+    if (!values.deployedLink) {
+      errors.deployedLink = 'Deployed Link is required';
+    } else if (!/^https?:\/\/.+$/.test(values.deployedLink)) {
+      errors.deployedLink = 'Invalid URL';
+    }
+    if (!values.githubLink) {
+      errors.githubLink = 'GitHub Link is required';
+    } else if (!/^https?:\/\/.+$/.test(values.githubLink)) {
+      errors.githubLink = 'Invalid URL';
+    }
+    return errors;
+  };
+
+  const handleAddProject = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/projects`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(values)
+      });
+
+      if (response.ok) {
+        const newProject = await response.json();
+        setProjects([...projects, newProject]);
+        resetForm();
+        setIsProjectModalOpen(false);
+      } else {
+        console.error('Failed to add project');
+      }
+    } catch (error) {
+      console.error('Error adding project:', error);
+    }
+    setSubmitting(false);
+  };
+
   return (
     <>
-      <div className="flex w-auto overflow-x-hidden h-screen">
+      <div className="flex w-auto h-screen overflow-x-hidden">
         <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"skillsandprojects"} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"} />
         <div className="flex flex-col w-full">
-        <Header
+          <Header
             companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
             pageName="Your Professional Info"
             isCompanydashboard={true}
@@ -113,7 +137,6 @@ function Page() {
           />
           <main className="container md:ml-80">
             <div className="mx-auto mt-8 text-white">
-            
               <div className="mb-8">
                 <h2 className="mb-2 text-xl font-bold">Add Skills:</h2>
                 <div className="flex text-black">
@@ -189,7 +212,7 @@ function Page() {
                               </div>
                               <button
                                 onClick={() => handleDeleteProject(index)}
-                                className="absolute top-2 right-2 px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none"
+                                className="absolute px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md top-2 right-2 hover:bg-red-600 focus:outline-none"
                               >
                                 Delete
                               </button>
@@ -209,93 +232,93 @@ function Page() {
                   ></div>
                   <div className="z-10 w-full max-w-lg p-6 bg-white text-black rounded-lg mx-2 md:h-[70%] overflow-scroll">
                     <h2 className="mb-4 text-lg font-semibold">Add Project</h2>
-                    <form>
-                      <div className="grid gap-4">
-                        <div className="grid gap-2">
-                          <InputField
-                            label="Project Name"
-                            name="projectName"
-                            type="text"
-                            value={projectFormData.projectName}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter project name"
-                            required
-                          />
-                        </div>
-                        <div className="grid gap-2">
-                          <InputField
-                            label="Tech Stack"
-                            name="techStack"
-                            type="text"
-                            value={projectFormData.techStack}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter tech stack"
-                            required
-                          />
-                        </div>
-                        <div className="grid gap-2">
-                          <InputField
-                            label="Duration"
-                            name="duration"
-                            type="text"
-                            value={projectFormData.duration}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter duration"
-                            required
-                          />
-                        </div>
-                        <div className="grid gap-2">
-                          <InputField
-                            label="Description"
-                            name="description"
-                            type="textarea"
-                            value={projectFormData.description}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter description"
-                            required
-                            rows="3"
-                          />
-                        </div>
-                        <div className="grid gap-2">
-                          <InputField
-                            label="Deployed Link"
-                            name="deployedLink"
-                            type="text"
-                            value={projectFormData.deployedLink}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter deployed link"
-                            required
-                          />
-                        </div>
-                        <div className="grid gap-2">
-                          <InputField
-                            label="GitHub Link"
-                            name="githubLink"
-                            type="text"
-                            value={projectFormData.githubLink}
-                            onChange={handleProjectInputChange}
-                            placeholder="Enter GitHub link"
-                            required
-                          />
-                        </div>
-                        <div className="flex justify-end mt-4">
-                          <button
-                            type="button"
-                            onClick={() => setIsProjectModalOpen(false)}
-                            className="inline-flex items-center px-4 py-2 mr-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleAddProject}
-                            className="inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded-md bg-cyan-600 hover:bg-cyan-700"
-                          >
-                            Add Project
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                    <Formik
+                      initialValues={{
+                        projectName: '',
+                        techStack: '',
+                        duration: '',
+                        description: '',
+                        deployedLink: '',
+                        githubLink: '',
+                      }}
+                      validate={validateProjectForm}
+                      onSubmit={handleAddProject}
+                    >
+                      {({ isSubmitting }) => (
+                        <Form>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="projectName">Project Name</label>
+                            <Field
+                              type="text"
+                              name="projectName"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="projectName" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="techStack">Tech Stack</label>
+                            <Field
+                              type="text"
+                              name="techStack"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="techStack" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="duration">Duration</label>
+                            <Field
+                              type="text"
+                              name="duration"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="duration" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="description">Description</label>
+                            <Field
+                              as="textarea"
+                              name="description"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="description" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="deployedLink">Deployed Link</label>
+                            <Field
+                              type="text"
+                              name="deployedLink"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="deployedLink" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-medium" htmlFor="githubLink">GitHub Link</label>
+                            <Field
+                              type="text"
+                              name="githubLink"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                            <ErrorMessage name="githubLink" component="div" className="mt-1 text-sm text-red-600" />
+                          </div>
+                          <div className="flex justify-end">
+                            <button
+                              type="button"
+                              className="px-4 py-2 mr-4 text-white bg-gray-600 rounded-md"
+                              onClick={() => setIsProjectModalOpen(false)}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              disabled={isSubmitting}
+                              className="px-4 py-2 text-white rounded-md bg-cyan-800"
+                            >
+                              {isSubmitting ? 'Adding...' : 'Add Project'}
+                            </button>
+                          </div>
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
                 </div>
               )}
