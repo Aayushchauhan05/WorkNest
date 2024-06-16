@@ -100,7 +100,7 @@ function page() {
               <div className="grid gap-4 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">1</h3>
+                    <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">{userinfo.acceptedProject?.length}</h3>
                     <p className="text-gray-500 dark:text-gray-400">Pending Projects</p>
                   </div>
                   <svg

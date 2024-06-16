@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import VerticalNav from "@/components/VerticalNav/VerticalNav";
 import Header from "@/components/Header/Header";
-
+import { FaArrowLeft } from "react-icons/fa";
 export default function Component({ params }) {
   const [projectDetails, setProjectDetails] = useState();
   const [freelancers, setFreelancers] = useState([]);
@@ -73,6 +73,7 @@ export default function Component({ params }) {
         /> */}
         <main className="container flex items-center justify-center w-screen md:pl-72">
           <div className="container flex flex-col md:flex-row">
+          <Link href={"/freelancerDashboard/projects"} className="text-2xl"><FaArrowLeft />Go Back</Link>
             <section className="flex flex-col items-center justify-center p-6 mt-5 space-y-4 text-white bg-gray-800 rounded-lg shadow-lg md:ml-5">
               <div className="col-span-2 space-y-8">
                 <div>

@@ -36,8 +36,9 @@ function Page() {
       if (response.ok) {
         console.log(data.Data.project)
         setUserinfo(data.Data);
-        // setSkills(data.Data.Skills.split(','));
+        setSkills((data.Data.skills||[]).split(','));
         setProjects(data.Data.project || []);
+        // setSkills()
       }
     } catch (error) {
       console.log("Error fetching user info:", error);
