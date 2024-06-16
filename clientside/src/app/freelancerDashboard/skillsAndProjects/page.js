@@ -36,7 +36,7 @@ function Page() {
       if (response.ok) {
         console.log(data.Data.project)
         setUserinfo(data.Data);
-        setSkills((data.Data.skills||[]).split(','));
+      setSkills(data.Data.skills||[]);
         setProjects(data.Data.project || []);
         // setSkills()
       }
@@ -47,7 +47,9 @@ function Page() {
   useEffect(() => {
     fetchUserInfo();
   }, []);
-
+useEffect(()=>{
+  fetchUserInfo();
+},[newSkill])
   const handleSkillInputChange = (e) => {
     setNewSkill(e.target.value);
   };
@@ -55,6 +57,7 @@ function Page() {
   const handleAddSkill = () => {
     if (newSkill.trim() !== '') {
       setSkills([...skills, newSkill.trim()]);
+      addskills()
       setNewSkill('');
     }
   };
@@ -75,6 +78,7 @@ function Page() {
     const values = Object.fromEntries(formData.entries());
 
     try {
+      const token= localStorage.getItem("token")
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/Listproject`, {
         method: "POST",
         headers: {
@@ -98,25 +102,30 @@ function Page() {
     }
   };
 
-  // const fetchProfileData = async () => {
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/Api/profile`, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setUserinfo(data.Data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // useEffect(()=>{
-  //   fetchProfileData
-  // },[])
+  const addskills = async () => {
+    try {
+      console.log("hitting")
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/addskills`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(
+          newSkill
+        )
+      });
+      const data = await response.json();
+      if(response.ok){
+toast.success(`${data.message}`)
+      }
+      console.log(data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+ 
   return (
     <>
       <div className="flex w-auto h-screen overflow-x-hidden">
@@ -177,7 +186,7 @@ function Page() {
                     <section className="flex flex-col items-center justify-center w-[70vw] p-6 space-y-4 bg-gray-800 text-white rounded-lg shadow-lg">
                       <div className="flex flex-col w-full">
                         <div className="flex flex-col items-center space-y-4">
-                          {userinfo.project.map((project, index) => (
+                          {(userinfo?.project || []).map((project, index) => (
                             <div
                               key={index}
                               className={`relative flex flex-col items-start space-y-2 w-full border-gray-600 p-4 ${index === projects.length - 1 ? "" : "border-b"}`}

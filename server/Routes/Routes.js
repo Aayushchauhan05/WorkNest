@@ -15,7 +15,7 @@ route.get("/profile",Authmiddle,profile);
 route.get("/Allproject",dataForAllAndFilter); // For All
 route.get("/projectinfo/:id",projectinfo)
 route.post("/otp",otpverify)
-route.put("/editprofile",editProfile)
+route.put("/editprofile",Authmiddle,editProfile)
 route.get("/allFreelancer",freelancerData)
 route.get("/freelancerinfo/:id",freelancerInfo)
 module.exports= route;

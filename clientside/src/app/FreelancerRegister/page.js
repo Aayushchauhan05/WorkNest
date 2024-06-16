@@ -15,6 +15,7 @@ const Form = () => {
     password: '',
     Email: '',
     phone: '',
+    Skills:[]
   });
   const [loading, setloading] = useState(false)
   const handleChange = (e) => {

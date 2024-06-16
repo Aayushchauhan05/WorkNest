@@ -29,7 +29,7 @@ const freelancer_schema = new Schema(
       type: String,
       // required: true,
     },
-    professionalInfo: {
+    professionalInfo: [{
       company: {
         type: String,
       },
@@ -54,18 +54,19 @@ const freelancer_schema = new Schema(
       githubRepoLink: {
         type: String,
       },
-    },
+    }],
     Skills: [
       {
-        name: {
-          type: String,
-        },
-        level: {
-          type: String,
-        },
-        experience: {
-          type: String,
-        },
+        type:String
+        // name: {
+        //   type: String,
+        // },
+        // level: {
+        //   type: String,
+        // },
+        // experience: {
+        //   type: String,
+        // },
       },
     ],
     Education: [
