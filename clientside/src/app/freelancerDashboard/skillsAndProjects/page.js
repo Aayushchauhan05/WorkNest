@@ -1,56 +1,55 @@
-'use client'
-import { useAuth } from '@/context/context';
+"use client"
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '@/context/context';
 import VerticalNav from '@/components/VerticalNav/VerticalNav';
-import InputField from "../../../components/Input/InputField";
+import Header from '@/components/Header/Header';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import Header from "@/components/Header/Header";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
   const [projects, setProjects] = useState([]);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-  const [userinfo, setUserinfo] = useState({});
+  const [userinfo, setUserinfo] = useState([]);
   const { token } = useAuth();
 
-  useEffect(() => {
-    let isMounted = true;
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    const fetchUserInfo = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
-        });
 
-        const data = await response.json();
-        if (isMounted) {
-          console.log(data.Data)
-          setUserinfo(data.Data);
-          setSkills(data.Data.Skills.split(','));
-          setProjects(data.Data.project || []);
+
+  const fetchUserInfo = async () => {
+    try {
+      const token= localStorage.getItem("token")
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/profile`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
         }
-      } catch (error) {
-        console.log("Error fetching user info:", error);
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.Data.project)
+        setUserinfo(data.Data);
+      setSkills(data.Data.skills||[]);
+        setProjects(data.Data.project || []);
+        // setSkills()
       }
-    };
-
+    } catch (error) {
+      console.log("Error fetching user info:", error);
+    }
+  };
+  useEffect(() => {
     fetchUserInfo();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [token]);
-
+  }, []);
+useEffect(()=>{
+  fetchUserInfo();
+},[newSkill])
   const handleSkillInputChange = (e) => {
     setNewSkill(e.target.value);
   };
@@ -58,8 +57,13 @@ function Page() {
   const handleAddSkill = () => {
     if (newSkill.trim() !== '') {
       setSkills([...skills, newSkill.trim()]);
+      addskills()
       setNewSkill('');
     }
+  };
+
+  const handleDeleteSkill = (index) => {
+    setSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
   };
 
   const handleDeleteProject = (index) => {
@@ -68,40 +72,14 @@ function Page() {
     setProjects(updatedProjects);
   };
 
-  const handleDeleteSkill = (index) => {
-    setSkills((prevSkills) => prevSkills.filter((_, i) => i !== index));
-  };
+  const handleAddProject = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const values = Object.fromEntries(formData.entries());
 
-  const validateProjectForm = (values) => {
-    const errors = {};
-    if (!values.projectName) {
-      errors.projectName = 'Project Name is required';
-    }
-    if (!values.techStack) {
-      errors.techStack = 'Tech Stack is required';
-    }
-    if (!values.duration) {
-      errors.duration = 'Duration is required';
-    }
-    if (!values.description) {
-      errors.description = 'Description is required';
-    }
-    if (!values.deployedLink) {
-      errors.deployedLink = 'Deployed Link is required';
-    } else if (!/^https?:\/\/.+$/.test(values.deployedLink)) {
-      errors.deployedLink = 'Invalid URL';
-    }
-    if (!values.githubLink) {
-      errors.githubLink = 'GitHub Link is required';
-    } else if (!/^https?:\/\/.+$/.test(values.githubLink)) {
-      errors.githubLink = 'Invalid URL';
-    }
-    return errors;
-  };
-
-  const handleAddProject = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/projects`, {
+      const token= localStorage.getItem("token")
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/Listproject`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,22 +90,46 @@ function Page() {
 
       if (response.ok) {
         const newProject = await response.json();
+        toast.success("Project added successfully");
         setProjects([...projects, newProject]);
-        resetForm();
+        e.target.reset();
         setIsProjectModalOpen(false);
       } else {
-        console.error('Failed to add project');
+        toast.error('Failed to add project');
       }
     } catch (error) {
-      console.error('Error adding project:', error);
+      toast.error('Failed to add project');
     }
-    setSubmitting(false);
   };
 
+  const addskills = async () => {
+    try {
+      console.log("hitting")
+      const token = localStorage.getItem("token");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/freelancer/addskills`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(
+          newSkill
+        )
+      });
+      const data = await response.json();
+      if(response.ok){
+toast.success(`${data.message}`)
+      }
+      console.log(data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+ 
   return (
     <>
       <div className="flex w-auto h-screen overflow-x-hidden">
-        <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"skillsandprojects"} isCompanyDashboard={false} userName={"ayush badoria"} userProfession={"Software Developer"} />
+        <VerticalNav isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} isActive={"skillsandprojects"} isCompanyDashboard={false} userName={`${userinfo?.firstName}`} userProfession={``} />
         <div className="flex flex-col w-full">
           <Header
             companyName={`${userinfo?.firstName} ${userinfo?.lastName}`}
@@ -184,7 +186,7 @@ function Page() {
                     <section className="flex flex-col items-center justify-center w-[70vw] p-6 space-y-4 bg-gray-800 text-white rounded-lg shadow-lg">
                       <div className="flex flex-col w-full">
                         <div className="flex flex-col items-center space-y-4">
-                          {projects.map((project, index) => (
+                          {(userinfo?.project || []).map((project, index) => (
                             <div
                               key={index}
                               className={`relative flex flex-col items-start space-y-2 w-full border-gray-600 p-4 ${index === projects.length - 1 ? "" : "border-b"}`}
@@ -210,12 +212,12 @@ function Page() {
                                   </p>
                                 )}
                               </div>
-                              <button
+                              {/* <button
                                 onClick={() => handleDeleteProject(index)}
                                 className="absolute px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md top-2 right-2 hover:bg-red-600 focus:outline-none"
                               >
                                 Delete
-                              </button>
+                              </button> */}
                             </div>
                           ))}
                         </div>
@@ -224,108 +226,106 @@ function Page() {
                   </div>
                 )}
               </div>
-              {isProjectModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
-                  <div
-                    className="absolute inset-0 bg-black bg-opacity-50"
-                    onClick={() => setIsProjectModalOpen(false)}
-                  ></div>
-                  <div className="z-10 w-full max-w-lg p-6 bg-white text-black rounded-lg mx-2 md:h-[70%] overflow-scroll">
-                    <h2 className="mb-4 text-lg font-semibold">Add Project</h2>
-                    <Formik
-                      initialValues={{
-                        projectName: '',
-                        techStack: '',
-                        duration: '',
-                        description: '',
-                        deployedLink: '',
-                        githubLink: '',
-                      }}
-                      validate={validateProjectForm}
-                      onSubmit={handleAddProject}
-                    >
-                      {({ isSubmitting }) => (
-                        <Form>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="projectName">Project Name</label>
-                            <Field
-                              type="text"
-                              name="projectName"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="projectName" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="techStack">Tech Stack</label>
-                            <Field
-                              type="text"
-                              name="techStack"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="techStack" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="duration">Duration</label>
-                            <Field
-                              type="text"
-                              name="duration"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="duration" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="description">Description</label>
-                            <Field
-                              as="textarea"
-                              name="description"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="description" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="deployedLink">Deployed Link</label>
-                            <Field
-                              type="text"
-                              name="deployedLink"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="deployedLink" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block mb-2 text-sm font-medium" htmlFor="githubLink">GitHub Link</label>
-                            <Field
-                              type="text"
-                              name="githubLink"
-                              className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                            />
-                            <ErrorMessage name="githubLink" component="div" className="mt-1 text-sm text-red-600" />
-                          </div>
-                          <div className="flex justify-end">
-                            <button
-                              type="button"
-                              className="px-4 py-2 mr-4 text-white bg-gray-600 rounded-md"
-                              onClick={() => setIsProjectModalOpen(false)}
-                            >
-                              Cancel
-                            </button>
-                            <button
-                              type="submit"
-                              disabled={isSubmitting}
-                              className="px-4 py-2 text-white rounded-md bg-cyan-800"
-                            >
-                              {isSubmitting ? 'Adding...' : 'Add Project'}
-                            </button>
-                          </div>
-                        </Form>
-                      )}
-                    </Formik>
-                  </div>
-                </div>
-              )}
             </div>
           </main>
         </div>
       </div>
+      {isProjectModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="p-6 pt-32 bg-white rounded-lg shadow-lg w-[50vw] h-full overflow-y-auto">
+            <h2 className="mb-4 text-2xl font-bold">Add Project</h2>
+            <form onSubmit={handleAddProject}>
+              <div className="mb-4">
+                <label className="block mb-2">Project Name:</label>
+                <input
+                  type="text"
+                  name="projectName"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Description:</label>
+                <textarea
+                  name="Description"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">GitHub Link:</label>
+                <input
+                  type="text"
+                  name="githubLink"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Start Date:</label>
+                <input
+                  type="date"
+                  name="Start"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">End Date:</label>
+                <input
+                  type="date"
+                  name="End"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Reference:</label>
+                <input
+                  type="text"
+                  name="Refer"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Role:</label>
+                <input
+                  type="text"
+                  name="Role"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Project Type:</label>
+                <input
+                  type="text"
+                  name="projectType"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Tech Used:</label>
+                <input
+                  type="text"
+                  name="TechUsed"
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  className="px-4 py-2 mr-2 text-white bg-red-500 rounded-md"
+                  onClick={() => setIsProjectModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-white rounded-md bg-cyan-800"
+                >
+                  Add Project
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      <ToastContainer />
     </>
   );
 }

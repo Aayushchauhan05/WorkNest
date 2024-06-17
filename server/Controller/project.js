@@ -84,4 +84,33 @@ try {
 //   const id= req.params;
 //   const data= await ProjectListByBusiness.findById(id)
 // }
-module.exports={ListprojectBybusiness,getprojectdata,project_reg,dataForAllAndFilter};
+// delete project Freelancer
+const deleteProjectFreelancer=async (req,res)=>{
+try {
+  const {id}= req.params;
+const projectExist= await Project.findById(id)
+if (!projectExist) {
+  return  res.status(404).json({message:"No project found with this name"})
+
+}
+const  project= await Project.findByIdAndDelete(id)
+return res.status(200).json({message:"Project deleted successfully"})
+
+
+} catch (error) {
+ console.log(error)
+ return res.status(500).json({message:"internal server error"}) 
+}
+}
+const UpdateFreelancer= async (req,res)=>{
+try {
+  const {id}=req.params;
+  const data=req.body;
+  const updateproject= await Project.findByIdAndUpdate(id,data,{new:true})
+  return res.status(200).json({message:"Project updated"})
+} catch (error) {
+  console.log(error)
+  return res.status(500).json({message:"internal server error"}) 
+}
+}
+module.exports={ListprojectBybusiness,getprojectdata,project_reg,dataForAllAndFilter,deleteProjectFreelancer,UpdateFreelancer};

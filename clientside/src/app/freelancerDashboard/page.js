@@ -61,7 +61,7 @@ function page() {
       isCompanydashboard={true} 
       toggleMenu={toggleMenu}
     />
-          <main className="container md:pl-72 grid gap-8 px-6 py-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
+          <main className="container grid gap-8 px-6 py-8 mx-auto md:pl-72 md:grid-cols-2 lg:grid-cols-3">
             <div className="border rounded-lg shadow-sm min-h-72 min-w-72 bg-card text-card-foreground h-72" data-v0-t="card">
               <div className="flex-col space-y-1.5 p-6 flex items-center justify-between">
                 <h3 className="text-2xl font-semibold leading-none tracking-tight whitespace-nowrap">Profile</h3>
@@ -100,7 +100,7 @@ function page() {
               <div className="grid gap-4 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">1</h3>
+                    <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-50">{userinfo.acceptedProject?.length}</h3>
                     <p className="text-gray-500 dark:text-gray-400">Pending Projects</p>
                   </div>
                   <svg

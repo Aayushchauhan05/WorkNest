@@ -45,8 +45,9 @@ const ProfileComponent = ({
     setNewExperience({ ...newExperience, [name]: value });
   };
 
-  const handleAddExperience = () => {
+  const handleAddExperience = async () => {
     experiences.push(newExperience);
+
     setShowAddExperienceForm(false);
     setNewExperience({
       position: "",
@@ -66,14 +67,14 @@ const ProfileComponent = ({
   return (
     <>
       {isCompanyDashboard && (
-        <div className="md:container md:relative flex flex-col items-center  min-h-screen  md:pl-72 ">
-          <div className="container flex flex-col items-center gap-8 md:p-6  ">
+        <div className="flex flex-col items-center min-h-screen md:container md:relative md:pl-72 ">
+          <div className="container flex flex-col items-center gap-8 md:p-6 ">
             <section className="relative flex flex-col items-center w-[100%] h-full space-y-4 overflow-hidden text-white bg-gray-800 rounded-lg shadow-lg">
               <div
                 className="relative bg-gradient-to-r from-green-400 to-blue-500 w-[100vw] h-[15rem] flex items-center justify-center
                rounded-t-lg"
               >
-                <div className="h-40 border bg-white w-40 absolute rounded-full top-36  md:left-50 flex items-center justify-center">
+                <div className="absolute flex items-center justify-center w-40 h-40 bg-white border rounded-full top-36 md:left-50">
                   <h2 className="text-5xl text-black">{Initials}</h2>
                 </div>
               </div>
@@ -136,7 +137,7 @@ const ProfileComponent = ({
                     <div className="flex flex-wrap gap-5">
                       {skills && skills.map((skill) => (
                         <div
-                          className="flex items-center border p-5 min-w-28 max-w-28 justify-center rounded-lg"
+                          className="flex items-center justify-center p-5 border rounded-lg min-w-28 max-w-28"
                           key={skill}
                         >
                           <h2>{skill}</h2>
@@ -210,13 +211,13 @@ const ProfileComponent = ({
                 {!showAddExperienceForm && (
                   <button
                     onClick={toggleAddExperienceForm}
-                    className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+                    className="px-4 py-2 mt-4 text-white bg-blue-500 rounded"
                   >
                     Add Experience
                   </button>
                 )}
                 {showAddExperienceForm && (
-                  <div className="flex flex-col items-center space-y-4 mt-4 w-full bg-gray-700 p-6 rounded-lg">
+                  <div className="flex flex-col items-center w-full p-6 mt-4 space-y-4 bg-gray-700 rounded-lg">
                     <div className="w-full">
                       <label className="block text-sm text-gray-300">
                         Position
@@ -227,7 +228,7 @@ const ProfileComponent = ({
                         value={newExperience.position}
                         placeholder="Position"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -240,7 +241,7 @@ const ProfileComponent = ({
                         value={newExperience.company}
                         placeholder="Company"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -253,7 +254,7 @@ const ProfileComponent = ({
                         value={newExperience.employmentType}
                         placeholder="Employment Type"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -266,7 +267,7 @@ const ProfileComponent = ({
                         value={newExperience.durationInYears}
                         placeholder="Duration in Years"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -279,7 +280,7 @@ const ProfileComponent = ({
                         value={newExperience.duration}
                         placeholder="Duration"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -292,7 +293,7 @@ const ProfileComponent = ({
                         value={newExperience.location}
                         placeholder="Location"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="w-full">
@@ -304,7 +305,7 @@ const ProfileComponent = ({
                         value={newExperience.description}
                         placeholder="Description"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 mt-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:border-blue-500 focus:outline-none"
+                        className="w-full px-4 py-2 mt-2 text-white bg-gray-800 border border-gray-600 rounded-md focus:border-blue-500 focus:outline-none"
                       />
                     </div>
                     <div className="flex gap-2 ">
