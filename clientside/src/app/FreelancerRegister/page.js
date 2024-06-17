@@ -15,6 +15,7 @@ const Form = () => {
     password: '',
     Email: '',
     phone: '',
+    workExperience:'',
     Skills:[]
   });
   const [loading, setloading] = useState(false)
@@ -149,7 +150,20 @@ const Form = () => {
                 type="text"
               />
             </div>
+            
+            <div className="mb-5 space-y-2">
 
+<Input
+  className="block w-full rounded-md border border-gray-300 bg-gray-950 py-2 px-3 text-gray-400 placeholder-gray-500 focus:border-[#00b8d4] focus:outline-none focus:ring-[#00b8d4]"
+  id="workExperience"
+  name="workExperience"
+  label="workExperience"
+  placeholder="Enter Work Experience"
+  required
+  value={values.workExperience} onChange={handleChange}
+  type="number"
+/>
+</div>
             <div className="mb-5 space-y-2">
 
               <Input

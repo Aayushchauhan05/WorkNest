@@ -96,7 +96,7 @@ exports.sendUserDetailsToOracle = async (req, res) => {
         { $sample: { size: 5 } }
       ]);
 
-      if (!randomUsers || randomUsers.length < 2) {
+      if (!randomUsers || randomUsers.length==0) {
         return { id: elem._id, status: 'no users found for verification' };
       }
 
@@ -116,3 +116,31 @@ exports.sendUserDetailsToOracle = async (req, res) => {
     return res.status(500).json({ message: "internal server error" });
   }
 }
+
+exports.sendUserProjectToOracle=async (req,res)=>{
+try {
+  const user= await Freelancer.find({$and:[{ workExperience: { $gte: 2} },{oracle:true}]})
+  const userData= await Promise.all(user.map(async (elem)=>{
+const randomUsers= await Project.aggregate([
+  { $match:{isverified:false} },
+  {$sample:{size:5}}
+  
+])
+if (!randomUsers || randomUsers.length==0) {
+  return { id: elem._id, status: 'no users found for verification' };
+}
+const randomUserIds = randomUsers.map(user => user._id);
+await Freelancer.findByIdAndUpdate(
+  { _id: elem._id },
+  { $addToSet: { oracleProject: { $each: randomUserIds } } }
+);
+return { id: elem._id, status: 'updated' };
+  }))
+
+  return res.status(200).json({ message: "success", data: updatedFreelancers });
+} catch (error) {
+  console.log(error)
+  return res.status(500).json({message:"Internal server error"})
+}
+}
+// oracleProject

@@ -13,6 +13,7 @@ const freelancer_schema = new Schema(
     userName: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -21,13 +22,13 @@ const freelancer_schema = new Schema(
     Email: {
       type: String,
       required: true,
+      unique: true,
     },
     phone: {
       type: String,
     },
     Dob: {
-      type: String,
-      // required: true,
+      type: Schema.Types.Date,
     },
     professionalInfo: [{
       company: {
@@ -54,19 +55,29 @@ const freelancer_schema = new Schema(
       githubRepoLink: {
         type: String,
       },
+      oracle_assigned: {
+        type: Schema.Types.ObjectId,
+        ref: 'freelancer_data',
+      },
+      verificationStatus: {
+        type: String,
+        default:"added" // e.g., "added", "verified", "rejected", "reapplied"
+      },
+      verificationUpdateTime: {
+        type: Schema.Types.Date,
+      },
     }],
     Skills: [
       {
-        type:String
-        // name: {
-        //   type: String,
-        // },
-        // level: {
-        //   type: String,
-        // },
-        // experience: {
-        //   type: String,
-        // },
+        name: {
+          type: String,
+        },
+        level: {
+          type: String,
+        },
+        experience: {
+          type: String,
+        },
       },
     ],
     Education: [
@@ -93,7 +104,6 @@ const freelancer_schema = new Schema(
     ],
     Role: {
       type: String,
-      // required: true,
     },
     project: [
       {
@@ -127,7 +137,6 @@ const freelancer_schema = new Schema(
     },
     perHourPrice: {
       type: Number,
-      // required: true,
     },
     connects: {
       type: Number,
@@ -140,8 +149,7 @@ const freelancer_schema = new Schema(
       type: String,
     },
     workExperience: {
-      type: String,
-      // required: true,
+      type:Number,
     },
     isfreelancer: {
       type: Boolean,
@@ -180,6 +188,12 @@ const freelancer_schema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "ProjectListByCompany",
+      },
+    ],
+    oracleProject: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Project",
       },
     ],
     oracledata: [

@@ -5,6 +5,7 @@ const {dataForAllAndFilter}= require("../Controller/project");
 const {profile, editProfile } = require("../Controller/Profile");
 const { projectinfo } = require("../Controller/projectinfo");
 const { freelancerData, freelancerInfo } = require("../Controller/FreelancerhireApi");
+const { sendUserProjectToOracle } = require("../Controller/Oracle");
 
 
 const route= express.Router();
@@ -18,4 +19,5 @@ route.post("/otp",otpverify)
 route.put("/editprofile",Authmiddle,editProfile)
 route.get("/allFreelancer",freelancerData)
 route.get("/freelancerinfo/:id",freelancerInfo)
+route.put("/projectDetailToOracle",sendUserProjectToOracle)
 module.exports= route;
