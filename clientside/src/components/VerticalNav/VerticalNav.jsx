@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MdDashboard } from "react-icons/md";
 import { FaRegUser, FaBriefcase, FaProjectDiagram } from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
-import { SiFreelancer } from "react-icons/si";
+// import { SiFreelancer } from "react-icons/si";
 import { FiCheckSquare, FiXSquare } from "react-icons/fi";
 import { IoMdCodeWorking } from "react-icons/io";
 import { CiViewList } from "react-icons/ci";
@@ -85,17 +85,19 @@ const VerticalNav = ({
                     isActive === "dashboard"
                   )}
 
-              {isfreelance?renderLink(
-                "/freelancerDashboard/projects/listproject",
-                "Add Project",
-                GoPlusCircle,
-                isActive === "Add Project"
-              ):renderLink(
-                "/companydashboard/projects/listproject",
-                "Add Project",
-                GoPlusCircle,
-                isActive === "Add Project"
-              )}
+              {isfreelance
+                ? renderLink(
+                    "/freelancerDashboard/projects/listproject",
+                    "Add Project",
+                    GoPlusCircle,
+                    isActive === "Add Project"
+                  )
+                : renderLink(
+                    "/companydashboard/projects/listproject",
+                    "Add Project",
+                    GoPlusCircle,
+                    isActive === "Add Project"
+                  )}
               {renderButton(
                 "View All",
                 CiViewList,
@@ -148,7 +150,7 @@ const VerticalNav = ({
               {renderLink(
                 "/companydashboard/viewfreelancer",
                 "View Freelancer",
-                SiFreelancer,
+                FaProjectDiagram,
                 isActive === "viewfreelancer"
               )}
             </>
