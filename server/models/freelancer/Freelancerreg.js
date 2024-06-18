@@ -30,43 +30,48 @@ const freelancer_schema = new Schema(
     Dob: {
       type: Schema.Types.Date,
     },
-    professionalInfo: [{
-      company: {
-        type: String,
+    professionalInfo: [
+      {
+        company: {
+          type: String,
+        },
+        jobTitle: {
+          type: String,
+        },
+        workDescription: {
+          type: String,
+        },
+        workFrom: {
+          type: String,
+        },
+        workTo: {
+          type: String,
+        },
+        referencePersonName: {
+          type: String,
+        },
+        referencePersonContact: {
+          type: String,
+        },
+        githubRepoLink: {
+          type: String,
+        },
+        oracle_assigned: {
+          type: Schema.Types.ObjectId,
+          ref: "freelancer_data",
+        },
+        verificationStatus: {
+          type: String,
+          default: "added", // e.g., "added", "verified", "rejected", "reapplied"
+        },
+        verificationUpdateTime: {
+          type: Schema.Types.Date,
+        },
+        comments: {
+          type: String,
+        },
       },
-      jobTitle: {
-        type: String,
-      },
-      workDescription: {
-        type: String,
-      },
-      workFrom: {
-        type: String,
-      },
-      workTo: {
-        type: String,
-      },
-      referencePersonName: {
-        type: String,
-      },
-      referencePersonContact: {
-        type: String,
-      },
-      githubRepoLink: {
-        type: String,
-      },
-      oracle_assigned: {
-        type: Schema.Types.ObjectId,
-        ref: 'freelancer_data',
-      },
-      verificationStatus: {
-        type: String,
-        default:"added" // e.g., "added", "verified", "rejected", "reapplied"
-      },
-      verificationUpdateTime: {
-        type: Schema.Types.Date,
-      },
-    }],
+    ],
     Skills: [
       {
         name: {
@@ -77,6 +82,17 @@ const freelancer_schema = new Schema(
         },
         experience: {
           type: String,
+        },
+        interviewStatus: {
+          type: String,
+          default: "pending", // e.g., "pending", "accepted", "rejected", "reapplied"
+        },
+        interviewInfo: {
+          type: Schema.Types.ObjectId,
+          ref: "Interview",
+        },
+        interviewerRating: {
+          type: Number, // out of 10
         },
       },
     ],
@@ -100,6 +116,20 @@ const freelancer_schema = new Schema(
         grade: {
           type: String,
         },
+        oracle_assigned: {
+          type: Schema.Types.ObjectId,
+          ref: "freelancer_data",
+        },
+        verificationStatus: {
+          type: String,
+          default: "added", // e.g., "added", "verified", "rejected", "reapplied"
+        },
+        verificationUpdateTime: {
+          type: Schema.Types.Date,
+        },
+        comments: {
+          type: String,
+        },
       },
     ],
     Role: {
@@ -109,6 +139,7 @@ const freelancer_schema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Project",
+        index: true,
       },
     ],
     Refer: {
@@ -118,13 +149,6 @@ const freelancer_schema = new Schema(
       contact: {
         type: String,
       },
-    },
-    verified: {
-      type: Schema.Types.Mixed,
-    },
-    isVerified: {
-      type: Boolean,
-      default: false,
     },
     githubLink: {
       type: String,
@@ -145,11 +169,8 @@ const freelancer_schema = new Schema(
     Resume: {
       type: Buffer,
     },
-    InterviewedBy: {
-      type: String,
-    },
     workExperience: {
-      type:Number,
+      type: Number,
     },
     isfreelancer: {
       type: Boolean,
@@ -157,13 +178,22 @@ const freelancer_schema = new Schema(
       default: true,
     },
     oracle: {
-      type: Boolean,
-      default: false,
+      type: String, //notApplied, applied, approved,failed, stopped, reapplied
     },
     consultant: {
-      type: Boolean,
-      required: true,
-      default: false,
+      status: {
+        type: String, // e.g., "notApplied", "applied", "approved", "failed", "stopped", "reapplied"
+        default: "notApplied",
+      },
+      domains: [
+        {
+          domain: { type: Schema.Types.ObjectId, ref: "Domain" },
+          domainName: { type: String },
+          experience: { type: Number },
+          description: { type: String },
+          status: { type: String }, //applied, verified, reapplied, rejected,
+        },
+      ],
     },
     otp: {
       type: String,
@@ -196,10 +226,16 @@ const freelancer_schema = new Schema(
         ref: "Project",
       },
     ],
-    oracledata: [
+    userDataForVerification: [
       {
         type: Schema.Types.ObjectId,
-        ref: "freelancer_data",
+        ref: "Verification",
+      },
+    ],
+    interviewsAligned: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Verification",
       },
     ],
   },

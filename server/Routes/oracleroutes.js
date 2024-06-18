@@ -1,36 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const oracleController = require("../Controller/Oracle");
-const OracleUserverificationmail=require("../Controller/OracleUserprojecttest")
-// Create a new Oracle entry
-router.post("/createOracle", oracleController.createOracle);
+const Oracle = require("../Controller/Freelancer/oracle");
 
-// Get all Oracle entries
-router.get("/getAllOracles", oracleController.getAllOracles);
-
-// Get a single Oracle entry by ID
-router.get("/getOracleById/:id", oracleController.getOracleById);
-
-// Update an Oracle entry by ID
-router.put("/updateOracle/:id", oracleController.updateOracle);
-
-// Delete an Oracle entry by ID
-router.delete("/deleteOracle/:id", oracleController.deleteOracle);
-
-// Delete an Oracle entry by FreelancerID
-router.get(
-  "/getOracleByFreelancerId/:id",
-  oracleController.getOracleByFreelancerId
-);
+router.get("/getOracleByFreelancerId/:id", Oracle.getOracleByFreelancerId);
 
 // Update an Oracle entry by FreelancerID
 router.put(
   "/updateOracleByFreelancerId/:id",
-  oracleController.updateOracleByFreelancerId
+  Oracle.updateOracleByFreelancerId
 );
 // email to oracle
-router.get("/EmailToOracle",OracleUserverificationmail);
+router.get("/EmailToOracle", Oracle.OracleUserverificationmail);
+
 // details to oracle
-router.put("/detailsToOracle",oracleController.sendUserDetailsToOracle)
+router.put("/detailsToOracle", Oracle.sendUserDetailsToOracle);
 
 module.exports = router;

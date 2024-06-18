@@ -39,9 +39,19 @@ const freelancer_project = new Schema(
     projectType: {
       type: String,
     },
-    isVerified: {
-      type: Boolean,
-      default: false,
+    oracle_assigned: {
+      type: Schema.Types.ObjectId,
+      ref: "freelancer_data",
+    },
+    verificationStatus: {
+      type: String,
+      default: "added", // e.g., "added", "verified", "rejected", "reapplied"
+    },
+    verificationUpdateTime: {
+      type: Schema.Types.Date,
+    },
+    comments: {
+      type: String,
     },
   },
   { timestamps: true }
