@@ -1,56 +1,65 @@
 const { Business } = require("../models/Business/Businessreg");
 const { ApplyForPosition } = require("../models/freelancer/Apply");
-const { AppliedCandidates } = require("../models/Business/ProjectSchema");
+const { AppliedCandidates, ProjectListByBusiness } = require("../models/Business/ProjectSchema");
 const { projectsDetailsToFreelancer } = require("../models/freelancer/Assignprojectschema");
 const { Freelancer } = require("../models/freelancer/Freelancerreg");
 
 const Applicationforwork = async (req, res) => {
   try {
-    const {companyemail, desiredSalary, role, projectId } = req.body;
-    const { firstName, Email, phone } = req.user;
-console.log("email",companyemail)
+    const { companyemail, desiredSalary, role, projectId, category } = req.body;
+    const { firstName, Email, phone, _id } = req.user;
+
+    console.log("email", companyemail);
+
+    // Check if the company exists
     const companyExist = await Business.findOne({ Email: companyemail });
     if (!companyExist) {
       return res.status(404).json({ message: "Company does not exist" });
     }
 
+    // Create a new application
     const application = await ApplyForPosition.create({
-     Email,
+      Email,
       desiredSalary,
       role,
       projectId
     });
 
-    // const projectDetailsToDashboardCheck = await projectsDetailsToFreelancer.findOne({ Email });
-    // if (!projectDetailsToDashboardCheck) {
-    //   await projectsDetailsToFreelancer.create({ Email, pendingProject: [projectId] });
-    // } else {
-    //   await projectsDetailsToFreelancer.findOneAndUpdate(
-    //     { Email },
-    //     { $push: { pendingProject: projectId } },
-    //     { new: true }
-    //   );
-    // }
-    const user= await Freelancer.findOneAndUpdate({Email}, { $addToSet: { pendingProject: projectId } },
-           { new: true })
+    // Update the freelancer's pending projects
+    await Freelancer.findByIdAndUpdate(
+      { _id },
+      { $addToSet: { pendingProject: projectId } },
+      { new: true }
+    );
 
-    const { _id } = application;
+    const applicationid = application._id;
     console.log(_id);
 
-    // const previousCandidates = await AppliedCandidates.findOne({ Email: companyemail });
-    // if (!previousCandidates) {
-    //   await AppliedCandidates.create({
-    //     companyName,
-    //     email: companyemail,
-    //     AppliedCandidates: [_id]
-    //   });
-    // } else {
-      await Business.findOneAndUpdate(
-        { Email: companyemail },
-        { $push: { AppliedCandidates: _id } },
-        { new: true }
-      );
-    // }
+    // Update the business with the new application
+    await Business.findOneAndUpdate(
+      { Email: companyemail },
+      { $push: { AppliedCandidates: applicationid } },
+      { new: true }
+    );
+
+    // Update the project details and add the candidate to the appliedCandidates array
+    const projectDetail = await ProjectListByBusiness.findOneAndUpdate(
+      { _id: projectId, "TotalNeedOffreelancer.category": category },
+      { $addToSet: { "TotalNeedOffreelancer.$.appliedCandidates": _id } },
+      { new: true }
+    );
+
+    if (projectDetail) {
+      const categoryDetail = projectDetail.TotalNeedOffreelancer.find(item => item.category === category);
+
+      if (categoryDetail && categoryDetail.accepted.length === categoryDetail.needOfFreelancer) {
+        
+        await ProjectListByBusiness.updateOne(
+          { _id: projectId, "TotalNeedOffreelancer.category": category },
+          { $set: { "TotalNeedOffreelancer.$.status": "not assigned" } }
+        );
+      }
+    }
 
     return res.status(200).json({ message: "Application submitted successfully" });
 

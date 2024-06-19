@@ -6,7 +6,7 @@ const { profile, editProfile } = require("../Controller/Profile");
 const { projectinfo } = require("../Controller/projectinfo");
 const { freelancerInfo } = require("../Controller/Freelancer/freelancer");
 const { freelancerData } = require("../Controller/Freelancer/employer");
-const { sendUserProjectToOracle } = require("../Controller/Freelancer/oracle");
+// const { sendUserProjectToOracle } = require("../Controller/Freelancer/oracle");
 
 const route = express.Router();
 
@@ -25,6 +25,6 @@ route.get("/allFreelancer", freelancerData);
 route.get("/freelancerinfo/:id", freelancerInfo);
 
 //Freelancer Profile for oracle
-route.put("/projectDetailToOracle", sendUserProjectToOracle);
+// route.put("/projectDetailToOracle", sendUserProjectToOracle);
 
 module.exports = route;

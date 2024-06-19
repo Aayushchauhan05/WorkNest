@@ -1,4 +1,4 @@
-const { unsolicitedJobOffer } = require("../Utils/emailtemplates");
+const { unsolicitedJobOffer } = require("../../Utils/emailtemplates");
 const { Business } = require("../../models/Business/Businessreg");
 const { Freelancer } = require("../../models/freelancer/Freelancerreg");
 const nodemailer = require("nodemailer");

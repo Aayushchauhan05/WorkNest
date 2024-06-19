@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
 const { Freelancer } = require("../../models/freelancer/Freelancerreg");
 const { Oracle } = require("../../models/oracle/oracle");
+const cron = require('node-cron');
+const { Business } = require("../../models/Business/Businessreg");
 
 async function main(useremail, transporter) {
   const info = await transporter.sendMail({
@@ -111,7 +113,7 @@ const OracleUserverificationmail = async (req, res) => {
   }
 };
 
-exports.updateOracleByFreelancerId = async (req, res) => {
+const updateOracleByFreelancerId = async (req, res) => {
   try {
     const oracle = await Oracle.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -123,7 +125,7 @@ exports.updateOracleByFreelancerId = async (req, res) => {
   }
 };
 
-exports.getOracleByFreelancerId = async (req, res) => {
+const getOracleByFreelancerId = async (req, res) => {
   try {
     const oracle = await Oracle.findOne({ freeLancerId: req.params.id });
     if (!oracle) return res.status(404).json({ message: "Oracle not found" });
@@ -134,14 +136,13 @@ exports.getOracleByFreelancerId = async (req, res) => {
   }
 };
 
-//need to work on these and add to cronjob
-exports.sendUserDetailsToOracle = async (req, res) => {
+const sendUserDetailsToOracle = async (req, res) => {
   try {
-    const freelancerData = await Freelancer.find({
-      $and: [{ workExperience: { $gte: 2 } }, { oracle: true }],
-    });
+    console.log("Running sendUserDetailsToOracle cron job");
+    
+    const freelancerData = await Freelancer.find({ workExperience: { $gte: 2 } },{ oracle: true });
     if (!freelancerData || freelancerData.length === 0) {
-      return res.status(404).json({ message: "no user found" });
+      return { status: "No data found for verification" };
     }
 
     const updatedFreelancers = await Promise.all(
@@ -151,8 +152,8 @@ exports.sendUserDetailsToOracle = async (req, res) => {
           { $sample: { size: 5 } },
         ]);
 
-        if (!randomUsers || randomUsers.length == 0) {
-          return { id: elem._id, status: "no users found for verification" };
+        if (!randomUsers || randomUsers.length === 0) {
+          return { id: elem._id, status: "No users found for verification" };
         }
 
         const randomUserIds = randomUsers.map((user) => user._id);
@@ -161,56 +162,131 @@ exports.sendUserDetailsToOracle = async (req, res) => {
           { $addToSet: { oracledata: { $each: randomUserIds } } }
         );
 
-        return { id: elem._id, status: "updated" };
+        return { id: elem._id, status: "Updated" };
       })
     );
 
-    return res
-      .status(200)
-      .json({ message: "success", data: updatedFreelancers });
+    return;
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "internal server error" });
+   return; 
   }
 };
 
-//need to work on these and add to cronjob
-exports.sendUserProjectToOracle = async (req, res) => {
+const sendUserProjectToOracle = async (req, res) => {
   try {
-    const user = await Freelancer.find({
-      $and: [{ workExperience: { $gte: 2 } }, { oracle: true }],
-    });
+    console.log("Running sendUserProjectToOracle cron job");
+
+    const users = await Freelancer.find({ $and: [{ workExperience: { $gte: 2 } }, { oracle: true }] });
     const userData = await Promise.all(
-      user.map(async (elem) => {
-        const randomUsers = await Project.aggregate([
+      users.map(async (elem) => {
+        const randomProjects = await Project.aggregate([
           { $match: { isverified: false } },
           { $sample: { size: 5 } },
         ]);
-        if (!randomUsers || randomUsers.length == 0) {
-          return { id: elem._id, status: "no users found for verification" };
+
+        if (!randomProjects || randomProjects.length === 0) {
+          return { id: elem._id, status: "No projects found for verification" };
         }
-        const randomUserIds = randomUsers.map((user) => user._id);
+
+        const randomProjectIds = randomProjects.map((project) => project._id);
         await Freelancer.findByIdAndUpdate(
           { _id: elem._id },
-          { $addToSet: { oracleProject: { $each: randomUserIds } } }
+          { $addToSet: { oracleProject: { $each: randomProjectIds } } }
         );
-        return { id: elem._id, status: "updated" };
+
+        return { id: elem._id, status: "Updated" };
       })
     );
+return;
 
-    return res
-      .status(200)
-      .json({ message: "success", data: updatedFreelancers });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Internal server error" });
+    return;
   }
 };
 
+const sendBusinessProjectToOracle = async (req, res) => {
+  try {
+    console.log("Running sendUserProjectToOracle cron job");
+
+    const users = await Freelancer.find({ $and: [{ workExperience: { $gte: 2 } }, { oracle: true }] });
+    const userData = await Promise.all(
+      users.map(async (elem) => {
+        const randomProjects = await ProjectListByBusiness.aggregate([
+          { $match: { isverified: false } },
+          { $sample: { size: 5 } },
+        ]);
+
+        if (!randomProjects || randomProjects.length === 0) {
+          return { id: elem._id, status: "No projects found for verification" };
+        }
+
+        const randomProjectIds = randomProjects.map((project) => project._id);
+        await Freelancer.findByIdAndUpdate(
+          { _id: elem._id },
+          { $addToSet: { oracleProject: { $each: randomProjectIds } } }
+        );
+
+        return { id: elem._id, status: "Updated" };
+      })
+    );
+return;
+
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
+const sendBusinessDetailToOracle= async ()=>{
+  try {
+    console.log("Running sendUserDetailsToOracle cron job");
+    
+    const freelancerData = await Freelancer.find({ workExperience: { $gte: 2 } },{ oracle: true });
+    if (!freelancerData || freelancerData.length === 0) {
+      return { status: "No data found for verification" };
+    }
+
+    const updatedFreelancers = await Promise.all(
+      freelancerData.map(async (elem) => {
+        const randomUsers = await Business.aggregate([
+          { $match: { isverified: false } },
+          { $sample: { size: 5 } },
+        ]);
+
+        if (!randomUsers || randomUsers.length === 0) {
+          return { id: elem._id, status: "No users found for verification" };
+        }
+
+        const randomUserIds = randomUsers.map((user) => user._id);
+        await Freelancer.findByIdAndUpdate(
+          { _id: elem._id },
+          { $addToSet: { oracledata: { $each: randomUserIds } } }
+        );
+
+        return { id: elem._id, status: "Updated" };
+      })
+    );
+
+    return;
+  } catch (error) {
+    console.log(error);
+   return; 
+  }
+}
+
+
+cron.schedule('0  0 */3 * **', () => {
+  sendUserDetailsToOracle({}, { status: () => {} }); 
+});
+
+cron.schedule('0  0 */3 * *', () => {
+  sendUserProjectToOracle({}, { status: () => {} }); 
+});
 module.exports = {
   OracleUserverificationmail,
   updateOracleByFreelancerId,
   getOracleByFreelancerId,
-  sendUserDetailsToOracle,
-  sendUserProjectToOracle,
+  // sendUserDetailsToOracle,
+  // sendUserProjectToOracle,
 };

@@ -185,15 +185,15 @@ const freelancer_schema = new Schema(
         type: String, // e.g., "notApplied", "applied", "approved", "failed", "stopped", "reapplied"
         default: "notApplied",
       },
-      domains: [
-        {
-          domain: { type: Schema.Types.ObjectId, ref: "Domain" },
-          domainName: { type: String },
-          experience: { type: Number },
-          description: { type: String },
-          status: { type: String }, //applied, verified, reapplied, rejected,
-        },
-      ],
+      // domains: [
+      //   {
+      //     domain: { type: Schema.Types.ObjectId, ref: "Domain" },
+      //     domainName: { type: String },
+      //     experience: { type: Number },
+      //     description: { type: String },
+      //     status: { type: String }, //applied, verified, reapplied, rejected,
+      //   },
+      // ],
     },
     otp: {
       type: String,

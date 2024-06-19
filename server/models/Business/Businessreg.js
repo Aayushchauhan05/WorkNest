@@ -28,10 +28,10 @@ const businessSchema = new Schema({
         type: String,
         required: true
     },
-    Dob: {
-        type: String,
+    // Dob: {
+    //     type: String,
         
-    },
+    // },
     Position: {
         type: String,
         

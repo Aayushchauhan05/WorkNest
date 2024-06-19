@@ -7,6 +7,9 @@ try {
     if (!data) {
         return res.status(404).json({message:"Project not found"});
     }
+    // if(data.){
+
+    // }
 return res.status(200).json({data})
 
 } catch (error) {

@@ -1,92 +1,85 @@
 
-const {Schema,model}= require("mongoose");
- const ProjectSchemaByBusiness= new Schema({
-    projectName:{
-        type:String,
-            required:true
+const { Schema, model } = require("mongoose");
+const ProjectSchemaByBusiness = new Schema({
+    projectName: {
+        type: String,
+        required: true
     },
-    Description:{
-        type:String,
-        required:true
+    Description: {
+        type: String,
+        required: true
     },
-    Email:{
-        type:String,
-        required:true
+    Email: {
+        type: String,
+        required: true
     },
-    verified:{
-        type:Schema.Types.Mixed
+    verified: {
+        type: Schema.Types.Mixed
     },
-    isVerified:{
-        type:String
+    isVerified: {
+        type: String
     },
-        CompanyName:{
-        type:String,
-        required:true
+    CompanyName: {
+        type: String,
+        required: true
     },
-    Start:{
-        type:Date
+    Start: {
+        type: Date
     },
-    End:{
-        type:Date
+    End: {
+        type: Date
     },
-    SkillsRequired:[{
-        type:String,
-        required:true
+    SkillsRequired: [{
+        type: String,
+        required: true
     }],
-    experience:{
-        type:String
+    experience: {
+        type: String
     },
-    Role:{
-        type:String,
-        required:true
+    Role: {
+        type: String,
+        required: true
     },
-    projectType:{
-        type:String,
-        required:true
+    projectType: {
+        type: String,
+        required: true
     },
-    TotalNeedOffreelancer:{
-        type:String,
-        required:true
-    },
-    status:{
-        type:String,
-        default:"Pending"
-    },
-    team:[{
-        type:Schema.Types.ObjectId,
-        ref:"freelancer_data"
-    }]
- })
- const TotalprojectlistedbybusinessSchema= new Schema({
-    Email:{
-        required:true,
-        type:String
-    },
-    CompanyName:{
-        required:true,
-        type:String
-    },
-    ProjectList:[{
-type:Schema.Types.ObjectId,
-ref:"ProjectListByCompany"
-    }]
+    TotalNeedOffreelancer: [{
+       
+        category: {
+            type: String
+        },
 
- });
- const  AppliedcandidatesSchema= new Schema({
-    companyName:{
-        type:String,
-        required:true 
+        needOfFreelancer: {
+            type: Number,
+        },
+        appliedCandidates: [{
+            type: Schema.Types.ObjectId,
+            ref: 'applicationforwork'
+        }],
+        rejected: [{
+            type: Schema.Types.ObjectId,
+            ref: 'applicationforwork'
+        }],
+        accepted: [{
+            type: Schema.Types.ObjectId,
+            ref: 'applicationforwork'
+        }],
+        status:{
+            type: String,
+            default: "Pending" // pending,not hiring
+        }
+    }],
+    status: {
+        type: String,
+        default: "Pending" // pending,not hiring
     },
-    email:{
-        type:String,
-        required:true 
-    },
-    Appliedcandidates:[{
-type:Schema.Types.ObjectId,
-ref:"Applicationforwork"
+    team: [{
+        type: Schema.Types.ObjectId,
+        ref: "freelancer_data"
     }]
 })
-const AppliedCandidates= new model("Appliedcandidatesforbusiness",AppliedcandidatesSchema)
-const Totalprojectlistedbybusiness= new model("Projectlistbusinesswise",TotalprojectlistedbybusinessSchema);
- const ProjectListByBusiness= new model("ProjectListByCompany",ProjectSchemaByBusiness);
-  module.exports={ProjectListByBusiness,Totalprojectlistedbybusiness,AppliedCandidates};
+
+
+const ProjectListByBusiness = new model("ProjectListByCompany", ProjectSchemaByBusiness);
+module.exports = { ProjectListByBusiness };

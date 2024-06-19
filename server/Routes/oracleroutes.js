@@ -13,6 +13,6 @@ router.put(
 router.get("/EmailToOracle", Oracle.OracleUserverificationmail);
 
 // details to oracle
-router.put("/detailsToOracle", Oracle.sendUserDetailsToOracle);
+// router.put("/detailsToOracle", Oracle.sendUserDetailsToOracle);
 
 module.exports = router;
