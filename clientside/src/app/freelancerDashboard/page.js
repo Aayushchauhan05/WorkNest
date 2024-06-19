@@ -6,6 +6,8 @@ import VerticalNav from '@/components/VerticalNav/VerticalNav';
 
 import Header from "@/components/Header/Header";
 
+import isAuth from '@/components/ClientsideProtectedRoutes/isAuth';
+
 function page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userinfo, setUserinfo] = useState([]);
@@ -194,4 +196,4 @@ function page() {
   )
 }
 
-export default page
+export default isAuth(page);

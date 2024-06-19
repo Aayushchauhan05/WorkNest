@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Input } from "@/components/ui/input";
+import isAuth from '@/components/ClientsideProtectedRoutes/isAuth';
 
 const Form = () => {
   
@@ -191,4 +192,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default isAuth(Form);
